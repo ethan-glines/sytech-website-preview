@@ -1,0 +1,771 @@
+/* ==========================================================================
+   SyTech Multipage — Shared Stylesheet
+   Single source of truth for nav, footer, and shared base styles across
+   all SyTech multipage pages. Page-specific styles remain in each page's
+   inline <style> block (which loads AFTER this file, so per-page overrides
+   still win).
+
+   What is in here (byte-identical / visually-identical across all 6 pages):
+   - CSS variables: 8 common tokens (--navy, --deep-navy, --gold, --amber,
+     --light, --white, --soft-white, --text-body)
+   - Universal reset, html/body, .container, a
+   - .skip-link + :focus
+   - Navigation: .nav, .nav-shape, .nav-inner, .nav-logo, .nav-links,
+     .nav-links a (hover + ::after underline), aria-current="page" rules,
+     .nav-cta + hover, .nav-hamburger + states, mobile breakpoint @1024px
+   - Footer: .site-footer, .footer-grid, .footer-brand, .footer-col,
+     .footer-bottom + footer-grid mobile breakpoint @900px
+
+   What is NOT in here (kept inline per-page due to real per-page
+   differences — see Kit's extraction report for details):
+   - Extra :root vars: --dot-blue (index only), --gold-soft / --navy-soft
+     (index + about only)
+   - .nav-logo class (used by inline SyTech orbital-ring logo on ALL 12 pages —
+     SVG-less logo via the <a><div>...</div></a> pattern)
+   - .page-hero, .section, .section.alt (not on all pages; per-page padding
+     varies; index uses different .hero pattern)
+   - .btn-primary (padding + letter-spacing differs between index, contact,
+     and the simple-page set)
+   - .cta-strip (background color differs — services uses var(--navy),
+     others use var(--deep-navy); index does not use .cta-strip at all)
+   - All component styles (.feature-card, .diff-card, .case-card, etc.)
+   ========================================================================== */
+
+
+/* ---- Variables (8 shared tokens, byte-identical across all 6 pages) ---- */
+:root {
+  --navy: #25426B;
+  --deep-navy: #1a2c42;
+  --gold: #E5A630;
+  --amber: #f1b14c;
+  --light: #F5F5F5;
+  --white: #FFFFFF;
+  --soft-white: #C5CDD8;
+  --text-body: #3d4f5f;
+}
+
+
+/* ---- Reset / Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Tahoma, 'Segoe UI', Arial, Helvetica, sans-serif;
+  color: var(--navy);
+  background: var(--white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+.container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+a { color: inherit; text-decoration: none; }
+
+
+/* ---- Skip Link ---- */
+.skip-link {
+  position: absolute; top: -100px; left: 1rem; z-index: 999;
+  background: var(--gold); color: var(--deep-navy); padding: 0.75rem 1.5rem;
+  font-weight: 700; font-size: 0.875rem; border-radius: 0 0 8px 8px;
+  text-decoration: none; transition: top 0.3s;
+}
+.skip-link:focus { top: 0; }
+
+
+/* ==========================================================================
+   NAVIGATION (OneForm-style two-layer SVG header, SyTech-adapted)
+   White header shape + curved gold underline, fixed at top.
+   ========================================================================== */
+.nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: none; }
+
+.nav-shape {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+.nav-shape svg {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: block;
+}
+
+.nav-inner {
+  max-width: 1140px; margin: 0 auto;
+  padding: 0 2rem; padding-top: 9px; padding-bottom: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 62px; position: relative; z-index: 2;
+}
+.nav-inner > a { display: inline-flex; align-items: center; flex-shrink: 0; }
+
+.nav-logo { height: 47px; width: auto; display: block; }
+
+.nav-links {
+  display: flex; gap: 2rem; align-items: center;
+  margin: 0; padding: 0; list-style: none;
+}
+.nav-links a {
+  font-size: 0.875rem; font-weight: 700; color: var(--navy);
+  text-decoration: none; letter-spacing: 0.02em;
+  position: relative; transition: color 0.2s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-links a[aria-current="page"] { color: var(--gold); }
+.nav-links a[aria-current="page"]::after { width: 100%; }
+
+.nav-cta {
+  display: inline-block; padding: 0.625rem 1.5rem;
+  background: var(--navy); color: var(--white);
+  font-size: 0.875rem; font-weight: 700; border-radius: 6px;
+  text-decoration: none; transition: all 0.3s ease;
+  border: none; cursor: pointer; letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.nav-cta:hover {
+  background: var(--deep-navy); transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(37, 66, 107, 0.30);
+}
+
+/* Hamburger (hidden on desktop, shown <=1024px) */
+.nav-hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  width: 32px; height: 24px; position: relative; z-index: 101;
+  padding: 0; flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block; position: absolute; left: 0;
+  width: 100%; height: 2.5px;
+  background: var(--navy); border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.nav-hamburger span:nth-child(1) { top: 2px; }
+.nav-hamburger span:nth-child(2) { top: 10px; }
+.nav-hamburger span:nth-child(3) { top: 18px; }
+.nav-hamburger.open span:nth-child(1) { top: 10px; transform: rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+
+
+/* ==========================================================================
+   MEGA-MENU (Batch 4)
+   3-column dropdown on the Services nav item. Pure CSS hover/focus on
+   desktop; JS toggle on mobile via the existing hamburger pattern.
+   ========================================================================== */
+
+.nav-has-mega { position: relative; }
+
+/* Trigger — inherits .nav-links a styles. Adds chevron alignment. */
+.nav-mega-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.nav-mega-chevron {
+  color: currentColor;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.nav-has-mega:hover .nav-mega-chevron,
+.nav-has-mega:focus-within .nav-mega-chevron,
+.nav-has-mega.is-open .nav-mega-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown panel — hidden by default. */
+.mega {
+  position: absolute;
+  top: calc(100% + 12px);     /* sits 12px below the trigger row */
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  width: min(960px, 92vw);
+  background: var(--white);
+  border-top: 1px solid var(--gold);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 12px 32px rgba(37, 66, 107, 0.10);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 98;                 /* under nav (100) and gold curve SVG */
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 200ms;
+}
+
+/* Open states — desktop reveals on hover/focus-within. */
+.nav-has-mega:hover .mega,
+.nav-has-mega:focus-within .mega,
+.nav-has-mega.is-open .mega {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0s;
+}
+
+/* Hover bridge — prevents flicker when the cursor crosses the 12px gap
+   between trigger and panel. A transparent pseudo-element extends the
+   hoverable area upward into the gap. */
+.mega::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+.mega-inner {
+  padding: 2rem 2.25rem 1.5rem;
+}
+
+.mega-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 1.25rem;
+}
+
+.mega-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.mega-col {
+  /* Phase columns kept flat; phase NUMBER is the only visual differentiator
+     between phases (no color coding per Maya's framework guardrail). */
+}
+
+.mega-col-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.mega-col-num {
+  color: var(--gold);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.mega-col-name {
+  color: var(--navy);
+}
+
+.mega-col-desc {
+  font-size: 0.82rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(37, 66, 107, 0.08);
+}
+
+.mega-col-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mega-col-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.mega-col-list a {
+  display: block;
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  transition: color 0.2s ease,
+              background-color 0.2s ease,
+              border-left-color 0.2s ease;
+}
+.mega-col-list a::after { display: none; }   /* override .nav-links a::after */
+.mega-col-list a:hover,
+.mega-col-list a:focus-visible {
+  color: var(--gold);
+  background: rgba(229, 166, 48, 0.06);
+  border-left-color: var(--gold);
+}
+.mega-col-list a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Active subpage marker (aria-current="page" inside the dropdown). */
+.mega-col-list a[aria-current="page"] {
+  color: var(--navy);
+  background: rgba(229, 166, 48, 0.06);
+  border-left-color: var(--gold);
+}
+.mega-col-list a[aria-current="page"]:hover {
+  color: var(--gold);
+}
+
+.mega-overview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 0.45rem 0;
+  border-bottom: 2px solid var(--gold);
+  transition: color 0.2s ease;
+}
+.mega-overview-link::after { display: none; }   /* override .nav-links a::after */
+.mega-overview-link:hover,
+.mega-overview-link:focus-visible {
+  color: var(--gold);
+}
+.mega-overview-link .arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.mega-overview-link:hover .arrow,
+.mega-overview-link:focus-visible .arrow {
+  transform: translateX(4px);
+}
+.mega-overview-link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Active section marker — when on a Services subpage, the trigger shows
+   the persistent gold underline via aria-current="true". aria-current="page"
+   (on services.html itself) is already handled by the existing
+   .nav-links a[aria-current="page"] rule above. */
+.nav-links a.nav-mega-trigger[aria-current="true"] {
+  color: var(--gold);
+}
+.nav-links a.nav-mega-trigger[aria-current="true"]::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   COMPACT DROPDOWN (Resources) — reuses .nav-has-mega / .mega mechanism.
+   Same trigger, chevron, reveal transitions, mobile accordion, reduced-motion
+   handling as the Services mega-menu; only the panel width + inner list differ.
+   ========================================================================== */
+.mega.mega--compact {
+  /* Narrow, left-aligned panel anchored under the trigger (not a full
+     centered mega-strip). A 2-link menu doesn't need 960px of width. */
+  left: 0;
+  transform: translateX(0) translateY(-4px);
+  width: max-content;
+  min-width: 200px;
+}
+.nav-has-mega--compact:hover .mega.mega--compact,
+.nav-has-mega--compact:focus-within .mega.mega--compact,
+.nav-has-mega--compact.is-open .mega.mega--compact {
+  transform: translateX(0) translateY(0);
+}
+.mega--compact .mega-inner {
+  padding: 0.5rem;
+}
+.mega-simple-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mega-simple-list li {
+  margin: 0;
+  padding: 0;
+}
+.mega-simple-list a {
+  display: block;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  white-space: nowrap;
+  transition: color 0.2s ease,
+              background-color 0.2s ease,
+              border-left-color 0.2s ease;
+}
+.mega-simple-list a::after { display: none; }   /* override .nav-links a::after */
+.mega-simple-list a:hover,
+.mega-simple-list a:focus-visible {
+  color: var(--gold);
+  background: rgba(229, 166, 48, 0.06);
+  border-left-color: var(--gold);
+}
+.mega-simple-list a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+/* Active subpage marker (aria-current="page" inside the compact dropdown). */
+.mega-simple-list a[aria-current="page"] {
+  color: var(--navy);
+  background: rgba(229, 166, 48, 0.06);
+  border-left-color: var(--gold);
+}
+.mega-simple-list a[aria-current="page"]:hover {
+  color: var(--gold);
+}
+
+/* Reduced-motion: skip the transition; show/hide instantly. */
+@media (prefers-reduced-motion: reduce) {
+  .mega,
+  .mega-cols,
+  .mega-col-list a,
+  .mega-simple-list a,
+  .nav-mega-chevron,
+  .mega-overview-link .arrow {
+    transition: none !important;
+  }
+  .nav-has-mega:hover .mega,
+  .nav-has-mega:focus-within .mega,
+  .nav-has-mega.is-open .mega {
+    transition: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   CONDENSED DESKTOP BAND — narrow desktop windows that are still above the
+   1024px hamburger cutoff. CEILING = 1440px. This literal MUST stay in sync
+   with the mqBand matchMedia in every page's inline nav JS (CSS media queries
+   can't read a var(); keep the two 1440 literals adjacent in mind).
+   One change vs. wide desktop (>1440px):
+     collapse the Services mega-menu to a plain link (its inline JS
+     redirects the click to index.html#service-tiles). The Resources
+     .mega--compact dropdown is only 2 items, so it is left fully intact.
+   The "Request a Free Assessment" CTA STAYS VISIBLE in this band; it is only
+   hidden at <=1024px (hamburger mode) by the block below, which is untouched
+   by this band.
+   ========================================================================== */
+@media (min-width: 801px) and (max-width: 1440px) {
+  /* Kill ONLY the Services dropdown: hide its panel + chevron so no
+     hover/focus-within reveal can fire and keyboard focus can't land in a
+     hidden menu. Scoped with :not(.nav-has-mega--compact) so the Resources
+     compact dropdown keeps its chevron + panel. */
+  .nav-has-mega:not(.nav-has-mega--compact) .mega { display: none; }
+  .nav-has-mega:not(.nav-has-mega--compact) .nav-mega-chevron { display: none; }
+}
+
+
+/* ==========================================================================
+   CTA VISIBILITY + NAV FIT — governs ALL pages identically (shared-nav pages
+   AND the index fork) so the header behaves the same everywhere. This is the
+   single source of truth for the "Request a Free Assessment" CTA boundary;
+   the index fork's old CTA-wall / CTA-hide / links-wall / 801-1024 counter
+   blocks were removed in favor of these rules. Boundaries:
+     > 1150px : full horizontal nav WITH the CTA (amber-clearance wall below).
+     801-1150 : full horizontal nav, CTA HIDDEN (no reappearance anywhere);
+                links tightened + no-wrap so the 6 top-level items + 2 dropdown
+                chevrons fit cleanly down to the 801px floor without crowding
+                the logo.
+     <= 800px : hamburger (handled by the mobile block below).
+   ========================================================================== */
+
+/* Top-level nav labels never wrap (e.g. "Who We Serve" breaking to 3 lines).
+   Scoped to > li > a so the long service names inside the Services mega panel
+   keep their normal multi-line wrapping. */
+.nav-links > li > a { white-space: nowrap; }
+
+/* CTA visible ONLY above 1150px. !important reliably beats the base .nav-cta
+   display AND any #nav .nav-cta rule, closing the old 801-1024 reappearance
+   gap on every page. (The <=800 hamburger block also hard-hides it; harmless
+   overlap.) */
+@media (max-width: 1150px) {
+  .nav-cta { display: none !important; }
+}
+
+/* Amber-notch clearance for the VISIBLE CTA (>1150 only): pull the button left
+   as the viewport narrows so its right edge stays inside the gold curve; the
+   push tapers to 0 at ~1416px so the wide-desktop cradle (>1416, incl. Ethan's
+   >1440 "good" look) is untouched. 538 = nav-inner max-width/2 - padding
+   = 1140/2 - 32. TIGHTNESS DIAL: raise the 0.88 target (lower the 0.38 coeff)
+   for a looser button-to-amber gap. Relocated here from the index fork so
+   shared + index behave identically. A margin on a hidden (<=1150) CTA would
+   be a no-op anyway, so gating to >1150 keeps the two ranges coherent. */
+@media (min-width: 1151px) {
+  .nav-cta { margin-right: max(0px, 538px - 0.38 * 100vw); }
+}
+
+/* Tighten the link row in the CTA-hidden band so all 6 top-level items + the
+   2 dropdown chevrons fit at the 801px floor. (Desktop base gap = 2rem.) */
+@media (min-width: 801px) and (max-width: 1150px) {
+  .nav-links { gap: 1.5rem; }
+
+  /* Amber-notch clearance for the CTA-HIDDEN band. With the CTA gone,
+     space-between hugs .nav-links to the nav-inner right content edge, which
+     would overrun the decorative gold notch. So pull .nav-links LEFT with a
+     small margin-right.
+
+     NOTCH GEOMETRY (RENDER-MEASURED 2026-07-10, supersedes the old numbers):
+     the gold curve is drawn by the full-width preserveAspectRatio="none"
+     header SVG. Its FLAT-BOTTOM corner is at viewBox x=2570.83/2992.02
+     = 0.859*vw, but that is NOT where the links must clear — by the time the
+     gold line has RISEN to link-TEXT height it sits at a CONSTANT ~0.892*vw
+     across this whole band (do NOT re-derive from 0.859 / 0.90 — those are the
+     flat-bottom and an earlier bad estimate; the verified text-height value is
+     0.892*vw). Because .nav-links is the space-between item pinned to the right
+     content edge and "Contact" is the LAST link, Contact's right edge is
+     ALWAYS (rightContentEdge - margin-right) and is FONT-INDEPENDENT.
+
+     WHY THE SHALLOW 0.108 SLOPE (was 0.21): for vw<=1140 the right content
+     edge = vw - 32 (32px = 2rem right padding), so
+       gap = 0.892*vw - (vw - 32 - margin) = margin - 0.108*vw + 32.
+     Setting the slope to 0.108 makes margin's 0.108*vw term CANCEL the notch's
+     0.108*vw encroachment, so gap = 32 - CONST is CONSTANT (flat) across the
+     band instead of collapsing into overlap at the narrow end. RENDER-VERIFIED
+     with 0.108*100vw - 3: gap is a flat ~29px at 1080/1000/900/850/801 and
+     ~34px at 1150 (nav-inner caps at 1140 there, a touch looser — fine, that's
+     the wide end with the most room). The old 0.21/129 rule had the WRONG
+     slope and tapered the gap the wrong way: it read +25px @1150 but went
+     NEGATIVE (overlap) at 900/850/801 (-5, -10, -15px). At 801 the new push is
+     ~83px and Home still clears the logo by ~22px (66.8px of slack existed).
+
+     WINDOWS NOTE: target ~28-30px on a Mac headless render (device-scale 1,
+     overlay scrollbars where 100vw == clientWidth). On classic-scrollbar OSes
+     (Windows -- SyTech's government audience) 100vw runs ~15px wider than the
+     content, so keep the Mac gap generous enough that the real-world gap stays
+     a comfortable ~13-15px. 29px Mac satisfies that.
+
+     TUNING DIALS (sign has been gotten BACKWARDS twice -- read carefully):
+       - margin-right pulls .nav-links (and thus Contact) LEFT. So a LARGER
+         margin-right = Contact moves LEFT = BIGGER gap.
+       - The CONSTANT (currently 3) is SUBTRACTED from margin-right. So a
+         SMALLER constant = larger margin-right = BIGGER gap. To WIDEN the gap,
+         DECREASE the constant; to narrow it, INCREASE it. Flat gap ~= 32 - CONST
+         (Mac render). (Constant 3 -> ~29px; e.g. constant 5 -> ~27px.)
+       - The SLOPE (currently 0.108) sets the TAPER. Keep it at 0.108 to hold
+         the gap FLAT (it matches the notch's per-px rise). RAISE it only if you
+         deliberately want the gap wider at 1150 and tighter toward 801; LOWER
+         it for the reverse. Changing the slope re-tilts the whole band, so
+         re-render and re-measure if you touch it.
+     Scoped to this band only; the >1150 (CTA visible) and <=800 (hamburger)
+     states are untouched. */
+  .nav-links { margin-right: max(0px, 0.108 * 100vw - 3px); }
+}
+
+
+/* Nav collapses to hamburger at <=1024px (per OneForm reference) */
+@media (max-width: 800px) {
+  .nav {
+    background: var(--white);
+    border-bottom: 1px solid #E3E9EF;
+  }
+  .nav-shape { display: none; }
+  .nav-inner { height: 64px; padding-top: 0; padding-bottom: 0; }
+  .nav-hamburger { display: block; }
+  /* !important: hard-hide the CTA at hamburger widths so no inline page rule,
+     specificity accident, or cached partial can re-show it beside the burger. */
+  .nav-cta { display: none !important; }
+  .nav-links {
+    display: none; flex-direction: column; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--white);
+    border-top: 1px solid #E3E9EF;
+    border-bottom: 1px solid #E3E9EF;
+    box-shadow: 0 8px 24px rgba(37, 66, 107, 0.10);
+    padding: 0.5rem 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block; padding: 0.875rem 2rem; font-size: 1rem;
+    border-bottom: 1px solid #E3E9EF;
+  }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-links a::after { display: none; }
+
+  /* Mega-menu mobile overrides — accordion inside the hamburger panel. */
+  .nav-has-mega { position: static; }
+
+  .nav-mega-trigger {
+    /* Trigger row is split: link text navigates to services.html,
+       chevron is a tap-target for accordion toggle (handled in JS). */
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav-mega-chevron {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    /* Make the chevron a comfortable tap target (44x44 invisible box). */
+    padding: 15px;
+    box-sizing: content-box;
+    margin: -15px -15px -15px 0;
+  }
+
+  .mega {
+    /* Inline accordion panel, not floating dropdown. */
+    position: static;
+    transform: none;
+    width: 100%;
+    background: var(--light);
+    border-top: none;
+    border-bottom: 1px solid #E3E9EF;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    z-index: auto;
+    transition: max-height 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease,
+                visibility 0s linear 250ms;
+  }
+  /* CRITICAL: disable desktop's :hover/:focus-within reveal at mobile width.
+     On touch devices, :hover triggers can stick. State is controlled via .is-open only. */
+  .nav-has-mega:hover .mega,
+  .nav-has-mega:focus-within .mega {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    transform: none;
+  }
+  .nav-has-mega.is-open .mega {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: 1200px;          /* generous; collapses if content fits */
+    transition: max-height 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms ease,
+                visibility 0s linear 0s;
+  }
+  .nav-has-mega.is-open .nav-mega-chevron {
+    transform: rotate(180deg);
+  }
+  .mega::before { display: none; }   /* no hover bridge on mobile */
+
+  .mega-inner {
+    padding: 0.5rem 2rem 1rem;
+  }
+  /* Mobile simplification: flatten the 3 phase columns (Organize / Unify /
+     Scale) into ONE compact single-column list. Hide the eyebrow, phase
+     headers and phase descriptions so the service links read as a single
+     indented list under the trigger. (Desktop mega is untouched — these
+     overrides live only in this <=1024px block.) */
+  .mega-eyebrow,
+  .mega-col-title,
+  .mega-col-desc {
+    display: none;
+  }
+  .mega-cols {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0.25rem;
+  }
+  .mega-col-list a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;        /* comfortable tap target */
+    padding: 0.55rem 0.75rem;
+    border-bottom: none;     /* override the inherited .nav-links a border-bottom */
+    font-size: 0.95rem;
+  }
+  .mega-overview-link {
+    margin-top: 0.25rem;
+  }
+
+  /* Compact (Resources) dropdown on mobile: drop the desktop narrow/left
+     anchoring so it behaves as a full-width inline accordion like the mega. */
+  .mega.mega--compact {
+    width: 100%;
+    min-width: 0;
+    transform: none;
+  }
+  .nav-has-mega--compact:hover .mega.mega--compact,
+  .nav-has-mega--compact:focus-within .mega.mega--compact {
+    transform: none;
+  }
+  .nav-has-mega--compact.is-open .mega.mega--compact {
+    transform: none;
+  }
+  .mega--compact .mega-inner {
+    padding: 0.5rem 2rem 1rem;
+  }
+  .mega-simple-list a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;        /* comfortable tap target */
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+    border-bottom: none;     /* override inherited .nav-links a border */
+    white-space: normal;
+  }
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--deep-navy); padding: 3rem 0 2rem;
+  border-top: 3px solid var(--gold); position: relative;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 2.5rem;
+}
+.footer-brand .footer-logo {
+  margin-bottom: 0.9rem;
+}
+/* Footer wordmark now uses the inline SyTech orbital-ring logo (same mark as
+   .nav-logo), reversed to white for the dark navy footer. Explicit height keeps
+   it from collapsing to 0×0 (intrinsic SVG sizing on auto-width container).
+   Children are forced white via fill so the navy header fills don't carry over. */
+.footer-brand .footer-logo svg {
+  height: 38px; width: auto; display: block;
+}
+.footer-brand .footer-logo svg path,
+.footer-brand .footer-logo svg polygon {
+  fill: var(--white);
+}
+/* (Legacy .footer-logo span rule removed — footer wordmark is now the inline SVG mark.) */
+.footer-brand p {
+  font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.7;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.5rem; }
+.footer-col ul a {
+  font-size: 0.85rem; color: rgba(255,255,255,0.6);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-col ul a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem; text-align: center;
+  font-size: 0.75rem; color: rgba(255,255,255,0.35);
+}
+
+/* Footer responsive — collapses to single column on mobile.
+   Per-page <style> blocks may keep their own @media (max-width: 900px)
+   block for OTHER page-specific mobile rules; the .footer-grid rule
+   has been moved here. */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+}

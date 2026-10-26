@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Downloads</title>
+<meta name="description" content="Software and tools for SyTech customers. Download ExpressLink for 1DocStop — a lightweight program to upload documents directly into 1DocStop using a watch folder."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+/* Page-specific :root vars (extras beyond the 8 shared in sytech-shared.css) */
+:root {
+  --gold-soft: rgba(229, 166, 48, 0.12);
+  --navy-soft: rgba(37, 66, 107, 0.07);
+}
+
+/* ========== PAGE HERO ========== */
+.page-hero {
+  padding: 11rem 0 5rem;
+  background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%);
+  position: relative; overflow: hidden;
+  color: var(--white);
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px; pointer-events: none;
+}
+.page-hero .eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.page-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em;
+}
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead {
+  font-size: 1.15rem; line-height: 1.7;
+  color: rgba(255,255,255,0.82); max-width: 720px;
+}
+
+/* ========== CONTENT SECTIONS ========== */
+.section { padding: 5rem 0; }
+.section.alt { background: var(--light); }
+
+/* ========== DOWNLOAD CARD (single, centered, premium) ========== */
+.download-wrap { max-width: 680px; margin: 0 auto; }
+.download-card {
+  background: var(--white);
+  border: 1px solid #E3E9EF;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(37, 66, 107, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+.download-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 100%; height: 4px; background: var(--gold);
+}
+.download-card-inner {
+  display: flex; gap: 1.75rem;
+  padding: 2.5rem 2.5rem 2rem;
+  align-items: flex-start;
+}
+.download-icon {
+  flex-shrink: 0;
+  width: 64px; height: 64px;
+  border-radius: 12px;
+  background: var(--gold-soft);
+  display: flex; align-items: center; justify-content: center;
+}
+.download-icon svg { width: 32px; height: 32px; display: block; }
+.download-body { flex: 1; min-width: 0; }
+.download-body h2 {
+  font-size: 1.4rem; font-weight: 700; color: var(--navy);
+  line-height: 1.25; margin-bottom: 0.6rem; letter-spacing: -0.01em;
+}
+.download-body p.desc {
+  font-size: 1rem; line-height: 1.75; color: var(--text-body);
+  margin-bottom: 1.5rem;
+}
+
+/* Meta details */
+.download-meta {
+  display: flex; flex-wrap: wrap; gap: 1.75rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(37, 66, 107, 0.08);
+  border-bottom: 1px solid rgba(37, 66, 107, 0.08);
+  margin-bottom: 1.75rem;
+}
+.download-meta .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.download-meta .meta-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+}
+.download-meta .meta-value {
+  font-size: 0.95rem; font-weight: 700; color: var(--navy);
+}
+
+/* Actions */
+.download-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  background: var(--gold); color: var(--deep-navy);
+  font-size: 0.95rem; font-weight: 700; border-radius: 6px;
+  text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+.btn-primary svg { width: 18px; height: 18px; flex-shrink: 0; }
+.download-secondary {
+  font-size: 0.95rem; font-weight: 700; color: var(--navy);
+  border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+.download-secondary:hover { color: var(--gold); }
+
+/* Note line under the card */
+.download-note {
+  max-width: 680px; margin: 1.5rem auto 0;
+  font-size: 0.85rem; line-height: 1.6; color: var(--text-body);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .download-card-inner { flex-direction: column; gap: 1.25rem; padding: 2rem 1.5rem 1.5rem; }
+  .download-actions { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .btn-primary { justify-content: center; }
+  .download-secondary { text-align: center; }
+}
+
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .section { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO — Downloads (brand-neutral navy + gold)
+     ============================================================ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Resources</span>
+    <h1>Downloads</h1>
+    <p class="lead">Software and tools for SyTech customers.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOWNLOAD CARD — ExpressLink (single, centered)
+     ============================================================ -->
+<section class="section alt">
+  <div class="container">
+    <div class="download-wrap">
+      <article class="download-card">
+        <div class="download-card-inner">
+          <div class="download-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#E5A630" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M14 2v6h6" stroke="#E5A630" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M12 11v6" stroke="#25426B" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M9.5 14.5 12 17l2.5-2.5" stroke="#25426B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="download-body">
+            <h2>ExpressLink for 1DocStop</h2>
+            <p class="desc">ExpressLink is a light weight program created to upload documents directly into 1DocStop using a watch folder.</p>
+
+            <div class="download-meta">
+              <div class="meta-item">
+                <span class="meta-label">Version</span>
+                <span class="meta-value">September 2019</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">File type</span>
+                <span class="meta-value">ZIP</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Size</span>
+                <span class="meta-value">~630 KB</span>
+              </div>
+            </div>
+
+            <div class="download-actions">
+              <a class="btn-primary" href="https://odsw.blob.core.windows.net/distribution/ExpressLinkSeptember2019.zip?sv=2017-07-29&sr=b&sig=VyOucW71HgYYN1PUdJTwgpjYLeg3II5o6V70CTBfEzg%3D&st=2019-11-01T20%3A51%3A01Z&se=2030-12-31T22%3A51%3A01Z&sp=r" download>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M7 10.5 12 15.5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Download ExpressLink
+              </a>
+              <a class="download-secondary" href="services-1docstop.html">Learn about 1DocStop</a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <p class="download-note">For SyTech customers using 1DocStop. Questions about installation? <a href="contact.html" style="font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:1px;">Contact us</a>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+(function() {
+  'use strict';
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Services</title>
+<meta name="description" content="SyTech's Organize, Unify, Scale framework: digitization, electronic forms, workflow automation, and AI readiness — all built on the cloud you already own."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+.page-hero { padding: 11rem 0 5rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 720px; }
+
+.phase { padding: 5rem 0; border-bottom: 1px solid rgba(37,66,107,0.08); }
+.phase.alt { background: var(--light); }
+.phase-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+.phase-num { font-size: clamp(4rem, 8vw, 6.5rem); font-weight: 700; color: var(--gold); line-height: 1; opacity: 0.85; letter-spacing: -0.02em; }
+.phase-label { display: inline-block; padding: 0.4rem 0.9rem; background: var(--gold-soft, rgba(229,166,48,0.15)); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; border-radius: 4px; margin-bottom: 1rem; }
+.phase h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.phase p { font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1.25rem; }
+.phase ul { list-style: none; margin-top: 1.5rem; padding: 0; }
+.phase ul li { position: relative; padding-left: 1.75rem; padding-bottom: 0.75rem; font-size: 0.97rem; color: var(--text-body); }
+.phase ul li::before { content: ''; position: absolute; left: 0; top: 0.6rem; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+.phase .pull { font-size: 0.95rem; color: var(--navy); font-weight: 700; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 2px solid var(--gold); display: inline-block; }
+
+.cap-section { padding: 5rem 0; background: var(--deep-navy); color: var(--white); }
+.cap-section h2 { color: var(--white); font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: 1rem; }
+.cap-section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.cap-section p.lead { color: rgba(255,255,255,0.75); max-width: 720px; margin-bottom: 2.5rem; font-size: 1.05rem; line-height: 1.7; }
+.cap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+/* Batch 3 (2026-05-21): .cap-card is now a clickable <a> linking to its subpage. */
+.cap-card { background: rgba(255,255,255,0.04); padding: 2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-decoration: none; color: inherit; display: block; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+@media (hover: hover) and (pointer: fine) {
+.cap-card:hover { transform: translateY(-2px); border-color: rgba(229,166,48,0.4); box-shadow: 0 8px 24px rgba(0,0,0,0.20); }
+}
+.cap-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.cap-card h3 { color: var(--gold); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; letter-spacing: 0.02em; }
+.cap-card p { color: rgba(255,255,255,0.75); font-size: 0.92rem; line-height: 1.65; margin: 0; }
+.cap-card .arrow { color: var(--gold); margin-left: 0.4rem; transition: transform 0.3s; display: inline-block; }
+@media (hover: hover) and (pointer: fine) {
+.cap-card:hover .arrow { transform: translateX(4px); }
+}
+/* Batch 3 (2026-05-21): grid reduced from 5 to 3 cards at desktop. Mid breakpoints unchanged. */
+@media (min-width: 1100px) { .cap-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+@media (max-width: 1099px) and (min-width: 760px) { .cap-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 759px) and (min-width: 520px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 519px) { .cap-grid { grid-template-columns: 1fr; } }
+
+/* Archive Scanning sub-section (Phase 1 nested) — Batch 3: now houses the Banker's Box teaser only.
+   The .steps process diagram, .archive-trust, and .archive-quote rules below are RETAINED for the
+   services-scanning.html subpage which inherits this stylesheet pattern. On services.html itself
+   they are no longer instantiated. */
+.archive-sub { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(37,66,107,0.10); }
+.archive-sub h3 { font-size: clamp(1.15rem, 1.8vw, 1.4rem); font-weight: 700; color: var(--navy); line-height: 1.25; letter-spacing: -0.005em; margin-bottom: 0.75rem; }
+.archive-sub .archive-intro { font-size: 1rem; line-height: 1.75; color: var(--text-body); margin-bottom: 1.25rem; max-width: 640px; }
+
+/* Batch 3 (2026-05-21): Banker's Box teaser link CTA — inline text link, gold underline, no button. */
+.archive-teaser-link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--gold);
+  transition: all 0.3s;
+}
+.archive-teaser-link .arrow { display: inline-block; transition: transform 0.3s; }
+@media (hover: hover) and (pointer: fine) {
+.archive-teaser-link:hover .arrow { transform: translateX(4px); }
+}
+.archive-teaser-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Batch 3 (2026-05-21): Phase-Subpage Roster (Pattern A — NEW).
+   Sits between phase bullets and the phase's closing pull/teaser. Always 3 cols at >760px,
+   never auto-fit — empty slots are intentional roadmap signals for paused/future subpages.
+   Quieter register than the page-level Cross-Link cards (Section 5.7):
+     - hairline navy border, NO gold left border (reserved for subpage cross-link)
+     - smaller padding, tighter border-radius
+     - lighter hover lift (1px vs. 2px), softer shadow */
+.phase-roster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.phase-roster-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid rgba(37,66,107,0.10);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+.phase-roster-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,66,107,0.06);
+}
+}
+.phase-roster-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.phase-roster-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.phase-roster-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 0.5rem;
+  position: relative;
+  display: inline-block;
+  line-height: 1.25;
+}
+.phase-roster-card h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.phase-roster-card:hover h4::after { width: 100%; }
+.phase-roster-card p {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-body);
+  line-height: 1.55;
+  margin: 0;
+}
+/* Held empty slot — visually invisible but holds the grid column.
+   Roadmap signal for paused subpages (Workflow Automation, Cloud-Native Storage). */
+.phase-roster-card--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+/* Scroll-into-view stagger — fade-in + 6px translateY, 80ms between siblings (tighter than
+   5.7 cross-link's 120ms — these are quieter). Gated behind prefers-reduced-motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .phase-roster-card:not(.phase-roster-card--empty) {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), transform 400ms cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease;
+  }
+  .phase-roster.is-visible .phase-roster-card:not(.phase-roster-card--empty) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .phase-roster.is-visible .phase-roster-card:not(.phase-roster-card--empty):nth-child(1) { transition-delay: 0ms; }
+  .phase-roster.is-visible .phase-roster-card:not(.phase-roster-card--empty):nth-child(2) { transition-delay: 80ms; }
+  .phase-roster.is-visible .phase-roster-card:not(.phase-roster-card--empty):nth-child(3) { transition-delay: 160ms; }
+  /* Re-apply hover transform separate from the initial entrance (hover overrides translateY) */
+  @media (hover: hover) and (pointer: fine) {
+    .phase-roster.is-visible .phase-roster-card:not(.phase-roster-card--empty):hover {
+      transform: translateY(-1px);
+    }
+  }
+}
+@media (max-width: 760px) {
+  .phase-roster {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  /* On mobile, held empty slots collapse — no point reserving a 1-col row of nothing. */
+  .phase-roster-card--empty { display: none; }
+}
+
+/* RETAINED below for services-scanning.html stylesheet inheritance — no longer used on services.html itself.
+   (Batch 3: moved the 5-step Banker's Box content to the scanning subpage.) */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin: 1.5rem 0 1.75rem; position: relative; list-style: none; padding: 0; }
+.steps::before { content: ''; position: absolute; top: 18px; left: calc(10% + 18px); right: calc(10% + 18px); height: 2px; background: linear-gradient(to right, rgba(229,166,48,0.45), rgba(229,166,48,0.45) 80%, rgba(229,166,48,0.10)); z-index: 0; pointer-events: none; }
+.step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--deep-navy); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 0.85rem; box-shadow: 0 0 0 4px var(--white); }
+.step-label { font-size: 0.82rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.step-copy { font-size: 0.88rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+.archive-trust { font-size: 0.85rem; color: var(--text-body); opacity: 0.85; font-style: italic; margin-top: 0.5rem; padding-left: 1rem; border-left: 2px solid rgba(229,166,48,0.35); }
+.archive-quote { margin: 2rem 0 0; padding: 1.5rem 1.75rem; background: rgba(229,166,48,0.08); border-left: 4px solid var(--gold); border-radius: 4px; }
+.archive-quote p { font-size: 1.1rem; line-height: 1.5; color: var(--navy); font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr; gap: 1.25rem; }
+  .steps::before { display: none; }
+  .step { flex-direction: row; align-items: flex-start; gap: 1rem; }
+  .step-num { margin-bottom: 0; flex-shrink: 0; box-shadow: none; }
+  .step-body { flex: 1; }
+}
+
+.cta-strip { background: var(--navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; }
+.cta-strip p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 1.75rem; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--gold); color: var(--deep-navy); font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .phase-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .phase, .cap-section { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Our Services</span>
+    <h1>Organize. Unify. <span>Scale.</span></h1>
+    <p class="lead" data-aud="svc-lead">A three-phase framework for moving public agencies from records chaos to lasting clarity. We meet you where you are — paper, legacy software, or somewhere in between — and map a path forward using the cloud you already own.</p>
+  </div>
+</section>
+
+<section class="phase">
+  <div class="container">
+    <div class="phase-grid">
+      <div class="phase-num">01</div>
+      <div>
+        <!-- [2026-09-03 / Bryan] "remove the 'project based' and 'monthly
+             partnership'". Ethan's decision: keep the gold pills, strip the
+             engagement words, renumber cleanly 1 / 2 / 3. -->
+        <span class="phase-label">Phase 1</span>
+        <h2>Organize: See What You Actually Have.</h2>
+        <p>We scan, structure, and extract your legacy records — paper and digital — so nothing stays buried and everything becomes visible. AI-assisted ingestion and metadata extraction transform legacy clutter into indexed, compliant records ready for the next phase.</p>
+        <ul>
+          <li data-aud="svc-b-scan">Scanning and digitization at any scale</li>
+          <li data-aud="svc-b-index">Taxonomy and metadata setup for searchability</li>
+          <li>Legacy migration from paper, file shares, and outdated systems</li>
+          <li data-aud="svc-b-retention">Compliance setup aligned to your retention requirements</li>
+        </ul>
+
+        <!-- Batch 3 (2026-05-21): Phase 1 (Organize) subpage roster — 3 live cards. -->
+        <div class="phase-roster" aria-label="Organize phase subpages">
+          <a href="services-scanning.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">ORGANIZE</div>
+            <h4>Archive Scanning</h4>
+            <p>Decades of paper records become searchable, indexed, and governed by your policies.</p>
+          </a>
+          <a href="services-data-migration.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">ORGANIZE</div>
+            <h4>Data Migration</h4>
+            <p>Move legacy data into the cloud platform your agency already owns.</p>
+          </a>
+          <a href="services-compliance-setup.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">ORGANIZE</div>
+            <h4>Records Management &amp; Compliance Setup</h4>
+            <p>Configure retention, permissions, and audit posture inside SharePoint Online.</p>
+          </a>
+        </div>
+
+        <!-- Batch 3 (2026-05-21): .archive-sub repurposed as Banker's Box teaser.
+             REMOVED: 5-step process diagram, archive-trust line, archive-quote pull —
+             all now live on services-scanning.html. Container's border-top separator preserved. -->
+        <div class="archive-sub">
+          <h3>What Happens When You Hand Us a Banker's Box.</h3>
+          <p class="archive-intro" data-aud="svc-archive-intro">Decades of paper records sit in storage rooms across every public agency in California. We pick them up under GPS-tracked chain of custody, scan them, and return them to your cloud as searchable digital records &mdash; for less than the cost of a photocopy.</p>
+          <a href="services-scanning.html" class="archive-teaser-link">See the full process<span class="arrow" aria-hidden="true">&nbsp;&rarr;</span></a>
+        </div>
+
+        <span class="pull">When you organize your data, you gain visibility.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="phase alt">
+  <div class="container">
+    <div class="phase-grid">
+      <div class="phase-num">02</div>
+      <div>
+        <span class="phase-label">Phase 2</span>
+        <h2>Unify: One Ecosystem. One Login.</h2>
+        <p>Your organized records move into the cloud platform you already own. Forms, workflows, and data connect in a single place — eliminating silos and the cost of maintaining multiple disconnected systems. No new software required.</p>
+        <ul>
+          <li data-aud="svc-b-forms">Electronic forms and connective tools built inside Microsoft 365 or Google Workspace</li>
+          <li data-aud="svc-b-approvals">Workflow automation that replaces paper-based approvals</li>
+          <li>Records lifecycle alignment from creation to retention</li>
+          <li>Governance support and ongoing platform configuration</li>
+        </ul>
+
+        <!-- Phase 2 (Unify) subpage roster — 3 live cards (OneForm, SharePoint ERMS, 1DocStop).
+             Phase B (2026-05-29): 1DocStop added per locked plan. Grid is repeat(3, 1fr). -->
+        <div class="phase-roster" aria-label="Unify phase subpages">
+          <a href="services-oneform.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">UNIFY</div>
+            <h4>OneForm</h4>
+            <p>Electronic forms built inside the Microsoft 365 license your agency already owns.</p>
+          </a>
+          <a href="services-sharepoint-erms.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">UNIFY</div>
+            <h4>SharePoint ERMS</h4>
+            <p>Configure SharePoint as your records system &mdash; inside the tenant you already own.</p>
+          </a>
+          <a href="services-1docstop.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">UNIFY</div>
+            <h4>1DocStop</h4>
+            <p>Fully-managed cloud records management — no Microsoft 365 commitment required.</p>
+          </a>
+        </div>
+
+        <span class="pull">Your data stays in your cloud — always.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="phase">
+  <div class="container">
+    <div class="phase-grid">
+      <div class="phase-num">03</div>
+      <div>
+        <span class="phase-label">Phase 3</span>
+        <h2>Scale: Activate What You Already Fund.</h2>
+        <p>We turn on advanced automation, analytics, and AI using the licenses your agency already pays for — Microsoft Copilot, Power Automate, Power BI, Azure AI. Your infrastructure grows with you, and you future-proof for the cloud-and-AI era without adding new systems.</p>
+        <ul>
+          <li>Public Records Act dashboards and self-service portals</li>
+          <li>Retention logic and automated lifecycle management</li>
+          <li>Native AI integration through Microsoft Copilot</li>
+          <li>Ongoing optimization, reporting, and advanced integrations</li>
+        </ul>
+
+        <!-- Batch 3 (2026-05-21): Phase 3 (Scale) subpage roster — 1 live card + 2 held empty slots.
+             Held slot 1: Cloud-Native Storage (Batch 2b paused). Restore when services-cloud-storage.html ships.
+             Held slot 2: Scale currently plans only 2 subpages — third slot stays held until/unless
+             a third Scale subpage is added. Grid stays repeat(3, 1fr) for visual consistency. -->
+        <div class="phase-roster" aria-label="Scale phase subpages">
+          <a href="services-ai-ingestion.html" class="phase-roster-card">
+            <div class="phase-roster-eyebrow">SCALE</div>
+            <h4>AI-Powered Ingestion</h4>
+            <p>Read, classify, and index legacy archives into your tenant &mdash; at machine pace.</p>
+          </a>
+          <div class="phase-roster-card phase-roster-card--empty" aria-hidden="true"></div>
+          <div class="phase-roster-card phase-roster-card--empty" aria-hidden="true"></div>
+        </div>
+
+        <span class="pull">A future-proof path as AI and automation become mission critical.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cap-section">
+  <div class="container">
+    <span class="section-eyebrow">Capabilities</span>
+    <h2>The Tools Behind the Framework.</h2>
+    <p class="lead">SyTech engagements are powered by purpose-built capabilities for forms, ingestion, and records management &mdash; all designed to live inside the cloud platforms you already own.</p>
+    <!-- Batch 3 (2026-05-21): grid reduced from 5 cards to 3.
+         REMOVED: Connective Tools (no subpage planned — content weaves through Workflow Automation + Cloud Storage when those ship).
+         TEMPORARILY REMOVED: Cloud-Native Storage (Batch 2b paused — restore when services-cloud-storage.html ships).
+         Surviving cards transformed: <div> → <a>, body → 1-line tagline + gold arrow. -->
+    <div class="cap-grid">
+      <a href="services-oneform.html" class="cap-card">
+        <h3>OneForm</h3>
+        <p>Electronic forms built inside the Microsoft 365 license your agency already owns.<span class="arrow" aria-hidden="true">&nbsp;&rarr;</span></p>
+      </a>
+      <a href="services-ai-ingestion.html" class="cap-card">
+        <h3>AI-Powered Ingestion</h3>
+        <p>Reads, classifies, and indexes legacy archives into your tenant &mdash; at machine pace.<span class="arrow" aria-hidden="true">&nbsp;&rarr;</span></p>
+      </a>
+      <a href="services-sharepoint-erms.html" class="cap-card">
+        <h3>SharePoint ERMS</h3>
+        <p>Stop paying for an ERMS license when SharePoint Online already does the job.<span class="arrow" aria-hidden="true">&nbsp;&rarr;</span></p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2 data-aud="svc-cta-h2">Not Sure Where Your Agency Should Start?</h2>
+    <p data-aud="svc-cta-p">Every engagement begins with an assessment. We learn where you are, what is working, and what is not — then map a clear path forward through Organize, Unify, and Scale.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+    <p style="margin:1.1rem 0 0"><a href="right-partner.html" style="display:inline-block;font-size:0.92rem;font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid #E5A630;padding-bottom:2px">Not sure we're the right partner? Find out in seven quick steps &rarr;</a></p>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  // Batch 3 (2026-05-21): Phase-roster scroll-into-view stagger.
+  // Fade-in + 6px translateY, 80ms between siblings — gated by prefers-reduced-motion at CSS level.
+  // If reduced motion is set, cards render in final state via CSS @media query; observer still fires
+  // .is-visible (harmless), but transition is suppressed.
+  var rosters = document.querySelectorAll('.phase-roster');
+  if (rosters.length && 'IntersectionObserver' in window) {
+    var rosterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          rosterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    rosters.forEach(function(r) { rosterObserver.observe(r); });
+  } else {
+    // No IntersectionObserver support — render in final state immediately.
+    rosters.forEach(function(r) { r.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>

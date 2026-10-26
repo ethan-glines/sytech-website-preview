@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — IT Deep Dive</title>
+<meta name="description" content="Low-Code Development Deep Dive. Build records and data solutions around the cloud platform you already own, using Office 365 and SharePoint Online instead of proprietary software."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+/* ==========================================================================
+   IT DEEP DIVE — page-specific styles (namespaced .dd-*)
+   Uses shared brand tokens (--navy, --gold, --light, --white, --text-body).
+   Nothing here touches the shared stylesheet.
+   ========================================================================== */
+
+/* ---- Hero (image background + navy legibility wash) ---- */
+.dd-hero {
+  position: relative;
+  padding: 12rem 0 5rem;
+  color: var(--white);
+  background:
+    linear-gradient(160deg, rgba(26,44,66,0.90) 0%, rgba(37,66,107,0.82) 55%, rgba(45,80,128,0.72) 100%),
+    url('assets/img/deepdive/deepdive-hero.png') center / cover no-repeat;
+  overflow: hidden;
+}
+.dd-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px; pointer-events: none;
+}
+.dd-hero .container { position: relative; z-index: 1; }
+.dd-hero .dd-eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.dd-hero h1 {
+  font-size: clamp(2rem, 4.6vw, 3.3rem); font-weight: 700; line-height: 1.12;
+  letter-spacing: -0.01em; margin-bottom: 1.1rem; max-width: 18ch;
+}
+.dd-hero p.dd-lead {
+  font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.85);
+  max-width: 640px;
+}
+
+/* ---- Body layout: sticky TOC sidebar + content ---- */
+.dd-body { background: var(--light); padding: 3.5rem 0 5rem; }
+.dd-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ---- Sticky Table of Contents ---- */
+.dd-toc {
+  position: sticky; top: 100px;
+  align-self: start;
+}
+.dd-toc h2 {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.dd-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: dd-toc; }
+.dd-toc li { counter-increment: dd-toc; margin: 0; }
+.dd-toc a {
+  display: flex; gap: 0.6rem; align-items: baseline;
+  padding: 0.5rem 0.75rem; border-left: 2px solid #dfe5ec;
+  font-size: 0.86rem; font-weight: 600; line-height: 1.35; color: var(--text-body);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.dd-toc a::before {
+  content: counter(dd-toc, decimal-leading-zero);
+  font-size: 0.72rem; font-weight: 700; color: var(--gold); flex-shrink: 0;
+}
+.dd-toc a:hover { color: var(--navy); background: rgba(37,66,107,0.04); }
+.dd-toc a.is-active {
+  color: var(--navy); border-left-color: var(--gold);
+  background: rgba(229,166,48,0.08);
+}
+
+/* ---- Content panel ---- */
+.dd-content {
+  background: var(--white); border: 1px solid #E3E9EF; border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(37,66,107,0.07);
+  padding: 3rem clamp(1.5rem, 3vw, 3rem);
+}
+.dd-section { scroll-margin-top: 100px; padding: 2.75rem 0; }
+.dd-section:first-child { padding-top: 0.5rem; }
+.dd-section + .dd-section { border-top: 1px solid #EAEEF3; }
+.dd-section .dd-sec-num {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.65rem;
+}
+.dd-section h2 {
+  font-size: clamp(1.5rem, 2.7vw, 2.05rem); font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.01em; color: var(--navy); margin-bottom: 1.1rem;
+  text-wrap: balance;
+}
+.dd-section h3 {
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-weight: 700; color: var(--navy);
+  margin: 2rem 0 0.75rem; line-height: 1.25;
+}
+.dd-section h4 {
+  font-size: 1rem; font-weight: 700; color: var(--navy);
+  margin: 1.4rem 0 0.4rem;
+}
+.dd-section p {
+  font-size: 1rem; line-height: 1.75; color: var(--text-body);
+  max-width: 68ch; margin-bottom: 1.1rem;
+}
+.dd-section p:last-child { margin-bottom: 0; }
+.dd-section a.dd-inline-link {
+  color: var(--navy); font-weight: 700; text-decoration: underline;
+  text-decoration-color: var(--gold); text-underline-offset: 2px;
+}
+.dd-section a.dd-inline-link:hover { color: var(--gold); }
+
+/* ---- Platform card grid (Section 1) ---- */
+.dd-card-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.dd-card {
+  background: var(--light); border: 1px solid #E3E9EF; border-radius: 10px;
+  padding: 1.6rem 1.5rem;
+  border-top: 3px solid var(--gold);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.dd-card h3 {
+  font-size: 1.08rem; font-weight: 700; color: var(--navy);
+  margin: 0 0 0.7rem; line-height: 1.25;
+}
+.dd-card p {
+  font-size: 0.92rem; line-height: 1.65; color: var(--text-body);
+  margin: 0; max-width: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .dd-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(37,66,107,0.12); }
+}
+
+/* ---- Tools bullet list (Section 5) ---- */
+.dd-tools { list-style: none; margin: 1.5rem 0 0; padding: 0; max-width: 68ch; }
+.dd-tools li {
+  position: relative; padding: 0.7rem 0 0.7rem 1.75rem;
+  font-size: 1rem; line-height: 1.65; color: var(--text-body);
+  border-bottom: 1px solid #EEF1F5;
+}
+.dd-tools li:last-child { border-bottom: none; }
+.dd-tools li::before {
+  content: ''; position: absolute; left: 0; top: 1.15rem;
+  width: 8px; height: 8px; border-radius: 2px; background: var(--gold);
+}
+.dd-tools li strong { color: var(--navy); font-weight: 700; }
+
+/* ---- Inline figures (diagrams / screenshots) ---- */
+.dd-figure { margin: 2rem 0 0.5rem; }
+.dd-figure img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid #E3E9EF; border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(37,66,107,0.08); background: var(--white);
+}
+.dd-figure figcaption {
+  margin-top: 0.65rem; font-size: 0.82rem; color: #6a7885;
+  font-style: italic; text-align: center;
+}
+
+/* ---- CTA button (brand gold) ---- */
+.dd-cta {
+  display: inline-block; margin-top: 0.5rem;
+  padding: 0.85rem 2rem; background: var(--gold); color: var(--deep-navy);
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em;
+  border-radius: 6px; text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.dd-cta:hover { background: var(--amber); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.4); }
+.dd-cta:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+
+/* ---- NOTE callout (permissions) ---- */
+.dd-note {
+  margin: 2rem 0 0; padding: 1.1rem 1.4rem;
+  background: rgba(229,166,48,0.10); border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+}
+.dd-note p { margin: 0; color: #6b4e15; font-size: 0.95rem; max-width: none; }
+.dd-note strong { color: #8a6414; font-weight: 700; letter-spacing: 0.02em; }
+
+/* ==========================================================================
+   RESPONSIVE — TOC collapses above content on narrow screens
+   ========================================================================== */
+@media (max-width: 900px) {
+  .dd-hero { padding: 9.5rem 0 3.5rem; }
+  .dd-body { padding: 2.5rem 0 3.5rem; }
+  .dd-layout { grid-template-columns: 1fr; gap: 1.75rem; }
+  .dd-toc {
+    position: static; top: auto;
+    background: var(--white); border: 1px solid #E3E9EF; border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+  }
+  .dd-toc ol {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.25rem;
+  }
+  .dd-content { padding: 2rem 1.35rem; }
+}
+@media (max-width: 560px) {
+  .dd-hero h1 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+  .dd-card-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   SCENARIO FAQ — page-local, fully namespaced under .scenario-faq.
+   Accordion values lifted verbatim from about.html (.faq-section,
+   ~L96-139). 16:9 frame lifted verbatim from media.html
+   (.media-frame, ~L40). Nothing here touches shared CSS.
+   This page carries no family accent token, so the component keeps
+   its native gold. Band tone: white, following the --light .dd-body (§19).
+   Full-width band placed OUTSIDE .dd-layout so it cannot disturb the
+   sticky TOC grid.
+   ============================================================ */
+.scenario-faq { padding: 5rem 0; background: var(--white); }
+.scenario-faq .scenario-faq-head { text-align: center; max-width: 760px; margin: 0 auto; }
+.scenario-faq .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.scenario-faq h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin: 0; letter-spacing: -0.01em; color: var(--navy); }
+.scenario-faq .faq-list { margin: 2.5rem auto 0; max-width: 920px; }
+.scenario-faq .faq-item { background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px; margin-bottom: 0.85rem; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.scenario-faq .faq-item:hover { border-color: rgba(229,166,48,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.scenario-faq .faq-item[open] { border-color: var(--gold); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.scenario-faq .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; font-size: 1.02rem; color: var(--navy); list-style: none; text-align: left; transition: background 0.2s ease; }
+.scenario-faq .faq-question::-webkit-details-marker { display: none; }
+.scenario-faq .faq-question:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.scenario-faq .faq-question:hover { background: rgba(229,166,48,0.04); }
+.scenario-faq .faq-icon { flex-shrink: 0; margin-left: 1rem; width: 22px; height: 22px; position: relative; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { content: ''; position: absolute; background: var(--gold); border-radius: 1px; transition: opacity 0.25s ease; }
+.scenario-faq .faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.scenario-faq .faq-icon::after { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.scenario-faq .faq-item[open] .faq-icon { transform: rotate(180deg); }
+.scenario-faq .faq-item[open] .faq-icon::before { opacity: 0; }
+.scenario-faq .faq-answer { padding: 0 1.5rem 1.5rem; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); text-align: left; }
+.scenario-faq .faq-answer p { margin: 0; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); }
+.scenario-faq .faq-video { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); margin-top: 1.25rem; }
+.scenario-faq .faq-video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .scenario-faq .faq-item, .scenario-faq .faq-icon, .scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { transition: none !important; }
+}
+@media (max-width: 900px) {
+  .scenario-faq { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section class="dd-hero">
+  <div class="container">
+    <span class="dd-eyebrow">IT Deep Dive</span>
+    <h1>Low-Code Development Deep Dive</h1>
+    <p class="dd-lead" data-aud="dd-lead">Build records and data solutions around the cloud platform you already own, instead of buying proprietary software that traps your data.</p>
+  </div>
+</section>
+
+<!-- ===================== BODY (TOC + content) ===================== -->
+<div class="dd-body">
+  <div class="container">
+    <div class="dd-layout">
+
+      <!-- Sticky Table of Contents -->
+      <aside class="dd-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <nav aria-label="Section navigation">
+          <ol>
+            <li><a href="#sec-build-low-code">Build Low Code Solutions</a></li>
+            <li><a href="#sec-ecm-delivery">SharePoint Online for ECM Delivery</a></li>
+            <li><a href="#sec-migrate-data">Migrate Data to SharePoint</a></li>
+            <li><a href="#sec-dont-buy">Don't Buy More Software</a></li>
+            <li><a href="#sec-eforms">eForms Using Office 365</a></li>
+            <li><a href="#sec-online-vs-onprem">Online vs On-Premise</a></li>
+            <li><a href="#sec-technical">Technical Considerations</a></li>
+          </ol>
+        </nav>
+      </aside>
+
+      <!-- Content panel -->
+      <div class="dd-content">
+
+        <!-- SECTION 1 -->
+        <section class="dd-section" id="sec-build-low-code">
+          <span class="dd-sec-num">Section 01</span>
+          <h2>Build Low Code Record and Data Solutions</h2>
+          <p>Build records and data technology solutions around your current cloud platform. Don't buy proprietary software and hardware solutions that trap your data and increase your licensing costs.</p>
+
+          <div class="dd-card-grid">
+            <article class="dd-card">
+              <h3>Microsoft Office 365</h3>
+              <p>Office 365 has been the de-facto standard for creating dynamic business documents and content. Why move documents out of Microsoft into a separate records and data management platform? We use your current Office 365 licenses to build powerful record and data management solutions around your current business process. Our low code solutions solve your immediate needs and provide unlimited future scalability.</p>
+            </article>
+            <article class="dd-card">
+              <h3>Google Docs</h3>
+              <p>Google Docs is used by many organizations for its simplicity and free license model. Google Drive provides a native cloud platform for dynamic business records and content creation. Using Google Docs and Google Drive, SyTech developers scale your Google platform into a simple records and data management solution.</p>
+            </article>
+            <article class="dd-card">
+              <h3>Amazon</h3>
+              <p>SyTech developers use Amazon Web Services (AWS) to build data platforms, especially when there is a need for connecting mobile devices or capturing electronic forms data. Amazon also provides business content capabilities using WorkDocs for collaboration and file sharing. WorkDocs can be extended in AWS for records and data management capabilities.</p>
+            </article>
+            <article class="dd-card">
+              <h3>SharePoint Online</h3>
+              <p>SharePoint Online is a collaboration platform within Office 365 that is being used extensively as both a dynamic and static repository for records and content management. SyTech developed the California state government standard for SharePoint Online content management and data delivery. If your organization already has existing repositories of electronic content, SyTech developers can quickly stand up SharePoint Online for full-feature document management or ECM (electronic content management). SharePoint Online is an ideal option to replace your current third-party document management software platform or to scale unlimited capabilities in your current environment.</p>
+            </article>
+            <article class="dd-card">
+              <h3>Powerful Data and Records Management in Azure</h3>
+              <p>Microsoft Azure is a cloud service used extensively by SyTech to create powerful data and records management applications. Simple records management problems use SyTech's 1DocStop, an Azure based records management repository. 1DocStop is ideal for small to medium size public agencies, like California K-12 School Districts. SyTech developers also use Azure to automate complex data processes in one single terminal location. SyTech's Azure data platforms are being used for criminal justice and child welfare (eSCARS); child support services (POP Data); land lease management (OSCAR); and natural resource management (Parks Digital). SyTech was one of the earliest adopters of Azure to build native cloud applications for California public agencies.</p>
+            </article>
+            <article class="dd-card">
+              <h3>SyTech Tools and Applications</h3>
+              <p>SyTech Tools and Applications are used by technology developers to scale and accelerate cloud data processes, workflows, and forms functionality. Tools and applications developed by SyTech shorten development time, save money, and solve complex technical problems. Tools, libraries, and applications are subscription-based and available in the Microsoft, Amazon, and Google Marketplaces. SyTech Tools automate data management, eForms, data migration, workflows, form processes, and compression. Add functionality only when you need it. SyTech platform tools accelerate your productivity, data processes, and shorten development cycles.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="dd-section" id="sec-ecm-delivery">
+          <span class="dd-sec-num">Section 02</span>
+          <h2>SharePoint Online for ECM Delivery</h2>
+          <p>Microsoft SharePoint Online is a collaboration platform within Office 365 that is being used extensively as both a dynamic and static repository for electronic content management (ECM). SharePoint Online is an ideal option to replace your current third-party document management software platform or to scale unlimited capabilities in your current environment. If your organization already has existing repositories of electronic content, SyTech developers can quickly stand up SharePoint Online for full-feature document management or ECM delivery.</p>
+          <a class="dd-cta" href="contact.html">Contact us to learn more</a>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="dd-section" id="sec-migrate-data">
+          <span class="dd-sec-num">Section 03</span>
+          <h2>Migrate Data from Records Management Software to SharePoint</h2>
+          <p>Move your data and scanned records out of document management software into Microsoft SharePoint Online. Stop being limited by your software and expensive license costs.</p>
+          <p>SyTech uses SharePoint Online to build seamless records management and data collaboration repositories for public agencies, large and small. We leverage your existing Microsoft Office 365 licenses, which include SharePoint, to save money and eliminate proprietary document management software. Move your records forward, we can help.</p>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section class="dd-section" id="sec-dont-buy">
+          <span class="dd-sec-num">Section 04</span>
+          <h2>Don't Buy Records Management or More Enterprise Software</h2>
+          <p>Buying software will not solve your records management or enterprise need. In fact, it is usually the single biggest technology mistake you can make. SyTech builds seamless records and data management in Office 365, SharePoint Online. We simplify data management delivery for public agencies, large and small, without expensive proprietary software. We use your existing technology environment to do amazing things!</p>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section class="dd-section" id="sec-eforms">
+          <span class="dd-sec-num">Section 05</span>
+          <h2>eForms Using Office 365 and SharePoint Online</h2>
+          <p>Manage all your forms and workflow processes in your existing Office 365 platform.</p>
+          <p>Your staff has decades of experience using Microsoft Office for business records, email, and Excel spreadsheets. Did you know that SharePoint Online (SPS) is also a scalable (eForms) electronic forms solution?</p>
+          <p>SyTech solves any eForms problem, simple or complex. Quickly deploy eForms with basic SharePoint Designer and Generic Forms. Where the need is more complex (across multiple data sets and business processes), use InfoPath or Power Automate to stand up eForms across multiple data sets.</p>
+
+          <ul class="dd-tools">
+            <li><strong>Generic Forms</strong> within SharePoint where only basic functionality is required</li>
+            <li><strong>SharePoint Designer</strong> is a full suite of editing tools that allows you to work directly within SharePoint properties</li>
+            <li><strong>InfoPath</strong> is a tool that can be used to build more complex forms, especially where multiple data sources are being used in eForms creation</li>
+            <li><strong>Excel</strong> is used as a powerful interface to edit forms and organize data paths</li>
+            <li><strong>Power Automate</strong> offers extensive capabilities and connectors in Power Automate Forms and Forms Pro</li>
+          </ul>
+
+          <h3>SharePoint Online for Any eForms Requirement, Simple or Complex</h3>
+          <p>SharePoint Online works as a backend content management repository for both your scanned electronic files and (eForms) electronic forms data. SyTech uses SharePoint Online to bring all your scanned business documents and eForms together in one location. This even includes your files stored in Outlook and Teams.</p>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section class="dd-section" id="sec-online-vs-onprem">
+          <span class="dd-sec-num">Section 06</span>
+          <h2>SharePoint Online Compared to On-Premise SharePoint for Electronic Records Management</h2>
+          <p>SharePoint Online is officially classified as a hosted content management and collaboration platform. While Microsoft works to keep feature parity between SharePoint Online and SharePoint on-premise, there are some distinct differences that benefit SharePoint Online for use as an electronic records management solution (ERMS) platform.</p>
+          <p>SharePoint includes several core components critical to the design of an ERMS running on SharePoint (SharePoint Environment / Organization):</p>
+
+          <figure class="dd-figure">
+            <img src="assets/img/deepdive/sp-environment.png" alt="Diagram of the SharePoint Environment and Organization, showing the core components that make up an electronic records management system running on SharePoint." loading="lazy">
+            <figcaption>SharePoint Environment / Organization</figcaption>
+          </figure>
+
+          <p>An Electronic Records Management System (ERMS) provides for management of electronic record life-cycles including storage, search, sharing, retention, permissions, versioning, auditing, and reporting.</p>
+          <p>All these functions are available as features in SharePoint Online and are relatively easy to configure when compared with other single-purpose ERMS platforms.</p>
+          <p>Extensibility, a function that is not readily available in most single-purpose ERMS systems, comes built in, making SharePoint Online the best solution for management of enterprise and/or institutional documents.</p>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section class="dd-section" id="sec-technical">
+          <span class="dd-sec-num">Section 07</span>
+          <h2>Technical Considerations</h2>
+          <p>SharePoint Online has been optimized to run on Microsoft's Azure cloud platform. This allows for massive scalability over locally installed instances of SharePoint. For example, files saved to SharePoint Online are chunked, encrypted, and stored in Azure Blob Storage instead of writing to the SQL database as blob data. This allows for cheaper scaling when compared to previous versions of SharePoint.</p>
+          <p><a class="dd-inline-link" href="https://docs.microsoft.com/en-us/office365/servicedescriptions/sharepoint-online-service-description/sharepoint-online-limits" target="_blank" rel="noopener noreferrer">Read about the limits that apply to SharePoint Online.</a></p>
+
+          <h3>Advanced Search</h3>
+          <p>SharePoint provides advanced search capabilities based on a user's access rights. Users can only search for files they have permission to access. There are two ways a user can search for files within SharePoint:</p>
+
+          <h4>Enterprise Level</h4>
+          <p>The Enterprise Level search will search for files across all libraries in the system using the metadata typed in the search bar at the top of the screen on the dashboard. This will pull all files you have access to in the system that match the metadata used in the search.</p>
+
+          <h4>Library Level</h4>
+          <p>The Library Level search will search for files within a specific library. Open the library you'd like to search, then either type the metadata attached to the file in the search bar at the top of the screen or scroll through the list of files that have been loaded into the library to find the file you are looking for.</p>
+
+          <figure class="dd-figure">
+            <img src="assets/img/deepdive/sp-search.png" alt="Screenshot of the SharePoint advanced search interface showing the search bar and results." loading="lazy">
+            <figcaption>Advanced Search in SharePoint</figcaption>
+          </figure>
+
+          <h3>Share Records</h3>
+          <p>Files stored in SharePoint can be shared from within their library. Sharing files has never been easier. Using the built-in sharing feature, users can enter the recipient's email address(es) in their action bar to send the recipient an email with a link to the document.</p>
+          <p>Users can also share a link provided by the system, and use that link to copy and paste into a personalized email. Depending on the type of file, the link settings may be adjusted to specify who the link works for and whether the link will allow editing.</p>
+
+          <div class="dd-note" role="note">
+            <p><strong>NOTE:</strong> Only those with permission can access shared links. The ability to adjust these settings depends on the user's permissions.</p>
+          </div>
+
+          <figure class="dd-figure">
+            <img src="assets/img/deepdive/sp-share.png" alt="Screenshot of the SharePoint sharing interface showing how to share a record by email or link." loading="lazy">
+            <figcaption>Share Records in SharePoint</figcaption>
+          </figure>
+        </section>
+
+      </div><!-- /.dd-content -->
+    </div><!-- /.dd-layout -->
+  </div><!-- /.container -->
+</div><!-- /.dd-body -->
+
+<!-- ============================================================
+     SCENARIO FAQ — copy: scenario-videos/copy-scenario-faq-mapping.md §3.8
+     After the "Technical Considerations" section, before the page's closing
+     block. Full-width band outside .dd-layout so the sticky TOC grid is
+     untouched. The "On this page" list is static markup, so per the mapping
+     doc's instruction it is left alone.
+     ============================================================ -->
+<section class="scenario-faq" aria-label="Scenarios: low code in practice">
+  <div class="container">
+    <div class="scenario-faq-head">
+      <span class="section-eyebrow">Scenarios</span>
+      <h2>Low Code in Practice.</h2>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>We run a lot of IT projects with different funding requirements. Is there one place to track them and report out?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>There is, and it can be built where your project data already lives. A county told us it had numerous IT projects underway, each carrying funding requirements that needed meticulous tracking throughout the life cycle, and that it could not find a central application to manage the process or to report to stakeholders. The process they wanted to run was PAL, the Project Application Life Cycle &mdash; structured planning, execution, and monitoring. We built low-code solutions inside their existing Microsoft products, and each project is now overseen in correspondence with PAL. Watch the county describe it.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-5-pal-poster.jpg"
+                   aria-label="Video: a county describes tracking IT projects against PAL, its Project Application Life Cycle">
+              <source src="assets/video/scenario-5-pal.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-5-pal.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>What does a rebuilt Microsoft Access application look like on the Microsoft stack?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>It looks like the same process without the failure points. A county told us its Access application was critical to operations, continually disrupted workflow, caused frequent downtime, and locked remote workers out of essential data because it could not connect in the cloud. We built low-code solutions inside the Microsoft ecosystem the county already owned: field-level security, role-based access, and advanced workflows, reachable by staff wherever they work. Watch the county describe the system they run now.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-7-power-apps-bi-poster.jpg"
+                   aria-label="Video: a county describes replacing a legacy Microsoft Access application">
+              <source src="assets/video/scenario-7-power-apps-bi.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-7-power-apps-bi.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scenario FAQ — page-local, namespaced. Closing an item pauses its video;
+   playing one scenario video pauses any other on this page. Nothing else. */
+(function () {
+  var items = document.querySelectorAll('.scenario-faq details.faq-item');
+  if (!items.length) return;
+  var vids = [];
+  Array.prototype.forEach.call(items, function (item) {
+    var v = item.querySelector('video');
+    if (!v) return;
+    vids.push(v);
+    item.addEventListener('toggle', function () { if (!item.open) { v.pause(); } });
+  });
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  /* -------------------------------------------------------
+     TOC active-section highlighting (progressive enhancement).
+     CSS works without this; it just adds .is-active to the
+     link whose section is currently in view. Skipped when the
+     TOC is stacked (mobile) since there's no sticky rail to track.
+     ------------------------------------------------------- */
+  (function() {
+    if (!('IntersectionObserver' in window)) return;
+    var tocLinks = Array.prototype.slice.call(document.querySelectorAll('.dd-toc a'));
+    if (!tocLinks.length) return;
+    var byId = {};
+    tocLinks.forEach(function(a) {
+      var id = a.getAttribute('href').slice(1);
+      byId[id] = a;
+    });
+    var sections = document.querySelectorAll('.dd-section');
+    var current = null;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (current) current.classList.remove('is-active');
+          var link = byId[entry.target.id];
+          if (link) { link.classList.add('is-active'); current = link; }
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    Array.prototype.forEach.call(sections, function(s) { observer.observe(s); });
+  })();
+})();
+</script>
+
+</body>
+</html>

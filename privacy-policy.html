@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Privacy Policy</title>
+<meta name="description" content="SyTech's privacy policy: what we collect through this website, how we use it, how we protect it, and the choices you have. Written to be read, not just filed away."/>
+<!--
+  ============================================================
+  FOR LEGAL REVIEW BEFORE FINAL PUBLISH
+  This page reads as finished. Client decisions are applied; no open
+  blockers remain in the body. The following items still warrant counsel's
+  eyes before publication:
+    1. Effective / last-updated dates — placeholder is the go-live date.
+       Counsel confirms.
+    2. California privacy law (CCPA/CPRA) — a short "California Residents"
+       note is included as common practice. Counsel confirms whether
+       SyTech's obligations require more, less, or different language.
+    3. Data-request response window — written as "within a reasonable
+       timeframe." Counsel confirms whether a specific statutory window
+       must be named.
+    4. Governing law — set to California (SyTech is Elk Grove, CA, serving
+       CA agencies). Counsel confirms governing-law and any venue language.
+    5. Sub-processor disclosure — third parties are described by category,
+       not named company. Counsel confirms whether named providers are
+       required.
+  Everything else is grounded in the old site's live text or confirmed
+  client decisions and needs no bracketed input.
+  ============================================================
+-->
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+.page-hero { padding: 11rem 0 5rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 720px; }
+
+/* ===== Privacy Policy — clean single-column legal layout ===== */
+.legal-section { padding: 5rem 0; background: var(--white); }
+.legal-section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.legal-section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; letter-spacing: -0.01em; color: var(--navy); }
+.legal-wrap { max-width: 760px; }
+.legal-dates { font-size: 0.85rem; color: var(--text-body); margin: 0.75rem 0 2rem; line-height: 1.7; }
+.legal-dates span { display: block; }
+.legal-intro { font-size: 1.05rem; line-height: 1.85; color: var(--text-body); margin-bottom: 1.5rem; }
+.legal-note {
+  background: var(--light); border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0; padding: 1.1rem 1.4rem; margin-bottom: 2.5rem;
+  font-size: 0.95rem; line-height: 1.7; color: var(--text-body);
+}
+.legal-note a { color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--gold); transition: color 0.2s ease; }
+.legal-note a:hover { color: var(--gold); }
+
+/* In-page table of contents anchor nav */
+.legal-toc {
+  background: var(--light); border-radius: 8px;
+  padding: 1.5rem 1.75rem; margin-bottom: 3rem;
+}
+.legal-toc h3 {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.legal-toc ol {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem;
+  counter-reset: toc;
+}
+.legal-toc li { counter-increment: toc; }
+.legal-toc a {
+  font-size: 0.92rem; line-height: 1.5; color: var(--navy);
+  font-weight: 700; display: inline-flex; gap: 0.5rem;
+  transition: color 0.2s ease;
+}
+.legal-toc a::before { content: counter(toc) "."; color: var(--gold); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.legal-toc a:hover { color: var(--gold); }
+@media (max-width: 620px) { .legal-toc ol { grid-template-columns: 1fr; } }
+
+.legal-article { padding-top: 2rem; margin-top: 2rem; border-top: 1px solid #E3E9EF; scroll-margin-top: 90px; }
+.legal-article:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.legal-article h3 {
+  font-size: 1.15rem; font-weight: 700; color: var(--navy);
+  line-height: 1.3; margin-bottom: 1rem;
+  display: flex; align-items: baseline; gap: 0.6rem;
+}
+.legal-article h3 .art-num { color: var(--gold); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.legal-article p { font-size: 1rem; line-height: 1.85; color: var(--text-body); margin-bottom: 1rem; }
+.legal-article p:last-child { margin-bottom: 0; }
+.legal-article p strong { color: var(--navy); }
+.legal-article ul { list-style: none; margin: 0 0 1rem 0; padding: 0; }
+.legal-article ul li {
+  position: relative; padding-left: 1.4rem; margin-bottom: 0.65rem;
+  font-size: 1rem; line-height: 1.7; color: var(--text-body);
+}
+.legal-article ul li::before {
+  content: ''; position: absolute; left: 0; top: 0.6em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+}
+.legal-article a { color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--gold); transition: color 0.2s ease; }
+.legal-article a:hover { color: var(--gold); }
+.legal-address { font-style: normal; line-height: 1.8; color: var(--text-body); }
+.legal-address strong { color: var(--navy); }
+
+.cta-strip { background: var(--deep-navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; }
+.cta-strip p { color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 1.75rem; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--gold); color: var(--deep-navy); font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+
+@media (max-width: 900px) { .page-hero { padding: 9rem 0 4rem; } .legal-section { padding: 3.5rem 0; } }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="lead">What we collect through this website, how we use it, and the choices you have. Written to be read, not just filed away.</p>
+  </div>
+</section>
+
+<section class="legal-section" aria-labelledby="privacy-policy-heading">
+  <div class="container">
+    <div class="legal-wrap">
+      <span class="section-eyebrow">Privacy Policy</span>
+      <h2 id="privacy-policy-heading">Privacy Policy</h2>
+      <p class="legal-dates">
+        <span>Effective: [go-live date]</span>
+        <span>Last updated: [go-live date]</span>
+      </p>
+      <p class="legal-intro">SyTech Solutions ("SyTech," "we," "us") respects your privacy. This policy explains what information we collect through this website, how we use it, and the choices you have. We've written it to be read, not just filed away.</p>
+      <p class="legal-note">This policy covers information collected through this website. The way SyTech handles client records under contract is governed by your service agreement and the security practices described on our <a href="trust-security.html">Trust &amp; Security page</a>.</p>
+
+      <nav class="legal-toc" aria-label="Privacy policy contents">
+        <h3>On This Page</h3>
+        <ol>
+          <li><a href="#article-1">Information We Collect</a></li>
+          <li><a href="#article-2">How We Use Your Information</a></li>
+          <li><a href="#article-3">We Never Sell or Share Your Information</a></li>
+          <li><a href="#article-4">How We Protect Your Information</a></li>
+          <li><a href="#article-5">How Long We Keep It</a></li>
+          <li><a href="#article-6">Your Choices and Requests</a></li>
+          <li><a href="#article-7">Cookies and Other Information</a></li>
+          <li><a href="#article-8">California Residents</a></li>
+          <li><a href="#article-9">Changes to This Policy</a></li>
+          <li><a href="#article-10">Contact Us</a></li>
+          <li><a href="#article-11">Governing Law</a></li>
+        </ol>
+      </nav>
+
+      <div class="legal-article" id="article-1">
+        <h3><span class="art-num">1.</span> Information We Collect</h3>
+        <p>We collect information in two ways:</p>
+        <p><strong>Information you give us.</strong> When you submit our assessment request form or contact us by email or phone, we collect the details you choose to share — typically your name, email address, organization, role, agency type, and a description of your needs.</p>
+        <p><strong>Information collected automatically.</strong> Like most websites, ours may collect basic technical information such as your IP address, browser type, and pages visited, to keep the site working and understand how it's used.</p>
+      </div>
+
+      <div class="legal-article" id="article-2">
+        <h3><span class="art-num">2.</span> How We Use Your Information</h3>
+        <p>We use the information you provide to:</p>
+        <ul>
+          <li>Respond to your request and schedule an assessment conversation</li>
+          <li>Answer your questions and provide the services you ask about</li>
+          <li>Improve our website and the way we communicate</li>
+        </ul>
+        <p>We do not use your information for automated decision-making, and we do not send marketing email unless you've asked us to.</p>
+      </div>
+
+      <div class="legal-article" id="article-3">
+        <h3><span class="art-num">3.</span> We Never Sell or Share Your Information</h3>
+        <p>We do not sell your information. We do not rent it, trade it, or share it with third parties for their own marketing.</p>
+        <p>We share information only when it's necessary to do the work you've asked us to do, or when the law requires it — for example:</p>
+        <ul>
+          <li>With trusted service providers who help us operate (such as our email or cloud infrastructure providers), under confidentiality obligations</li>
+          <li>When required by law, regulation, legal process, or a valid government request</li>
+          <li>To protect the rights, safety, or property of SyTech, our clients, or others</li>
+        </ul>
+        <p>If a third party approaches us for information you've entrusted to us, our practice is to redirect that party to request it directly from you.</p>
+      </div>
+
+      <div class="legal-article" id="article-4">
+        <h3><span class="art-num">4.</span> How We Protect Your Information</h3>
+        <p>We protect the information you share using the same security discipline described on our <a href="trust-security.html">Trust &amp; Security page</a>, including encryption, access controls, signed staff confidentiality agreements, and a secure facility. No method of transmission or storage is ever 100% secure, but we take protecting your information seriously and hold ourselves to a high standard.</p>
+      </div>
+
+      <div class="legal-article" id="article-5">
+        <h3><span class="art-num">5.</span> How Long We Keep It</h3>
+        <p>We keep the information you submit only as long as we need it to respond to your request and maintain our business records, after which we dispose of it securely.</p>
+      </div>
+
+      <div class="legal-article" id="article-6">
+        <h3><span class="art-num">6.</span> Your Choices and Requests</h3>
+        <p>You can ask us to access, correct, or delete the personal information you've shared with us. To make a request, contact us at <a href="mailto:support@sytechsolutions.com">support@sytechsolutions.com</a>, and we'll respond within a reasonable timeframe.</p>
+      </div>
+
+      <div class="legal-article" id="article-7">
+        <h3><span class="art-num">7.</span> Cookies and Other Information</h3>
+        <p>Some functions on our site use cookies — small text files placed on your device by a web server — and similar technologies such as web beacons. We use them to store your preferences and settings, help prevent fraud, authenticate users, and collect basic operational information about the site. Passwords and the personal details you submit are never saved to cookies. You can control cookies through your browser settings.</p>
+      </div>
+
+      <div class="legal-article" id="article-8">
+        <h3><span class="art-num">8.</span> California Residents</h3>
+        <p>If you are a California resident, you may have rights regarding your personal information under California privacy law, including the right to know what information we hold about you, to request its deletion, and to be free from discrimination for exercising those rights. To exercise any of these rights, contact us at <a href="mailto:support@sytechsolutions.com">support@sytechsolutions.com</a>.</p>
+      </div>
+
+      <div class="legal-article" id="article-9">
+        <h3><span class="art-num">9.</span> Changes to This Policy</h3>
+        <p>We may update this policy from time to time to reflect changes in our services or feedback from those we work with. When we do, we'll revise the "Last updated" date at the top of the page. Significant changes will be noted clearly.</p>
+      </div>
+
+      <div class="legal-article" id="article-10">
+        <h3><span class="art-num">10.</span> Contact Us</h3>
+        <p>Questions about this policy, or about your information? Reach us at:</p>
+        <address class="legal-address">
+          <strong>SyTech Solutions</strong><br>
+          8930 Big Horn Blvd<br>
+          Elk Grove, CA 95758<br>
+          United States<br>
+          Email: <a href="mailto:support@sytechsolutions.com">support@sytechsolutions.com</a><br>
+          Phone: <a href="tel:+19163813010">(916) 381-3010</a>
+        </address>
+      </div>
+
+      <div class="legal-article" id="article-11">
+        <h3><span class="art-num">11.</span> Governing Law</h3>
+        <p>This policy is governed by the laws of the State of California.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2>Have a Question About Your Data?</h2>
+    <p>If anything here raises a question for your agency, reach out. We're glad to walk through how we handle your information.</p>
+    <a href="contact.html" class="btn-primary">Contact Us</a>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+
+</body>
+</html>

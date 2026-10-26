@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SharePoint ERMS — SyTech Solutions</title>
+<meta name="description" content="Configure SharePoint as your records system — inside the Microsoft 365 tenant you already own. No second platform. No second invoice."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<link rel="stylesheet" href="assets/css/phosphor.css">
+<style>
+/* === Per-page accent (color pass 2026-06-18) === */
+:root { --accent: #1A6E78; --accent-ink: #1A6E78; }
+/* ==========================================================================
+   services-sharepoint-erms-topgradient.html — TOP-COLOR GRADIENT HERO variant
+   (2026-06-18). Forked from services-sharepoint-erms-lighthero.html. ONLY the
+   .page-hero region changes vs. the lighthero version: the hero background flips
+   from the flat light gradient to a 180deg VERTICAL gradient — a SOFT, TRANSLUCENT
+   teal WASH at the top (behind breadcrumb/eyebrow/headline) fading straight down
+   to light/white. The white hero-animation card (incl. the PROTECTED red cost/pain
+   story + the 8 navy-stroke capability icons + the teal resolution side) is KEPT
+   VERBATIM from the lighthero — the card is OPAQUE, so the teal→light gradient
+   behind it never bleeds through. Nothing below the hero changes.
+
+   ⚠ LOWERED TOP ALPHA (per Cole): teal is the LOWEST-luminance accent in the
+   rollout. At the template's standard 0.52 alpha the effective top tint resolves
+   to rgb(131,175,180) (lum ~0.396) and navy h1 = 4.42:1 → JUST UNDER 4.5:1 AA.
+   So this page DROPS the top alpha to 0.46 (effective tint rgb(144,183,188),
+   lum ~0.443), bringing navy h1 to 4.89:1 → PASS. Second stop scaled down with
+   the top (0.18 → 0.16) to keep the fade proportional. This is the one page in
+   the rollout where navy h1 forced a lower top alpha — intentional per Cole.
+
+   Contrast on the 0.46 teal top tint (all WCAG 2.1, accent-over-#F5F5F5 @0.46):
+     navy h1 #25426B            ~4.89:1  (PASS 4.5 small + large)
+     h1 accent span #0F525A     ~3.77:1  (PASS 3:1 large)  — OVERRIDE the lighthero span
+     eyebrow #0B4148            ~4.81:1  (PASS 4.5 small)  — teal equiv of the deepened eyebrow
+     lead slate --text-body     ~7.3:1   (PASS)
+   Spec: planning/spec-service-page-color-palette-2026-06-18.md →
+   "Top-Color Gradient Rollout — 1DocStop + SharePoint" → SharePoint block.
+   ========================================================================== */
+
+
+/* ---- Page Hero — TOP-COLOR GRADIENT HERO (dark-text-on-soft-wash) ---- */
+/* TOP-GRADIENT HERO (2026-06-18) — full 180deg vertical fade: translucent teal WASH
+   top → light → white floor. The teal is built as rgba over the light canvas (not a
+   solid hex) so it reads as a soft, premium tint. Navy h1 / deep-teal accent span /
+   deep-teal eyebrow / slate lead all clear AA on it at the LOWERED 0.46 top alpha. */
+.page-hero {
+  padding: 11rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--navy); /* dark text treatment — top is a pale teal wash, not solid teal */
+  background: linear-gradient(180deg,
+      rgba(46,125,181,0.52)  0%,    /* STEEL BLUE top alpha 0.52 (matches 1DocStop verbatim) — soft steel-blue wash over --light, navy h1 clears AA */
+      rgba(46,125,181,0.18) 40%,    /* second stop 0.18 (matches 1DocStop) so the fade stays proportional */
+      var(--light)          75%,    /* #F5F5F5 — into the light canvas */
+      var(--white)         100%);   /* #FFFFFF — white floor at the very bottom of the hero */
+}
+/* ::before teal corner glow REMOVED (top-gradient direction) — the vertical gradient now
+   carries all the teal; a separate corner glow would double up and muddy. */
+/* ---- Mouse-reactive dot field (interactive, 2026-06-18) ----
+   REPLACES the old static ::after radial-gradient dot tile AND the removed cursor-following glow.
+   A <canvas> renders the SAME resting look as the old tile — navy dots rgba(37,66,107,0.10),
+   ~1px radius, 24px grid spacing — but each dot can displace individually toward/away from the
+   cursor (a CSS background tile can't move per-dot). JS owns the field; see the canvas block in
+   <script>. The canvas sits ABOVE the hero gradient background but BELOW .container (z-index 1),
+   so all hero content (eyebrow, h1, lead, breadcrumb, white card) stays fully legible, and
+   pointer-events:none so it never intercepts clicks/hovers.
+   At rest (and on reduced-motion / touch / no-hover) JS paints the static grid once — identical
+   to the old tile, no layout shift. */
+.hero-dotfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;            /* above the gradient background; below .container (z-index 1) */
+  display: block;
+}
+.page-hero .container { position: relative; z-index: 1; }
+
+.page-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 3.5rem; align-items: center; }
+.page-hero-copy { min-width: 0; }
+/* Eyebrow — DEEP TEAL #0B4148 (A11Y FIX 2026-06-18): the small 0.7rem uppercase label needs
+   small-text AA (4.5:1) on the 0.46 teal top tint. #0B4148 (11,65,72) measures ~4.81:1 on that
+   tint, clearing small-text AA, while staying in the teal hue family (NOT navy). This is the
+   teal equivalent of the copper template's deepened #6E3318 eyebrow. */
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #1D456A; margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; color: var(--navy); }
+/* h1 highlight span — the colored POP word. On the 0.46 teal top the lighthero's --accent-ink
+   #1A6E78 reaches only ~2.54:1 (FAILS 3:1 large), so the span darkens to #0F525A (15,82,90) =
+   ~3.77:1 → PASS 3:1 large at the 32px+ bold h1 size. Deep teal, stays in the teal family. */
+.page-hero h1 span { color: #235880; }
+.page-hero p.lead { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
+
+/* Breadcrumb — light-version accent treatment (KEPT from the lighthero per Cole's carry-over):
+   links slate --text-body, separators + hover teal accent, current-page navy bold. All read
+   on the pale teal wash + light field. */
+.breadcrumb { margin-bottom: 1.25rem; }
+.breadcrumb ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.8rem; }
+.breadcrumb li { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-body); }
+.breadcrumb li + li::before { content: '\203A'; color: #1D456A; font-size: 0.95rem; line-height: 1; padding-right: 0.25rem; }
+.breadcrumb a { color: var(--text-body); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb [aria-current="page"] { color: var(--navy); font-weight: 700; }
+.breadcrumb [aria-current="step"] { color: #6B7785; }
+
+
+/* ==========================================================================
+   Hero Animation — v4: 50/50 Split With Shrink-Grow Storytelling (PLAY-ONCE)
+   Plays once (~9s) and SETTLES on the resolved state — no loop rewind, so the
+   story is never "un-solved". Canvas is split vertically. LEFT panel
+   (proprietary system, broken) shrinks while RIGHT panel (SharePoint, working)
+   grows. The size transition IS the rhetoric — focus literally migrates from
+   broken to working.
+
+   Choreography map (split X position in viewBox coords, 0..600):
+     0.00s — 1.50s : splitX = 420  (LEFT 70%)  hold, first failure toast lands
+     1.50s — 8.00s : splitX 420 → 180 in ONE continuous smoothstep glide
+                     (v4 fix: the old two-segment ease stalled at t=5)
+     8.00s — 9.00s : hold at 180; broken side dims to 0.55 (echoes the static
+                     fallback); rAF loop then stops permanently
+
+   LEFT panel contents:
+     - Faux portal frame (frame + title bar dots, no clutter labels)
+     - Toast 1: "Server Maintenance — Records Unavailable."  (0.5s — 1.8s)
+     - Toast 2: "License Renewal Required."                  (2.5s — 3.8s)
+     - Cost ticker: continuously climbing, never lands       (0.6s — ~5.0s)
+     - Paywall lock: appears at 3.8s, lingers as panel shrinks
+
+   RIGHT panel contents:
+     - SharePoint logo, centered, scales with panel width
+     - 8 capability icons in radial around the logo (revealed as panel grows)
+     - 8 teal connector lines (BEHIND the logo — SVG source order)
+     - "Included in Microsoft 365." pill badge (sized to fit text — no overflow)
+
+   KEPT VERBATIM from the lighthero version — the white card is opaque so the
+   top-gradient behind it never changes the animation's contrast context.
+   ========================================================================== */
+.hero-story { position: relative; width: 100%; max-width: 560px; margin-left: auto; opacity: 0; transform: translateY(10px); transition: opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1); }
+.hero-story.is-visible { opacity: 1; transform: translateY(0); }
+/* White card (OneForm .cinema-stage model) — KEPT VERBATIM from the light version.
+   The diagram is a SCHEMATIC, not a product screenshot, so the frame is white and BOTH
+   panels are solved on white. White card on near-white canvas needs a soft navy shadow
+   to read as an elevated surface; backdrop-filter removed (nothing behind a solid card). */
+.hero-story-frame {
+  position: relative;
+  background: var(--white);
+  border: 1px solid rgba(37,66,107,0.12);
+  border-radius: 14px;
+  padding: 1.25rem 1rem 1rem;
+  box-shadow: 0 20px 60px rgba(37,66,107,0.10), 0 1px 3px rgba(37,66,107,0.06);
+}
+.hero-story-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26,110,120,0.6), transparent);
+}
+.hero-story-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 600 / 360;
+}
+.hero-story-svg { width: 100%; height: 100%; display: block; position: absolute; inset: 0; }
+/* Caption sits on the canvas below the card → slate, not white-alpha. */
+.hero-caption { margin-top: 1.1rem; font-size: 0.82rem; line-height: 1.55; color: var(--text-body); font-style: italic; }
+
+/* ---- Static HTML headers (sit ABOVE the SVG canvas, never resize, never move) ----
+   Cole spec: pinned above the animation as fixed-size eyebrow labels. Two 50% columns,
+   wrap to two lines via explicit <br>, no JS positioning, no container queries — stable.
+   These sit on the WHITE CARD now (inside the frame, above the SVG).
+   ------------------------------------------------------------------------------------ */
+.hero-story-headers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0 0 0.85rem;
+  align-items: end;          /* both headers anchor at bottom so the row sits flush above the SVG */
+}
+.hero-story-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.4;          /* readable rhythm for 2-line wrapped headers */
+}
+/* LEFT header darkened #7C8896 → #5E6A78 so the "broken/muted" side stays visibly
+   de-emphasized but AA-legible on the white card (~4.6:1). RIGHT keeps teal. */
+.hero-story-header--left { color: #5E6A78; }
+.hero-story-header--right { color: var(--accent); }
+
+@media (max-width: 600px) {
+  .hero-story-header {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ---- Hero red tokens — FUNCTIONAL status color (the cost/pain story).
+   On the white card the washes that glowed on black would go pale pink/cheap, so washes
+   drop to ~0.10–0.12 and a DEEPER red #D81F2F (--hr-red-ink) carries SMALL labels so they
+   pass AA (4.5:1) without going candy-pink. The big $number keeps the bright #FF4757
+   gut-punch (large threshold). PROTECTED pain/cost story — KEPT VERBATIM. */
+:root {
+  --hr-red: #FF4757;
+  --hr-red-ink: #D81F2F;                       /* deepened red for SMALL labels on white (AA ~4.6:1) */
+  --hr-red-wash: rgba(255, 71, 87, 0.10);       /* softened 0.18 → 0.10 for white */
+  --hr-red-wash-soft: rgba(255, 71, 87, 0.12);  /* softened 0.14 → 0.12 for white */
+}
+
+/* ---- Shared text + element styling ---- */
+.hr-text { font-family: Tahoma, 'Segoe UI', sans-serif; }
+
+/* Vertical divider between the two panels — teal hairline. opacity 0.7 so teal dashes hold on white. */
+.hr-divider { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.7; }
+
+/* Panel background washes — bumped so the split still reads on a shared white field. */
+.hr-panel-left-bg  { fill: rgba(124,136,150,0.08); }
+.hr-panel-right-bg { fill: rgba(26,110,120,0.05); }
+
+/* ---- LEFT panel — Proprietary system (broken software register), solved on WHITE ---- */
+.hr-window-frame    { fill: rgba(37,66,107,0.04); stroke: rgba(124,136,150,0.55); stroke-width: 1; }
+.hr-window-titlebar { fill: rgba(124,136,150,0.30); stroke: rgba(124,136,150,0.40); stroke-width: 1; }
+.hr-window-dot      { fill: rgba(124,136,150,0.55); }
+.hr-window-row      { fill: rgba(124,136,150,0.30); }
+
+/* Toast — RED error semantic (functional status color, not a brand accent).
+   Faint red wash + SOLID red border + red icon, with NAVY text (white text would vanish on
+   the light toast). navy-on-pale-red ≈ 8:1. */
+.hr-toast-bg   { fill: var(--hr-red-wash); stroke: var(--hr-red); stroke-width: 1.25; }
+.hr-toast-text { fill: var(--navy); font-weight: 700; letter-spacing: 0.4px; text-anchor: start; }
+.hr-toast-icon { fill: var(--hr-red); }
+
+/* Cost ticker — large, climbing, RED (the load-bearing pain element — PROTECTED).
+   The big $number keeps bright #FF4757 (large → 3:1, the gut-punch). The SMALL label +
+   sublabel deepen to #D81F2F so they pass AA small on white. */
+.hr-cost-label    { fill: var(--hr-red-ink); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-anchor: middle; }
+.hr-cost-sublabel { fill: var(--hr-red-ink); font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; text-anchor: middle; }
+.hr-cost-number   { fill: var(--hr-red); font-weight: 700; letter-spacing: 0.2px; text-anchor: middle; font-variant-numeric: tabular-nums; }
+
+/* Lock — paywall warning state on the broken-portal side. Same red error semantic.
+   Faint wash + solid red stroke; SMALL label deepens to #D81F2F for AA. */
+.hr-lock      { stroke: var(--hr-red); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.hr-lock-fill { fill: var(--hr-red-wash-soft); stroke: var(--hr-red); stroke-width: 1.5; }
+.hr-lock-label { fill: var(--hr-red-ink); font-weight: 700; letter-spacing: 1.3px; text-anchor: middle; }
+
+/* ---- RIGHT panel — SharePoint system, solved on WHITE ---- */
+.hr-sp-logo { opacity: 0; }
+
+.hr-cap      { opacity: 0; }
+/* Solid white badge with a clear teal outline (10% white frosted badge would vanish on white). */
+.hr-cap-bg   { fill: var(--white); stroke: var(--accent); stroke-width: 1; }
+/* NAVY icon strokes (navy on white ≈ 9.8:1) so all 8 capability icons read as crisp navy
+   line-icons inside the teal-outlined white chips. PROTECTED — KEPT VERBATIM. */
+.hr-cap-icon { fill: none; stroke: var(--navy); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+.hr-connector { stroke: var(--accent); stroke-width: 1; fill: none; stroke-linecap: round; opacity: 0; }
+
+/* Badge below SharePoint logo — the one INTENTIONAL dark element kept on white:
+   a deep-navy pill with teal text anchors the resolution side and reads premium. */
+.hr-badge { opacity: 0; }
+.hr-badge-bg   { fill: var(--deep-navy); stroke: var(--accent); stroke-width: 1; }
+.hr-badge-text { fill: #FFFFFF; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; text-anchor: middle; font-family: Tahoma, 'Segoe UI', sans-serif; }
+
+/* Smooth opacity transitions for transient elements */
+#hrToast1, #hrToast2, #hrLockGroup,
+.hr-cap, .hr-connector, #hrBadge, #hrSpLogo, #hrCostGroup, #hrWindowGroup {
+  transition: opacity 400ms cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Reduced motion: hide live stage, show static composite. Headers are static
+   HTML above the canvas now, so they remain visible without any extra rule. */
+@media (prefers-reduced-motion: reduce) {
+  .hr-live-stage { display: none; }
+  .hr-static-scene { display: block !important; }
+}
+.hr-static-scene { display: none; }
+
+
+/* ---- Generic section scaffolding (inherited from scanning subpage) ---- */
+.section { padding: 5rem 0; border-bottom: 1px solid rgba(37,66,107,0.08); }
+.section.alt { background: var(--light); }
+.section.breathe { padding: 7rem 0; }
+.section-header { text-align: center; max-width: 760px; margin: 0 auto 2.5rem; }
+.section .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.section h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.section-header h2 { max-width: 760px; margin-left: auto; margin-right: auto; }
+.section-intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-body); margin: 0 auto 0; max-width: 640px; }
+
+
+/* ==========================================================================
+   SECTION 1 — Comparison Split (Standalone ERMS vs. SharePoint-Based ERMS)
+   Cole's Section 5.2 spec: left desaturated, right full-color, gold divider.
+   ========================================================================== */
+.compare-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; max-width: 980px; margin: 2.5rem auto 0; align-items: stretch; }
+.compare-col { display: flex; flex-direction: column; gap: 1rem; padding: 2.25rem 2rem; border-radius: 10px; opacity: 0; transform: translateY(8px); transition: opacity 500ms cubic-bezier(0.4,0,0.2,1), transform 500ms cubic-bezier(0.4,0,0.2,1); }
+.compare-col.is-left { background: #F5F5F5; }
+.compare-col.is-right { background: var(--white); border: 1px solid rgba(37,66,107,0.10); box-shadow: 0 2px 8px rgba(37,66,107,0.04); }
+.compare-split.is-visible .compare-col { opacity: 1; transform: translateY(0); }
+.compare-col .compare-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 8px; margin-bottom: 0.25rem; }
+.compare-col.is-left .compare-icon { background: rgba(124,136,150,0.12); }
+.compare-col.is-left .compare-icon i { font-size: 28px; color: #7c8896; line-height: 1; }
+.compare-col.is-right .compare-icon { background: rgba(26,110,120,0.12); }
+.compare-col.is-right .compare-icon i { font-size: 28px; color: var(--navy); line-height: 1; }
+.compare-col h3 { font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.005em; }
+.compare-col.is-left h3 { color: #7c8896; }
+.compare-col.is-right h3 { color: var(--navy); }
+.compare-col p { font-size: 0.98rem; line-height: 1.65; margin: 0; }
+.compare-col.is-left p { color: #7c8896; }
+.compare-col.is-right p { color: var(--text-body); }
+.compare-divider { width: 1px; background: linear-gradient(to bottom, transparent, var(--accent) 20%, var(--accent) 80%, transparent); margin: 0 1rem; min-height: 100%; }
+
+.compare-closer { max-width: 720px; margin: 2.5rem auto 0; text-align: center; padding: 1.25rem 1.5rem; border-top: 2px solid var(--accent); }
+.compare-closer p { font-size: 1.1rem; line-height: 1.5; color: var(--navy); font-weight: 700; letter-spacing: -0.005em; margin: 0; }
+
+
+/* ==========================================================================
+   SECTION 2 — Hub-and-Spoke Schematic (Desktop) → 4x2 Grid (Mobile)
+   Desktop: 8 orbital nodes at 45° intervals around a SharePoint center node.
+   SVG layer draws 8 gold connector lines from center to orbital.
+   Mobile (≤768px): radial collapses to CSS Grid — 4 cols × 2 rows on tablet,
+   2 cols × 4 rows on phone. Same 8 capability cards, different geometry.
+   ========================================================================== */
+
+/* --- Desktop radial container --- */
+.hub-wrap { position: relative; max-width: 720px; margin: 3rem auto 0; padding: 4rem 0;
+  /* Batch 4: lock text-selection/long-press-copy across the graphic — covers both the
+     desktop .hub-radial and the mobile .hub-grid fallback; keep an arrow cursor. */
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: default; }
+
+/* Radial scene — square container; nodes positioned absolutely; SVG draws connectors */
+.hub-radial {
+  position: relative;
+  width: 640px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+/* SVG connector layer */
+.hub-connectors { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hub-connector { stroke: var(--accent); stroke-width: 1.5; fill: none; stroke-linecap: round; opacity: 0; transition: opacity 600ms ease-out; }
+.hub-radial.is-visible .hub-connector { opacity: 0.7; }
+.hub-radial.is-visible .hub-connector:nth-child(1) { transition-delay: 240ms; }
+.hub-radial.is-visible .hub-connector:nth-child(2) { transition-delay: 320ms; }
+.hub-radial.is-visible .hub-connector:nth-child(3) { transition-delay: 400ms; }
+.hub-radial.is-visible .hub-connector:nth-child(4) { transition-delay: 480ms; }
+.hub-radial.is-visible .hub-connector:nth-child(5) { transition-delay: 560ms; }
+.hub-radial.is-visible .hub-connector:nth-child(6) { transition-delay: 640ms; }
+.hub-radial.is-visible .hub-connector:nth-child(7) { transition-delay: 720ms; }
+.hub-radial.is-visible .hub-connector:nth-child(8) { transition-delay: 800ms; }
+
+/* Center SharePoint node — anchored at 50%/50%, larger size, gold ring */
+.hub-center {
+  position: absolute; top: 50%; left: 50%;
+  width: 156px; height: 156px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem;
+  background: var(--white);
+  border: 1.5px solid var(--navy);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(37,66,107,0.10);
+  z-index: 2;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.92);
+  transition: opacity 500ms cubic-bezier(0.4,0,0.2,1), transform 500ms cubic-bezier(0.4,0,0.2,1);
+}
+.hub-radial.is-visible .hub-center { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.hub-center i { font-size: 64px; color: var(--accent); line-height: 1; }
+.hub-center-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); text-align: center; line-height: 1.2; }
+
+/* Orbital nodes — placed via inline CSS custom properties (--x, --y in percent of container) */
+.hub-orbital {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 124px; height: 124px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.45rem;
+  background: var(--white);
+  border: 1px solid rgba(37,66,107,0.15);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(37,66,107,0.04);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), border-color 200ms ease, box-shadow 200ms ease;
+}
+.hub-radial.is-visible .hub-orbital { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .hub-orbital:hover { border-color: rgba(26,110,120,0.55); box-shadow: 0 4px 14px rgba(37,66,107,0.08); }
+}
+.hub-orbital i { font-size: 38px; color: var(--navy); line-height: 1; }
+.hub-orbital-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); text-align: center; line-height: 1.2; }
+
+/* Staggered reveal of orbital nodes — 80ms apart, after connectors begin */
+.hub-radial.is-visible .hub-orbital:nth-child(2) { transition-delay: 200ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(3) { transition-delay: 280ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(4) { transition-delay: 360ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(5) { transition-delay: 440ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(6) { transition-delay: 520ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(7) { transition-delay: 600ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(8) { transition-delay: 680ms; }
+.hub-radial.is-visible .hub-orbital:nth-child(9) { transition-delay: 760ms; }
+
+/* --- Mobile 4x2 grid (≤768px) --- */
+.hub-grid { display: none; max-width: 720px; margin: 2rem auto 0; }
+.hub-grid-header { text-align: center; margin-bottom: 1.5rem; }
+.hub-grid-header i { font-size: 48px; color: var(--accent); display: block; margin: 0 auto 0.5rem; line-height: 1; }
+.hub-grid-header-label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); }
+
+/* SharePoint logo (PNG with alpha, 1280x1251 — preserve true aspect ratio with height:auto) */
+.sharepoint-logo { display: block; height: auto; }
+.compare-col .compare-icon .sharepoint-logo { width: 28px; }
+.hub-center .sharepoint-logo { width: 64px; margin: 0 auto; }
+.hub-grid-header .sharepoint-logo { width: 48px; margin: 0 auto 0.5rem; }
+.hub-grid-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+.hub-grid-tile {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0.5rem;
+  background: var(--white);
+  border: 1px solid rgba(37,66,107,0.15);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(37,66,107,0.04);
+  min-height: 110px;
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.4,0,0.2,1);
+}
+.hub-grid.is-visible .hub-grid-tile { opacity: 1; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(1) { transition-delay: 0ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(2) { transition-delay: 80ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(3) { transition-delay: 160ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(4) { transition-delay: 240ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(5) { transition-delay: 320ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(6) { transition-delay: 400ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(7) { transition-delay: 480ms; }
+.hub-grid.is-visible .hub-grid-tile:nth-child(8) { transition-delay: 560ms; }
+.hub-grid-tile i { font-size: 30px; color: var(--navy); line-height: 1; }
+.hub-grid-tile-label { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); text-align: center; line-height: 1.2; }
+
+.hub-caption { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); text-align: center; margin: 2.5rem auto 0; max-width: 640px; }
+
+
+/* ==========================================================================
+   SECTION 3 — Stat Reveal (inherited from scanning)
+   ========================================================================== */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem auto 0; max-width: 880px; }
+.stat-block { padding: 2rem 1rem; text-align: center; }
+.stat-number { display: block; font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; color: var(--accent); line-height: 1; letter-spacing: -0.02em; margin-bottom: 0.75rem; font-variant-numeric: tabular-nums; }
+.stat-label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--navy); letter-spacing: 0.16em; text-transform: uppercase; }
+.stat-support { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); text-align: center; margin: 2.5rem auto 0; max-width: 640px; }
+
+
+/* ==========================================================================
+   SECTION 4 — Editorial Pull-Quote (inherited from scanning verbatim)
+   ========================================================================== */
+.archive-quote { max-width: 760px; margin: 0 auto; padding: 2rem 2.25rem; background: rgba(26,110,120,0.08); border-left: 4px solid var(--accent); border-radius: 4px; opacity: 0; transform: translateY(8px); transition: opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1); }
+.archive-quote.is-visible { opacity: 1; transform: translateY(0); }
+.archive-quote p { font-size: 1.25rem; line-height: 1.5; color: var(--navy); font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+
+
+/* ==========================================================================
+   SECTION 5 — CTA Strip (inherited)
+   ========================================================================== */
+.cta-strip { background: var(--navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+.cta-strip p { color: rgba(255,255,255,0.78); max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.7; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--accent); color: #FFFFFF; font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--accent-ink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,110,120,0.35); }
+.btn-primary:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+
+
+/* ==========================================================================
+   SECTION 6 — Cross-Link (inherited verbatim)
+   ========================================================================== */
+.cross-link { padding: 5rem 0; background: var(--light); text-align: center; }
+.cross-link .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.cross-link h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-bottom: 2.5rem; letter-spacing: -0.01em; color: var(--navy); }
+.cross-link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 880px; margin: 0 auto 2rem; text-align: left; }
+
+/* Batch 3 (2026-05-21): Single-card variant — TEMPORARY while Batch 2b is paused.
+   Workflow Automation card removed; only the OneForm sibling remains. Collapses the
+   grid to a single centered column at the SAME card width as a 2-up grid's individual
+   card (428px), centered inside the 880px wrapper. Pattern mirrors the AI Ingestion
+   subpage's Cloud Storage cross-link. REMOVE .is-single from the markup AND this rule
+   stays in place (it's harmless when no .is-single element exists) once Workflow
+   Automation subpage ships and the second card is restored. */
+.cross-link-grid.is-single { grid-template-columns: 428px; justify-content: center; max-width: 880px; }
+
+.cross-link-card { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.75rem 1.75rem 1.5rem; background: var(--white); border-left: 4px solid var(--xlink-ui); border-radius: 4px; box-shadow: 0 2px 8px rgba(37,66,107,0.04); transition: transform 300ms ease, box-shadow 300ms ease; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) {
+  .cross-link-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,66,107,0.10); }
+}
+.cross-link-card:focus-visible { outline: 3px solid var(--xlink-ui); outline-offset: 3px; }
+.cross-link-card .card-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--xlink-ink); }
+.cross-link-card h3 { font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-weight: 700; color: var(--navy); line-height: 1.25; letter-spacing: -0.005em; position: relative; display: inline-block; }
+.cross-link-card h3::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--xlink-ui); transition: width 300ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .cross-link-card:hover h3::after { width: 100%; }
+}
+.cross-link-card p { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); margin: 0; }
+.cross-link-card .card-arrow { margin-top: auto; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; padding-top: 0.5rem; }
+.cross-link-card .card-arrow i { font-size: 18px; transition: transform 300ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .cross-link-card:hover .card-arrow i { transform: translateX(4px); color: var(--xlink-ui); }
+}
+/* Destination color-coding — each cross-link card wears the accent of the page it LINKS TO (SharePoint ERMS links to OneForm + 1DocStop). Values on white per spec §C. */
+.cross-link-card.dest-oneform  { --xlink-ui: #1593CC; --xlink-ink: #1378A6; }
+.cross-link-card.dest-1docstop { --xlink-ui: #2E7DB5; --xlink-ink: #2A6FA0; }
+.cross-link-framework { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; position: relative; }
+.cross-link-framework::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 100%; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 300ms ease; }
+.cross-link-framework:hover { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+.cross-link-framework:hover::after { transform: scaleX(1); }
+}
+
+
+/* ---- Generic reveal helper ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 960px) {
+  .page-hero-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+  .hero-story { margin-left: 0; max-width: 560px; }
+}
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .section { padding: 3.5rem 0; }
+  .section.breathe { padding: 5rem 0; }
+  .cross-link { padding: 3.5rem 0; }
+
+  /* Comparison Split — stack columns vertically, swap divider to horizontal */
+  .compare-split { grid-template-columns: 1fr; gap: 1rem; }
+  .compare-divider { display: none; }
+  .compare-closer { margin-top: 1.75rem; }
+
+  /* Stat grid */
+  .stat-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+  /* Cross-Link grid — standard mobile stack, AND single-card variant collapses cleanly. */
+  .cross-link-grid { grid-template-columns: 1fr; }
+  .cross-link-grid.is-single { grid-template-columns: 1fr; max-width: 480px; }
+}
+
+/* Hub-and-spoke responsive transformation — radial → 4x2 grid at 768px */
+@media (max-width: 768px) {
+  .hub-radial { display: none; }
+  .hub-wrap { padding: 1rem 0; }
+  .hub-grid { display: block; }
+}
+@media (max-width: 540px) {
+  .hub-grid-tiles { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .page-hero h1 { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .archive-quote { padding: 1.5rem 1.5rem; }
+  .archive-quote p { font-size: 1.1rem; }
+  .compare-closer p { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-col, .hub-orbital, .hub-center, .hub-grid-tile, .hub-connector,
+  .archive-quote, .hero-story, .reveal { opacity: 1 !important; transform: none !important; }
+  .hub-center { transform: translate(-50%, -50%) !important; }
+  .hub-orbital { transform: translate(-50%, -50%) !important; }
+}
+
+
+/* ==========================================================================
+   PORTED M365 "cinema-stage" hero animation (from homepage index.html).
+   Fully NAMESPACED so it cannot collide with / leak into the SharePoint page:
+     - classes prefixed  .m365-*
+     - element IDs prefixed  #m365*
+     - @keyframes prefixed  m365*
+   Ported from the homepage Microsoft 365 data-flow diagram, then adapted for
+   SharePoint (2026-07-10): the Microsoft/Google chrome toggle + platform
+   crossfade were removed and the platform locked to a single SharePoint
+   identity (SharePoint logo + "SharePoint" wordmark); legend labels recolored
+   navy for AA on the light hero. Driven by its own isolated <script> IIFE at
+   the very end of the page. In-canvas accents still use the shared var(--gold).
+   ========================================================================== */
+.m365-anim { position: relative; }
+
+.m365-stage {
+  width: 100%; max-width: 480px; aspect-ratio: 4/3;
+  background: linear-gradient(145deg, #1e3a5c, #1a2c42);
+  border-radius: 14px; position: relative; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+  margin-left: auto;
+}
+.m365-chrome { display: flex; gap: 5px; padding: 12px 16px; position: relative; z-index: 5; }
+.m365-chrome > span { width: 8px; height: 8px; border-radius: 50%; opacity: 0.4; }
+.m365-chrome > span:nth-child(1) { background: #ff5f57; }
+.m365-chrome > span:nth-child(2) { background: #febc2e; }
+.m365-chrome > span:nth-child(3) { background: #28c840; }
+
+.m365-canvas { position: absolute; inset: 36px 0 0 0; overflow: hidden; display: block; }
+.m365-canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+.m365-cloud-emoji-wrap {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 108px; line-height: 1; user-select: none; -webkit-user-select: none;
+}
+
+.m365-legend {
+  position: relative; width: 100%; max-width: 480px;
+  margin: 12px 0 0 auto; height: 32px; box-sizing: border-box;
+}
+.m365-legend-col {
+  position: absolute; top: 0;
+  display: flex; flex-direction: column; align-items: center;
+  transform: translateX(-50%); white-space: nowrap;
+}
+.m365-legend-col[data-zone="1"] { left: 19.79%; }
+.m365-legend-col[data-zone="2"] { left: 50%; }
+.m365-legend-col[data-zone="3"] { left: 80.21%; }
+/* Legend labels recolored gold -> brand navy (2026-07-10): gold #E5A630 failed
+   AA on the LIGHT hero. --navy (#25426B) on the light field clears AA at ~9:1.
+   Only the legend row label text changes; the animation's in-canvas gold accents
+   (connectors, scanner, sparkline, etc.) are untouched. */
+.m365-legend-num {
+  color: var(--navy); font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1; opacity: 1;
+}
+.m365-legend-name {
+  margin-top: 0.35em; color: var(--navy); font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; line-height: 1; opacity: 1;
+}
+
+/* Microsoft/Google toggle switch REMOVED (2026-07-10): platform locked to a single
+   SharePoint identity, so the toggle control, its track/thumb/labels, and the entire
+   Microsoft<->Google crossfade CSS are gone. The chrome bar now shows only the three
+   traffic-light dots on the left (the quiet "SharePoint" title was removed 2026-07-10). */
+
+@keyframes m365ScaleSparklineDraw {
+  0%   { stroke-dashoffset: 100; }
+  25%  { stroke-dashoffset: 0;   }
+  92%  { stroke-dashoffset: 0;   }
+  100% { stroke-dashoffset: 100; }
+}
+#m365ScaleSparklinePath {
+  stroke-dasharray: 100; stroke-dashoffset: 0;
+  animation: m365ScaleSparklineDraw 6.5s ease-in-out infinite;
+}
+@keyframes m365ScaleSparklineDot {
+  0%   { opacity: 0;    transform: scale(0.6); }
+  25%  { opacity: 0.95; transform: scale(1);   }
+  92%  { opacity: 0.95; transform: scale(1);   }
+  100% { opacity: 0;    transform: scale(0.6); }
+}
+#m365ScaleSparklineDot {
+  transform-origin: center; transform-box: fill-box;
+  animation: m365ScaleSparklineDot 6.5s ease-in-out infinite;
+}
+
+@keyframes m365OrganizeLabelPulse { 0%,100% { opacity: 0.7; } 50% { opacity: 1.0; } }
+#m365OrganizeLabel { animation: m365OrganizeLabelPulse 2.5s ease-in-out infinite; }
+
+@keyframes m365OrganizePaperFeed {
+  0%   { transform: translateY(0px);  opacity: 0; }
+  6%   { opacity: 1; }
+  50%  { transform: translateY(28px); opacity: 1; }
+  55%  { transform: translateY(28px); opacity: 0; }
+  100% { transform: translateY(28px); opacity: 0; }
+}
+#m365OrganizePaperA, #m365OrganizePaperB {
+  transform-origin: 95px 205px; transform-box: view-box;
+  animation: m365OrganizePaperFeed 2s linear infinite;
+}
+#m365OrganizePaperB { animation-delay: -1s; }
+
+@keyframes m365OrganizeSlotFlash {
+  0%,45% { opacity: 0.55; } 50% { opacity: 1.0; } 55% { opacity: 0.55; } 100% { opacity: 0.55; }
+}
+#m365OrganizeScannerSlot { animation: m365OrganizeSlotFlash 2s linear infinite; }
+
+@keyframes m365OrganizeScannerPulse {
+  0%,45% { filter: brightness(1); } 50% { filter: brightness(1.35); }
+  60% { filter: brightness(1); } 100% { filter: brightness(1); }
+}
+#m365OrganizeScannerBody { animation: m365OrganizeScannerPulse 2s linear infinite; }
+
+@media (prefers-reduced-motion: reduce), (max-width: 600px) {
+  #m365ScaleSparklinePath, #m365ScaleSparklineDot,
+  #m365OrganizePaperA, #m365OrganizePaperB,
+  #m365OrganizeScannerSlot, #m365OrganizeScannerBody,
+  #m365OrganizeLabel { animation: none !important; }
+  #m365OrganizePaperA { transform: translateY(14px); opacity: 1; }
+  #m365OrganizePaperB { opacity: 0; }
+  #m365OrganizeScannerSlot { opacity: 0.55; }
+  #m365OrganizeLabel { opacity: 1; }
+  #m365ScaleSparklinePath { stroke-dashoffset: 0; }
+  #m365ScaleSparklineDot { opacity: 0.95; transform: none; }
+}
+@media (max-width: 600px) {
+  .m365-legend-num { font-size: 0.55rem; }
+  .m365-legend-name { font-size: 0.55rem; }
+  .m365-stage { margin: 0 auto; max-width: 360px; }
+  .m365-legend { margin: 12px auto 0; max-width: 360px; }
+}
+
+/* ---- Relocated split-panel animation — mid-page centered treatment ----
+   The .hero-story card was right-aligned in the two-column hero; in its new
+   standalone band it centers. Higher specificity than the base + the 960px
+   rule so it holds at every width. Everything else about .hero-story / .hr-*
+   is unchanged (verbatim from the original hero graphic). */
+.anim-replay .hero-story { margin: 0 auto; max-width: 600px; }
+
+/* ============================================================
+   SCENARIO FAQ — page-local, fully namespaced under .scenario-faq.
+   Accordion values lifted verbatim from about.html (.faq-section,
+   ~L96-139). 16:9 frame lifted verbatim from media.html
+   (.media-frame, ~L40). Nothing here touches shared CSS.
+   Centered section header per design principles §11; hairline
+   border-bottom matches this page's own .section rule.
+   Band tone: white, between the light pull-quote band above and
+   the dark .cta-strip below (§19).
+   ============================================================ */
+.scenario-faq { padding: 5rem 0; background: var(--white); border-bottom: 1px solid rgba(37,66,107,0.08); }
+.scenario-faq .scenario-faq-head { text-align: center; max-width: 760px; margin: 0 auto; }
+/* Family accent (§9.5): SharePoint ERMS is a Unify sub-brand running its own
+   teal accent below the hero, so the component's accent maps to --accent /
+   --accent-ink, matching every other eyebrow on the page. Geometry unchanged. */
+.scenario-faq .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.scenario-faq h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin: 0; letter-spacing: -0.01em; color: var(--navy); }
+.scenario-faq .faq-list { margin: 2.5rem auto 0; max-width: 920px; }
+.scenario-faq .faq-item { background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px; margin-bottom: 0.85rem; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.scenario-faq .faq-item:hover { border-color: rgba(26,110,120,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.scenario-faq .faq-item[open] { border-color: var(--accent); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.scenario-faq .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; font-size: 1.02rem; color: var(--navy); list-style: none; text-align: left; transition: background 0.2s ease; }
+.scenario-faq .faq-question::-webkit-details-marker { display: none; }
+.scenario-faq .faq-question:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
+.scenario-faq .faq-question:hover { background: rgba(26,110,120,0.04); }
+.scenario-faq .faq-icon { flex-shrink: 0; margin-left: 1rem; width: 22px; height: 22px; position: relative; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 1px; transition: opacity 0.25s ease; }
+.scenario-faq .faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.scenario-faq .faq-icon::after { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.scenario-faq .faq-item[open] .faq-icon { transform: rotate(180deg); }
+.scenario-faq .faq-item[open] .faq-icon::before { opacity: 0; }
+.scenario-faq .faq-answer { padding: 0 1.5rem 1.5rem; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); text-align: left; }
+.scenario-faq .faq-answer p { margin: 0; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); }
+.scenario-faq .faq-video { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); margin-top: 1.25rem; }
+.scenario-faq .faq-video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .scenario-faq .faq-item, .scenario-faq .faq-icon, .scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { transition: none !important; }
+}
+@media (max-width: 900px) {
+  .scenario-faq { padding: 3.5rem 0; }
+}
+
+/* ===== Public records requests (namespaced .prr-*): three-step process diagram ===== */
+.prr-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; padding: 0; list-style: none; position: relative; }
+.prr-steps::before { content: ''; position: absolute; top: 18px; left: calc(16.66% + 18px); right: calc(16.66% + 18px); height: 2px; background: linear-gradient(to right, rgba(229,166,48,0.5), rgba(229,166,48,0.5) 80%, rgba(229,166,48,0.12)); z-index: 0; }
+.prr-step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.prr-num { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--deep-navy); font-size: 0.78rem; font-weight: 700; margin-bottom: 0.85rem; box-shadow: 0 0 0 6px var(--prr-ring, #fff); }
+.prr-label { font-size: 0.82rem; font-weight: 700; color: var(--navy); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.prr-copy { font-size: 0.92rem; line-height: 1.55; color: var(--text-body); margin: 0; max-width: 260px; }
+.section.alt .prr-steps { --prr-ring: var(--light); }
+@media (max-width: 760px) {
+  .prr-steps { grid-template-columns: 1fr; gap: 1.25rem; }
+  .prr-steps::before { display: none; }
+  .prr-step { flex-direction: row; align-items: flex-start; text-align: left; gap: 1rem; }
+  .prr-num { margin-bottom: 0; flex-shrink: 0; }
+  .prr-copy { max-width: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- ============================================================
+     PAGE HERO — two-column with replacement-cycle animation
+     ============================================================ -->
+<section class="page-hero">
+  <!-- Mouse-reactive navy dot field (interactive). Painted above the gradient background but
+       below .container. JS draws the resting grid and displaces dots near the cursor. -->
+  <canvas class="hero-dotfield" id="heroDotField" aria-hidden="true"></canvas>
+  <div class="container">
+    <div class="page-hero-grid">
+      <div class="page-hero-copy">
+        <span class="eyebrow">Unify</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="services.html">Services</a></li>
+            <li><span aria-current="step">Unify</span></li>
+            <li><span aria-current="page">SharePoint ERMS</span></li>
+          </ol>
+        </nav>
+        <h1>SharePoint Already Does the <span>Job.</span></h1>
+        <p class="lead" data-aud="sp-lead">Most public agencies are paying twice for records management &mdash; once for their Microsoft 365 license, and again for a standalone ERMS platform that duplicates what SharePoint Online already does. We configure SharePoint as your records system &mdash; inside the tenant you already own. No second platform. No second invoice.</p>
+      </div>
+
+      <!-- ============================================================
+           M365 CINEMA-STAGE HERO ANIMATION (ported from homepage index.html)
+           Namespaced .m365-* classes / #m365* IDs / m365* keyframes + its own
+           isolated <script> IIFE at page end. Verbatim Microsoft 365 data-flow
+           diagram: scan (Organize) -> centralize in M365/Google (Unify) ->
+           report live (Scale). Autoplays on load like the homepage.
+           ============================================================ -->
+      <div class="m365-anim">
+        <div class="m365-stage" role="img" aria-label="Animated graphic: documents are scanned, centralized in SharePoint, and reported live">
+          <div class="m365-chrome">
+            <span></span><span></span><span></span>
+          </div>
+
+          <div class="m365-canvas" id="m365Canvas" aria-hidden="true">
+            <svg id="m365Svg" viewBox="0 0 480 324" preserveAspectRatio="xMidYMid meet"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xhtml="http://www.w3.org/1999/xhtml">
+              <defs>
+                <radialGradient id="m365TokenHalo" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stop-color="#F1B14D" stop-opacity="0.55"/>
+                  <stop offset="60%"  stop-color="#E5A630" stop-opacity="0.18"/>
+                  <stop offset="100%" stop-color="#E5A630" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="m365TokenGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <path id="m365TokenPath"
+                      d="M 95 235 L 95 165 L 95 70 L 240 70 L 385 70 L 385 165 L 340 210"
+                      fill="none" stroke="none"/>
+                <symbol id="m365TokenSymbol" overflow="visible">
+                  <circle cx="0" cy="0" r="9" fill="url(#m365TokenHalo)" filter="url(#m365TokenGlow)"/>
+                  <circle cx="0" cy="0" r="4" fill="#F1B14D"/>
+                  <circle cx="0" cy="0" r="4" fill="none" stroke="#E5A630" stroke-width="0.6" opacity="0.9"/>
+                </symbol>
+              </defs>
+
+              <g id="m365Connectors">
+                <path id="m365ConnectorLeft"
+                      d="M 95 165 L 95 70 L 240 70"
+                      fill="none"
+                      stroke="#E5A630" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="miter"
+                      stroke-dasharray="4 4"/>
+                <path id="m365ConnectorRight"
+                      d="M 240 70 L 385 70 L 385 165"
+                      fill="none"
+                      stroke="#E5A630" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="miter"
+                      stroke-dasharray="4 4"/>
+              </g>
+
+              <g id="m365TokenStream"></g>
+
+              <g id="m365OrganizeRegion">
+                <rect x="30" y="165" width="130" height="130" rx="14" ry="14"
+                      fill="#1c344e" fill-opacity="1"
+                      stroke="#E5A630" stroke-width="1.5"/>
+                <g id="m365Organize01Tab">
+                  <rect x="42" y="178" width="12" height="14" rx="2" ry="2" fill="#E5A630"/>
+                  <text x="48" y="188"
+                        fill="#FFFFFF"
+                        font-family="Tahoma, 'Segoe UI', sans-serif"
+                        font-size="6.5" font-weight="700"
+                        text-anchor="middle"
+                        letter-spacing="0.3">01</text>
+                </g>
+                <text id="m365OrganizeLabel" x="95" y="188"
+                      fill="#E5A630"
+                      font-family="Tahoma, 'Segoe UI', sans-serif"
+                      font-size="7.5" font-weight="700"
+                      letter-spacing="0.5"
+                      text-anchor="middle"
+                      style="text-transform: uppercase;">SCANNING</text>
+                <g id="m365OrganizePaperA">
+                  <rect x="84" y="205" width="22" height="22" rx="1.5" ry="1.5"
+                        fill="#25426B" fill-opacity="0.55" stroke="#E5A630" stroke-width="0.6"/>
+                  <line x1="87" y1="211" x2="103" y2="211" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.5"/>
+                  <line x1="87" y1="215" x2="101" y2="215" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                  <line x1="87" y1="219" x2="103" y2="219" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                  <line x1="87" y1="223" x2="99"  y2="223" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                </g>
+                <g id="m365OrganizePaperB">
+                  <rect x="84" y="205" width="22" height="22" rx="1.5" ry="1.5"
+                        fill="#25426B" fill-opacity="0.55" stroke="#E5A630" stroke-width="0.6"/>
+                  <line x1="87" y1="211" x2="103" y2="211" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="0.5"/>
+                  <line x1="87" y1="215" x2="101" y2="215" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                  <line x1="87" y1="219" x2="103" y2="219" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                  <line x1="87" y1="223" x2="99"  y2="223" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="0.5"/>
+                </g>
+                <g id="m365OrganizeScannerBody">
+                  <rect x="60" y="235" width="70" height="30" rx="4" ry="4"
+                        fill="#1a2c42" fill-opacity="1"
+                        stroke="#E5A630" stroke-width="1.2"/>
+                  <rect x="62" y="237" width="66" height="2" rx="1" ry="1"
+                        fill="#E5A630" fill-opacity="0.18"/>
+                  <rect x="66"  y="261" width="6" height="2" fill="#E5A630" fill-opacity="0.4"/>
+                  <rect x="118" y="261" width="6" height="2" fill="#E5A630" fill-opacity="0.4"/>
+                  <circle cx="122" cy="250" r="1.4" fill="#F1B14D" opacity="0.85"/>
+                </g>
+                <rect id="m365OrganizeScannerSlot"
+                      x="68" y="234" width="54" height="2.5" rx="1.25" ry="1.25"
+                      fill="#E5A630" opacity="0.55"/>
+              </g>
+
+              <g id="m365CloudEmoji">
+                <foreignObject x="180" y="0" width="120" height="120">
+                  <xhtml:div class="m365-cloud-emoji-wrap" role="img" aria-label="cloud">&#9729;&#65039;</xhtml:div>
+                </foreignObject>
+              </g>
+
+              <g id="m365CloudPlatform">
+                <!-- Platform identity locked to SharePoint (2026-07-10). The 4-color
+                     Microsoft logo + the Google logo/wordmark crossfade were removed;
+                     this reuses THIS page's existing assets/sharepoint-logo.png mark
+                     (same asset used in the split-panel + hub-radial graphics on this
+                     page) so the platform slot is self-contained. Centered on x=240,
+                     36px square (x=222), sitting above the wordmark at y=152. -->
+                <image id="m365PlatformSpLogo"
+                       href="assets/sharepoint-logo.png"
+                       x="222" y="102" width="36" height="36"
+                       preserveAspectRatio="xMidYMid meet"/>
+                <text id="m365PlatformSpWordmark" x="240" y="152"
+                      fill="#FFFFFF"
+                      font-family="Tahoma, 'Segoe UI', sans-serif"
+                      font-size="8" font-weight="700"
+                      text-anchor="middle"
+                      letter-spacing="0.2">SharePoint</text>
+              </g>
+
+              <g id="m365ScaleRegion">
+                <rect x="320" y="165" width="130" height="130" rx="14" ry="14"
+                      fill="#1c344e" fill-opacity="1"
+                      stroke="#E5A630" stroke-width="1.5"/>
+                <text x="330" y="188"
+                      fill="#E5A630"
+                      font-family="Tahoma, 'Segoe UI', sans-serif"
+                      font-size="7.5" font-weight="700"
+                      letter-spacing="0.5"
+                      style="text-transform: uppercase;">OPERATIONS</text>
+                <g transform="translate(429 180) scale(0.039)">
+                  <path d="M232,56V120a8,8,0,0,1-16,0V75.32l-83.59,83.59a8,8,0,0,1-11.32,0L96,123.32,21.66,197.66a8,8,0,0,1-11.32-11.32l80-80a8,8,0,0,1,11.32,0L126.06,142,202.69,64H168a8,8,0,0,1,0-16h64A8,8,0,0,1,232,56Z"
+                        fill="#E5A630"/>
+                </g>
+                <line x1="330" y1="195" x2="440" y2="195"
+                      stroke="#E5A630" stroke-width="0.5" opacity="0.3"/>
+                <text id="m365ScaleCounter" x="330" y="218"
+                      fill="#FFFFFF"
+                      font-family="Tahoma, 'Segoe UI', sans-serif"
+                      font-size="16" font-weight="700"
+                      letter-spacing="-0.2">+0</text>
+                <text x="330" y="230"
+                      fill="#FFFFFF" opacity="0.6"
+                      font-family="Tahoma, 'Segoe UI', sans-serif"
+                      font-size="5" font-weight="700"
+                      letter-spacing="0.15"
+                      style="text-transform: uppercase;">documents indexed today</text>
+                <g id="m365ScaleSparkline" transform="translate(330 250)">
+                  <path id="m365ScaleSparklinePath"
+                        d="M 0 14 L 20 12 L 38 13 L 56 8 L 76 5 L 96 1"
+                        fill="none"
+                        stroke="#E5A630" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle id="m365ScaleSparklineDot" cx="96" cy="1" r="1.8" fill="#F1B14D" opacity="0.95"/>
+                </g>
+                <g id="m365ScaleDonut" transform="translate(425 277)">
+                  <circle cx="0" cy="0" r="13"
+                          fill="none"
+                          stroke="#25426B" stroke-opacity="0.45"
+                          stroke-width="2"/>
+                  <circle cx="0" cy="0" r="13"
+                          fill="none"
+                          stroke="#E5A630" stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-dasharray="57.18 81.68"
+                          transform="rotate(-90)"/>
+                  <text x="0" y="2.5"
+                        fill="#E5A630"
+                        font-family="Tahoma, 'Segoe UI', sans-serif"
+                        font-size="6.5" font-weight="700"
+                        text-anchor="middle"
+                        letter-spacing="0">70%</text>
+                </g>
+                <g id="m365ScaleMiniBars" transform="translate(332 282)">
+                  <rect x="0"  y="-6"  width="3" height="6"  fill="#E5A630" opacity="0.85"/>
+                  <rect x="5"  y="-10" width="3" height="10" fill="#E5A630" opacity="0.85"/>
+                  <rect x="10" y="-14" width="3" height="14" fill="#E5A630" opacity="0.85"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="m365-legend" id="m365Legend" aria-hidden="true">
+          <div class="m365-legend-col" data-zone="1">
+            <span class="m365-legend-num">01</span>
+            <span class="m365-legend-name">Organize</span>
+          </div>
+          <div class="m365-legend-col" data-zone="2">
+            <span class="m365-legend-num">02</span>
+            <span class="m365-legend-name">Unify</span>
+          </div>
+          <div class="m365-legend-col" data-zone="3">
+            <span class="m365-legend-num">03</span>
+            <span class="m365-legend-name">Scale</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RELOCATED — Split-panel "Shrink-Grow" replacement animation
+     (this was the SharePoint hero graphic). Moved OUT of the hero
+     into this standalone band so the ported M365 diagram can own the
+     hero. Placed directly below the hero, BEFORE the Comparison section,
+     so its SharePoint-radial is separated from Section 2's hub-radial.
+     Light-gray (.alt) band so the WHITE animation card reads as elevated.
+     Fires on scroll-into-view via the EXISTING #heroStory
+     IntersectionObserver (unchanged). All original markup / CSS
+     (.hero-story, .hr-*) / JS is UNTOUCHED — only its DOM home and
+     container centering (.anim-replay) differ.
+     ============================================================ -->
+<section class="section alt anim-replay" aria-labelledby="replacement-anim-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Replacement, In Motion</span>
+      <h2 id="replacement-anim-heading">One System Fades. SharePoint Takes Over.</h2>
+      <p class="section-intro">The standalone platform shrinks as the records system already inside your Microsoft 365 tenant grows to fill its place &mdash; eight capabilities, one license.</p>
+    </div>
+      <div class="hero-story" id="heroStory" role="img" aria-label="Animation: the canvas is split into two panels — a left panel showing a proprietary records system failing with error messages, a continuously climbing cost ticker, and a paywall lock — and a right panel showing the Microsoft 365 SharePoint system with eight capability icons, teal connector lines, and a badge reading Included in Microsoft 365. As the animation progresses, the left panel shrinks while the right panel grows, shifting focus from the broken system to the working one.">
+        <div class="hero-story-frame">
+
+          <!-- Static HTML headers — pinned above the SVG canvas. Fixed size, single line,
+               never resize and never move as the animation runs. Cole's Option A spec. -->
+          <div class="hero-story-headers" aria-hidden="true">
+            <div class="hero-story-header hero-story-header--left">Your Current<br>Proprietary System</div>
+            <div class="hero-story-header hero-story-header--right">Your Microsoft 365<br>SharePoint System</div>
+          </div>
+
+          <div class="hero-story-stage" id="heroStage">
+            <svg class="hero-story-svg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+
+              <!-- ========== LIVE STAGE — JS animates everything below ========== -->
+              <g class="hr-live-stage" id="hrLiveStage">
+
+                <!-- Panel background washes — JS resizes width as splitX moves -->
+                <rect class="hr-panel-left-bg"  id="hrPanelLeftBg"  x="0"   y="0" width="420" height="360" rx="10"/>
+                <rect class="hr-panel-right-bg" id="hrPanelRightBg" x="420" y="0" width="180" height="360" rx="10"/>
+
+                <!-- Vertical divider — teal dashed hairline at splitX -->
+                <line class="hr-divider" id="hrDivider" x1="420" y1="30" x2="420" y2="330"/>
+
+                <!-- ========================================================
+                     LEFT PANEL — Proprietary system (broken)
+                     All children are inside a single group; JS sets transform
+                     to scale + position the contents within the shrinking panel.
+                     Internal layout assumes a fixed 420-unit-wide design space;
+                     the group is scaled by (currentLeftWidth / 420) so it
+                     contracts proportionally.
+                     ======================================================== -->
+                <g id="hrLeftGroup" transform="scale(1) translate(0,0)">
+
+                  <!-- Portal window frame — 420-wide design space, inset 30px each side -->
+                  <g id="hrWindowGroup" opacity="1">
+                    <rect class="hr-window-frame"    x="30" y="60" width="360" height="240" rx="6"/>
+                    <rect class="hr-window-titlebar" x="30" y="60" width="360" height="22" rx="6"/>
+                    <rect class="hr-window-titlebar" x="30" y="72" width="360" height="10"/>
+                    <circle class="hr-window-dot" cx="45" cy="71" r="3"/>
+                    <circle class="hr-window-dot" cx="57" cy="71" r="3"/>
+                    <circle class="hr-window-dot" cx="69" cy="71" r="3"/>
+
+                    <!-- Body record rows (cleaner than v2 — no RECORDS micro-label) -->
+                    <rect class="hr-window-row" x="50" y="110" width="270" height="6" rx="2"/>
+                    <rect class="hr-window-row" x="50" y="124" width="220" height="6" rx="2"/>
+                    <rect class="hr-window-row" x="50" y="138" width="300" height="6" rx="2"/>
+                    <rect class="hr-window-row" x="50" y="152" width="200" height="6" rx="2"/>
+                  </g>
+
+                  <!-- Toast 1: "Server Maintenance — Records Unavailable." (0.5s — 1.8s)
+                       The warning-triangle "!" stroke is white so it reads inside the
+                       now-solid-red triangle on the white card. -->
+                  <g id="hrToast1" opacity="0">
+                    <rect class="hr-toast-bg" x="46" y="98" width="328" height="24" rx="3"/>
+                    <path class="hr-toast-icon" d="M 60 116 L 65 105 L 70 116 Z"/>
+                    <path d="M 65 108 L 65 113 M 65 114.5 L 65 115" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                    <text class="hr-toast-text hr-text" x="80" y="115" font-size="10">Server Maintenance — Records Unavailable.</text>
+                  </g>
+
+                  <!-- Toast 2: "License Renewal Required." (2.5s — 3.8s) -->
+                  <g id="hrToast2" opacity="0">
+                    <rect class="hr-toast-bg" x="46" y="98" width="328" height="24" rx="3"/>
+                    <path class="hr-toast-icon" d="M 60 116 L 65 105 L 70 116 Z"/>
+                    <path d="M 65 108 L 65 113 M 65 114.5 L 65 115" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                    <text class="hr-toast-text hr-text" x="80" y="115" font-size="10">License Renewal Required.</text>
+                  </g>
+
+                  <!-- Cost ticker — continuously climbing, large red display (PROTECTED pain element) -->
+                  <g id="hrCostGroup" opacity="0">
+                    <text class="hr-cost-label hr-text" x="210" y="200" font-size="9">Annual License — Climbing</text>
+                    <text class="hr-cost-number hr-text" id="hrCostNumber" x="210" y="234" font-size="28">$0</text>
+                    <text class="hr-cost-sublabel hr-text" x="210" y="252" font-size="8">Year to Date</text>
+                  </g>
+
+                  <!-- Paywall lock — appears at 3.8s, lingers as panel shrinks.
+                       v3.4 reposition: lock now centered over the window BODY ROWS
+                       (y≈110-152) so it visually represents "your records are locked."
+                       Previous position (y=246-287) collided with the "YEAR TO DATE"
+                       caption in the cost block below. Lock body now at y=130-154,
+                       shackle extends up to y=113. Label sits below at y=170.
+                       Keyhole dot/line deepened #FF4757 → #D81F2F to match labels. -->
+                  <g id="hrLockGroup" opacity="0">
+                    <rect class="hr-lock-fill" x="195" y="130" width="30" height="24" rx="3"/>
+                    <path class="hr-lock" d="M 200 130 V 122 C 200 117 204 113 210 113 C 216 113 220 117 220 122 V 130"/>
+                    <circle cx="210" cy="141" r="2.2" fill="#D81F2F"/>
+                    <line x1="210" y1="143.2" x2="210" y2="148" stroke="#D81F2F" stroke-width="1.4" stroke-linecap="round"/>
+                    <text class="hr-lock-label hr-text" x="210" y="170" font-size="9">RECORDS UNAVAILABLE</text>
+                  </g>
+                </g>
+
+                <!-- ========================================================
+                     RIGHT PANEL — SharePoint system (resolution)
+                     Geometry computed in JS each frame:
+                       cx = (splitX + 600) / 2     center of right panel
+                       cy = 180                    vertical center
+                       r  = clamp(min((600 - splitX) * 0.32, 110), 36, 110)
+                                                   radius of cap radial,
+                                                   scales with panel width
+                       logoSize = clamp(min((600 - splitX) * 0.20, 64), 28, 64)
+                     ======================================================== -->
+                <g id="hrRightGroup">
+
+                  <!-- 8 teal connectors FIRST — so the logo image, which comes
+                       AFTER in source order, renders ON TOP of them. CRITICAL. -->
+                  <line class="hr-connector" id="hrConn1" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn2" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn3" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn4" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn5" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn6" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn7" x1="500" y1="180" x2="500" y2="180"/>
+                  <line class="hr-connector" id="hrConn8" x1="500" y1="180" x2="500" y2="180"/>
+
+                  <!-- 8 capability icons — positioned via JS per frame.
+                       Each cap is a 32x32 design; transform sets (x, y) of its
+                       top-left (offset by -16 from radial endpoint).
+                       .hr-cap-icon strokes are NAVY (PROTECTED) so they read inside
+                       the white teal-outlined chips. -->
+                  <g class="hr-cap" id="cap1">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <ellipse class="hr-cap-icon" cx="16" cy="10" rx="8" ry="2.6"/>
+                    <path class="hr-cap-icon" d="M 8 10 V 16 C 8 17.4 11.6 18.6 16 18.6 C 20.4 18.6 24 17.4 24 16 V 10"/>
+                    <path class="hr-cap-icon" d="M 8 16 V 22 C 8 23.4 11.6 24.6 16 24.6 C 20.4 24.6 24 23.4 24 22 V 16"/>
+                  </g>
+                  <g class="hr-cap" id="cap2">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <circle class="hr-cap-icon" cx="9" cy="10" r="2.6"/>
+                    <circle class="hr-cap-icon" cx="23" cy="10" r="2.6"/>
+                    <circle class="hr-cap-icon" cx="16" cy="23" r="2.6"/>
+                    <line class="hr-cap-icon" x1="11" y1="11.8" x2="14.5" y2="20.5"/>
+                    <line class="hr-cap-icon" x1="21" y1="11.8" x2="17.5" y2="20.5"/>
+                    <line class="hr-cap-icon" x1="11.6" y1="10" x2="20.4" y2="10"/>
+                  </g>
+                  <g class="hr-cap" id="cap3">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <circle class="hr-cap-icon" cx="16" cy="17" r="7"/>
+                    <polyline class="hr-cap-icon" points="16,13 16,17 19,19"/>
+                    <polyline class="hr-cap-icon" points="9,10 9,6 13,6"/>
+                  </g>
+                  <g class="hr-cap" id="cap4">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <path class="hr-cap-icon" d="M 16 5 L 7 9 V 17 C 7 22 11 25.5 16 27 C 21 25.5 25 22 25 17 V 9 Z"/>
+                    <polyline class="hr-cap-icon" points="12,16 15,19 21,13"/>
+                  </g>
+                  <g class="hr-cap" id="cap5">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <rect class="hr-cap-icon" x="5" y="5" width="8" height="8" rx="1.5"/>
+                    <rect class="hr-cap-icon" x="19" y="19" width="8" height="8" rx="1.5"/>
+                    <polyline class="hr-cap-icon" points="13,9 19,9 19,23"/>
+                    <polyline class="hr-cap-icon" points="16,20 19,23 22,20"/>
+                  </g>
+                  <g class="hr-cap" id="cap6">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <circle class="hr-cap-icon" cx="9" cy="8" r="2.3"/>
+                    <circle class="hr-cap-icon" cx="9" cy="24" r="2.3"/>
+                    <circle class="hr-cap-icon" cx="22" cy="13" r="2.3"/>
+                    <line class="hr-cap-icon" x1="9" y1="10.3" x2="9" y2="21.7"/>
+                    <path class="hr-cap-icon" d="M 9 16 C 9 14, 13 13, 19.5 13"/>
+                  </g>
+                  <g class="hr-cap" id="cap7">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <line class="hr-cap-icon" x1="5" y1="9" x2="18" y2="9"/>
+                    <line class="hr-cap-icon" x1="5" y1="14" x2="16" y2="14"/>
+                    <line class="hr-cap-icon" x1="5" y1="19" x2="14" y2="19"/>
+                    <circle class="hr-cap-icon" cx="20" cy="22" r="3.5"/>
+                    <line class="hr-cap-icon" x1="22.5" y1="24.5" x2="26" y2="28"/>
+                  </g>
+                  <g class="hr-cap" id="cap8">
+                    <rect class="hr-cap-bg" x="0" y="0" width="32" height="32" rx="6"/>
+                    <line class="hr-cap-icon" x1="6" y1="25" x2="26" y2="25"/>
+                    <rect class="hr-cap-icon" x="8" y="17" width="4" height="7"/>
+                    <rect class="hr-cap-icon" x="14" y="11" width="4" height="13"/>
+                    <rect class="hr-cap-icon" x="20" y="19" width="4" height="5"/>
+                  </g>
+
+                  <!-- SharePoint logo — AFTER connectors in source order so it
+                       renders ON TOP. JS sets x/y/width/height each frame. -->
+                  <image id="hrSpLogo" class="hr-sp-logo"
+                         href="assets/sharepoint-logo.png"
+                         x="476" y="156" width="48" height="48"
+                         preserveAspectRatio="xMidYMid meet"/>
+
+                  <!-- Badge: "Included in Microsoft 365." — the one INTENTIONAL dark element
+                       kept on white: deep-navy pill + teal text, anchors the resolution side.
+                       Pill sized to text via JS getBBox. -->
+                  <g id="hrBadge" opacity="0">
+                    <rect class="hr-badge-bg" id="hrBadgeRect" x="410" y="247" width="180" height="22" rx="11"/>
+                    <text class="hr-badge-text" id="hrBadgeText" x="500" y="262" font-size="9">Included in Microsoft 365.</text>
+                  </g>
+                </g>
+              </g>
+
+              <!-- ========== STATIC FALLBACK (reduced motion) ========== -->
+              <!-- 50/50 split, left at 40% opacity with frozen broken state,
+                   right at full opacity with SharePoint composition.
+                   Shares the .hr-* classes, so all on-white color fixes apply automatically;
+                   the inline red marks + toast "!" are edited per-element below to match. -->
+              <g class="hr-static-scene" id="hrStaticScene">
+                <rect class="hr-panel-left-bg"  x="0"   y="0" width="300" height="360" rx="10"/>
+                <rect class="hr-panel-right-bg" x="300" y="0" width="300" height="360" rx="10"/>
+                <line class="hr-divider" x1="300" y1="30" x2="300" y2="330"/>
+
+                <!-- LEFT panel (40% opacity) — broken portal w/ static toast + cost + lock -->
+                <g opacity="0.4">
+                  <!-- Portal window -->
+                  <rect class="hr-window-frame"    x="30" y="68" width="240" height="220" rx="6"/>
+                  <rect class="hr-window-titlebar" x="30" y="68" width="240" height="20" rx="6"/>
+                  <rect class="hr-window-titlebar" x="30" y="78" width="240" height="10"/>
+                  <circle class="hr-window-dot" cx="42" cy="78" r="2.5"/>
+                  <circle class="hr-window-dot" cx="52" cy="78" r="2.5"/>
+                  <circle class="hr-window-dot" cx="62" cy="78" r="2.5"/>
+                  <!-- Body rows -->
+                  <rect class="hr-window-row" x="46" y="116" width="180" height="5" rx="2"/>
+                  <rect class="hr-window-row" x="46" y="128" width="160" height="5" rx="2"/>
+                  <rect class="hr-window-row" x="46" y="140" width="200" height="5" rx="2"/>
+                  <rect class="hr-window-row" x="46" y="152" width="140" height="5" rx="2"/>
+                  <!-- Frozen toast (License Renewal Required.) — "!" stroke added in white to match live -->
+                  <rect class="hr-toast-bg" x="40" y="100" width="220" height="22" rx="3"/>
+                  <path class="hr-toast-icon" d="M 52 117 L 56 107 L 60 117 Z"/>
+                  <path d="M 56 110 L 56 114.5 M 56 116 L 56 116.5" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+                  <text class="hr-toast-text hr-text" x="70" y="115" font-size="8.5">License Renewal Required.</text>
+                  <!-- Lock — repositioned OVER body content rows (was over cost block).
+                       Keyhole dot/line deepened #FF4757 → #D81F2F. -->
+                  <rect class="hr-lock-fill" x="138" y="130" width="24" height="20" rx="2"/>
+                  <path class="hr-lock" d="M 142 130 V 124 C 142 120 145 117 150 117 C 155 117 158 120 158 124 V 130"/>
+                  <circle cx="150" cy="139" r="1.8" fill="#D81F2F"/>
+                  <line x1="150" y1="140.8" x2="150" y2="145" stroke="#D81F2F" stroke-width="1.3" stroke-linecap="round"/>
+                  <text class="hr-lock-label hr-text" x="150" y="162" font-size="8">RECORDS UNAVAILABLE</text>
+                  <!-- Cost (static representative freeze value, all RED — the big $ stays bright,
+                       small labels use the deepened red via .hr-cost-label/-sublabel).
+                       NOTE: $281,000 is a tuned animation value, NOT a confirmed SyTech figure —
+                       flagged as a client-confirm item. Left as-is per spec; reads on white. -->
+                  <text class="hr-cost-label hr-text" x="150" y="200" font-size="8">Annual License — Climbing</text>
+                  <text class="hr-cost-number hr-text" x="150" y="226" font-size="22">$281,000</text>
+                  <text class="hr-cost-sublabel hr-text" x="150" y="240" font-size="7">Year to Date</text>
+                </g>
+
+                <!-- RIGHT panel — SharePoint comp (full opacity) -->
+                <!-- 8 connectors first; logo last; badge below. Right center: (450, 180), radius 90 -->
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="450" y2="90"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="513.6" y2="116.4"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="540" y2="180"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="513.6" y2="243.6"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="450" y2="270"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="386.4" y2="243.6"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="360" y2="180"/>
+                <line class="hr-connector" style="opacity:0.7" x1="450" y1="180" x2="386.4" y2="116.4"/>
+
+                <!-- 8 caps at radius 90 from (450, 180) -->
+                <g transform="translate(434, 74)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><ellipse class="hr-cap-icon" cx="16" cy="10" rx="8" ry="2.6"/><path class="hr-cap-icon" d="M 8 10 V 16 C 8 17.4 11.6 18.6 16 18.6 C 20.4 18.6 24 17.4 24 16 V 10"/><path class="hr-cap-icon" d="M 8 16 V 22 C 8 23.4 11.6 24.6 16 24.6 C 20.4 24.6 24 23.4 24 22 V 16"/></g>
+                <g transform="translate(497.6, 100.4)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><circle class="hr-cap-icon" cx="9" cy="10" r="2.6"/><circle class="hr-cap-icon" cx="23" cy="10" r="2.6"/><circle class="hr-cap-icon" cx="16" cy="23" r="2.6"/><line class="hr-cap-icon" x1="11" y1="11.8" x2="14.5" y2="20.5"/><line class="hr-cap-icon" x1="21" y1="11.8" x2="17.5" y2="20.5"/><line class="hr-cap-icon" x1="11.6" y1="10" x2="20.4" y2="10"/></g>
+                <g transform="translate(524, 164)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><circle class="hr-cap-icon" cx="16" cy="17" r="7"/><polyline class="hr-cap-icon" points="16,13 16,17 19,19"/><polyline class="hr-cap-icon" points="9,10 9,6 13,6"/></g>
+                <g transform="translate(497.6, 227.6)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><path class="hr-cap-icon" d="M 16 5 L 7 9 V 17 C 7 22 11 25.5 16 27 C 21 25.5 25 22 25 17 V 9 Z"/><polyline class="hr-cap-icon" points="12,16 15,19 21,13"/></g>
+                <g transform="translate(434, 254)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><rect class="hr-cap-icon" x="5" y="5" width="8" height="8" rx="1.5"/><rect class="hr-cap-icon" x="19" y="19" width="8" height="8" rx="1.5"/><polyline class="hr-cap-icon" points="13,9 19,9 19,23"/><polyline class="hr-cap-icon" points="16,20 19,23 22,20"/></g>
+                <g transform="translate(370.4, 227.6)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><circle class="hr-cap-icon" cx="9" cy="8" r="2.3"/><circle class="hr-cap-icon" cx="9" cy="24" r="2.3"/><circle class="hr-cap-icon" cx="22" cy="13" r="2.3"/><line class="hr-cap-icon" x1="9" y1="10.3" x2="9" y2="21.7"/><path class="hr-cap-icon" d="M 9 16 C 9 14, 13 13, 19.5 13"/></g>
+                <g transform="translate(344, 164)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><line class="hr-cap-icon" x1="5" y1="9" x2="18" y2="9"/><line class="hr-cap-icon" x1="5" y1="14" x2="16" y2="14"/><line class="hr-cap-icon" x1="5" y1="19" x2="14" y2="19"/><circle class="hr-cap-icon" cx="20" cy="22" r="3.5"/><line class="hr-cap-icon" x1="22.5" y1="24.5" x2="26" y2="28"/></g>
+                <g transform="translate(370.4, 100.4)"><rect class="hr-cap-bg" width="32" height="32" rx="6"/><line class="hr-cap-icon" x1="6" y1="25" x2="26" y2="25"/><rect class="hr-cap-icon" x="8" y="17" width="4" height="7"/><rect class="hr-cap-icon" x="14" y="11" width="4" height="13"/><rect class="hr-cap-icon" x="20" y="19" width="4" height="5"/></g>
+
+                <!-- SharePoint logo on TOP of connectors -->
+                <image href="assets/sharepoint-logo.png" x="426" y="156" width="48" height="48" preserveAspectRatio="xMidYMid meet"/>
+
+                <!-- Badge — width sized for "Included in Microsoft 365." at 9px Tahoma -->
+                <rect class="hr-badge-bg" x="360" y="295" width="180" height="22" rx="11"/>
+                <text class="hr-badge-text" x="450" y="310" font-size="9">Included in Microsoft 365.</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <p class="hero-caption">A standalone records system adds a second platform and a second invoice. SharePoint already does the job &mdash; inside the tenant you own.</p>
+      </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — COMPARISON SPLIT
+     Standalone ERMS Software vs. SharePoint-Based ERMS
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Replacement</span>
+      <h2>Two Platforms, or One?</h2>
+      <p class="section-intro">Most agencies have a standalone ERMS platform alongside the Microsoft 365 license they already pay for. Here is what each path actually costs.</p>
+    </div>
+
+    <div class="compare-split" id="compareSplit" aria-label="Comparison of standalone ERMS software versus SharePoint-based ERMS">
+      <div class="compare-col is-left">
+        <span class="compare-icon" aria-hidden="true"><i class="ph ph-package"></i></span>
+        <h3>Standalone ERMS Software</h3>
+        <p>A separate platform. A separate login. A separate license your finance team renews every year. Records live on a vendor's servers under a vendor's rules.</p>
+      </div>
+      <div class="compare-divider" aria-hidden="true"></div>
+      <div class="compare-col is-right">
+        <span class="compare-icon" aria-hidden="true"><img src="assets/sharepoint-logo.png" alt="" class="sharepoint-logo"></span>
+        <h3>SharePoint-Based ERMS</h3>
+        <p>The same Microsoft 365 environment your staff already use. Records live in your tenant under your IT governance. No second invoice. No second platform to learn.</p>
+      </div>
+    </div>
+
+    <div class="compare-closer">
+      <p>Both paths manage records. Only one of them is already paid for.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — SCHEMATIC RELATIONSHIP DIAGRAM (Hub-and-Spoke)
+     Desktop: 8 orbital capability nodes at 45° intervals around
+     a SharePoint Online center node. Gold connectors, no arrowheads.
+     Mobile: 4x2 grid (or 2x4 at narrow widths) — same 8 capabilities.
+     8 icons MUST match the hero animation State B icons exactly.
+     ============================================================ -->
+<section class="section alt breathe">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What SharePoint Manages</span>
+      <h2>Eight Capabilities. One License.</h2>
+    </div>
+
+    <div class="hub-wrap" role="figure" aria-label="Eight ERMS capabilities orbiting SharePoint Online as the center node">
+
+      <!-- DESKTOP: Hub-and-Spoke Radial Composition -->
+      <div class="hub-radial" id="hubRadial" aria-hidden="false">
+        <!-- SVG connector layer: 8 lines from center (50%/50%) to each orbital position.
+             Container is 640x640 logical; we render via viewBox so SVG scales with element.
+             Orbital radius = 38% from center, so connector lines go from (320,320) to
+             (320 + r·cos(θ), 320 + r·sin(θ)) where r = 243.2 (38% × 640). -->
+        <svg class="hub-connectors" viewBox="0 0 640 640" preserveAspectRatio="none" aria-hidden="true">
+          <!-- 8 connectors at 0°,45°,90°,135°,180°,225°,270°,315° (starting at 12 o'clock = -90°) -->
+          <!-- We draw from the center node edge (radius ~78px = 12.2% of 640) to the orbital
+               node edge (radius from center 243.2px, orbital radius ~62px = 9.7%).
+               Effective line: from ~78 to ~181 along each radial. -->
+          <!-- θ = -90° (top) -->
+          <line class="hub-connector" x1="320" y1="242" x2="320" y2="139"/>
+          <!-- θ = -45° (top-right) -->
+          <line class="hub-connector" x1="375" y1="265" x2="448" y2="192"/>
+          <!-- θ = 0° (right) -->
+          <line class="hub-connector" x1="398" y1="320" x2="501" y2="320"/>
+          <!-- θ = 45° (bottom-right) -->
+          <line class="hub-connector" x1="375" y1="375" x2="448" y2="448"/>
+          <!-- θ = 90° (bottom) -->
+          <line class="hub-connector" x1="320" y1="398" x2="320" y2="501"/>
+          <!-- θ = 135° (bottom-left) -->
+          <line class="hub-connector" x1="265" y1="375" x2="192" y2="448"/>
+          <!-- θ = 180° (left) -->
+          <line class="hub-connector" x1="242" y1="320" x2="139" y2="320"/>
+          <!-- θ = 225° (top-left) -->
+          <line class="hub-connector" x1="265" y1="265" x2="192" y2="192"/>
+        </svg>
+
+        <!-- SharePoint Online — center node -->
+        <div class="hub-center">
+          <img src="assets/sharepoint-logo.png" alt="SharePoint" class="sharepoint-logo">
+          <span class="hub-center-label">SharePoint<br>Online</span>
+        </div>
+
+        <!-- 8 Orbital Nodes — positioned at 45° intervals around center.
+             Using polar→cartesian: x = 50% + r·cos(θ), y = 50% + r·sin(θ).
+             r = 38% of container. θ start = -90° (12 o'clock), increment 45° clockwise.
+             Computed positions (50% center, radius 38%):
+               θ=-90°:  x=50.0%, y=12.0%
+               θ=-45°:  x=76.87%, y=23.13%
+               θ=  0°:  x=88.0%, y=50.0%
+               θ= 45°:  x=76.87%, y=76.87%
+               θ= 90°:  x=50.0%, y=88.0%
+               θ=135°:  x=23.13%, y=76.87%
+               θ=180°:  x=12.0%, y=50.0%
+               θ=225°:  x=23.13%, y=23.13%
+        -->
+        <div class="hub-orbital" style="--x: 50%; --y: 12%;">
+          <i class="ph ph-database" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Storage</span>
+        </div>
+        <div class="hub-orbital" style="--x: 76.87%; --y: 23.13%;">
+          <i class="ph ph-share-network" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Sharing</span>
+        </div>
+        <div class="hub-orbital" style="--x: 88%; --y: 50%;">
+          <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Retention</span>
+        </div>
+        <div class="hub-orbital" style="--x: 76.87%; --y: 76.87%;">
+          <i class="ph ph-shield-check" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Permissions</span>
+        </div>
+        <div class="hub-orbital" style="--x: 50%; --y: 88%;">
+          <i class="ph ph-flow-arrow" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Workflows</span>
+        </div>
+        <div class="hub-orbital" style="--x: 23.13%; --y: 76.87%;">
+          <i class="ph ph-git-branch" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Versioning</span>
+        </div>
+        <div class="hub-orbital" style="--x: 12%; --y: 50%;">
+          <i class="ph ph-list-magnifying-glass" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Auditing</span>
+        </div>
+        <div class="hub-orbital" style="--x: 23.13%; --y: 23.13%;">
+          <i class="ph ph-chart-bar" aria-hidden="true"></i>
+          <span class="hub-orbital-label">Reporting</span>
+        </div>
+      </div>
+
+      <!-- MOBILE: 4x2 Grid Transformation -->
+      <div class="hub-grid" id="hubGrid" aria-hidden="true">
+        <div class="hub-grid-header">
+          <img src="assets/sharepoint-logo.png" alt="SharePoint" class="sharepoint-logo">
+          <span class="hub-grid-header-label">SharePoint Online</span>
+        </div>
+        <div class="hub-grid-tiles">
+          <div class="hub-grid-tile">
+            <i class="ph ph-database" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Storage</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-share-network" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Sharing</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Retention</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-shield-check" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Permissions</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-flow-arrow" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Workflows</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-git-branch" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Versioning</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-list-magnifying-glass" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Auditing</span>
+          </div>
+          <div class="hub-grid-tile">
+            <i class="ph ph-chart-bar" aria-hidden="true"></i>
+            <span class="hub-grid-tile-label">Reporting</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="hub-caption">Configured inside the Microsoft 365 license your agency already owns &mdash; governed by your IT, not a vendor's.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — STAT REVEAL
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Have Done</span>
+      <h2>Records Live Here.</h2>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-block">
+        <span class="stat-number" data-target="10.7" data-format="million">0</span>
+        <span class="stat-label">Records Under SharePoint Governance</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number" data-target="4" data-format="named">0 Named</span>
+        <span class="stat-label">Public-Sector Agencies on Record</span>
+      </div>
+    </div>
+
+    <p class="stat-support">California Natural Resources Agency, California Department of Child Support Services, Yolo County &mdash; public agencies running records on the SharePoint they already own.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — EDITORIAL PULL-QUOTE
+     ============================================================ -->
+<section class="section alt breathe">
+  <div class="container">
+    <blockquote class="archive-quote" id="archiveQuote">
+      <p>Records management without the records management software.</p>
+    </blockquote>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCENARIO FAQ — copy: scenario-videos/copy-scenario-faq-mapping.md §3.4
+     Placed after "Records Live Here." and before the CTA strip; sits
+     after the pull-quote band so the light/dark rhythm alternates (§19).
+     ============================================================ -->
+<section class="scenario-faq" aria-label="Scenarios built inside the license they had">
+  <div class="container">
+    <div class="scenario-faq-head">
+      <span class="section-eyebrow">Scenarios</span>
+      <h2>Built Inside the License They Had.</h2>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>We already pay for our Microsoft licenses. Why would we fund a second records platform?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>One county reached the same conclusion under budget cuts. Their existing software had been built for outdated, infrequent tasks and could not adapt, but paying for new software on top of already-expensive licenses was unjustifiable &mdash; and the county-specific low-code platform they actually wanted looked out of reach. We digitized their documents and built low-code solutions inside the Microsoft products they already owned, open and scalable enough to add capabilities like APIs over time. Watch the county explain how they did more with less of their budget.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-3-gold-county-poster.jpg"
+                   aria-label="Video: a county describes modernizing during budget cuts">
+              <source src="assets/video/scenario-3-gold-county.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-3-gold-county.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Can one system inside our own tenant track projects and their funding requirements?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>It can. A county told us that as its IT projects multiplied, each with funding requirements that needed meticulous tracking across the life cycle, it needed a standardized approach and had nowhere central to run it. They had the process defined &mdash; PAL, the Project Application Life Cycle &mdash; and no application to manage it in. We built low-code solutions inside their existing Microsoft products, and each project is now overseen in correspondence with PAL. Watch the county describe the result.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-5-pal-poster.jpg"
+                   aria-label="Video: a county describes tracking IT projects against PAL, its Project Application Life Cycle">
+              <source src="assets/video/scenario-5-pal.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-5-pal.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scenario FAQ — page-local, namespaced. Closing an item pauses its video;
+   playing one scenario video pauses any other on this page. Nothing else. */
+(function () {
+  var items = document.querySelectorAll('.scenario-faq details.faq-item');
+  if (!items.length) return;
+  var vids = [];
+  Array.prototype.forEach.call(items, function (item) {
+    var v = item.querySelector('video');
+    if (!v) return;
+    vids.push(v);
+    item.addEventListener('toggle', function () { if (!item.open) { v.pause(); } });
+  });
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+<!-- ============================================================
+     SECTION 5 — CTA STRIP
+     ============================================================ -->
+<section class="section alt" aria-labelledby="prr-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Public Records Requests</span>
+      <h2 id="prr-heading">When a Records Request Arrives.</h2>
+      <p class="section-intro">Requests under the California Public Records Act, California's version of FOIA, come with deadlines. With records in one governed SharePoint system, staff search one place, not five.</p>
+    </div>
+    <ol class="prr-steps">
+        <li class="prr-step">
+          <span class="prr-num">01</span>
+          <div class="prr-body">
+            <div class="prr-label">Search</div>
+            <p class="prr-copy">One system to search, instead of shared drives, inboxes, and file rooms.</p>
+          </div>
+        </li>
+        <li class="prr-step">
+          <span class="prr-num">02</span>
+          <div class="prr-body">
+            <div class="prr-label">Confirm</div>
+            <p class="prr-copy">Retention rules show what your agency is required to still have.</p>
+          </div>
+        </li>
+        <li class="prr-step">
+          <span class="prr-num">03</span>
+          <div class="prr-body">
+            <div class="prr-label">Respond</div>
+            <p class="prr-copy">Permissions and audit logs show who accessed what, and when.</p>
+          </div>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2 data-aud="sp-cta-h2">Already Paying for SharePoint?</h2>
+    <p data-aud="sp-cta-p">Every engagement begins with an assessment. We learn what you have, what you already pay for, and where SharePoint fits.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — CROSS-LINK SECTION
+     Phase B (2026-05-29): 2-card variant — OneForm + 1DocStop.
+     1DocStop added per locked plan; .is-single class removed so
+     the grid returns to its standard 2-card layout. Cross-link
+     copy is fit-routing — never comparative, no winners/losers.
+     ============================================================ -->
+<section class="cross-link" aria-labelledby="cross-link-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">More in Unify</span>
+      <h2 id="cross-link-heading">Other Ways We Unify.</h2>
+    </div>
+
+    <div class="cross-link-grid">
+      <a href="services-oneform.html" class="cross-link-card dest-oneform">
+        <span class="card-eyebrow">Unify</span>
+        <h3>OneForm</h3>
+        <p>Electronic forms built inside the Microsoft 365 environment your agency already owns.</p>
+        <span class="card-arrow">Explore <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="services-1docstop.html" class="cross-link-card dest-1docstop">
+        <span class="card-eyebrow">Unify</span>
+        <h3>1DocStop</h3>
+        <p>Want records management without configuring it yourself? See 1DocStop.</p>
+        <span class="card-arrow">Explore <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+
+    <a href="services.html" class="cross-link-framework">See the full framework <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  // ----- Reduced-motion detection -----
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ============================================================
+  // MOUSE-REACTIVE DOT FIELD (interactive, 2026-06-18)
+  // Replaces the old cursor-following teal glow AND the static ::after dot tile.
+  // A <canvas> renders the SAME resting look as the old CSS tile — navy dots
+  // rgba(37,66,107,0.10), ~1px radius, 24px grid — but each dot can displace
+  // individually, which a CSS background tile cannot do.
+  //
+  // Interaction model:
+  // - Each dot has a HOME (grid) position and a current (rendered) position.
+  // - On pointermove the pointer's hero-relative coords are stored.
+  // - Per frame: any dot within RADIUS (~120px) of the pointer is pushed AWAY
+  //   from it (soft repel), strongest at the center and easing to zero at the
+  //   radius edge via a smooth cubic falloff; max push capped (~14px) so it
+  //   stays gentle/premium, never jumpy.
+  // - Every dot eases back toward its home each frame (spring-like return), so
+  //   the disturbance trails the cursor and settles smoothly when it leaves.
+  // - rAF loop runs only while the pointer is active OR while any dot is still
+  //   settling (> a tiny epsilon from home); it idles when fully at rest.
+  // - ResizeObserver (with a window-resize fallback) rebuilds the grid + DPR.
+  //
+  // Guards: prefers-reduced-motion and touch / no-hover devices paint the
+  // static grid ONCE (identical to the old tile) and wire NO listeners — no
+  // motion, no layout shift.
+  // ============================================================
+  (function() {
+    var hero = document.querySelector('.page-hero');
+    var canvas = document.getElementById('heroDotField');
+    if (!hero || !canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+
+    // Resting look — matched 1:1 to the old ::after tile.
+    var GRID = 24;                 // px spacing (was background-size: 24px)
+    var DOT_R = 1;                 // px radius (was 1px dots)
+    var DOT_COLOR = 'rgba(37,66,107,0.10)';  // navy at low alpha (was the tile color)
+
+    // Interaction tuning — subtle/premium repel.
+    var RADIUS = 120;              // px influence radius around the pointer
+    var MAX_PUSH = 14;             // px max displacement at the pointer center
+    var EASE = 0.14;              // per-frame return toward home (spring stiffness)
+    var EPSILON = 0.05;          // settle threshold to idle the loop
+
+    var dots = [];                 // { hx, hy, x, y }  home + current
+    var dpr = 1;
+    var pointerX = -9999, pointerY = -9999;
+    var pointerActive = false;
+    var rafId = null;
+
+    var canHover = !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var interactive = !prefersReducedMotion && canHover;
+
+    // Build the dot grid for the current hero size; reset current pos to home.
+    function buildGrid(w, h) {
+      dots.length = 0;
+      // Inset the grid by half a cell so it reads centered like the CSS tile.
+      var startX = GRID / 2, startY = GRID / 2;
+      for (var y = startY; y < h; y += GRID) {
+        for (var x = startX; x < w; x += GRID) {
+          dots.push({ hx: x, hy: y, x: x, y: y });
+        }
+      }
+    }
+
+    // Draw the current dot positions (single pass).
+    function draw(w, h) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = DOT_COLOR;
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Size the canvas to the hero, account for devicePixelRatio, rebuild grid, repaint.
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      var w = Math.max(1, Math.round(rect.width));
+      var h = Math.max(1, Math.round(rect.height));
+      dpr = Math.min(window.devicePixelRatio || 1, 2);  // cap DPR for perf
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildGrid(w, h);
+      draw(w, h);   // paint the static resting grid immediately (no layout shift, no FOUC)
+    }
+
+    // Smooth cubic falloff: 1 at center → 0 at edge.
+    function falloff(t) { var u = 1 - t; return u * u * u; }
+
+    function loop() {
+      var rect = hero.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      var moving = false;
+      var r2 = RADIUS * RADIUS;
+
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var tx = d.hx, ty = d.hy;   // target defaults to home
+
+        if (pointerActive) {
+          var dx = d.hx - pointerX;
+          var dy = d.hy - pointerY;
+          var dist2 = dx * dx + dy * dy;
+          if (dist2 < r2) {
+            var dist = Math.sqrt(dist2) || 0.0001;
+            var push = falloff(dist / RADIUS) * MAX_PUSH;
+            // Repel: push dot outward, away from the pointer, along the radial.
+            tx = d.hx + (dx / dist) * push;
+            ty = d.hy + (dy / dist) * push;
+          }
+        }
+
+        // Ease current position toward the target (toward push pos, or back home).
+        d.x += (tx - d.x) * EASE;
+        d.y += (ty - d.y) * EASE;
+
+        if (Math.abs(d.x - tx) > EPSILON || Math.abs(d.y - ty) > EPSILON) moving = true;
+      }
+
+      draw(w, h);
+
+      // Keep running while the pointer is active or while dots are still settling.
+      if (pointerActive || moving) {
+        rafId = window.requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+        draw(w, h);   // final crisp resting frame
+      }
+    }
+
+    function ensureLoop() {
+      if (rafId === null) rafId = window.requestAnimationFrame(loop);
+    }
+
+    // Initial sizing + static paint (runs for ALL cases, including reduced-motion/touch).
+    resize();
+
+    // Track resize for both interactive and static cases (canvas must follow hero size).
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(function() { resize(); });
+      ro.observe(hero);
+    } else {
+      window.addEventListener('resize', resize, { passive: true });
+    }
+
+    // No interaction on reduced-motion / touch / no-hover — leave the static grid as-is.
+    if (!interactive) return;
+
+    hero.addEventListener('pointermove', function(e) {
+      if (e.pointerType === 'touch') return;   // ignore touch contacts
+      var rect = hero.getBoundingClientRect();
+      pointerX = e.clientX - rect.left;
+      pointerY = e.clientY - rect.top;
+      pointerActive = true;
+      ensureLoop();
+    }, { passive: true });
+
+    hero.addEventListener('pointerenter', function(e) {
+      if (e.pointerType === 'touch') return;
+      pointerActive = true;
+      ensureLoop();
+    });
+
+    hero.addEventListener('pointerleave', function() {
+      pointerActive = false;   // dots ease back home; loop runs until settled, then idles
+      ensureLoop();
+    });
+  })();
+
+  // ============================================================
+  // HERO ANIMATION — v4: 50/50 split with shrink-grow choreography (PLAY-ONCE)
+  //
+  // Plays once and settles. The SVG canvas is split vertically by `splitX`:
+  //   t = 0.0s — 1.5s : splitX = 420   (LEFT 70%) hold through first toast
+  //   t = 1.5s — 8.0s : splitX 420 → 180, one continuous smoothstep glide
+  //   t = 8.0s — 9.0s : hold at 180, left side dims; loop stops at t=9 (final
+  //                     frame is permanent — no rewind, no wasted CPU)
+  //
+  // Element behavior tied to splitX:
+  //   - LEFT group: contents authored on a 420-unit-wide design canvas.
+  //     scaled by (leftWidth / 420) so the broken portal contracts as the
+  //     panel shrinks.
+  //   - RIGHT group: SharePoint logo, caps, connectors, badge — geometry
+  //     recomputed each frame against the right panel center + width.
+  //   - Header overlays (HTML): left/width track the panel widths.
+  //
+  // Cost ticker: continuously climbs throughout State A. Never lands.
+  // Disappears when LEFT panel shrinks below the threshold where the ticker
+  // group no longer fits.
+  // ============================================================
+  var heroStory   = document.getElementById('heroStory');
+  var stage       = document.getElementById('heroStage');
+  var staticScene = document.getElementById('hrStaticScene');
+
+  // Panels + divider
+  var elLeftBg    = document.getElementById('hrPanelLeftBg');
+  var elRightBg   = document.getElementById('hrPanelRightBg');
+  var elDivider   = document.getElementById('hrDivider');
+  var elLeftGroup = document.getElementById('hrLeftGroup');
+
+  // (Static HTML headers live ABOVE the SVG canvas now — no JS hooks needed.)
+
+  // LEFT panel elements (broken-system stage)
+  var elWindow    = document.getElementById('hrWindowGroup');
+  var elToast1    = document.getElementById('hrToast1');
+  var elToast2    = document.getElementById('hrToast2');
+  var elCost      = document.getElementById('hrCostGroup');
+  var elCostNum   = document.getElementById('hrCostNumber');
+  var elLock      = document.getElementById('hrLockGroup');
+
+  // RIGHT panel elements
+  var elSpLogo    = document.getElementById('hrSpLogo');
+  var elBadge     = document.getElementById('hrBadge');
+  var elBadgeRect = document.getElementById('hrBadgeRect');
+  var elBadgeText = document.getElementById('hrBadgeText');
+
+  // 8 caps + 8 connectors
+  var caps = [];
+  var conns = [];
+  for (var i = 1; i <= 8; i++) {
+    var c = document.getElementById('cap' + i);
+    var k = document.getElementById('hrConn' + i);
+    if (c) caps.push(c);
+    if (k) conns.push(k);
+  }
+
+  // Hero frame entrance (single-fire reveal)
+  if (heroStory) {
+    window.setTimeout(function() { heroStory.classList.add('is-visible'); }, 300);
+  }
+
+  // -------- Size the badge pill to fit its text + horizontal padding --------
+  // CRITICAL v2 bug fix: rect width = text bbox width + 2*pad. Re-runs on resize
+  // because getBBox depends on rendered geometry.
+  function fitBadgePill() {
+    if (!elBadgeText || !elBadgeRect) return;
+    try {
+      var pad = 14;          // horizontal padding inside the pill
+      var bbox = elBadgeText.getBBox();
+      var pillW = Math.ceil(bbox.width + 2 * pad);
+      var pillH = 22;
+      var cx = parseFloat(elBadgeText.getAttribute('x')) || 0;
+      elBadgeRect.setAttribute('width',  pillW);
+      elBadgeRect.setAttribute('height', pillH);
+      elBadgeRect.setAttribute('x', cx - pillW / 2);
+      elBadgeRect.setAttribute('rx', pillH / 2);
+    } catch (e) { /* no-op — getBBox fails in detached states */ }
+  }
+
+  if (prefersReducedMotion) {
+    if (staticScene) staticScene.style.display = 'block';
+  } else if (heroStory && stage && elLeftGroup && caps.length === 8 && conns.length === 8) {
+
+    // ---- Timing constants (seconds; play-once timeline) ----
+    var T_END = 9.0;   // final resolved frame; rAF loop stops here permanently
+
+    // splitX choreography (time s → splitX viewBox units)
+    // v4: ONE continuous smoothstep 420 → 180 over 1.5s–8s. The old version
+    // stitched two smoothstep segments (0–5, 5–8) whose velocity hit zero at
+    // t=5 — the panel visibly stalled mid-move. The initial 1.5s hold keeps
+    // the left panel dominant while the first failure toast lands.
+    function smoothstep(a, b, t) {
+      var x = Math.max(0, Math.min(1, (t - a) / (b - a)));
+      return x * x * (3 - 2 * x);
+    }
+    function splitAt(t) {
+      return 420 - 240 * smoothstep(1.5, 8, t);
+    }
+
+    // LEFT panel content event timings (seconds within timeline)
+    var T_TOAST1_IN  = 0.50, T_TOAST1_OUT = 1.80;
+    var T_COST_IN    = 0.60;          // ticker fades in
+    var T_TOAST2_IN  = 2.20, T_TOAST2_OUT = 3.40;
+    var T_LOCK_IN    = 3.40;          // lock lands and lingers
+    // v4 legibility fix: all left-panel TEXT fades out by the time the group
+    // scale drops below ~0.73 (text was shrinking into illegible smudges).
+    var T_TEXT_FADE  = 4.60, T_TEXT_GONE = 5.10;
+    // Left-panel content fade-out tied to panel-shrink visibility:
+    // We fade window + lock when left panel shrinks past their geometric needs.
+    // (Done via leftWidth thresholds in render, not pure time.)
+
+    // Cost ticker — relentless/explosive climb (v3.4 retune)
+    // Previous formula (4500*t + 1100*t^1.4) topped out near $33K — too gentle.
+    // New formula: 30000*t + 10000*t^1.8 — each second adds more than the last.
+    // Projected at freeze point (t≈4.0s from T_COST_IN, then frozen at T_TEXT_FADE=4.6s):
+    //   t=1s →  $40K, t=2s →  $95K, t=3s → $162K, t=4s → $241K, t=4.4s → ~$281K.
+    // The exponential term dominates — visually accelerating, unbounded expense.
+    var COST_BASE  = 30000;
+    var COST_ACCEL = 10000;
+    var COST_EXP   = 1.8;
+
+    // ---- State trackers — avoid redundant DOM writes ----
+    var state = {
+      splitX: null,
+      window: null, toast1: null, toast2: null,
+      cost: null, costText: '',
+      lock: null, leftDim: null,
+      caps: [null, null, null, null, null, null, null, null],
+      conns: [null, null, null, null, null, null, null, null],
+      capTransforms: ['', '', '', '', '', '', '', ''],
+      spLogo: null, spLogoBox: '',
+      badge: null,
+      leftGroupTransform: ''
+    };
+
+    function setOpacityIfChanged(el, key, value) {
+      if (state[key] === value) return;
+      state[key] = value;
+      el.style.opacity = value;
+    }
+    function setCapOpacity(idx, value) {
+      if (state.caps[idx] === value) return;
+      state.caps[idx] = value;
+      caps[idx].style.opacity = value;
+    }
+    function setConnOpacity(idx, value) {
+      if (state.conns[idx] === value) return;
+      state.conns[idx] = value;
+      conns[idx].style.opacity = value;
+    }
+    function setCostText(text) {
+      if (state.costText === text) return;
+      state.costText = text;
+      elCostNum.textContent = text;
+    }
+
+    // ---- Initial CSS transitions for smooth opacity changes ----
+    [elToast1, elToast2, elCost, elLock, elSpLogo, elWindow].forEach(function(el) {
+      if (el) el.style.transition = 'opacity 350ms cubic-bezier(0.4,0,0.2,1)';
+    });
+    // v4: caps, connectors and badge are now driven with continuous per-frame
+    // eased values (grow-out choreography) — CSS transitions would lag/fight.
+    caps.forEach(function(c) { c.style.transition = 'none'; });
+    conns.forEach(function(k) { k.style.transition = 'none'; });
+    if (elBadge) elBadge.style.transition = 'none';
+
+    // Caps: 8 angles starting at 12 o'clock, clockwise every 45° in radians
+    // Order matches v2: 1=top, 2=1:30, 3=3, 4=4:30, 5=6, 6=7:30, 7=9, 8=10:30
+    var CAP_ANGLES = [-Math.PI / 2,                 // top
+                      -Math.PI / 2 + Math.PI / 4,   // 1:30
+                       0,                            // right
+                       Math.PI / 4,                  // 4:30
+                       Math.PI / 2,                  // bottom
+                       3 * Math.PI / 4,              // 7:30
+                       Math.PI,                      // left
+                       -Math.PI / 2 - Math.PI / 4];  // 10:30
+
+    // Cap reveal threshold by panel width:
+    // As right panel grows, caps appear in order. Each cap requires a minimum
+    // right-panel width before it can render legibly.
+    // Right panel min width at t=0 is 180 (start). We want NO caps at start.
+    // At 50/50 (panel width 300), we want ~4 caps visible.
+    // At final state (panel width 420), all 8 caps visible.
+    var CAP_THRESHOLDS = [205, 230, 255, 280, 305, 330, 355, 380];
+    // Map: cap[i] starts to fade in when right panel width crosses CAP_THRESHOLDS[i]
+
+    // Connector visibility threshold: appear once panel is wide enough to have
+    // most caps in (around the time cap 6 appears).
+    var CONN_THRESHOLD = 330;
+
+    // Badge appears once panel is wide enough that it doesn't overlap the
+    // bottom cap (cap 5 at 6 o'clock). Below that, badge would overlap.
+    var BADGE_THRESHOLD = 360;
+
+    function easeIn(x) { return x * x; }
+
+    function formatCost(value) {
+      if (value < 1) return '$0';
+      return '$' + Math.round(value).toLocaleString('en-US');
+    }
+
+    var startTime = null;
+    var rafId = null;
+    var paused = false;
+    var finished = false;   // play-once: set when the final frame has rendered
+    var pausedAccum = 0;
+    var pauseStart = 0;
+
+    function tick(timestamp) {
+      if (paused) { rafId = null; return; }
+      if (startTime === null) startTime = timestamp;
+      var elapsed = timestamp - startTime - pausedAccum;
+      var t = Math.min(elapsed / 1000, T_END); // play-once: clamp at final frame
+
+      // -------- Compute split position and panel dimensions --------
+      var splitX = splitAt(t);
+      var leftW = splitX;
+      var rightW = 600 - splitX;
+
+      // -------- Panels + divider --------
+      if (state.splitX !== splitX) {
+        state.splitX = splitX;
+
+        // Left bg width
+        elLeftBg.setAttribute('width', splitX);
+        // Right bg position + width
+        elRightBg.setAttribute('x', splitX);
+        elRightBg.setAttribute('width', rightW);
+        // Divider position
+        elDivider.setAttribute('x1', splitX);
+        elDivider.setAttribute('x2', splitX);
+
+        // Left group: scale uniformly by (leftW / 420), anchored so the
+        // composition stays centered horizontally in the shrinking left panel
+        // and vertically centered in the canvas.
+        // Design center of left content is (210, 180). Panel center is (leftW/2, 180).
+        // Final transform: translate to panel center, scale, translate back from design center.
+        var leftScale = leftW / 420;
+        var panelCx   = leftW / 2;
+        var panelCy   = 180;
+        var lgTransform = 'translate(' + panelCx.toFixed(2) + ' ' + panelCy + ') '
+                        + 'scale(' + leftScale.toFixed(4) + ') '
+                        + 'translate(-210 -180)';
+        if (state.leftGroupTransform !== lgTransform) {
+          state.leftGroupTransform = lgTransform;
+          elLeftGroup.setAttribute('transform', lgTransform);
+        }
+
+        // Headers are now static HTML rendered ABOVE the SVG canvas (Cole's
+        // Option A). They have fixed size and 50/50 widths — no per-frame work.
+      }
+
+      // -------- LEFT PANEL — broken software --------
+      // The whole left composition scales uniformly with the panel, so we
+      // gate visibility on TIME only (not panel width). Content remains
+      // proportionally legible even at minimum panel size.
+
+      // Window frame: visible from start through to just before the reset window
+      var winOn = t < 11.4;
+      setOpacityIfChanged(elWindow, 'window', winOn ? '1' : '0');
+
+      // Toast 1: 0.50s — 1.80s
+      var t1On = t >= T_TOAST1_IN && t < T_TOAST1_OUT;
+      setOpacityIfChanged(elToast1, 'toast1', t1On ? '1' : '0');
+
+      // Toast 2: 2.50s — 3.80s
+      var t2On = t >= T_TOAST2_IN && t < T_TOAST2_OUT;
+      setOpacityIfChanged(elToast2, 'toast2', t2On ? '1' : '0');
+
+      // Cost ticker — continuously climbing during State A
+      // Visible 0.60s — T_TEXT_FADE. Fades out before group scale makes the
+      // labels illegible. Never lands.
+      var costOp;
+      if (t < T_COST_IN)         costOp = 0;
+      else if (t < T_TEXT_FADE)  costOp = 1;
+      else if (t < T_TEXT_GONE)  costOp = 1 - smoothstep(T_TEXT_FADE, T_TEXT_GONE, t);
+      else                       costOp = 0;
+      setOpacityIfChanged(elCost, 'cost', costOp.toFixed(2));
+      if (costOp > 0.01 && t >= T_COST_IN) {
+        // Value at this t — increments throughout, never winds down
+        // Freeze the displayed number after t=5.0s so it fades out at whatever
+        // it had reached, not continuing to climb during the fade.
+        var ttCalc = Math.min(t, T_TEXT_FADE) - T_COST_IN;
+        var currentCost = COST_BASE * ttCalc + COST_ACCEL * Math.pow(ttCalc, COST_EXP);
+        setCostText(formatCost(currentCost));
+      }
+
+      // Paywall lock: T_LOCK_IN — T_TEXT_FADE, fades with the other left text
+      var lockOp;
+      if (t < T_LOCK_IN)         lockOp = 0;
+      else if (t < T_TEXT_FADE)  lockOp = 1;
+      else if (t < T_TEXT_GONE)  lockOp = 1 - smoothstep(T_TEXT_FADE, T_TEXT_GONE, t);
+      else                       lockOp = 0;
+      setOpacityIfChanged(elLock, 'lock', lockOp.toFixed(2));
+
+      // Settle: once focus has fully migrated, dim the broken side toward the
+      // static-fallback treatment (0.55) so the resolved state owns the frame.
+      var leftDim = 1 - 0.45 * smoothstep(7.5, 9, t);
+      setOpacityIfChanged(elLeftGroup, 'leftDim', leftDim.toFixed(2));
+
+      // -------- RIGHT PANEL — SharePoint composition --------
+      // Compute center + radial radius from right panel geometry
+      var rcx = (splitX + 600) / 2;
+      var rcy = 180;
+      // Radius scales with panel width but is capped
+      var rRaw = Math.min(rightW * 0.32, 110);
+      var r = Math.max(36, rRaw);
+
+      // SharePoint logo size scales with panel width, capped
+      var logoSize = Math.max(28, Math.min(rightW * 0.20, 72));
+      var newLogoBox = rcx.toFixed(1) + ',' + logoSize.toFixed(1);
+      if (state.spLogoBox !== newLogoBox) {
+        state.spLogoBox = newLogoBox;
+        elSpLogo.setAttribute('x', rcx - logoSize / 2);
+        elSpLogo.setAttribute('y', rcy - logoSize / 2);
+        elSpLogo.setAttribute('width', logoSize);
+        elSpLogo.setAttribute('height', logoSize);
+      }
+      // Logo opacity — fades in as panel grows past 200 (always visible if rightW >= 180)
+      var logoOp = rightW < 160 ? (rightW - 120) / 40 : 1;
+      logoOp = Math.max(0, Math.min(1, logoOp));
+      setOpacityIfChanged(elSpLogo, 'spLogo', logoOp.toFixed(2));
+
+      // Caps — v4 grow-out choreography: each cap eases OUT of the logo
+      // (radius 0.4r → r) while scaling 0.6 → 1 and fading in, instead of a
+      // bare opacity pop at its threshold. Progress still keyed to rightW so
+      // caps appear in order as the panel grows.
+      var capEase = [];   // per-cap eased progress, reused by the connector pass
+      for (var ci = 0; ci < 8; ci++) {
+        var p = (rightW - CAP_THRESHOLDS[ci]) / 40;
+        p = Math.max(0, Math.min(1, p));
+        var eo = 1 - Math.pow(1 - p, 3);   // easeOutCubic
+        capEase[ci] = eo;
+        var ang = CAP_ANGLES[ci];
+        var capR = r * (0.4 + 0.6 * eo);
+        var cs = 0.6 + 0.4 * eo;
+        var ex = rcx + capR * Math.cos(ang);
+        var ey = rcy + capR * Math.sin(ang);
+        var ttf = 'translate(' + ex.toFixed(1) + ' ' + ey.toFixed(1) + ') scale(' + cs.toFixed(3) + ') translate(-16 -16)';
+        if (state.capTransforms[ci] !== ttf) {
+          state.capTransforms[ci] = ttf;
+          caps[ci].setAttribute('transform', ttf);
+        }
+        setCapOpacity(ci, p.toFixed(2));
+      }
+
+      // Connectors — v4: each line DRAWS outward from the logo edge toward its
+      // cap with the cap's own eased progress (radial grows out of SharePoint),
+      // instead of all 8 fading in at one shared threshold.
+      // Inner radius (start point on logo edge): logoSize/2 + a small gap.
+      var innerR = logoSize / 2 + 4;
+      for (var ki = 0; ki < 8; ki++) {
+        var eo2 = capEase[ki];
+        var kang = CAP_ANGLES[ki];
+        // Cap edge tracks the cap's animated position + scale (32x32 → 16*scale)
+        var capR2 = r * (0.4 + 0.6 * eo2);
+        var outerR = capR2 - 16 * (0.6 + 0.4 * eo2);
+        var viable = outerR > innerR + 4;   // skip inverted lines (cap too close)
+        // Far endpoint travels from the logo edge to the cap edge
+        var drawR = innerR + Math.max(0, outerR - innerR) * eo2;
+        var x1 = rcx + innerR * Math.cos(kang);
+        var y1 = rcy + innerR * Math.sin(kang);
+        var x2 = rcx + drawR * Math.cos(kang);
+        var y2 = rcy + drawR * Math.sin(kang);
+        conns[ki].setAttribute('x1', x1.toFixed(1));
+        conns[ki].setAttribute('y1', y1.toFixed(1));
+        conns[ki].setAttribute('x2', x2.toFixed(1));
+        conns[ki].setAttribute('y2', y2.toFixed(1));
+        // Peak connector opacity is 0.7 so teal lines hold their presence on the
+        // white card (matches the static fallback). Opacity leads the draw so
+        // the line is visible while it extends.
+        var connOp = viable ? Math.min(1, eo2 * 1.6) * 0.7 : 0;
+        setConnOpacity(ki, connOp.toFixed(2));
+      }
+
+      // Badge: appears below logo and BELOW the bottom cap (cap 5 at 6 o'clock).
+      // Cap 5 bottom edge is at rcy + r + 16. Badge baseline below that with a gap.
+      // Reposition badge X to right panel center each frame.
+      var badgeY = rcy + r + 38;
+      // Clamp badgeY so the pill stays within the canvas (rcy + 38 + ~11 = within 360)
+      if (badgeY > 348) badgeY = 348;
+      elBadgeText.setAttribute('x', rcx);
+      elBadgeText.setAttribute('y', badgeY);
+      // Re-fit the pill rect every frame (text x changed, so rect x needs update)
+      // Reuse stored width — only re-measure when font would have changed (it doesn't)
+      var bw = parseFloat(elBadgeRect.getAttribute('width')) || 120;
+      var bh = parseFloat(elBadgeRect.getAttribute('height')) || 22;
+      elBadgeRect.setAttribute('x', rcx - bw / 2);
+      // Vertically center the text in the pill. Font-size 9 → ascent ~7, descent ~2,
+      // visual midpoint ~ baseline - 2.5. Pill height bh; pill top = baseline - 2.5 - bh/2.
+      elBadgeRect.setAttribute('y', badgeY - 2.5 - bh / 2);
+      // v4: badge rises 8px into place as it fades in (eased per frame)
+      var badgeOp = (rightW - BADGE_THRESHOLD) / 40;
+      badgeOp = Math.max(0, Math.min(1, badgeOp));
+      var bEase = 1 - Math.pow(1 - badgeOp, 3);
+      elBadge.setAttribute('transform', 'translate(0 ' + ((1 - bEase) * 8).toFixed(1) + ')');
+      setOpacityIfChanged(elBadge, 'badge', bEase.toFixed(2));
+
+      if (t >= T_END) {
+        // Final resolved frame rendered — settle permanently (play-once).
+        finished = true;
+        rafId = null;
+        return;
+      }
+      rafId = window.requestAnimationFrame(tick);
+    }
+
+    function start() {
+      if (finished || rafId !== null) return;
+      if (pauseStart) { pausedAccum += performance.now() - pauseStart; pauseStart = 0; }
+      paused = false;
+      rafId = window.requestAnimationFrame(tick);
+    }
+    function stop() {
+      if (rafId !== null) { window.cancelAnimationFrame(rafId); rafId = null; }
+      paused = true;
+      pauseStart = performance.now();
+    }
+
+    // Fit the badge pill once everything has rendered (need actual text bbox)
+    // Use rAF to ensure the SVG has laid out before measuring.
+    window.requestAnimationFrame(function() {
+      window.requestAnimationFrame(fitBadgePill);
+    });
+
+    // -------- Pre-start POSTER frame --------
+    // This graphic is BELOW THE FOLD after relocation, so it must sit at a
+    // readable poster (broken panel dominant + a TINY SharePoint logo) until
+    // the user scrolls to it. The left window/panel already read correctly from
+    // their DOM defaults (elLeftBg width=420, window opacity 1, toasts/cost/lock
+    // opacity 0). Only the SharePoint logo needs painting in — its CSS default
+    // is opacity:0, which would leave the right panel blank. Paint its t=0
+    // size/position/opacity directly (no timeline advance) and seed the state
+    // trackers so the first real tick dedups cleanly.
+    if (elSpLogo) {
+      var _posterRcx  = (420 + 600) / 2;   // right-panel center at splitX=420
+      var _posterSize = 36;                 // logoSize at rightW=180 (t=0)
+      elSpLogo.setAttribute('x', _posterRcx - _posterSize / 2);
+      elSpLogo.setAttribute('y', 180 - _posterSize / 2);
+      elSpLogo.setAttribute('width', _posterSize);
+      elSpLogo.setAttribute('height', _posterSize);
+      elSpLogo.style.opacity = '1';
+      state.spLogo    = '1';
+      state.spLogoBox = _posterRcx.toFixed(1) + ',' + _posterSize.toFixed(1);
+    }
+
+    // -------- Scroll-into-view trigger (PLAY ONCE) --------
+    // hasPlayed guard fires the timeline exactly once, the first time a
+    // MEANINGFUL portion (~40%) of the section is in the viewport — so it kicks
+    // off as the user ARRIVES at it, not when it barely peeks in from the bottom
+    // (the old threshold:0.05 started it while it was still a sliver at the
+    // screen edge, so it played out before he reached it). Once triggered it
+    // runs to its settled final frame and never replays; scrolling back shows it
+    // complete. The observer disconnects after firing.
+    var hasPlayed = false;
+    if ('IntersectionObserver' in window) {
+      var heroIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          // isIntersecting alone is true at any ratio > 0, so gate on the ratio.
+          if (!hasPlayed && entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+            hasPlayed = true;
+            heroIO.disconnect();   // single-fire
+            start();
+          }
+        });
+      }, { threshold: [0, 0.4] });   // DIAL: raise/lower 0.4 to trigger later/earlier
+      heroIO.observe(heroStory);
+    } else {
+      // No IntersectionObserver support — play immediately so it still runs.
+      hasPlayed = true;
+      start();
+    }
+
+    // visibilitychange — pause a MID-PLAY run when the tab is hidden (prevents an
+    // rAF timestamp jump on return via the pausedAccum compensation). Does
+    // nothing before the scroll trigger fires or after the play-once completes,
+    // so it never bypasses the scroll-into-view gate and never replays.
+    document.addEventListener('visibilitychange', function() {
+      if (!hasPlayed || finished) return;
+      if (document.hidden) {
+        stop();               // sets pauseStart; start() folds it into pausedAccum
+      } else {
+        start();              // resumes from the exact frame, no timestamp jump
+      }
+    });
+  }
+
+  // ----- IntersectionObserver helper (single-fire) -----
+  function observe(el, onEnter, threshold) {
+    if (!el) return;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      onEnter(el);
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          onEnter(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: threshold || 0.25, rootMargin: '0px 0px -50px 0px' });
+    io.observe(el);
+  }
+
+  // ----- Section 1: Comparison Split reveal -----
+  observe(document.getElementById('compareSplit'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.2);
+
+  // ----- Section 2: Hub-and-Spoke reveal (radial + grid both observed; one is display:none at any breakpoint) -----
+  observe(document.getElementById('hubRadial'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.25);
+  observe(document.getElementById('hubGrid'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.25);
+
+  // ----- Section 4: Editorial Pull-Quote reveal -----
+  observe(document.getElementById('archiveQuote'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.3);
+
+  // ----- Section 3: Counter-up for Stat Reveal -----
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateNumber(el, target, duration, formatter) {
+    var start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var elapsed = ts - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutCubic(progress);
+      var current = target * eased;
+      el.textContent = formatter(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(tick);
+      } else {
+        el.textContent = formatter(target);
+      }
+    }
+    window.requestAnimationFrame(tick);
+  }
+
+  var statGrid = document.getElementById('statGrid');
+  observe(statGrid, function(el) {
+    var nums = el.querySelectorAll('.stat-number');
+    nums.forEach(function(n) {
+      var target = parseFloat(n.getAttribute('data-target'));
+      var format = n.getAttribute('data-format');
+      var formatter;
+      if (format === 'million') {
+        formatter = function(v) { return v.toFixed(1) + 'M'; };
+      } else if (format === 'named') {
+        formatter = function(v) { return Math.round(v) + ' Named'; };
+      } else {
+        formatter = function(v) { return Math.round(v).toLocaleString('en-US'); };
+      }
+      if (prefersReducedMotion) {
+        n.textContent = formatter(target);
+        return;
+      }
+      animateNumber(n, target, 1400, formatter);
+    });
+  }, 0.4);
+
+})();
+
+
+/* ============================================================
+   PORTED M365 CINEMA-STAGE ANIMATION — isolated IIFE (own scope).
+   Verbatim logic from homepage index.html, retargeted to the
+   #m365* IDs / .m365-* classes. Separate function scope from the
+   main IIFE above, so no shared globals (its own rafId, tokens,
+   counter, etc. cannot collide). Autoplays on load (hero graphic).
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* Microsoft/Google platform toggle handler REMOVED (2026-07-10). The platform is
+     locked to a single SharePoint identity, so the toggle element, its labels, the
+     cloudPlatform crossfade lookups, and the click handler are all gone. The
+     token-stream / counter / scanner animation below is unchanged and runs on its
+     own guards (tokenPath / tokenStream / counterEl). */
+
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isNarrow             = window.matchMedia('(max-width: 600px)').matches;
+  var staticMode           = prefersReducedMotion || isNarrow;
+
+  var counterEl = document.getElementById('m365ScaleCounter');
+  function fmt(n) { return n.toLocaleString('en-US'); }
+
+  if (staticMode) {
+    if (counterEl) counterEl.textContent = '+' + fmt(1294);
+    return;
+  }
+
+  var SVG_NS      = 'http://www.w3.org/2000/svg';
+  var XLINK_NS    = 'http://www.w3.org/1999/xlink';
+  var tokenPath   = document.getElementById('m365TokenPath');
+  var tokenStream = document.getElementById('m365TokenStream');
+  if (!tokenPath || !tokenStream || !counterEl) return;
+  var totalLen    = tokenPath.getTotalLength();
+
+  var TRANSIT_MS     = 8000;
+  var SPAWN_INTERVAL = 2000;
+  var COUNTER_STEP   = 1;
+  var COUNTER_RESET  = 9999;
+
+  var INITIAL_PROGRESS = [0.10, 0.35, 0.60, 0.85];
+
+  var tokens = [];
+  var counter = 0;
+
+  function makeTokenEl() {
+    var use = document.createElementNS(SVG_NS, 'use');
+    use.setAttribute('href', '#m365TokenSymbol');
+    use.setAttributeNS(XLINK_NS, 'href', '#m365TokenSymbol');
+    use.setAttribute('x', '0');
+    use.setAttribute('y', '0');
+    tokenStream.appendChild(use);
+    return use;
+  }
+
+  function positionToken(tok) {
+    var p = Math.max(0, Math.min(1, tok.progress));
+    var pt = tokenPath.getPointAtLength(p * totalLen);
+    tok.el.setAttribute('transform', 'translate(' + pt.x.toFixed(2) + ' ' + pt.y.toFixed(2) + ')');
+  }
+
+  function spawnToken(initialProgress, nowTs) {
+    var el = makeTokenEl();
+    var bornAt = nowTs - initialProgress * TRANSIT_MS;
+    tokens.push({ el: el, progress: initialProgress, bornAt: bornAt });
+    positionToken(tokens[tokens.length - 1]);
+  }
+
+  function removeToken(tok, idx) {
+    if (tok.el && tok.el.parentNode) tok.el.parentNode.removeChild(tok.el);
+    tokens.splice(idx, 1);
+  }
+
+  function incrementCounter() {
+    counter += COUNTER_STEP;
+    if (counter > COUNTER_RESET) counter = 0;
+    counterEl.textContent = '+' + fmt(counter);
+  }
+
+  var startTs = performance.now();
+  for (var i = 0; i < INITIAL_PROGRESS.length; i++) {
+    spawnToken(INITIAL_PROGRESS[i], startTs);
+  }
+  counter = 1247;
+  counterEl.textContent = '+' + fmt(counter);
+
+  var nextSpawnAt = startTs + 1000;
+
+  function frame(now) {
+    while (now >= nextSpawnAt) {
+      spawnToken(0, nextSpawnAt);
+      nextSpawnAt += SPAWN_INTERVAL;
+    }
+    for (var i = tokens.length - 1; i >= 0; i--) {
+      var t = tokens[i];
+      t.progress = (now - t.bornAt) / TRANSIT_MS;
+      if (t.progress >= 1) {
+        removeToken(t, i);
+        incrementCounter();
+        continue;
+      }
+      positionToken(t);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+
+})();
+</script>
+
+</body>
+</html>

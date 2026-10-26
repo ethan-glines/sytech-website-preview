@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Natural Resources</title>
+<meta name="description" content="How SyTech helps California resource agencies scan permits and drawings, move records out of older systems, and replace paper field forms."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+/* ===== Page hero (standard page-hero band used site-wide) ===== */
+.page-hero { padding: 11rem 0 5rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .container { position: relative; z-index: 1; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 720px; }
+.sd-breadcrumb ol { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.85rem; }
+.sd-breadcrumb li { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.65); }
+.sd-breadcrumb li + li::before { content: '\203A'; color: var(--gold); }
+.sd-breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s ease; }
+.sd-breadcrumb a:hover { color: var(--gold); }
+.sd-breadcrumb [aria-current="page"] { color: rgba(255,255,255,0.95); }
+
+/* ===== Shared section shell + centered section headers ===== */
+.sd-section { padding: 5rem 0; background: var(--white); }
+.sd-section.alt { background: var(--light); }
+.sd-head { text-align: center; max-width: 760px; margin: 0 auto 2.75rem; }
+.sd-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.sd-head h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; color: var(--navy); margin: 0 0 0.9rem; }
+.sd-head p { font-size: 1.02rem; line-height: 1.7; color: var(--text-body); max-width: 640px; margin: 0 auto; }
+
+/* ===== Where districts start: problem cards ===== */
+.sd-problems { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
+.sd-problem { background: var(--light); border: 1px solid rgba(37,66,107,0.10); border-radius: 10px; padding: 1.5rem 1.4rem; }
+.sd-problem h3 { font-size: 1.02rem; font-weight: 700; color: var(--navy); line-height: 1.3; margin: 0 0 0.5rem; }
+.sd-problem p { font-size: 0.9rem; line-height: 1.6; color: var(--text-body); margin: 0; }
+
+/* ===== The district path: three phases ===== */
+.sd-path { display: grid; gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+.sd-phase { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 2rem; background: var(--white); border: 1px solid rgba(37,66,107,0.10); border-radius: 12px; padding: 2.25rem 2.5rem; box-shadow: 0 4px 20px rgba(37,66,107,0.06); }
+.sd-phase-num { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 700; color: var(--gold); line-height: 1; letter-spacing: -0.02em; }
+.sd-phase-label { display: inline-block; margin-top: 0.6rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); }
+.sd-phase h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); font-weight: 700; color: var(--navy); line-height: 1.25; margin: 0 0 0.6rem; }
+.sd-phase p { font-size: 1rem; line-height: 1.7; color: var(--text-body); margin: 0 0 1rem; }
+.sd-phase ul { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.sd-phase li { position: relative; padding: 0 0 0.6rem 1.6rem; font-size: 0.95rem; line-height: 1.55; color: var(--text-body); }
+.sd-phase li::before { content: ''; position: absolute; left: 0; top: 0.5rem; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.sd-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.sd-link { font-size: 0.92rem; font-weight: 700; color: var(--navy); text-decoration: none; border-bottom: 2px solid var(--gold); padding-bottom: 0.15rem; display: inline-flex; gap: 0.35rem; }
+.sd-link .arrow { display: inline-block; transition: transform 0.3s; }
+@media (hover: hover) and (pointer: fine) { .sd-link:hover .arrow { transform: translateX(4px); } }
+.sd-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* ===== Records districts trust us with: chips ===== */
+.sd-records { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; max-width: 900px; margin: 0 auto; padding: 0; list-style: none; }
+.sd-records li { padding: 0.7rem 1.2rem; background: var(--white); border: 1px solid rgba(37,66,107,0.14); border-left: 3px solid var(--gold); border-radius: 6px; font-size: 0.93rem; font-weight: 700; color: var(--navy); }
+
+/* ===== See it in a district: videos ===== */
+.sd-videos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; }
+.sd-video { display: flex; flex-direction: column; background: var(--white); border: 1px solid #E3E9EF; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(37,66,107,0.08); }
+.sd-video-frame { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); }
+.sd-video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.sd-video-body { padding: 1.1rem 1.25rem 1.3rem; }
+.sd-video-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.3; margin: 0 0 0.45rem; }
+.sd-video-body p { font-size: 0.88rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+.sd-more { text-align: center; margin-top: 2rem; }
+
+/* ===== Why districts choose SyTech (dark band) ===== */
+.sd-why { padding: 5rem 0; background: var(--deep-navy); color: var(--white); }
+.sd-why .sd-head h2 { color: var(--white); }
+.sd-why .sd-head p { color: rgba(255,255,255,0.75); }
+.sd-stat { text-align: center; margin: 0 auto 2.75rem; }
+.sd-stat-num { display: block; font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 700; color: var(--gold); line-height: 1; }
+.sd-stat-label { display: block; margin-top: 0.6rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+.sd-confirm { display: inline-block; margin-top: 0.75rem; padding: 0.3rem 0.7rem; border: 1px dashed rgba(229,166,48,0.7); border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); }
+.sd-trust { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
+.sd-trust-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.6rem 1.4rem; }
+.sd-trust-card h3 { font-size: 1rem; font-weight: 700; color: var(--gold); margin: 0 0 0.55rem; }
+.sd-trust-card p { font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; }
+
+/* ===== Case study breath ===== */
+.sd-case { padding: 3.5rem 0; background: var(--white); }
+.sd-case-box { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.75rem; background: rgba(229,166,48,0.08); border-left: 4px solid var(--gold); border-radius: 4px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+.sd-case-box p { font-size: 1.1rem; line-height: 1.5; color: var(--navy); font-weight: 700; margin: 0; }
+
+/* ===== CTA strip ===== */
+.cta-strip { background: var(--navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; }
+.cta-strip p { color: rgba(255,255,255,0.78); max-width: 600px; margin: 0 auto 1.75rem; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--gold); color: var(--deep-navy); font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+
+/* ===== Cross-links ===== */
+.sd-cross { padding: 5rem 0; background: var(--light); }
+.sd-cross-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+.sd-cross-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.6rem 1.6rem 1.4rem; background: var(--white); border-left: 4px solid var(--gold); border-radius: 8px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(37,66,107,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+@media (hover: hover) and (pointer: fine) { .sd-cross-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,66,107,0.10); } }
+.sd-cross-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.sd-cross-card .sd-eyebrow { margin: 0; }
+.sd-cross-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin: 0; }
+.sd-cross-card p { font-size: 0.9rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+
+/* ===== Header animation: "File room -> Scanned -> In your cloud" (namespaced .sdh-*) =====
+   Built to planning/standards-animated-graphic-blueprint-v1.md: the default render is the
+   finished picture; motion, loop, hover-lift and clickable stages only switch on when
+   motion is allowed and GSAP loaded. Copper = Organize (scan), steel blue = Unify (records),
+   gold = the single result seal. */
+.sdh-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr); gap: 3.5rem; align-items: center; }
+.sdh-copy { min-width: 0; }
+.sdh-visual { width: 100%; max-width: 560px; margin-left: auto; }
+.sdh-stage { position: relative; background: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.30); transition: transform 420ms cubic-bezier(.22,1,.36,1), box-shadow 420ms cubic-bezier(.22,1,.36,1); -webkit-user-select: none; user-select: none; }
+.sdh-svg { display: block; width: 100%; height: auto; aspect-ratio: 600 / 380; }
+.sdh-legend { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.sdh-li { display: inline-flex; align-items: center; gap: 0.45rem; color: rgba(255,255,255,0.5); transition: color 220ms ease; border-radius: 4px; }
+.sdh-li .sdh-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(229,166,48,0.45); transition: background 220ms ease, transform 220ms ease; }
+.sdh-li.is-active { color: #fff; }
+.sdh-li.is-active .sdh-dot { background: var(--gold); transform: scale(1.3); }
+.sdh-li[role="button"] { cursor: pointer; }
+.sdh-li[role="button"]:hover { color: rgba(255,255,255,0.85); }
+.sdh-li[role="button"]:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* SVG ink */
+.sdh-txt { font-family: Tahoma, 'Segoe UI', Arial, sans-serif; font-weight: 700; }
+.sdh-box-body { fill: #EEDDB8; stroke: #B79A63; stroke-width: 1.2; }
+.sdh-box-lid { fill: #E0C894; stroke: #B79A63; stroke-width: 1.2; }
+.sdh-box-handle { fill: #B79A63; opacity: 0.55; }
+.sdh-paper { fill: #fff; stroke: rgba(37,66,107,0.25); stroke-width: 1; }
+.sdh-box-label { fill: #fff; stroke: #25426B; stroke-width: 1; }
+.sdh-box-label-txt { fill: #25426B; font-size: 9.5px; letter-spacing: 1px; text-anchor: middle; }
+.sdh-floor { stroke: rgba(37,66,107,0.45); stroke-width: 1.2; stroke-dasharray: 3 4; }
+
+/* Hover lift: plates of graded thickness (blueprint §2a, §4). Wrapper .sdh-plate lifts;
+   only the solid body casts the wall + ground shadow (never the group: no doubled text). */
+.sdh-plate { transition: transform 420ms cubic-bezier(.22,1,.36,1); }
+.sdh-body { filter: drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(0,0,0,0)); transition: filter 420ms cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sdh-stage.sdh-armed:hover { transform: translateY(-2px); box-shadow: 0 30px 80px rgba(0,0,0,0.38); }
+  .sdh-stage.sdh-armed:hover .sdh-plate { transform: translateY(calc(var(--lift) * -1)); }
+  .sdh-stage.sdh-armed:hover .sdh-body.is-solid { filter: drop-shadow(0 var(--lift) 0 var(--wall)) drop-shadow(0 calc(var(--lift) + 4px) 9px var(--ground)); }
+  .sdh-stage.sdh-armed:hover .sdh-body.is-stroke { filter: drop-shadow(0 calc(var(--lift) * 0.6) 4px var(--ground)) drop-shadow(0 calc(var(--lift) + 4px) 9px var(--ground)); }
+  .sdh-stage.sdh-armed:hover .sdh-p-frame { transition-delay: 20ms; }
+  .sdh-stage.sdh-armed:hover .sdh-p-header { transition-delay: 40ms; }
+  .sdh-stage.sdh-armed:hover .sdh-p-surface { transition-delay: 55ms; }
+  .sdh-stage.sdh-armed:hover .sdh-p-chip { transition-delay: 70ms; }
+  .sdh-stage.sdh-armed:hover .sdh-p-seal { transition-delay: 100ms; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sdh-caret { animation: sdh-blink 1.05s steps(1) infinite; }
+}
+@keyframes sdh-blink { 50% { opacity: 0; } }
+
+/* ===== Unify step graphic: paper timesheet -> OneForm -> approval route (namespaced .sdtf-*) =====
+   Plays ONCE when scrolled into view (only the header loops). Default render = finished picture. */
+.sdtf-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 330px); gap: 2rem; align-items: center; }
+.sdtf-visual { width: 100%; }
+.sdtf-stage { background: #F7F9FB; border: 1px solid rgba(37,66,107,0.10); border-radius: 12px; padding: 8px; transition: transform 420ms cubic-bezier(.22,1,.36,1), box-shadow 420ms cubic-bezier(.22,1,.36,1); -webkit-user-select: none; user-select: none; }
+.sdtf-svg { display: block; width: 100%; height: auto; aspect-ratio: 320 / 236; }
+.sdtf-plate { transition: transform 420ms cubic-bezier(.22,1,.36,1); }
+.sdtf-body { filter: drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(0,0,0,0)); transition: filter 420ms cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .sdtf-stage.sdtf-armed:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(37,66,107,0.14); }
+  .sdtf-stage.sdtf-armed:hover .sdtf-plate { transform: translateY(calc(var(--lift) * -1)); }
+  .sdtf-stage.sdtf-armed:hover .sdtf-body.is-solid { filter: drop-shadow(0 var(--lift) 0 var(--wall)) drop-shadow(0 calc(var(--lift) + 4px) 9px var(--ground)); }
+  .sdtf-stage.sdtf-armed:hover .sdtf-body.is-stroke { filter: drop-shadow(0 calc(var(--lift) * 0.6) 4px var(--ground)) drop-shadow(0 calc(var(--lift) + 4px) 9px var(--ground)); }
+  .sdtf-stage.sdtf-armed:hover .sdtf-p-header { transition-delay: 40ms; }
+  .sdtf-stage.sdtf-armed:hover .sdtf-p-surface { transition-delay: 20ms; }
+  .sdtf-stage.sdtf-armed:hover .sdtf-p-chip { transition-delay: 70ms; }
+  .sdtf-stage.sdtf-armed:hover .sdtf-p-seal { transition-delay: 100ms; }
+}
+@media (max-width: 1024px) { .sdtf-row { grid-template-columns: 1fr; } .sdtf-visual { max-width: 420px; } }
+
+/* ===== District path line (namespaced .sdp-*): a gold line draws 01 -> 02 -> 03 as you scroll.
+   Desktop only (on phones the numbers stack above text, so a line would cross words).
+   Default = numbers fully lit, no line. */
+.sd-path { position: relative; }
+.sdp-line { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 1; }
+.sd-path.sdp-armed .sd-phase-num { color: rgba(229,166,48,0.28); transition: color 450ms ease, transform 450ms cubic-bezier(.22,1,.36,1); }
+.sd-path.sdp-armed .sd-phase-num.is-lit { color: var(--gold); }
+/* whole step cards 02 and 03 wait faded until the line reaches them */
+.sd-path.sdp-armed .sd-phase { opacity: 0.38; transition: opacity 550ms ease; }
+.sd-path.sdp-armed .sd-phase.is-reached { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .sd-path.sdp-armed .sd-phase-num.is-lit { transform: scale(1.04); transform-origin: left center; }
+}
+
+/* ===== Small touches: problem-card icons draw in; 100+ counts up (namespaced .sdi-* / .sd-count) ===== */
+.sdi { display: block; width: 44px; height: 44px; margin-bottom: 0.85rem; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sdi .sdi-n { stroke: #25426B; }
+.sdi .sdi-c { stroke: #C2683A; }
+@media (prefers-reduced-motion: no-preference) {
+  .sd-problems.sdi-armed .sdi path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .sd-problems.sdi-armed .sd-problem.is-in .sdi path { stroke-dashoffset: 0; transition: stroke-dashoffset 900ms cubic-bezier(.4,0,.2,1); }
+  .sd-problems.sdi-armed .sd-problem.is-in .sdi .sdi-c { transition-delay: 500ms; }
+}
+
+@media (max-width: 1000px) {
+  .sdh-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .sdh-visual { margin: 0 auto; }
+}
+@media (max-width: 480px) {
+  .sdh-legend { gap: 0.9rem; font-size: 0.64rem; letter-spacing: 0.1em; }
+}
+
+@media (max-width: 1024px) {
+  .sd-problems, .sd-trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sd-videos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .sd-section, .sd-why, .sd-cross { padding: 3.5rem 0; }
+  .sd-phase { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.75rem 1.5rem; }
+  .sd-cross-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .sd-problems, .sd-trust, .sd-videos { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+   <div class="sdh-grid">
+    <div class="sdh-copy">
+    <nav class="sd-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="who-we-serve.html">Who We Serve</a></li>
+        <li><span aria-current="page">Natural Resources</span></li>
+      </ol>
+    </nav>
+    <span class="eyebrow">Natural Resources</span>
+    <h1>Built for <span>Resource Agencies.</span></h1>
+    <p class="lead">Since 2000, SyTech has helped California public agencies get their records in order, including 50 million records for a statewide natural resources agency. We help resource agencies scan permits and drawings, move records out of older systems, and turn field paperwork into records that file themselves.</p>
+    </div>
+    <div class="sdh-visual">
+      <div class="sdh-stage" role="img" aria-label="Animation: boxes of permits, lease files, and engineering drawings are scanned, then become searchable records in the agency's own Microsoft 365.">
+        <svg class="sdh-svg" viewBox="0 0 600 380" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="sdh-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M20 0 H0 V20" fill="none" stroke="rgba(37,66,107,0.07)" stroke-width="1"/>
+            </pattern>
+            <radialGradient id="sdh-fade-grad" cx="0.5" cy="0.55" r="0.62">
+              <stop offset="0.55" stop-color="#fff"/>
+              <stop offset="1" stop-color="#000"/>
+            </radialGradient>
+            <mask id="sdh-grid-fade" maskContentUnits="userSpaceOnUse">
+              <rect x="30" y="80" width="540" height="240" fill="url(#sdh-fade-grad)"/>
+            </mask>
+            <linearGradient id="sdh-kraft" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#E3C695"/>
+              <stop offset="1" stop-color="#D2AE79"/>
+            </linearGradient>
+            <linearGradient id="sdh-beam-grad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#C2683A" stop-opacity="0"/>
+              <stop offset="0.75" stop-color="#C2683A" stop-opacity="0.28"/>
+              <stop offset="1" stop-color="#C2683A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="sdh-root">
+
+            <!-- Stage 1: the file room (hidden in the finished picture) -->
+            <g class="sdh-fileroom" opacity="0" transform="translate(0 -22)">
+              <g class="sdh-techgrid" aria-hidden="true">
+                <rect x="30" y="80" width="540" height="240" fill="url(#sdh-grid)" mask="url(#sdh-grid-fade)"/>
+              </g>
+              <line class="sdh-floor" x1="40" y1="296" x2="560" y2="296"/>
+      <g class="sdh-box sdh-box-1">
+      <g>
+      <g transform="translate(64 141)">
+        <rect x="0" y="16" width="124" height="47" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <line x1="2" y1="22" x2="122" y2="22" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+        <path d="M-5 0 L129 0 L122 -7 L2 -7 Z" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.3" stroke-linejoin="round"/>
+        <rect x="-5" y="0" width="134" height="18" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <rect x="48" y="28" width="28" height="7" rx="3.5" fill="none" stroke="rgba(37,66,107,0.85)" stroke-width="1.2"/>
+        <rect x="36" y="33" width="52" height="14" rx="2" fill="#fff" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+      </g>
+      <g transform="translate(58 212)">
+        <rect x="0" y="16" width="136" height="68" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <line x1="2" y1="22" x2="134" y2="22" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+        <path d="M-5 0 L141 0 L134 -7 L2 -7 Z" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.3" stroke-linejoin="round"/>
+        <rect x="-5" y="0" width="146" height="18" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <rect x="54" y="28" width="28" height="7" rx="3.5" fill="none" stroke="rgba(37,66,107,0.85)" stroke-width="1.2"/>
+        <rect x="31" y="42" width="75" height="30" rx="2" fill="#fff" stroke="#25426B" stroke-width="1"/>
+        <text class="sdh-txt" x="68" y="54" font-size="7.5" fill="#25426B" text-anchor="middle" letter-spacing="1.3">PERMITS</text>
+        <g class="sdh-barcode" shape-rendering="crispEdges"><rect x="41" y="58" width="2" height="9" fill="#25426B"/><rect x="44.5" y="58" width="1" height="9" fill="#25426B"/><rect x="47.0" y="58" width="3" height="9" fill="#25426B"/><rect x="51.5" y="58" width="1" height="9" fill="#25426B"/><rect x="54.0" y="58" width="1" height="9" fill="#25426B"/><rect x="56.5" y="58" width="2" height="9" fill="#25426B"/><rect x="60.0" y="58" width="3" height="9" fill="#25426B"/><rect x="64.5" y="58" width="1" height="9" fill="#25426B"/><rect x="67.0" y="58" width="2" height="9" fill="#25426B"/><rect x="70.5" y="58" width="1" height="9" fill="#25426B"/><rect x="73.0" y="58" width="1" height="9" fill="#25426B"/><rect x="75.5" y="58" width="3" height="9" fill="#25426B"/><rect x="80.0" y="58" width="2" height="9" fill="#25426B"/><rect x="83.5" y="58" width="1" height="9" fill="#25426B"/><rect x="86.0" y="58" width="2" height="9" fill="#25426B"/><rect x="89.5" y="58" width="1" height="9" fill="#25426B"/><rect x="92.0" y="58" width="3" height="9" fill="#25426B"/></g>
+      </g>
+        <path d="M50 136 V128 H58 M194 128 H202 V136 M202 294 V302 H194 M58 302 H50 V294" fill="none" stroke="#C2683A" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+        <rect class="sdh-trace" x="53" y="134" width="146" height="162" rx="3" pathLength="100" fill="none" stroke="#C2683A" stroke-width="1.6" stroke-dasharray="100" stroke-dashoffset="100"/>
+        <g class="sdh-readout" opacity="0" transform="translate(86 108)">
+          <g class="sdh-ro-scan">
+            <rect width="80" height="17" rx="8.5" fill="#fff" stroke="#C2683A" stroke-width="1.2"/>
+            <text class="sdh-txt" x="40" y="11.6" font-size="7" fill="#C2683A" text-anchor="middle" letter-spacing="1.1">SCANNING&#8230;</text>
+          </g>
+          <g class="sdh-ro-done" opacity="0">
+            <rect width="80" height="17" rx="8.5" fill="#25426B"/>
+            <path d="M12.2 8.6 l2.6 2.6 l5 -5.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="sdh-txt" x="27.2" y="11.6" font-size="7" fill="#fff" letter-spacing="1.1">INDEXED</text>
+          </g>
+        </g>
+      </g>
+      <g class="sdh-box sdh-box-2">
+      <g transform="translate(228 0)">
+        <path d="M0 200 L150 200 L143 192 L7 192 Z" fill="#E8EDF3" stroke="rgba(37,66,107,0.85)" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M12 172 h6 l4 -8 h20 l4 8 h18 v44 h-52 Z" fill="#FBF4E4" stroke="rgba(37,66,107,0.85)" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M38 164 h24 l4 -8 h20 l4 8 h6 v44 h-58 Z" fill="#EAF3FA" stroke="rgba(37,66,107,0.85)" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M64 176 h8 l4 -8 h20 l4 8 h14 v44 h-50 Z" fill="#FFFFFF" stroke="rgba(37,66,107,0.85)" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M82 168 h22 l4 -8 h20 l4 8 h6 v44 h-56 Z" fill="#EEF6EE" stroke="rgba(37,66,107,0.85)" stroke-width="1.1" stroke-linejoin="round"/>
+        <rect x="0" y="200" width="150" height="96" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <rect x="60" y="210" width="30" height="7" rx="3.5" fill="none" stroke="rgba(37,66,107,0.85)" stroke-width="1.2"/>
+        <rect x="31" y="244" width="88" height="30" rx="2" fill="#fff" stroke="#25426B" stroke-width="1"/>
+        <text class="sdh-txt" x="75" y="256" font-size="7.5" fill="#25426B" text-anchor="middle" letter-spacing="1.3">LEASES</text>
+        <g class="sdh-barcode" shape-rendering="crispEdges"><rect x="41" y="260" width="2" height="9" fill="#25426B"/><rect x="44.5" y="260" width="1" height="9" fill="#25426B"/><rect x="47.0" y="260" width="3" height="9" fill="#25426B"/><rect x="51.5" y="260" width="1" height="9" fill="#25426B"/><rect x="54.0" y="260" width="1" height="9" fill="#25426B"/><rect x="56.5" y="260" width="2" height="9" fill="#25426B"/><rect x="60.0" y="260" width="3" height="9" fill="#25426B"/><rect x="64.5" y="260" width="1" height="9" fill="#25426B"/><rect x="67.0" y="260" width="2" height="9" fill="#25426B"/><rect x="70.5" y="260" width="1" height="9" fill="#25426B"/><rect x="73.0" y="260" width="1" height="9" fill="#25426B"/><rect x="75.5" y="260" width="3" height="9" fill="#25426B"/><rect x="80.0" y="260" width="2" height="9" fill="#25426B"/><rect x="83.5" y="260" width="1" height="9" fill="#25426B"/><rect x="86.0" y="260" width="2" height="9" fill="#25426B"/><rect x="89.5" y="260" width="1" height="9" fill="#25426B"/><rect x="92.0" y="260" width="3" height="9" fill="#25426B"/><rect x="96.5" y="260" width="1" height="9" fill="#25426B"/><rect x="99.0" y="260" width="1" height="9" fill="#25426B"/><rect x="101.5" y="260" width="2" height="9" fill="#25426B"/><rect x="105.0" y="260" width="3" height="9" fill="#25426B"/></g>
+        <path d="M-8 156 V148 H0 M150 148 H158 V156 M158 294 V302 H150 M0 302 H-8 V294" fill="none" stroke="#C2683A" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+        <rect class="sdh-trace" x="228" y="192" width="150" height="104" rx="3" pathLength="100" fill="none" stroke="#C2683A" stroke-width="1.6" stroke-dasharray="100" stroke-dashoffset="100"/>
+        <g class="sdh-readout" opacity="0" transform="translate(263 128)">
+          <g class="sdh-ro-scan">
+            <rect width="80" height="17" rx="8.5" fill="#fff" stroke="#C2683A" stroke-width="1.2"/>
+            <text class="sdh-txt" x="40" y="11.6" font-size="7" fill="#C2683A" text-anchor="middle" letter-spacing="1.1">SCANNING&#8230;</text>
+          </g>
+          <g class="sdh-ro-done" opacity="0">
+            <rect width="80" height="17" rx="8.5" fill="#25426B"/>
+            <path d="M12.2 8.6 l2.6 2.6 l5 -5.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="sdh-txt" x="27.2" y="11.6" font-size="7" fill="#fff" letter-spacing="1.1">INDEXED</text>
+          </g>
+        </g>
+      </g>
+      <g class="sdh-box sdh-box-3">
+      <g transform="translate(410 0)">
+        <path d="M0 226 L136 226 L130 219 L6 219 Z" fill="#E8EDF3" stroke="rgba(37,66,107,0.85)" stroke-width="1.3" stroke-linejoin="round"/>
+        <g transform="rotate(-14 30 238)">
+          <rect x="23" y="174" width="14" height="64" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <line x1="23" y1="203" x2="37" y2="203" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+          <ellipse cx="30" cy="174" rx="7" ry="2.6" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <circle cx="30" cy="174" r="1.1" fill="#25426B" opacity="0.6"/>
+        </g>
+        <g transform="rotate(-5 52 238)">
+          <rect x="45" y="166" width="14" height="72" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <line x1="45" y1="198" x2="59" y2="198" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+          <ellipse cx="52" cy="166" rx="7" ry="2.6" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <circle cx="52" cy="166" r="1.1" fill="#25426B" opacity="0.6"/>
+        </g>
+        <g transform="rotate(4 78 238)">
+          <rect x="71" y="172" width="14" height="66" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <line x1="71" y1="202" x2="85" y2="202" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+          <ellipse cx="78" cy="172" rx="7" ry="2.6" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <circle cx="78" cy="172" r="1.1" fill="#25426B" opacity="0.6"/>
+        </g>
+        <g transform="rotate(13 102 238)">
+          <rect x="95" y="178" width="14" height="60" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <line x1="95" y1="205" x2="109" y2="205" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+          <ellipse cx="102" cy="178" rx="7" ry="2.6" fill="#F1F5F9" stroke="rgba(37,66,107,0.85)" stroke-width="1.1"/>
+          <circle cx="102" cy="178" r="1.1" fill="#25426B" opacity="0.6"/>
+        </g>
+        <rect x="0" y="226" width="136" height="70" rx="1.5" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.3"/>
+        <rect x="33" y="250" width="70" height="30" rx="2" fill="#fff" stroke="#25426B" stroke-width="1"/>
+        <text class="sdh-txt" x="68" y="262" font-size="7.5" fill="#25426B" text-anchor="middle" letter-spacing="1.3">DRAWINGS</text>
+        <g class="sdh-barcode" shape-rendering="crispEdges"><rect x="43" y="266" width="2" height="9" fill="#25426B"/><rect x="46.5" y="266" width="1" height="9" fill="#25426B"/><rect x="49.0" y="266" width="3" height="9" fill="#25426B"/><rect x="53.5" y="266" width="1" height="9" fill="#25426B"/><rect x="56.0" y="266" width="1" height="9" fill="#25426B"/><rect x="58.5" y="266" width="2" height="9" fill="#25426B"/><rect x="62.0" y="266" width="3" height="9" fill="#25426B"/><rect x="66.5" y="266" width="1" height="9" fill="#25426B"/><rect x="69.0" y="266" width="2" height="9" fill="#25426B"/><rect x="72.5" y="266" width="1" height="9" fill="#25426B"/><rect x="75.0" y="266" width="1" height="9" fill="#25426B"/><rect x="77.5" y="266" width="3" height="9" fill="#25426B"/><rect x="82.0" y="266" width="2" height="9" fill="#25426B"/><rect x="85.5" y="266" width="1" height="9" fill="#25426B"/><rect x="88.0" y="266" width="2" height="9" fill="#25426B"/><rect x="91.5" y="266" width="1" height="9" fill="#25426B"/></g>
+        <path d="M-8 164 V156 H0 M136 156 H144 V164 M144 294 V302 H136 M0 302 H-8 V294" fill="none" stroke="#C2683A" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+        <rect class="sdh-trace" x="410" y="219" width="136" height="77" rx="3" pathLength="100" fill="none" stroke="#C2683A" stroke-width="1.6" stroke-dasharray="100" stroke-dashoffset="100"/>
+        <g class="sdh-readout" opacity="0" transform="translate(438 136)">
+          <g class="sdh-ro-scan">
+            <rect width="80" height="17" rx="8.5" fill="#fff" stroke="#C2683A" stroke-width="1.2"/>
+            <text class="sdh-txt" x="40" y="11.6" font-size="7" fill="#C2683A" text-anchor="middle" letter-spacing="1.1">SCANNING&#8230;</text>
+          </g>
+          <g class="sdh-ro-done" opacity="0">
+            <rect width="80" height="17" rx="8.5" fill="#25426B"/>
+            <path d="M12.2 8.6 l2.6 2.6 l5 -5.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="sdh-txt" x="27.2" y="11.6" font-size="7" fill="#fff" letter-spacing="1.1">INDEXED</text>
+          </g>
+        </g>
+      </g>
+              <!-- Stage 2: the copper scan beam -->
+              <g class="sdh-beam" opacity="0">
+                <rect x="-6" y="120" width="56" height="190" fill="url(#sdh-beam-grad)"/>
+                <rect x="47" y="120" width="2.5" height="190" rx="1.25" fill="#C2683A"/>
+              </g>
+            </g>
+
+            <!-- Stage 3: searchable records in your cloud (the finished picture) -->
+            <g class="sdh-cloud">
+              <g class="sdh-window">
+                <g class="sdh-plate sdh-p-frame" style="--lift:3px;--wall:#1B3050;--ground:rgba(27,48,80,0.22)">
+                  <rect class="sdh-body is-stroke" x="60" y="34" width="480" height="312" rx="10" fill="#F7F9FB" stroke="#25426B" stroke-width="1.5"/>
+                </g>
+                <g class="sdh-plate sdh-p-header" style="--lift:4px;--wall:#1B3050;--ground:rgba(27,48,80,0.26)">
+                  <path class="sdh-body is-solid" d="M70 34 H530 a10 10 0 0 1 10 10 V70 H60 V44 a10 10 0 0 1 10 -10 Z" fill="#25426B"/>
+                  <path d="M82 57.5 a5 5 0 0 1 1.2 -9.8 a7 7 0 0 1 13.3 1.6 a4.2 4.2 0 0 1 0.3 8.2 Z" fill="none" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>
+                  <text class="sdh-txt" x="106" y="56" font-size="9" fill="#fff" letter-spacing="1.6">AGENCY RECORDS</text>
+                  <text class="sdh-txt" x="526" y="56" font-size="7" fill="#E5A630" letter-spacing="1.2" text-anchor="end">IN YOUR MICROSOFT 365</text>
+                </g>
+                <g class="sdh-plate sdh-p-surface" style="--lift:5px;--wall:#DCE1E8;--ground:rgba(37,66,107,0.16)">
+                  <rect class="sdh-body is-stroke" x="84" y="86" width="432" height="34" rx="17" fill="#fff" stroke="#2E7DB5" stroke-width="1.3"/>
+                  <circle cx="104" cy="102" r="5.5" fill="none" stroke="#2E7DB5" stroke-width="1.6"/>
+                  <path d="M108 106 l4 4" stroke="#2E7DB5" stroke-width="1.6" stroke-linecap="round"/>
+                  <text class="sdh-txt sdh-query" x="120" y="106.5" font-size="11" fill="#25426B">Permit, lease, or parcel number</text>
+                </g>
+              </g>
+      <g class="sdh-plate sdh-p-surface" style="--lift:5px;--wall:#DCE1E8;--ground:rgba(37,66,107,0.16)">
+        <g class="sdh-row">
+          <rect class="sdh-body is-solid" x="84" y="136" width="432" height="44" rx="8" fill="#fff" stroke="#E5A630" stroke-width="1.6"/>
+          <rect x="196" y="149" width="170" height="6" rx="3" fill="rgba(37,66,107,0.55)"/>
+          <rect x="196" y="161" width="110" height="5" rx="2.5" fill="rgba(37,66,107,0.22)"/>
+          <g class="sdh-plate sdh-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdh-chip">
+              <rect class="sdh-body is-stroke" x="96" y="148" width="76" height="20" rx="10" fill="#EAF3FA" stroke="#2E7DB5" stroke-width="1.2"/>
+              <text class="sdh-txt" x="134" y="161.5" font-size="8" fill="#1F5F8E" text-anchor="middle" letter-spacing="0.8">PERMIT</text>
+            </g>
+          </g>
+          <g class="sdh-plate sdh-p-seal" style="--lift:7px;--wall:#B8801F;--ground:rgba(138,62,28,0.22)">
+            <g class="sdh-seal">
+              <circle class="sdh-body is-solid" cx="491" cy="158" r="11" fill="#E5A630"/>
+              <path d="M485.5 158 l4 4 l7 -8" fill="none" stroke="#1a2c42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g class="sdh-plate sdh-p-surface" style="--lift:5px;--wall:#DCE1E8;--ground:rgba(37,66,107,0.16)">
+        <g class="sdh-row">
+          <rect class="sdh-body is-solid" x="84" y="190" width="432" height="44" rx="8" fill="#fff" stroke="rgba(37,66,107,0.16)" stroke-width="1"/>
+          <rect x="196" y="203" width="170" height="6" rx="3" fill="rgba(37,66,107,0.55)"/>
+          <rect x="196" y="215" width="136" height="5" rx="2.5" fill="rgba(37,66,107,0.22)"/>
+          <g class="sdh-plate sdh-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdh-chip">
+              <rect class="sdh-body is-stroke" x="96" y="202" width="62" height="20" rx="10" fill="#EAF3FA" stroke="#2E7DB5" stroke-width="1.2"/>
+              <text class="sdh-txt" x="127" y="215.5" font-size="8" fill="#1F5F8E" text-anchor="middle" letter-spacing="0.8">LEASE</text>
+            </g>
+          </g>
+          <text class="sdh-txt" x="491" y="216" font-size="8.5" fill="rgba(37,66,107,0.45)" text-anchor="middle" letter-spacing="1">PDF</text>
+        </g>
+      </g>
+      <g class="sdh-plate sdh-p-surface" style="--lift:5px;--wall:#DCE1E8;--ground:rgba(37,66,107,0.16)">
+        <g class="sdh-row">
+          <rect class="sdh-body is-solid" x="84" y="244" width="432" height="44" rx="8" fill="#fff" stroke="rgba(37,66,107,0.16)" stroke-width="1"/>
+          <rect x="196" y="257" width="170" height="6" rx="3" fill="rgba(37,66,107,0.55)"/>
+          <rect x="196" y="269" width="110" height="5" rx="2.5" fill="rgba(37,66,107,0.22)"/>
+          <g class="sdh-plate sdh-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdh-chip">
+              <rect class="sdh-body is-stroke" x="96" y="256" width="66" height="20" rx="10" fill="#EAF3FA" stroke="#2E7DB5" stroke-width="1.2"/>
+              <text class="sdh-txt" x="129" y="269.5" font-size="8" fill="#1F5F8E" text-anchor="middle" letter-spacing="0.8">DRAWING</text>
+            </g>
+          </g>
+          <text class="sdh-txt" x="491" y="270" font-size="8.5" fill="rgba(37,66,107,0.45)" text-anchor="middle" letter-spacing="1">PDF</text>
+        </g>
+      </g>
+              <text class="sdh-txt sdh-found" x="300" y="324" font-size="8.5" fill="rgba(37,66,107,0.55)" text-anchor="middle" letter-spacing="1.4">INDEXED BY PERMIT, LEASE, AND PARCEL NUMBER</text>
+            </g>
+
+          </g>
+        </svg>
+      </div>
+      <div class="sdh-legend" aria-label="Animation stages">
+        <span class="sdh-li" data-stage="0"><span class="sdh-dot" aria-hidden="true"></span>File room</span>
+        <span class="sdh-li" data-stage="1"><span class="sdh-dot" aria-hidden="true"></span>Scanned</span>
+        <span class="sdh-li is-active" data-stage="2"><span class="sdh-dot" aria-hidden="true"></span>In your cloud</span>
+      </div>
+    </div>
+   </div>
+  </div>
+</section>
+
+<section class="sd-section" aria-labelledby="sd-start-title">
+  <div class="container">
+    <div class="sd-head">
+      <span class="sd-eyebrow">Where Agencies Start</span>
+      <h2 id="sd-start-title">Sound Familiar?</h2>
+      <p>Most agency projects start with a pile of paper, an aging system, or both, and a reason it can't wait.</p>
+    </div>
+    <div class="sd-problems">
+      <div class="sd-problem">
+        <svg class="sdi" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="sdi-n" pathLength="1" d="M9 19h30v21H9Z"/><path class="sdi-n" pathLength="1" d="M6 12h36v7H6Z"/><path class="sdi-n" pathLength="1" d="M20 24h8"/><path class="sdi-c" pathLength="1" d="M16 29h16v7H16Z"/><path class="sdi-c" pathLength="1" d="M19 32.5h10"/></svg>
+        <h3>Decades of Permits on Paper</h3>
+        <p>Permits, contracts, and correspondence in boxes, searched by hand.</p>
+      </div>
+      <div class="sd-problem">
+        <svg class="sdi" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="sdi-n" pathLength="1" d="M10 8h22a4 4 0 0 1 0 8H10"/><path class="sdi-n" pathLength="1" d="M10 8a4 4 0 0 0 0 8a4 4 0 0 0 0-8Z"/><path class="sdi-n" pathLength="1" d="M14 19h22a4 4 0 0 1 0 8H14"/><path class="sdi-n" pathLength="1" d="M14 19a4 4 0 0 0 0 8a4 4 0 0 0 0-8Z"/><path class="sdi-c" pathLength="1" d="M12 31h28v11H12Z"/><path class="sdi-c" pathLength="1" d="M21 31v11M30 31v11M12 36.5h28"/></svg>
+        <h3>Drawings and Maps Without a Home</h3>
+        <p>Large-format engineering drawings and maps the agency must keep for good.</p>
+      </div>
+      <div class="sd-problem">
+        <svg class="sdi" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="sdi-n" pathLength="1" d="M5 11c0-2 4-3.5 9-3.5s9 1.5 9 3.5-4 3.5-9 3.5-9-1.5-9-3.5Z"/><path class="sdi-n" pathLength="1" d="M5 11v20c0 2 4 3.5 9 3.5s9-1.5 9-3.5V11"/><path class="sdi-n" pathLength="1" d="M5 21c0 2 4 3.5 9 3.5s9-1.5 9-3.5"/><path class="sdi-n" pathLength="1" d="M30 26h13v15H30Z"/><path class="sdi-n" pathLength="1" d="M33 31h7M33 35h5"/><path class="sdi-c" pathLength="1" d="M24 18h11M31 14l4 4-4 4"/></svg>
+        <h3>Records Stuck in an Older System</h3>
+        <p>An aging records platform that is costly to keep and hard to leave.</p>
+      </div>
+      <div class="sd-problem">
+        <svg class="sdi" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path class="sdi-n" pathLength="1" d="M10 9h28v33H10Z"/><path class="sdi-n" pathLength="1" d="M18 6h12v6H18Z"/><path class="sdi-n" pathLength="1" d="M15 19h4M22 19h11M15 26h4M22 26h11"/><path class="sdi-c" pathLength="1" d="M15 34l2.5 2.5 4.5-5"/><path class="sdi-c" pathLength="1" d="M25 35h8"/></svg>
+        <h3>Field Inspections on Paper</h3>
+        <p>Inspection forms filled out in the field, then retyped back at the office.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sd-section alt" aria-labelledby="sd-path-title">
+  <div class="container">
+    <div class="sd-head">
+      <span class="sd-eyebrow">The Agency Path</span>
+      <h2 id="sd-path-title">Organize. Unify. Scale.</h2>
+      <p>The same three steps we use with every agency, shaped around how a resource agency actually works.</p>
+    </div>
+    <div class="sd-path">
+
+      <article class="sd-phase">
+        <div>
+          <div class="sd-phase-num">01</div>
+          <span class="sd-phase-label">Organize</span>
+        </div>
+        <div>
+          <h3>Scan and sort what you have to keep.</h3>
+          <p>We work from your agency's records retention schedule, so permanent records get scanned and indexed, and the rest stops taking up space.</p>
+          <ul>
+            <li>Pickup with GPS-tracked chain of custody, start to finish</li>
+            <li>Records indexed the way your staff search, like permit, lease, or parcel number</li>
+            <li>Large-format engineering drawings and maps scanned and indexed for search</li>
+            <li>Originals returned, stored, or securely destroyed, your call</li>
+          </ul>
+          <div class="sd-links">
+            <a class="sd-link" href="services-scanning.html">Archive Scanning <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="sd-link" href="services-compliance-setup.html">Records Management &amp; Compliance <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="sd-phase">
+        <div>
+          <div class="sd-phase-num">02</div>
+          <span class="sd-phase-label">Unify</span>
+        </div>
+        <div>
+          <div class="sdtf-row">
+          <div>
+          <h3>Move it all into a system you already own.</h3>
+          <p>Records from paper and older systems go into Microsoft 365 and SharePoint, with their structure, retention, and permissions intact. Rather have us run it? 1DocStop is our hosted option.</p>
+          <ul>
+            <li>Digital-to-digital migration out of older records software</li>
+            <li>Records linked to locations on your agency's ArcGIS maps</li>
+            <li>OneForm turns field and permit forms into online forms with approvals</li>
+            </ul>
+          <div class="sd-links">
+            <a class="sd-link" href="services-data-migration.html">Data Migration <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="sd-link" href="services-sharepoint-erms.html">SharePoint ERMS <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="sd-link" href="services-oneform.html">OneForm <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+          </div>
+          <div class="sdtf-visual">
+            <div class="sdtf-stage" role="img" aria-label="Animation: a paper field inspection form becomes an online OneForm, then routes for approval from the inspector to a supervisor to compliance.">
+              <svg class="sdtf-svg" viewBox="0 0 320 236" aria-hidden="true" focusable="false">
+                <rect x="0" y="0" width="320" height="236" fill="url(#sdh-grid)" mask="url(#sdtf-fade)"/>
+                <defs>
+                  <radialGradient id="sdtf-fade-grad" cx="0.5" cy="0.5" r="0.65"><stop offset="0.5" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+                  <mask id="sdtf-fade" maskContentUnits="userSpaceOnUse"><rect width="320" height="236" fill="url(#sdtf-fade-grad)"/></mask>
+                </defs>
+        <g class="sdtf-paper" opacity="0">
+          <g transform="rotate(-3 160 82)">
+            <rect x="48" y="16" width="224" height="132" rx="2" fill="#fff" stroke="rgba(37,66,107,0.85)" stroke-width="1.2"/>
+            <text class="sdh-txt" x="58" y="34" font-size="8" fill="#25426B" letter-spacing="1.6">INSPECTION</text>
+            <text class="sdh-txt" x="262" y="34" font-size="6" fill="rgba(37,66,107,0.3)" text-anchor="end" letter-spacing="1">PAPER</text>
+            <line x1="56" y1="50" x2="264" y2="50" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="56" y1="68" x2="264" y2="68" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="56" y1="86" x2="264" y2="86" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="56" y1="104" x2="264" y2="104" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="56" y1="122" x2="264" y2="122" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="120" y1="50" x2="120" y2="122" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="170" y1="50" x2="170" y2="122" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/><line x1="220" y1="50" x2="220" y2="122" stroke="rgba(37,66,107,0.3)" stroke-width="0.8"/>
+            <path class="sdtf-ink" d="M60.0 59.0 L66.6 61.0 L73.1 58.5 L79.7 57.7 L86.3 59.3 L92.9 59.4 L99.4 58.2 L106.0 57.8" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M128.0 60.9 L134.0 58.2 L140.0 58.5 L146.0 59.3 L152.0 59.6 L158.0 57.3" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M178.0 58.5 L184.0 58.7 L190.0 60.0 L196.0 59.6 L202.0 56.9 L208.0 58.9" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M228.0 58.7 L234.5 60.9 L241.0 59.1 L247.5 57.3 L254.0 59.2" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M60.0 78.7 L66.6 77.9 L73.1 75.6 L79.7 76.9 L86.3 77.5 L92.9 76.9 L99.4 75.1 L106.0 77.7" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M128.0 77.2 L134.0 76.3 L140.0 77.1 L146.0 78.0 L152.0 76.3 L158.0 75.1" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M178.0 76.5 L184.0 77.4 L190.0 78.6 L196.0 75.6 L202.0 75.8 L208.0 77.7" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M228.0 78.2 L234.5 78.5 L241.0 75.6 L247.5 76.6 L254.0 77.4" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M60.0 96.9 L66.6 94.2 L73.1 94.5 L79.7 95.3 L86.3 95.6 L92.9 93.3 L99.4 94.2 L106.0 96.6" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M128.0 94.5 L134.0 94.7 L140.0 96.0 L146.0 95.6 L152.0 92.9 L158.0 94.9" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M178.0 94.7 L184.0 96.9 L190.0 95.1 L196.0 93.3 L202.0 95.2 L208.0 95.4" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M228.0 97.2 L234.5 94.5 L241.0 94.2 L247.5 95.2 L254.0 95.7" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M60.0 113.2 L66.6 112.3 L73.1 113.1 L79.7 114.0 L86.3 112.3 L92.9 111.1 L99.4 114.0 L106.0 113.6" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M128.0 112.5 L134.0 113.4 L140.0 114.6 L146.0 111.6 L152.0 111.8 L158.0 113.7" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M178.0 114.2 L184.0 114.5 L190.0 111.6 L196.0 112.6 L202.0 113.4 L208.0 113.2" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path class="sdtf-ink" d="M228.0 113.7 L234.5 112.2 L241.0 112.9 L247.5 113.8 L254.0 112.8" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <text class="sdh-txt" x="136" y="138" font-size="6" fill="rgba(37,66,107,0.3)" letter-spacing="1">SIGNATURE</text>
+            <path class="sdtf-ink" d="M200.0 135.1 L206.2 132.8 L212.4 133.9 L218.7 135.3 L224.9 133.8 L231.1 130.7 L237.3 135.0 L243.6 135.5 L249.8 133.6 L256.0 133.2" pathLength="100" fill="none" stroke="#4A5A70" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+        <g class="sdtf-form">
+          <g class="sdtf-plate sdtf-p-surface" style="--lift:5px;--wall:#DCE1E8;--ground:rgba(37,66,107,0.16)">
+            <rect class="sdtf-body is-solid" x="40" y="12" width="240" height="140" rx="8" fill="#fff" stroke="#25426B" stroke-width="1.3"/>
+          </g>
+          <g class="sdtf-plate sdtf-p-header" style="--lift:4px;--wall:#1B3050;--ground:rgba(27,48,80,0.26)">
+            <path class="sdtf-body is-solid" d="M48 12 H272 a8 8 0 0 1 8 8 V34 H40 V20 a8 8 0 0 1 8 -8 Z" fill="#25426B"/>
+            <text class="sdh-txt" x="52" y="26.5" font-size="7.2" fill="#fff" letter-spacing="1.4">FIELD INSPECTION</text>
+            <text class="sdh-txt" x="268" y="26.5" font-size="6" fill="#E5A630" letter-spacing="1.2" text-anchor="end">ONEFORM</text>
+          </g>
+          <g>
+            <text class="sdh-txt" x="52" y="50" font-size="5.8" fill="rgba(37,66,107,0.6)" letter-spacing="1">INSPECTOR</text>
+            <rect x="52" y="55" width="104" height="16" rx="3" fill="#F7F9FB" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+            <rect class="sdtf-fill" x="58" y="60.5" width="62" height="5" rx="2.5" fill="rgba(37,66,107,0.6)"/>
+            <text class="sdh-txt" x="164" y="50" font-size="5.8" fill="rgba(37,66,107,0.6)" letter-spacing="1">SITE</text>
+            <rect x="164" y="55" width="104" height="16" rx="3" fill="#F7F9FB" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+            <rect class="sdtf-fill" x="170" y="60.5" width="50" height="5" rx="2.5" fill="rgba(37,66,107,0.6)"/><path d="M256 62 l3 3 l3 -3" fill="none" stroke="#25426B" stroke-width="1.1" stroke-linecap="round"/>
+            <text class="sdh-txt" x="52" y="84" font-size="5.8" fill="rgba(37,66,107,0.6)" letter-spacing="1">DATE</text>
+            <rect x="52" y="89" width="104" height="16" rx="3" fill="#F7F9FB" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+            <rect class="sdtf-fill" x="58" y="94.5" width="44" height="5" rx="2.5" fill="rgba(37,66,107,0.6)"/>
+            <text class="sdh-txt" x="164" y="84" font-size="5.8" fill="rgba(37,66,107,0.6)" letter-spacing="1">FINDINGS</text>
+            <rect x="164" y="89" width="104" height="16" rx="3" fill="#F7F9FB" stroke="rgba(37,66,107,0.35)" stroke-width="1"/>
+            <rect class="sdtf-fill" x="170" y="94.5" width="22" height="5" rx="2.5" fill="rgba(37,66,107,0.6)"/>
+          </g>
+          <g class="sdtf-plate sdtf-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdtf-submit">
+              <rect class="sdtf-body is-solid" x="204" y="122" width="64" height="20" rx="4" fill="#2E7DB5"/>
+              <text class="sdh-txt" x="236" y="135" font-size="7" fill="#fff" text-anchor="middle" letter-spacing="1.3">SUBMIT</text>
+            </g>
+          </g>
+        </g>
+        <g class="sdtf-route">
+          <line x1="56" y1="183" x2="264" y2="183" stroke="rgba(37,66,107,0.3)" stroke-width="1.4" stroke-dasharray="3 3"/>
+          <line class="sdtf-progress" x1="56" y1="183" x2="264" y2="183" stroke="#2E7DB5" stroke-width="1.8" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/>
+          <g class="sdtf-plate sdtf-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdtf-node">
+              <rect class="sdtf-body is-stroke" x="13.0" y="170" width="86" height="26" rx="13" fill="#fff" stroke="#2E7DB5" stroke-width="1.3"/>
+              <text class="sdh-txt sdtf-node-off" x="56" y="186" font-size="6.8" fill="#25426B" text-anchor="middle" letter-spacing="1.1" opacity="0">INSPECTOR</text>
+              <g class="sdtf-node-on">
+                <rect x="13.0" y="170" width="86" height="26" rx="13" fill="#2E7DB5"/>
+                <path d="M24.0 183 l2.4 2.4 l4.6 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <text class="sdh-txt" x="38.6" y="186" font-size="6.8" fill="#fff" letter-spacing="1.1">INSPECTOR</text>
+              </g>
+            </g>
+          </g>
+          <g class="sdtf-plate sdtf-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdtf-node">
+              <rect class="sdtf-body is-stroke" x="114.0" y="170" width="92" height="26" rx="13" fill="#fff" stroke="#2E7DB5" stroke-width="1.3"/>
+              <text class="sdh-txt sdtf-node-off" x="160" y="186" font-size="6.8" fill="#25426B" text-anchor="middle" letter-spacing="1.1" opacity="0">SUPERVISOR</text>
+              <g class="sdtf-node-on">
+                <rect x="114.0" y="170" width="92" height="26" rx="13" fill="#2E7DB5"/>
+                <path d="M125.0 183 l2.4 2.4 l4.6 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <text class="sdh-txt" x="139.6" y="186" font-size="6.8" fill="#fff" letter-spacing="1.1">SUPERVISOR</text>
+              </g>
+            </g>
+          </g>
+          <g class="sdtf-plate sdtf-p-chip" style="--lift:6px;--wall:#1F5F8E;--ground:rgba(31,95,142,0.22)">
+            <g class="sdtf-node">
+              <rect class="sdtf-body is-stroke" x="217.0" y="170" width="94" height="26" rx="13" fill="#fff" stroke="#2E7DB5" stroke-width="1.3"/>
+              <text class="sdh-txt sdtf-node-off" x="264" y="186" font-size="6.8" fill="#25426B" text-anchor="middle" letter-spacing="1.1" opacity="0">COMPLIANCE</text>
+              <g class="sdtf-node-on">
+                <rect x="217.0" y="170" width="94" height="26" rx="13" fill="#2E7DB5"/>
+                <path d="M228.0 183 l2.4 2.4 l4.6 -5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <text class="sdh-txt" x="242.6" y="186" font-size="6.8" fill="#fff" letter-spacing="1.1">COMPLIANCE</text>
+              </g>
+            </g>
+          </g>
+          <line class="sdtf-track" x1="56" y1="216" x2="264" y2="216" stroke="rgba(37,66,107,0.3)" stroke-width="1.2" stroke-dasharray="2 3" opacity="0"/>
+          <circle class="sdtf-dot" cx="56" cy="216" r="4.5" fill="#2E7DB5" stroke="#fff" stroke-width="1.5" opacity="0"/>
+          <g class="sdtf-plate sdtf-p-seal" style="--lift:7px;--wall:#B8801F;--ground:rgba(138,62,28,0.22)">
+            <g class="sdtf-seal">
+              <rect class="sdtf-body is-solid sdtf-seal-shape" x="221.0" y="206" width="86" height="20" rx="10" fill="#E5A630"/>
+              <g class="sdtf-seal-content"><path d="M233.2 216 l2.4 2.4 l4.6 -5" fill="none" stroke="#1a2c42" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><text class="sdh-txt" x="248.2" y="219.4" font-size="7" fill="#1a2c42" letter-spacing="1.3">APPROVED</text></g>
+            </g>
+          </g>
+        </g>
+              </svg>
+            </div>
+          </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sd-phase">
+        <div>
+          <div class="sd-phase-num">03</div>
+          <span class="sd-phase-label">Scale</span>
+        </div>
+        <div>
+          <h3>Start with one program. Grow from there.</h3>
+          <p>Most agencies begin with one program or one form. Once it works, the same setup carries to the next division.</p>
+          <ul>
+            <li>Approvals routed by region, program, or dollar amount</li>
+            <li>AI-powered ingestion for large legacy archives</li>
+            <li>Your data stays in your agency's cloud, with no lock-in</li>
+          </ul>
+          <div class="sd-links">
+            <a class="sd-link" href="services-ai-ingestion.html">AI-Powered Ingestion <span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="sd-link" href="services.html">See the full framework <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="sd-section" aria-labelledby="sd-records-title">
+  <div class="container">
+    <div class="sd-head">
+      <span class="sd-eyebrow">What We Handle</span>
+      <h2 id="sd-records-title">Records Resource Agencies Trust Us With.</h2>
+    </div>
+    <ul class="sd-records" role="list">
+      <li>Permits and applications</li>
+      <li>Engineering drawings and maps</li>
+      <li>Well logs</li>
+      <li>Dam safety records</li>
+      <li>Land, lease, and title records</li>
+      <li>Water contracts</li>
+      <li>Inspection and compliance reports</li>
+      <li>Board and commission records</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sd-why" aria-labelledby="sd-why-title">
+  <div class="container">
+    <div class="sd-head">
+      <span class="sd-eyebrow">Why SyTech</span>
+      <h2 id="sd-why-title">Why Resource Agencies Choose SyTech.</h2>
+    </div>
+    <div class="sd-stat">
+      <span class="sd-stat-num"><span class="sd-count" data-to="50">50</span>M</span>
+      <span class="sd-stat-label">Records Digitized for a Statewide Natural Resources Agency</span>
+    </div>
+    <div class="sd-trust">
+      <div class="sd-trust-card">
+        <h3>Built Inside Microsoft 365</h3>
+        <p>15,000+ boxes and 2,000 document types, managed in the agency's existing Microsoft 365.</p>
+      </div>
+      <div class="sd-trust-card">
+        <h3>4.5 Million Acres, Online</h3>
+        <p>For a state lands agency, we built a system where the public submits and tracks lease and permit applications online, searches records on a map, and requests public records digitally.</p>
+      </div>
+      <div class="sd-trust-card">
+        <h3>Water Records Since 2001</h3>
+        <p>For a state water resources department, we have handled well logs, dam safety records, and engineering data, including State Water Project records.</p>
+      </div>
+      <div class="sd-trust-card">
+        <h3>Chain of Custody</h3>
+        <p>Your boxes are picked up by our own staff, GPS-tracked in transit, and logged at every step.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sd-case" aria-label="Resource agency case study">
+  <div class="container">
+    <div class="sd-case-box">
+      <p>A full resource agency case study is on the way.</p>
+      <a class="sd-link" href="case-studies.html">Case Studies <span class="arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2>Let's Start With Your Archive.</h2>
+    <p>Tell us what's sitting in boxes, flat files, or an older system. We'll walk your agency through what to scan, what to move, and where it should live.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+    <p style="margin:1.1rem 0 0"><a href="right-partner.html" style="display:inline-block;font-size:0.92rem;font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid #E5A630;padding-bottom:2px">Not sure we're the right partner? Find out in seven quick steps &rarr;</a></p>
+  </div>
+</section>
+
+<section class="sd-cross" aria-labelledby="sd-cross-title">
+  <div class="container">
+    <div class="sd-head">
+      <span class="sd-eyebrow">Go Deeper</span>
+      <h2 id="sd-cross-title">The Services Behind the Path.</h2>
+    </div>
+    <div class="sd-cross-grid">
+      <a class="sd-cross-card" href="services-data-migration.html">
+        <span class="sd-eyebrow">Organize</span>
+        <h3>Data Migration</h3>
+        <p>Records out of older systems, structure intact.</p>
+      </a>
+      <a class="sd-cross-card" href="services-scanning.html">
+        <span class="sd-eyebrow">Organize</span>
+        <h3>Archive Scanning</h3>
+        <p>Permits, drawings, and maps into searchable records.</p>
+      </a>
+      <a class="sd-cross-card" href="services-sharepoint-erms.html">
+        <span class="sd-eyebrow">Unify</span>
+        <h3>SharePoint ERMS</h3>
+        <p>Records management inside the Microsoft 365 you own.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/TextPlugin.min.js"></script>
+<script>
+/* Header animation controller (.sdh-*). Per the animated-graphic blueprint:
+   - Default DOM = finished picture. Only when motion is allowed AND GSAP loaded do we
+     reset to the start frame and play.
+   - Desktop (fine hover): play once, hold ~4.5s (hover pauses the hold), dissolve, replay.
+   - Touch: play once and hold. Reduced motion / no GSAP: finished picture, no motion.
+   - Stage labels become buttons that jump to that stage and play forward.
+   - Pauses while scrolled out of view. */
+(function () {
+  'use strict';
+  var stage = document.querySelector('.sdh-stage');
+  if (!stage) return;
+  var legendItems = Array.prototype.slice.call(document.querySelectorAll('.sdh-li'));
+  function setActive(i) {
+    legendItems.forEach(function (el, n) { el.classList.toggle('is-active', n === i); });
+  }
+  var motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  var fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!motionOK || !window.gsap) { stage.classList.add('sdh-armed'); setActive(2); return; }
+  var gsap = window.gsap;
+  var hasText = !!window.TextPlugin;
+  if (hasText) gsap.registerPlugin(window.TextPlugin);
+
+  var q = function (s) { return stage.querySelector(s); };
+  var qa = function (s) { return Array.prototype.slice.call(stage.querySelectorAll(s)); };
+  var root = q('.sdh-root'), fileroom = q('.sdh-fileroom'), beam = q('.sdh-beam'),
+      cloud = q('.sdh-cloud'), win = q('.sdh-window'), query = q('.sdh-query'),
+      found = q('.sdh-found'), boxes = qa('.sdh-box'), rows = qa('.sdh-row'),
+      chips = qa('.sdh-chip'), seal = q('.sdh-seal'),
+      traces = qa('.sdh-trace'), barcodes = qa('.sdh-barcode'), readouts = qa('.sdh-readout'),
+      roScan = qa('.sdh-ro-scan'), roDone = qa('.sdh-ro-done');
+  var QUERY = query.textContent;
+  var STAGE_T = [0, 1.9, 6.0];
+
+  function resetToStart() {
+    gsap.set(root, { opacity: 1, scale: 1, transformOrigin: '50% 50%' });
+    gsap.set(fileroom, { opacity: 1 });
+    gsap.set(boxes, { opacity: 0, y: -26 });
+    gsap.set(beam, { opacity: 0, x: 0 });
+    gsap.set(cloud, { opacity: 0 });
+    gsap.set(win, { opacity: 0, y: 12 });
+    gsap.set(rows, { opacity: 0, y: 10 });
+    gsap.set(chips, { opacity: 0, scale: 0.85, transformOrigin: '50% 50%' });
+    gsap.set(seal, { opacity: 0, scale: 0.5, transformOrigin: '50% 50%' });
+    gsap.set(found, { opacity: 0 });
+    gsap.set(traces, { attr: { 'stroke-dashoffset': 100 } });
+    barcodes.forEach(function (b) { gsap.set(b.children, { fill: '#25426B' }); });
+    gsap.set(readouts, { opacity: 0 });
+    gsap.set(roScan, { opacity: 1 });
+    gsap.set(roDone, { opacity: 0 });
+    query.textContent = hasText ? '' : QUERY;
+  }
+  resetToStart();
+
+  var tl = gsap.timeline({ paused: true, onComplete: resolved });
+  tl.call(setActive, [0], 0)
+    .to(boxes, { opacity: 1, y: 0, duration: 0.65, ease: 'back.out(1.3)', stagger: 0.16 }, 0.1)
+    .call(setActive, [1], STAGE_T[1])
+    .to(beam, { opacity: 1, duration: 0.25, ease: 'power2.out' }, STAGE_T[1])
+    .to(beam, { x: 490, duration: 2.6, ease: 'none' }, STAGE_T[1])
+    .to(beam, { opacity: 0, duration: 0.3, ease: 'power2.in' }, STAGE_T[1] + 2.45)
+    .call(setActive, [2], STAGE_T[2])
+    .to(fileroom, { opacity: 0, duration: 0.45, ease: 'power2.inOut' }, STAGE_T[2] - 0.15)
+    .set(cloud, { opacity: 1 }, STAGE_T[2] - 0.15)
+    .to(win, { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }, STAGE_T[2])
+    .to(rows, { opacity: 1, y: 0, duration: 0.45, stagger: 0.16, ease: 'power2.out' }, STAGE_T[2] + 1.5)
+    .to(chips, { opacity: 1, scale: 1, duration: 0.45, stagger: 0.08, ease: 'back.out(1.3)' }, STAGE_T[2] + 1.7)
+    .to(seal, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(1.6)' }, STAGE_T[2] + 2.3)
+    .to(found, { opacity: 1, duration: 0.5, ease: 'power2.out' }, STAGE_T[2] + 2.5);
+  // Scan stage: as the beam reaches each box, trace it, light its barcode,
+  // and show "Scanning..." then "Indexed".
+  [0.42, 1.36, 2.29].forEach(function (hit, i) {
+    var t = STAGE_T[1] + hit;
+    tl.to(readouts[i], { opacity: 1, duration: 0.25, ease: 'power2.out' }, t - 0.15)
+      .to(traces[i], { attr: { 'stroke-dashoffset': 0 }, duration: 0.6, ease: 'power2.out' }, t - 0.2)
+      .to(barcodes[i].children, { fill: '#C2683A', duration: 0.2, stagger: { amount: 0.35 } }, t)
+      .to(roScan[i], { opacity: 0, duration: 0.2 }, t + 0.6)
+      .to(roDone[i], { opacity: 1, duration: 0.25, ease: 'power2.out' }, t + 0.6);
+  });
+  if (hasText) tl.to(query, { text: QUERY, duration: 1.1, ease: 'none' }, STAGE_T[2] + 0.45);
+
+  /* ---- loop: hold, dissolve, replay (desktop only) ---- */
+  var HOLD = 4.5, MIN_SETTLE = 0.45;
+  var hold = null, dissolve = null, live = tl, hovering = false, inView = true;
+
+  function resolved() {
+    stage.classList.add('sdh-armed');
+    if (!fineHover) return;               // touch: play once and hold forever
+    hold = gsap.delayedCall(HOLD, exhale);
+    live = hold;
+    if (hovering || !inView) hold.pause();
+  }
+  function exhale() {
+    stage.classList.remove('sdh-armed');
+    dissolve = gsap.timeline({ onComplete: function () {
+      resetToStart();
+      gsap.set(root, { opacity: 1 });
+      live = tl;
+      tl.restart();
+      if (!inView) tl.pause();
+    } });
+    dissolve.to(root, { opacity: 0, scale: 0.99, duration: 0.7, ease: 'power2.inOut' })
+            .to({}, { duration: 0.2 });
+    live = dissolve;
+  }
+  function killLoop() {
+    if (hold) { hold.kill(); hold = null; }
+    if (dissolve) { dissolve.kill(); dissolve = null; }
+  }
+
+  /* hover pauses the readable hold only */
+  stage.addEventListener('pointerenter', function (e) {
+    if (e.pointerType === 'touch') return;
+    hovering = true;
+    if (hold) hold.pause();
+  });
+  stage.addEventListener('pointerleave', function (e) {
+    if (e.pointerType === 'touch') return;
+    hovering = false;
+    if (hold && inView) {
+      var left = hold.duration() - hold.time();
+      if (left < MIN_SETTLE) { hold.kill(); hold = gsap.delayedCall(MIN_SETTLE, exhale); live = hold; }
+      else hold.resume();
+    }
+  });
+
+  /* clickable stages: jump to a stage and play forward */
+  legendItems.forEach(function (el, i) {
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', 'Show stage ' + (i + 1) + ': ' + el.textContent.trim());
+    var go = function () {
+      killLoop();
+      stage.classList.remove('sdh-armed');
+      gsap.set(root, { opacity: 1, scale: 1 });
+      live = tl;
+      tl.play(STAGE_T[i], false);
+      setActive(i);
+    };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
+    });
+  });
+
+  /* pause whatever is running while off screen; start when first seen */
+  var started = false;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      inView = entries[0].isIntersecting;
+      if (inView && !started) { started = true; tl.play(0); return; }
+      if (!live) return;
+      if (inView) { if (!(live === hold && hovering)) live.resume(); }
+      else live.pause();
+    }, { threshold: 0.2 }).observe(stage);
+  } else { started = true; tl.play(0); }
+})();
+</script>
+
+<script>
+/* Unify step graphic controller (.sdtf-*): plays ONCE when scrolled into view.
+   Default DOM = finished picture; reduced motion / no GSAP keeps it. */
+(function () {
+  'use strict';
+  var stage = document.querySelector('.sdtf-stage');
+  if (!stage) return;
+  var motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  if (!motionOK || !window.gsap || !('IntersectionObserver' in window)) { stage.classList.add('sdtf-armed'); return; }
+  var gsap = window.gsap;
+  var q = function (s) { return stage.querySelector(s); };
+  var qa = function (s) { return Array.prototype.slice.call(stage.querySelectorAll(s)); };
+  var paper = q('.sdtf-paper'), form = q('.sdtf-form'), ink = qa('.sdtf-ink'), fills = qa('.sdtf-fill'),
+      submit = q('.sdtf-submit'), progress = q('.sdtf-progress'), dot = q('.sdtf-dot'),
+      offs = qa('.sdtf-node-off'), ons = qa('.sdtf-node-on'), seal = q('.sdtf-seal'),
+      track = q('.sdtf-track'), sealShape = q('.sdtf-seal-shape'), sealContent = q('.sdtf-seal-content');
+  // the stamp's finished size, read from the markup so the morph lands exactly on it
+  var STAMP = {};
+  ['x', 'y', 'width', 'height', 'rx'].forEach(function (k) { STAMP[k] = +sealShape.getAttribute(k); });
+  var DOT_Y = 216, R = 4.5;
+  var NODE_X = [56, 160, 264];
+
+  // start frame
+  gsap.set(paper, { opacity: 1, scaleX: 1, svgOrigin: '160 82' });
+  gsap.set(ink, { attr: { 'stroke-dasharray': 100, 'stroke-dashoffset': 100 } });
+  gsap.set(form, { opacity: 0, scaleX: 0, svgOrigin: '160 82' });
+  gsap.set(fills, { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set(submit, { svgOrigin: '236 132' });
+  gsap.set(progress, { attr: { 'stroke-dashoffset': 100 } });
+  gsap.set(offs, { opacity: 1 });
+  gsap.set(ons, { opacity: 0 });
+  gsap.set(dot, { opacity: 0, attr: { cx: NODE_X[0] } });
+  gsap.set(track, { opacity: 0 });
+  gsap.set(seal, { opacity: 0 });
+  gsap.set(sealContent, { opacity: 0 });
+  gsap.set(sealShape, { fill: '#2E7DB5', attr: { x: NODE_X[2] - R, y: DOT_Y - R, width: R * 2, height: R * 2, rx: R } });
+
+  var tl = gsap.timeline({ paused: true, onComplete: function () { stage.classList.add('sdtf-armed'); } });
+  tl.to(ink, { attr: { 'stroke-dashoffset': 0 }, duration: 0.35, stagger: 0.07, ease: 'power1.inOut' }, 0.2)
+    // the paper flips over and comes back as a OneForm
+    .to(paper, { scaleX: 0, duration: 0.35, ease: 'power2.in' }, 1.9)
+    .set(paper, { opacity: 0 }, 2.25)
+    .set(form, { opacity: 1 }, 2.25)
+    .to(form, { scaleX: 1, duration: 0.4, ease: 'power2.out' }, 2.25)
+    .to(fills, { scaleX: 1, duration: 0.4, stagger: 0.12, ease: 'power2.out' }, 2.8)
+    .to(submit, { scale: 0.92, duration: 0.12, ease: 'power2.in' }, 3.55)
+    .to(submit, { scale: 1, duration: 0.25, ease: 'back.out(2)' }, 3.67)
+    // route for approval: principal, HR, payroll
+    .to([dot, track], { opacity: 1, duration: 0.25 }, 3.9);
+  NODE_X.forEach(function (x, i) {
+    var t = 4.1 + i * 0.75;
+    if (i > 0) tl.to(dot, { attr: { cx: x }, duration: 0.55, ease: 'power2.inOut' }, t - 0.55)
+                 .to(progress, { attr: { 'stroke-dashoffset': 100 - i * 50 }, duration: 0.55, ease: 'power2.inOut' }, t - 0.55);
+    tl.to(offs[i], { opacity: 0, duration: 0.2 }, t)
+      .to(ons[i], { opacity: 1, duration: 0.25, ease: 'power2.out' }, t);
+  });
+  // the dot becomes the Approved stamp: circle stretches into the pill, turns gold, then the words appear
+  tl.set(seal, { opacity: 1 }, 5.75)
+    .set(dot, { opacity: 0 }, 5.75)
+    .to(track, { opacity: 0, duration: 0.3 }, 5.75)
+    .to(sealShape, { fill: '#E5A630', attr: { x: STAMP.x, y: STAMP.y, width: STAMP.width, height: STAMP.height, rx: STAMP.rx },
+                     duration: 0.5, ease: 'back.out(1.4)' }, 5.75)
+    .to(sealContent, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 6.15);
+
+  // Start when the district path line reaches 02 (step index 1). Where the line
+  // isn't running (phones, reduced motion), fall back to starting on scroll-in.
+  var started = false;
+  function start() { if (started) return; started = true; tl.play(); }
+  document.addEventListener('sdp:reached', function (e) { if (e.detail && e.detail.step === 1) start(); });
+  var io = new IntersectionObserver(function (entries) {
+    if (!entries[0].isIntersecting) return;
+    if (document.querySelector('.sd-path.sdp-armed')) return;   // the line will start it
+    start(); io.disconnect();
+  }, { threshold: 0.45 });
+  io.observe(stage);
+})();
+</script>
+
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script>
+/* District path controller (.sdp-*): measures the three numbers, draws a gold
+   line between them, and ties the drawing to scroll. Desktop only, live media gate. */
+(function () {
+  'use strict';
+  var box = document.querySelector('.sd-path');
+  if (!box || !window.gsap || !window.ScrollTrigger) return;
+  var gsap = window.gsap;
+  gsap.registerPlugin(window.ScrollTrigger);
+  var mq = window.matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
+  var nums = Array.prototype.slice.call(box.querySelectorAll('.sd-phase-num'));
+  var cards = Array.prototype.slice.call(box.querySelectorAll('.sd-phase'));
+  var labels = Array.prototype.slice.call(box.querySelectorAll('.sd-phase-label'));
+  var NS = 'http://www.w3.org/2000/svg', svg = null, segs = [], st = null, stops = [], reached = {};
+
+  function build() {
+    teardown();
+    var b = box.getBoundingClientRect(), len = 0;
+    svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'sdp-line');
+    svg.setAttribute('aria-hidden', 'true');
+    var x = 0;
+    // One path per gap (01->02, 02->03). Dashed "draw-in" restarts on each piece of a
+    // multi-piece path, so each segment must be its own element to draw in order.
+    for (var i = 0; i < nums.length - 1; i++) {
+      var n = nums[i].getBoundingClientRect(), l = labels[i].getBoundingClientRect(), nx = nums[i + 1].getBoundingClientRect();
+      if (i === 0) x = l.left - b.left + Math.min(n.width, l.width) / 2;  // under the number/label column
+      var y1 = l.bottom - b.top + 14, y2 = nx.top - b.top - 12, seg = y2 - y1;
+      var el = document.createElementNS(NS, 'path');
+      el.setAttribute('d', 'M' + x + ' ' + y1 + ' V' + y2);
+      el.setAttribute('fill', 'none');
+      el.setAttribute('stroke', '#E5A630');
+      el.setAttribute('stroke-width', '2.5');
+      el.setAttribute('stroke-linecap', 'round');
+      el.setAttribute('stroke-dasharray', seg);
+      el.setAttribute('stroke-dashoffset', seg);
+      svg.appendChild(el);
+      segs.push(el);
+      stops.push({ from: len, to: len + seg, len: seg });
+      len += seg;
+    }
+    box.appendChild(svg);
+    box.classList.add('sdp-armed');
+    nums[0].classList.add('is-lit');
+    cards[0].classList.add('is-reached');
+    st = window.ScrollTrigger.create({
+      trigger: box, start: 'top 60%', end: 'bottom 70%', scrub: 0.6,
+      onUpdate: function (self) {
+        var drawn = self.progress * len;
+        // fill the segments in order: the second starts only when the first is full
+        segs.forEach(function (el, k) {
+          var part = Math.max(0, Math.min(stops[k].len, drawn - stops[k].from));
+          el.setAttribute('stroke-dashoffset', stops[k].len - part);
+        });
+        for (var k = 1; k < nums.length; k++) {
+          var lit = drawn >= stops[k - 1].to - 2;
+          nums[k].classList.toggle('is-lit', lit);
+          cards[k].classList.toggle('is-reached', lit);
+          if (lit && !reached[k]) {   // first arrival: tell graphics waiting on this step
+            reached[k] = true;
+            document.dispatchEvent(new CustomEvent('sdp:reached', { detail: { step: k } }));
+          }
+        }
+      }
+    });
+  }
+  function teardown() {
+    if (st) { st.kill(); st = null; }
+    if (svg && svg.parentNode) svg.parentNode.removeChild(svg);
+    svg = null; segs = []; stops = [];
+    box.classList.remove('sdp-armed');
+    nums.forEach(function (n) { n.classList.remove('is-lit'); });
+    cards.forEach(function (c) { c.classList.remove('is-reached'); });
+  }
+  function sync() { if (mq.matches) build(); else teardown(); }
+  if (mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+  var t = null;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(sync, 200); });
+  window.addEventListener('load', sync);
+  sync();
+})();
+</script>
+<script>
+/* Small touches: icons draw in when their card scrolls into view (staggered);
+   the 100+ counts up once. Default render = drawn icons and the final number. */
+(function () {
+  'use strict';
+  var motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  if (!motionOK || !('IntersectionObserver' in window)) return;
+  var grid = document.querySelector('.sd-problems');
+  if (grid) {
+    grid.classList.add('sdi-armed');
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.sd-problem'));
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var i = cards.indexOf(e.target);
+        setTimeout(function () { e.target.classList.add('is-in'); }, (i % 4) * 140);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.4 });
+    cards.forEach(function (c) { io.observe(c); });
+  }
+  var num = document.querySelector('.sd-count');
+  if (num) {
+    var to = +num.getAttribute('data-to') || 0;
+    num.textContent = '0';
+    var io2 = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io2.disconnect();
+      var start = null, DUR = 1500;
+      (function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min(1, (ts - start) / DUR), eased = 1 - Math.pow(1 - p, 3);
+        num.textContent = String(Math.round(to * eased));
+        if (p < 1) requestAnimationFrame(step);
+      })(performance.now());
+    }, { threshold: 0.5 });
+    io2.observe(num);
+  }
+})();
+</script>
+<script>
+/* Playing one video pauses any other video on this page. */
+(function () {
+  var vids = document.querySelectorAll('.sd-videos video');
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

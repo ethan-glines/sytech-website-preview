@@ -1,0 +1,3670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OneForm — E-Forms Built on the Systems You Already Own | SyTech Solutions</title>
+<meta name="description" content="OneForm helps public agencies replace paper forms and disconnected e-form software with scalable digital workflows — inside Microsoft 365 or Google. A service by SyTech Solutions."/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta property="og:title" content="OneForm — E-Forms Built on the Systems You Already Own"/>
+<meta property="og:description" content="Public agencies across California use OneForm to modernize forms, records, and workflows inside the cloud they already own. No new software. No new licenses."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://sytechsolutions.com/services/oneform"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="OneForm — E-Forms Built on the Systems You Already Own"/>
+<meta name="twitter:description" content="Replace paper and disconnected e-forms with scalable digital workflows inside your existing cloud. A service by SyTech Solutions."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+:root {
+  --azure: #29b7ea;
+  --teal: #39B9C4;
+  --canvas: #F4F8FB;
+  --field-gray: #E3E9EF;
+  --navy: #25426B;
+  --deep-navy: #1a2c42;
+  --white: #FFFFFF;
+  --text-body: #4A5568;
+  --gold: #E8A838;
+  --text-light: #718096;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tahoma', 'Segoe UI', sans-serif;
+  color: var(--navy); background: var(--white);
+  line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip;
+}
+.container { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
+
+/* ---- Hero ----
+   UNIFY-FAMILY STEEL-BLUE TOP-GRADIENT (2026-06-23)
+   ONLY the hero BACKGROUND changes — the shared Unify-family signal that 1DocStop
+   + SharePoint ERMS now carry. Recipe pulled VERBATIM from services-1docstop.html
+   .page-hero: a 180deg vertical wash, translucent steel-blue (#2E7DB5, RGB 46,125,181)
+   at the top fading straight down to the light canvas then white floor.
+   Steel-blue stops kept byte-for-byte from 1DocStop; only the light/white floor tokens
+   are mapped to OneForm's own scale (--canvas #F4F8FB ≈ 1DocStop's --light; --white).
+   This REPLACES the old flat 170deg canvas→white→canvas wash. Everything else on the
+   page (CTAs, hero animation, badge pill, body sections) stays OneForm AZURE #29b7ea. */
+.hero {
+  padding: 9.5rem 0 6rem;
+  background: linear-gradient(180deg,
+      rgba(46,125,181,0.52)  0%,    /* steel-blue wash top (navy h1 ~5:1) — Unify-family signal */
+      rgba(46,125,181,0.18) 40%,    /* wash thins toward the light canvas */
+      var(--canvas)         75%,    /* #F4F8FB — into OneForm's light canvas */
+      var(--white)         100%);   /* #FFFFFF — white floor at the bottom of the hero */
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(48,157,236,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+/* White "window" behind the wordmark + amber eyebrow (2026-06-23).
+   The hero sits on a steel-blue gradient wash, which washes out the azure "one" and the
+   amber tag. Instead of recoloring them, both are wrapped in a clean white card so they
+   read on white. Hugs its content (fit-content / inline-block), top-left of the hero,
+   above the h1 — it never spans full width or reaches the headline / hero animation. */
+.hero-logo-window {
+  display: inline-block; width: fit-content; max-width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(37,66,107,0.06);
+  border-radius: 14px;
+  padding: 1.1rem 1.5rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 10px 30px rgba(37,66,107,0.12), 0 1px 3px rgba(37,66,107,0.06);
+}
+
+/* OneForm wordmark + tagline block (replaces text-only hero-badge) */
+.hero-badge-block {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 0; /* spacing now lives on .hero-logo-window */
+}
+.oneform-wordmark {
+  height: 36px; width: auto; display: block;
+  flex-shrink: 0;
+}
+/* HERO wordmark colors (inlined SVG only). Scoped to .hero so the change can NEVER
+   leak to the nav/footer (which use the SyTech logo, not this wordmark) or to other
+   pages' heroes (which still load the azure asset oneform-wordmark.svg via <img>).
+   "FORM" = navy; "one" = AZURE (matches the shared asset). Both sit on a white card
+   (.hero-logo-window) so they read with contrast against the steel-blue hero wash —
+   the WHITE "one" treatment was reverted (2026-06-23, Ethan's call). */
+.hero .ofwm-hero .ofwm-form { fill: #1a2c42; }   /* "FORM" stays navy */
+.hero .ofwm-hero .ofwm-one  { fill: #2bb8eb; }   /* "one" → azure (shared-asset azure) */
+.hero-badge-tag {
+  display: inline-block; padding: 0.375rem 1rem;
+  background: rgba(232,168,56,0.1); color: var(--gold);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; border-radius: 50px;
+}
+@media (max-width: 600px) {
+  .hero-logo-window { padding: 0.9rem 1.1rem; border-radius: 12px; }
+  .hero-badge-block { gap: 0.75rem; }
+  .oneform-wordmark { height: 30px; }
+  .hero-badge-tag { font-size: 0.7rem; padding: 0.3rem 0.85rem; }
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700;
+  line-height: 1.15; color: var(--navy); margin-bottom: 1.5rem;
+}
+/* Hero h1 pop-word: azure #29b7ea FAILS AA on the new steel-blue wash (both are
+   mid-light blues ~1.2:1). Overridden to 1DocStop's darkened steel-blue ink #235880
+   (3:1 large PASS on the 0.52 wash). This is the ONLY azure→steel-blue swap on the
+   page, and it is scoped to the hero headline span only — azure stays everywhere else. */
+.hero h1 span { color: #235880; }
+.hero-sub {
+  font-size: 1.125rem; color: var(--text-body);
+  line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: 0.875rem 2rem;
+  background: var(--azure); color: var(--white);
+  font-size: 1rem; font-weight: 700; font-family: inherit;
+  border-radius: 8px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: #2488d4; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(48,157,236,0.3); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 1rem; font-weight: 700; color: var(--navy); text-decoration: none; transition: color 0.2s;
+}
+.btn-secondary:hover { color: var(--azure); }
+.btn-secondary svg { transition: transform 0.3s; }
+.btn-secondary:hover svg { transform: translateX(4px); }
+
+/* ============================================
+   HERO CINEMATIC ANIMATION
+   3-stage loop: Build → Automate → Cloud/AI
+   ============================================ */
+.hero-visual { position: relative; perspective: 1000px; }
+.cinema-stage {
+  background: var(--white); border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(37,66,107,0.1), 0 1px 3px rgba(37,66,107,0.06);
+  overflow: hidden; border: 1px solid var(--field-gray);
+  min-height: 420px; position: relative;
+}
+.cinema-header {
+  background: var(--canvas); padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--field-gray);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cinema-dots { display: flex; gap: 6px; }
+.cinema-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--field-gray); }
+.cinema-title-bar { font-size: 0.7rem; color: var(--text-light); font-weight: 600; transition: opacity 0.5s; }
+.cinema-body { padding: 1.5rem; position: relative; min-height: 360px; }
+
+/* Phase indicator */
+.cinema-phase {
+  position: absolute; top: 12px; right: 12px;
+  padding: 0.25rem 0.75rem; border-radius: 50px;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.5s;
+}
+.cinema-phase.build { background: rgba(48,157,236,0.1); color: var(--azure); }
+.cinema-phase.automate { background: rgba(57,185,196,0.1); color: var(--teal); }
+.cinema-phase.cloud { background: rgba(37,66,107,0.1); color: var(--navy); }
+
+/* --- Stage 1: Form Build --- */
+.build-canvas { position: absolute; inset: 1.5rem; opacity: 0; transition: opacity 0.6s; }
+.build-canvas.show { opacity: 1; }
+.build-field {
+  position: absolute; border-radius: 8px; background: var(--canvas);
+  border: 1.5px solid var(--field-gray); opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.build-field.show { opacity: 1; transform: translateY(0) scale(1); }
+.build-field-label {
+  position: absolute; top: -18px; left: 4px;
+  font-size: 0.6rem; font-weight: 700; color: var(--text-light);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  opacity: 0; transition: opacity 0.4s 0.2s;
+}
+.build-field.show .build-field-label { opacity: 1; }
+.build-field-icon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  color: var(--azure); font-size: 0.7rem; font-weight: 700; opacity: 0.5;
+}
+.build-cursor {
+  position: absolute; width: 18px; height: 18px; z-index: 10;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+}
+.build-cursor.show { opacity: 1; }
+.build-cursor svg { width: 18px; height: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+
+/* --- Stage 2: Workflow Automation --- */
+.auto-canvas { position: absolute; inset: 1.5rem; opacity: 0; transition: opacity 0.6s; }
+.auto-canvas.show { opacity: 1; }
+.auto-node {
+  position: absolute; background: var(--white); border-radius: 12px;
+  border: 1.5px solid var(--field-gray); padding: 0.5rem 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.65rem; font-weight: 700; color: var(--navy);
+  box-shadow: 0 2px 8px rgba(37,66,107,0.06);
+  opacity: 0; transform: scale(0.8);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.auto-node.show { opacity: 1; transform: scale(1); }
+.auto-node.active { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(57,185,196,0.15); }
+.auto-node-icon {
+  width: 24px; height: 24px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
+}
+.auto-node-icon.blue { background: rgba(48,157,236,0.1); color: var(--azure); }
+.auto-node-icon.teal { background: rgba(57,185,196,0.1); color: var(--teal); }
+.auto-node-icon.navy { background: rgba(37,66,107,0.08); color: var(--navy); }
+
+/* Animated connection lines */
+.auto-lines { position: absolute; inset: 0; pointer-events: none; }
+.auto-lines svg { width: 100%; height: 100%; }
+.auto-line {
+  stroke: var(--field-gray); stroke-width: 1.5; fill: none;
+  stroke-dasharray: 200; stroke-dashoffset: 200;
+}
+.auto-line.draw { stroke-dashoffset: 0; }
+.auto-line.active { stroke: var(--teal); }
+/* SVG node groups */
+.auto-node-g { opacity: 0; }
+
+/* Pulse particle traveling along path */
+.auto-pulse {
+  fill: var(--teal); r: 4; opacity: 0;
+}
+.auto-pulse.go {
+  opacity: 1;
+  animation: none; /* controlled by JS */
+}
+
+/* Notification popup */
+.auto-notif {
+  position: absolute; background: var(--white); border-radius: 10px;
+  padding: 0.4rem 0.75rem; box-shadow: 0 4px 16px rgba(37,66,107,0.12);
+  border: 1px solid var(--field-gray);
+  font-size: 0.6rem; font-weight: 700; color: var(--navy);
+  display: flex; align-items: center; gap: 0.4rem;
+  opacity: 0; transform: translateY(8px) scale(0.9);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.auto-notif.show { opacity: 1; transform: translateY(0) scale(1); }
+.auto-notif-dot { width: 6px; height: 6px; border-radius: 50%; }
+.auto-notif-dot.green { background: #48BB78; }
+.auto-notif-dot.amber { background: #ECC94B; }
+
+/* --- Stage 3: Cloud / AI --- */
+.cloud-canvas { position: absolute; inset: 1.5rem; opacity: 0; transition: opacity 0.6s; }
+.cloud-canvas.show { opacity: 1; }
+
+/* Mini dashboard */
+.cloud-dash {
+  position: absolute; top: 24px; left: 0; right: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+}
+.cloud-metric {
+  background: var(--canvas); border-radius: 10px; padding: 0.75rem;
+  border: 1px solid var(--field-gray);
+  opacity: 0; transform: translateY(12px);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cloud-metric.show { opacity: 1; transform: translateY(0); }
+.cloud-metric-label { font-size: 0.55rem; color: var(--text-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+.cloud-metric-value { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.cloud-metric-change { font-size: 0.6rem; font-weight: 700; color: #48BB78; }
+
+/* Mini chart */
+.cloud-chart {
+  position: absolute; top: 114px; left: 0; right: 0; bottom: 80px;
+  opacity: 0; transition: opacity 0.6s 0.4s;
+}
+.cloud-chart.show { opacity: 1; }
+.cloud-chart svg { width: 100%; height: 100%; }
+.chart-line {
+  stroke: #5BB8F5; stroke-width: 3; fill: none;
+  stroke-dasharray: 500; stroke-dashoffset: 500;
+  transition: stroke-dashoffset 2s ease;
+}
+.chart-glow {
+  fill: none; stroke: #29b7ea; stroke-width: 8; stroke-linecap: round;
+  opacity: 0.4;
+  stroke-dasharray: 500; stroke-dashoffset: 500;
+  transition: stroke-dashoffset 2s ease;
+}
+.chart-line.draw { stroke-dashoffset: 0; }
+.chart-glow.draw { stroke-dashoffset: 0; }
+.chart-area {
+  fill: url(#chartGrad); opacity: 0;
+  transition: opacity 1s 0.8s;
+}
+.chart-area.show { opacity: 1; }
+
+/* AI insight badge */
+.cloud-ai-badge {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(135deg, rgba(48,157,236,0.06), rgba(57,185,196,0.06));
+  border: 1px solid var(--field-gray); border-radius: 12px;
+  padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.75rem;
+  opacity: 0; transform: translateY(12px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cloud-ai-badge.show { opacity: 1; transform: translateY(0); }
+.cloud-ai-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--azure), var(--teal));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+}
+.cloud-ai-text { font-size: 0.65rem; color: var(--text-body); line-height: 1.4; }
+.cloud-ai-text strong { color: var(--navy); }
+
+/* Floating chip */
+.float-chip {
+  position: absolute; top: -14px; right: -24px;
+  background: var(--white); border-radius: 12px; padding: 0.625rem 1rem;
+  box-shadow: 0 8px 24px rgba(37,66,107,0.12);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 700; color: var(--navy);
+  border: 1px solid var(--field-gray);
+  animation: float-up 3s ease-in-out infinite;
+  z-index: 5;
+}
+.float-chip-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: rgba(57,185,196,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teal); font-size: 0.85rem;
+}
+@keyframes float-up { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* ============================================
+   DEEP ANIMATION SECTION (between hero & lifecycle)
+   Full-width cinematic storytelling — REVISED
+   ============================================ */
+.story-section {
+  padding: 7rem 0; background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%); position: relative; overflow: hidden;
+}
+.story-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(48,157,236,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(57,185,196,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.story-dots-canvas {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1;
+}
+.story-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 2; }
+.story-header h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+.story-header h2 span { color: var(--azure); }
+.story-header p { font-size: 1rem; color: rgba(255,255,255,0.5); }
+
+.story-timeline {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  max-width: 1020px; margin: 0 auto;
+  padding-top: 28px; /* room for progress line above */
+}
+/* Remove old pseudo line */
+
+/* Journey progress line - sits above boxes */
+.story-progress {
+  position: relative; max-width: 1020px; margin: 0 auto 1.5rem;
+  padding: 0 2rem; z-index: 3;
+}
+.story-progress-track {
+  position: relative; height: 3px; background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+}
+.story-progress-fill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  background: linear-gradient(90deg, var(--azure), var(--teal));
+  border-radius: 2px; width: 0%; transition: width 1.2s ease;
+}
+.story-progress-dot {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--white); border: 3px solid var(--azure);
+  box-shadow: 0 0 0 4px rgba(48,157,236,0.2), 0 2px 8px rgba(0,0,0,0.2);
+  left: 0%; transition: left 1.2s ease;
+  z-index: 2;
+}
+.story-progress-stops {
+  position: absolute; top: 50%; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  transform: translateY(-50%);
+}
+.story-progress-stop {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.5s, transform 0.2s;
+  cursor: pointer; position: relative;
+}
+.story-progress-stop::before {
+  content: ''; position: absolute; inset: -8px; border-radius: 50%;
+}
+@media (hover: hover) and (pointer: fine) {
+.story-progress-stop:hover { transform: scale(1.5); }
+}
+.story-progress-stop.reached { background: var(--azure); }
+.story-panel { text-align: center; position: relative; transition: opacity 0.6s ease; cursor: pointer; }
+.story-panel.dimmed { opacity: 0.5; }
+.story-panel.dimmed:hover { opacity: 0.7; }
+.story-panel.active-panel { opacity: 1; }
+.story-stage-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; color: var(--white);
+  margin: 0 auto 1.25rem; position: relative; z-index: 2;
+  cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+.story-stage-num:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 4px rgba(48,157,236,0.25), 0 4px 12px rgba(0,0,0,0.2);
+}
+}
+.story-stage-num:active { transform: scale(1.1); }
+.story-stage-num.s1 { background: var(--azure); }
+.story-stage-num.s2 { background: var(--teal); }
+.story-stage-num.s3 { background: linear-gradient(135deg, var(--azure), var(--teal)); }
+.story-box {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 1.25rem; height: 300px;
+  position: relative; overflow: hidden; margin-bottom: 1.25rem;
+}
+
+/* ---- PANEL 1: Drag-and-Drop Build ---- */
+.dnd-scene { position: relative; width: 100%; height: 100%; }
+.dnd-sidebar {
+  position: absolute; top: 0; left: 0; width: 72px; height: 100%;
+  background: rgba(255,255,255,0.03); border-right: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px 0 0 8px; padding: 8px 6px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.dnd-tool {
+  height: 28px; border-radius: 5px; background: rgba(48,157,236,0.12);
+  border: 1px solid rgba(48,157,236,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem; font-weight: 700; color: var(--azure);
+  cursor: default; transition: all 0.3s;
+}
+.dnd-tool:hover { background: rgba(48,157,236,0.2); }
+.dnd-form-area {
+  position: absolute; top: 0; left: 80px; right: 0; bottom: 0;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 6px;
+}
+.dnd-slot {
+  border: 1.5px dashed rgba(255,255,255,0.08); border-radius: 8px;
+  background: transparent; position: relative;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+.dnd-slot.filled {
+  border-style: solid; border-color: rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+}
+.dnd-slot.dropping {
+  border-color: var(--azure); background: rgba(48,157,236,0.08);
+  box-shadow: 0 0 12px rgba(48,157,236,0.15);
+}
+.dnd-slot-content {
+  display: flex; align-items: center; gap: 6px; padding: 0 8px;
+  opacity: 0; transition: opacity 0.4s 0.2s;
+  height: 100%;
+}
+.dnd-slot.filled .dnd-slot-content { opacity: 1; }
+.dnd-slot-icon {
+  font-size: 0.65rem; color: var(--azure); flex-shrink: 0;
+}
+.dnd-slot-label {
+  font-size: 0.55rem; font-weight: 700; color: rgba(255,255,255,0.5);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.dnd-slot-mock {
+  flex: 1; height: 18px; border-radius: 4px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+}
+/* Animated ghost element being dragged */
+.dnd-ghost {
+  position: absolute; width: 56px; height: 24px;
+  border-radius: 6px; background: var(--azure);
+  opacity: 0; z-index: 10; pointer-events: none;
+  box-shadow: 0 4px 16px rgba(48,157,236,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem; font-weight: 700; color: var(--white);
+}
+/* Cursor */
+.dnd-cursor {
+  position: absolute; z-index: 11; opacity: 0; pointer-events: none;
+  transition: none;
+}
+.dnd-cursor svg { width: 16px; height: 16px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+
+/* ---- PANEL 2: Form Traveler Workflow (grid layout) ---- */
+.wf-scene {
+  position: relative; width: 100%; height: 100%; padding: 4px 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+  align-items: center; /* center the whole thing horizontally */
+}
+.wf-row {
+  display: grid; grid-template-columns: 30px 36px 1fr; gap: 0;
+  align-items: center; height: 44px; position: relative; z-index: 2;
+  width: 180px; /* wider to give text room */
+}
+.wf-node-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.06); border: 2px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: rgba(255,255,255,0.4);
+  transition: all 0.5s; justify-self: center;
+}
+.wf-row.active .wf-node-dot {
+  background: var(--teal); border-color: var(--teal);
+  color: var(--white); box-shadow: 0 0 0 5px rgba(57,185,196,0.15);
+}
+.wf-row.completed .wf-node-dot {
+  background: rgba(48,157,236,0.2); border-color: var(--azure); color: var(--azure);
+}
+.wf-node-spacer { /* middle column spacing */ }
+.wf-node-label {
+  font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.35);
+  transition: color 0.5s; text-align: left; padding-left: 6px;
+}
+.wf-row.active .wf-node-label { color: var(--white); }
+.wf-row.completed .wf-node-label { color: rgba(255,255,255,0.5); }
+/* Vertical track — positioned in the gap column between dots and labels */
+.wf-track-wrap {
+  position: absolute; top: 26px; bottom: 26px;
+  /* dot col = 30px, gap col = 36px, center of gap = 30 + 18 = 48px from left of row
+     row width = 180px, centered in box, so track is at: 50% - (90 - 48) = 50% - 42px */
+  left: 50%; margin-left: -42px;
+  width: 2px; z-index: 1;
+}
+.wf-track {
+  width: 2px; height: 100%; background: rgba(255,255,255,0.1);
+  position: relative;
+}
+.wf-track-fill {
+  position: absolute; top: 0; left: 0; width: 100%;
+  height: 0%; background: linear-gradient(180deg, var(--azure), var(--teal));
+  border-radius: 1px; transition: height 0.8s ease;
+}
+/* Traveler — sits in the gap between dots and labels */
+.wf-traveler {
+  position: absolute; z-index: 5;
+  left: 50%; margin-left: -46px; /* just right of the track line, inside the gap */
+  width: 18px; height: 24px;
+  transform: translateY(-50%);
+  transition: top 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.wf-traveler svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(48,157,236,0.5));
+}
+
+/* ---- PANEL 3: Clean Dashboard ---- */
+.dash-scene { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; gap: 8px; }
+.dash-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+}
+.dash-metric {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 10px 8px; text-align: center;
+  opacity: 0; transform: translateY(8px);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.dash-metric.show { opacity: 1; transform: translateY(0); }
+.dash-metric-label {
+  font-size: 0.55rem; font-weight: 700; color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px;
+}
+.dash-metric-value {
+  font-size: 1.25rem; font-weight: 700; color: var(--white); line-height: 1.2;
+}
+.dash-metric-delta { font-size: 0.6rem; font-weight: 700; margin-top: 2px; }
+.dash-metric-delta.up { color: #48BB78; }
+.dash-metric-delta.down { color: var(--teal); }
+
+/* Chart - more visible */
+.dash-chart {
+  flex: 1; position: relative; min-height: 80px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; overflow: hidden;
+  opacity: 0; transition: all 0.6s;
+}
+.dash-chart.show { opacity: 1; }
+.dash-chart svg { width: 100%; height: 100%; display: block; }
+.dash-chart-line {
+  fill: none; stroke: #5BB8F5; stroke-width: 3;
+  stroke-dasharray: 500; stroke-dashoffset: 500;
+  transition: stroke-dashoffset 2s ease;
+}
+.dash-chart-glow {
+  fill: none; stroke: #29b7ea; stroke-width: 8; stroke-linecap: round;
+  opacity: 0.4;
+  stroke-dasharray: 500; stroke-dashoffset: 500;
+  transition: stroke-dashoffset 2s ease;
+}
+.dash-chart-line.draw { stroke-dashoffset: 0; }
+.dash-chart-glow.draw { stroke-dashoffset: 0; }
+.dash-chart-area { opacity: 0; transition: opacity 1s; }
+.dash-chart-area.show { opacity: 0.6; }
+.dash-chart-label {
+  position: absolute; top: 8px; left: 10px;
+  font-size: 0.55rem; font-weight: 700; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+/* AI insight bar */
+.dash-ai {
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, rgba(48,157,236,0.1), rgba(57,185,196,0.1));
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+  padding: 8px 10px;
+  opacity: 0; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.dash-ai.show { opacity: 1; }
+.dash-ai-icon {
+  width: 26px; height: 26px; border-radius: 7px;
+  background: linear-gradient(135deg, var(--azure), var(--teal));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 700; color: var(--white); flex-shrink: 0;
+}
+.dash-ai-text {
+  font-size: 0.6rem; color: rgba(255,255,255,0.55); line-height: 1.4;
+}
+.dash-ai-text strong { color: var(--white); }
+
+/* Story panel labels */
+.story-label { font-size: 1.125rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+.story-desc { font-size: 0.8125rem; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 0.75rem; }
+
+/* ---- Lifecycle, Features, CTA ---- */
+.lifecycle { padding: 7rem 0; background: var(--canvas); }
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+.section-divider { width: 60px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--azure), var(--teal)); margin: 0 auto; }
+
+/* Workflow comparison */
+.wf-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  max-width: 960px; margin: 0 auto; align-items: stretch;
+}
+.wf-side {
+  border-radius: 20px; padding: 2.5rem 2rem; position: relative;
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: flex; flex-direction: column;
+}
+.wf-side.revealed { opacity: 1; transform: translateY(0); }
+.wf-side.manual {
+  background: var(--white); border: 2px solid var(--field-gray);
+}
+.wf-side.automated {
+  background: var(--navy); border: 2px solid rgba(41,183,234,0.2);
+}
+.wf-side.automated.revealed {
+  transition-delay: 0.2s;
+}
+
+.wf-badge {
+  display: inline-block; font-size: 0.625rem; font-weight: 700;
+  letter-spacing: 1.5px; padding: 4px 12px;
+  border-radius: 20px; margin-bottom: 1.25rem;
+}
+.manual .wf-badge { background: rgba(220,53,69,0.08); color: #dc3545; }
+.automated .wf-badge { background: rgba(41,183,234,0.15); color: var(--azure); }
+
+.wf-side h3 {
+  font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem;
+}
+.manual h3 { color: var(--navy); }
+.automated h3 { color: var(--white); }
+
+.wf-steps { display: flex; flex-direction: column; gap: 0; flex: 1; }
+
+.wf-step {
+  display: flex; align-items: flex-start; gap: 14px; padding: 14px 0;
+  position: relative;
+}
+.wf-step:not(:last-child)::after {
+  content: ''; position: absolute; left: 15px; top: 47px; bottom: 3px;
+  width: 2px;
+}
+.manual .wf-step::after { background: var(--field-gray); }
+.automated .wf-step::after { background: rgba(41,183,234,0.2); }
+
+.wf-step-icon {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; position: relative; z-index: 1;
+}
+.manual .wf-step-icon {
+  background: rgba(220,53,69,0.06); border: 2px solid rgba(220,53,69,0.15);
+  color: #dc3545;
+}
+.automated .wf-step-icon {
+  background: rgba(41,183,234,0.1); border: 2px solid rgba(41,183,234,0.25);
+  color: var(--azure);
+}
+
+.wf-step-text h4 {
+  font-size: 0.875rem; font-weight: 700; margin-bottom: 2px;
+}
+.manual .wf-step-text h4 { color: var(--navy); }
+.automated .wf-step-text h4 { color: var(--white); }
+
+.wf-step-text p {
+  font-size: 0.8125rem; line-height: 1.5; margin: 0;
+}
+.manual .wf-step-text p { color: var(--text-body); }
+.automated .wf-step-text p { color: rgba(255,255,255,0.6); }
+
+.wf-time {
+  margin-top: auto; padding-top: 1rem;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px;
+  text-align: center;
+}
+.manual .wf-time {
+  border-top: 1px solid var(--field-gray); color: #dc3545;
+}
+.automated .wf-time {
+  border-top: 1px solid rgba(255,255,255,0.08); color: var(--teal);
+}
+
+.features { padding: 7rem 0; background: var(--white); }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.feature-card { padding: 2.5rem; border-radius: 16px; background: var(--canvas); border: 1px solid transparent; transition: all 0.4s; }
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover { background: var(--white); border-color: var(--field-gray); box-shadow: 0 16px 48px rgba(37,66,107,0.08); transform: translateY(-4px); }
+}
+.feature-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.feature-icon.azure { background: rgba(48,157,236,0.1); color: var(--azure); }
+.feature-icon.teal { background: rgba(57,185,196,0.1); color: var(--teal); }
+.feature-icon.navy { background: rgba(37,66,107,0.08); color: var(--navy); }
+.feature-icon svg { width: 28px; height: 28px; }
+.feature-emoji { font-size: 28px; line-height: 1; }
+.feature-card h3 { font-size: 1.375rem; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+.feature-card p { font-size: 0.9375rem; color: var(--text-body); line-height: 1.7; }
+.cta { padding: 7rem 0; }
+.cta-box { background: var(--deep-navy); position: relative; border-radius: 24px; padding: 5rem 3rem; text-align: center; position: relative; overflow: hidden; }
+.cta-box::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 500px; height: 300px; background: radial-gradient(circle, rgba(48,157,236,0.2) 0%, transparent 70%); pointer-events: none; }
+.cta-box h2 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; position: relative; z-index: 2; }
+.cta-box h2 span { color: var(--azure); }
+.cta-box p { font-size: 1.0625rem; color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; position: relative; z-index: 2; }
+.btn-cta { display: inline-block; padding: 1rem 2.5rem; background: var(--white); color: var(--deep-navy); font-size: 1.0625rem; font-weight: 700; font-family: inherit; border-radius: 8px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; position: relative; z-index: 2; }
+.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+.cta-email { display: block; margin-top: 1.5rem; font-size: 0.875rem; color: rgba(255,255,255,0.5); position: relative; z-index: 2; }
+.cta-email a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+.cta-email a:hover { color: var(--white); }
+.cta-badge { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; position: relative; z-index: 2; }
+.cta-badge-label { font-size: 0.7rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; }
+.cta-badge-name { font-size: 0.875rem; color: var(--white); font-weight: 700; }
+
+/* ---- What is OneForm ---- */
+.what-section {
+  padding: 5rem 0; position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%);
+}
+.what-glow {
+  position: absolute; width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(48,157,236,0.12) 0%, rgba(57,185,196,0.06) 40%, transparent 70%);
+  pointer-events: none;
+  opacity: 0; transition: opacity 0.4s ease;
+  z-index: 0;
+}
+.what-section .container { position: relative; z-index: 1; }
+.what-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+}
+.what-text h2 {
+  font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem;
+}
+.what-text h2::after {
+  content: ""; display: block; width: 60px; height: 3px; background: var(--azure);
+  margin-top: 12px; border-radius: 2px;
+}
+.what-text p {
+  font-size: 1.0625rem; color: rgba(255,255,255,0.65); line-height: 1.8;
+}
+.what-animation {
+  display: flex; justify-content: center; align-items: center;
+}
+
+/* Chain stage */
+.chain-stage {
+  display: flex; align-items: stretch; gap: 0; position: relative;
+  width: 100%; max-width: 520px;
+}
+
+/* Chain cards */
+.chain-card {
+  flex: 1; opacity: 0; transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: flex; flex-direction: column;
+  position: relative; z-index: 2;
+}
+.chain-form { transform: translateX(-40px); }
+.chain-ms { transform: translateX(40px); }
+.chain-card.show { opacity: 1; transform: translateX(0); }
+
+.chain-card-inner {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px; padding: 24px 18px; text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+}
+.chain-icon { font-size: 28px; margin-bottom: 8px; }
+.chain-card-title {
+  font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 2px; letter-spacing: 0.3px;
+}
+.chain-card-sub {
+  font-size: 10px; color: rgba(255,255,255,0.55); margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.chain-lines { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; padding: 0 8px; }
+.chain-line {
+  height: 5px; border-radius: 3px;
+  background: linear-gradient(90deg, rgba(48,157,236,0.3), rgba(57,185,196,0.2));
+}
+.chain-line.w85 { width: 85%; }
+.chain-line.w65 { width: 65%; }
+.chain-line.w75 { width: 75%; }
+.chain-line.w50 { width: 50%; }
+.chain-card-btn {
+  background: var(--azure); color: white; font-size: 10px; font-weight: 700;
+  padding: 6px 16px; border-radius: 6px; display: inline-block; letter-spacing: 0.5px;
+}
+
+/* Microsoft card specifics */
+.chain-ms-logo {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  width: 40px; height: 40px; margin: 0 auto 10px;
+}
+.chain-ms-logo div { }
+.chain-ms-apps {
+  display: flex; flex-direction: column; gap: 4px; margin-top: 4px;
+}
+.chain-ms-apps span {
+  font-size: 9px; color: rgba(255,255,255,0.55); letter-spacing: 0.3px;
+}
+
+/* Chain link area */
+.chain-link-wrap {
+  width: 90px; flex-shrink: 0; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(0.5);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s;
+  z-index: 3;
+}
+.chain-link-wrap.show { opacity: 1; transform: scale(1); }
+
+/* Data flow lines - contained in gap, overflow hidden */
+.data-flow-lines {
+  position: absolute; top: 10%; bottom: 10%; left: 0; right: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+  overflow: hidden; z-index: 1;
+  opacity: 0; transition: opacity 1.2s ease;
+}
+.data-flow-lines.flowing { opacity: 1; }
+.data-line {
+  height: 2px; width: 100%; position: relative;
+  overflow: hidden;
+}
+.data-line::after {
+  content: ''; position: absolute; top: 0; height: 100%;
+  border-radius: 1px;
+  background: radial-gradient(ellipse at center, rgba(48,157,236,0.8), rgba(57,185,196,0.5), transparent);
+}
+
+/* Varied spacing for organic feel */
+.dl1  { margin-top: 0; }
+.dl2  { margin-top: 5px; }
+.dl3  { margin-top: 2px; }
+.dl4  { margin-top: 7px; }
+.dl5  { margin-top: 1px; }
+.dl6  { margin-top: 4px; }
+.dl7  { margin-top: 8px; }
+.dl8  { margin-top: 3px; }
+.dl9  { margin-top: 6px; }
+.dl10 { margin-top: 2px; }
+.dl11 { margin-top: 7px; }
+.dl12 { margin-top: 3px; }
+
+/* Varied glow widths - faster = longer streak */
+.dl1::after  { width: 30px; }
+.dl2::after  { width: 22px; }
+.dl3::after  { width: 38px; }
+.dl4::after  { width: 18px; }
+.dl5::after  { width: 28px; }
+.dl6::after  { width: 35px; }
+.dl7::after  { width: 20px; }
+.dl8::after  { width: 32px; }
+.dl9::after  { width: 24px; }
+.dl10::after { width: 40px; }
+.dl11::after { width: 26px; }
+.dl12::after { width: 19px; }
+
+/* Hide until flowing */
+.data-flow-lines:not(.flowing) .data-line::after { display: none; }
+
+/* Animations - small sparks that zip across the gap */
+.data-flow-lines.flowing .dl1::after  { animation: sparkR 1.4s linear infinite 0.0s; }
+.data-flow-lines.flowing .dl2::after  { animation: sparkL 1.6s linear infinite 0.3s; }
+.data-flow-lines.flowing .dl3::after  { animation: sparkR 1.2s linear infinite 0.7s; }
+.data-flow-lines.flowing .dl4::after  { animation: sparkL 1.8s linear infinite 0.1s; }
+.data-flow-lines.flowing .dl5::after  { animation: sparkR 1.5s linear infinite 0.5s; }
+.data-flow-lines.flowing .dl6::after  { animation: sparkL 1.3s linear infinite 0.9s; }
+.data-flow-lines.flowing .dl7::after  { animation: sparkR 1.7s linear infinite 0.2s; }
+.data-flow-lines.flowing .dl8::after  { animation: sparkL 1.4s linear infinite 0.6s; }
+.data-flow-lines.flowing .dl9::after  { animation: sparkR 1.6s linear infinite 0.4s; }
+.data-flow-lines.flowing .dl10::after { animation: sparkL 1.2s linear infinite 0.8s; }
+.data-flow-lines.flowing .dl11::after { animation: sparkR 1.5s linear infinite 0.15s; }
+.data-flow-lines.flowing .dl12::after { animation: sparkL 1.7s linear infinite 0.45s; }
+
+@keyframes sparkR {
+  0% { left: -45px; opacity: 0; }
+  3% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes sparkL {
+  0% { right: -45px; left: auto; opacity: 0; }
+  3% { opacity: 1; }
+  97% { opacity: 1; }
+  100% { right: 100%; left: auto; opacity: 0; }
+}
+
+
+.chain-lock-icon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+  font-size: 40px; z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.8s;
+  filter: drop-shadow(0 0 8px rgba(48,157,236,0.4));
+}
+.chain-link-wrap.show .chain-lock-icon { transform: translate(-50%, -50%) scale(1); }
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+.chain-card.show .chain-card-inner {
+  animation: subtleFloat 4s ease-in-out infinite;
+}
+.chain-form.show .chain-card-inner { animation-delay: 0s; }
+.chain-ms.show .chain-card-inner { animation-delay: 2s; }
+
+/* Platform toggle */
+.chain-toggle {
+  position: absolute; top: -40px; right: 0;
+  display: flex; align-items: center; gap: 10px;
+  opacity: 0; transition: opacity 0.6s ease 1.6s;
+}
+.chain-toggle.show { opacity: 1; }
+.chain-toggle-label {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.4);
+  letter-spacing: 0.3px; transition: color 0.3s;
+}
+.chain-toggle-label.active { color: rgba(255,255,255,0.8); }
+.chain-toggle-switch {
+  width: 36px; height: 20px; border-radius: 10px;
+  background: rgba(255,255,255,0.15); cursor: pointer;
+  position: relative; transition: background 0.3s;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.chain-toggle-switch::after {
+  content: ''; position: absolute; left: 2px; top: 2px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--azure); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.chain-toggle-switch.google::after { transform: translateX(16px); background: #4285F4; }
+
+/* Google card */
+.chain-google-logo {
+  display: flex; justify-content: center; margin-bottom: 10px;
+  font-size: 28px; font-weight: 700; letter-spacing: -1px;
+}
+.chain-google-logo span:nth-child(1) { color: #4285F4; }
+.chain-google-logo span:nth-child(2) { color: #EA4335; }
+.chain-google-logo span:nth-child(3) { color: #FBBC05; }
+.chain-google-logo span:nth-child(4) { color: #4285F4; }
+.chain-google-logo span:nth-child(5) { color: #34A853; }
+.chain-google-logo span:nth-child(6) { color: #EA4335; }
+
+/* Right card content transition - stacked so no jolt */
+.chain-right-wrap {
+  position: relative;
+}
+.chain-right-content {
+  transition: opacity 0.4s ease;
+  opacity: 0; visibility: hidden;
+  position: absolute; top: 0; left: 0; right: 0;
+}
+.chain-right-content.visible {
+  opacity: 1; visibility: visible;
+  position: relative;
+}
+
+/* Glowing tagline */
+.chain-glow-text {
+  margin-top: 14px; font-size: 10px; line-height: 1.5; letter-spacing: 0.2px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ---- Why OneForm ---- */
+.why-section { padding: 5rem 0; background: var(--white); }
+.why-header { text-align: center; margin-bottom: 3rem; }
+.why-header h2 { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.why-header h2 span { color: var(--azure); }
+.why-header p { font-size: 1.0625rem; color: var(--text-body); }
+
+/* Flip cards grid */
+.why-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.flip-card {
+  perspective: 800px; height: 260px; cursor: pointer; position: relative;
+  outline: none;
+}
+.flip-card:focus-visible {
+  outline: 3px solid var(--azure); outline-offset: 4px; border-radius: 16px;
+}
+.flip-card-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  transform-style: preserve-3d;
+}
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+.flip-front, .flip-back {
+  position: absolute; inset: 0; border-radius: 16px; padding: 24px 20px;
+  backface-visibility: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.flip-front {
+  background: var(--canvas); border: 1px solid var(--field-gray);
+  text-align: center;
+}
+.flip-back {
+  background: var(--navy); border: 1px solid rgba(48,157,236,0.2);
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+.flip-icon { font-size: 32px; margin-bottom: 12px; }
+.flip-problem { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.flip-desc { font-size: 0.8125rem; color: var(--text-body); line-height: 1.6; margin-bottom: 12px; }
+.flip-hint {
+  font-size: 0.6875rem; color: var(--azure); font-weight: 600; letter-spacing: 0.3px;
+  opacity: 0.7; transition: opacity 0.3s;
+}
+.flip-hint-tap { display: none; }
+@media (max-width: 1024px) {
+  .flip-hint-hover { display: none; }
+  .flip-hint-tap { display: inline; }
+}
+.flip-card:hover .flip-hint,
+.flip-card.flipped .flip-hint { opacity: 0; }
+
+/* First card wiggle + tooltip */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-2deg); }
+  30% { transform: rotate(2.5deg); }
+  45% { transform: rotate(-1.5deg); }
+  60% { transform: rotate(1deg); }
+  75% { transform: rotate(-0.5deg); }
+}
+.flip-card.wiggle .flip-card-inner {
+  animation: wiggle 1.5s ease-in-out infinite;
+}
+.flip-card.wiggle:hover .flip-card-inner {
+  animation: none;
+}
+.flip-card.wiggle-done .flip-card-inner {
+  animation: none;
+}
+.flip-nudge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--azure); color: white; font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 20px; white-space: nowrap; z-index: 5;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 12px rgba(48,157,236,0.3);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.flip-nudge::after {
+  content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 5px solid var(--azure);
+}
+.flip-card.wiggle-done .flip-nudge {
+  opacity: 0; transform: translateX(-50%) translateY(-8px); pointer-events: none;
+}
+
+.flip-solve-label {
+  font-size: 0.6875rem; font-weight: 700; color: var(--teal);
+  letter-spacing: 1px; margin-bottom: 12px;
+}
+.flip-solve { font-size: 0.875rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+
+/* === Batch 3 (touch / non-hover): STATIC STACKED CARD — no flip ===
+   Ethan's decision: on touch there is no flip. The light front (icon + problem
+   title) and the navy back ("The Fix" label + solution) lay back into normal
+   flow as ONE coherent card — problem heading on top, solution below — fully
+   readable with zero interaction. The cards are also stripped of
+   role="button"/tabindex/aria-label in JS on these devices since there is
+   nothing to activate. The 3D geometry (perspective, absolute faces, fixed
+   260px flip height) is neutralized here and lives only on hover+fine.
+   (OneForm's only prefers-reduced-motion block targets the video, not these
+   cards, so there is no crossfade start-state to reset.) Grid stretch plus
+   `.flip-back{flex:1}` equalizes sibling heights side-by-side; at ≤560px the
+   2-up grid drops to 1-up so a fully-expanded static card has room to read. */
+@media (hover: none), (pointer: coarse) {
+  .flip-card {
+    height: auto;
+    perspective: none;
+    cursor: default;
+  }
+  .flip-card-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: none !important;
+    transform-style: flat;
+  }
+  .flip-card.wiggle .flip-card-inner { animation: none; }
+  .flip-front, .flip-back {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    border-radius: 0;
+  }
+  .flip-front {
+    flex: 0 0 auto;
+    border-radius: 16px 16px 0 0;
+  }
+  .flip-back {
+    flex: 1 1 auto;
+    border-radius: 0 0 16px 16px;
+  }
+  .flip-hint { display: none; }
+  .flip-nudge { display: none; }
+}
+@media (hover: none) and (max-width: 560px),
+       (pointer: coarse) and (max-width: 560px) {
+  .why-cards { grid-template-columns: 1fr; }
+}
+
+/* Stat counters */
+.why-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  text-align: center;
+}
+.why-stat {
+  padding: 2rem 1rem; border-radius: 12px;
+  background: var(--canvas); border: 1px solid var(--field-gray);
+}
+.why-stat-num {
+  font-size: 2.5rem; font-weight: 700; color: var(--azure);
+  margin-bottom: 0.25rem; font-family: Tahoma, sans-serif;
+}
+.why-stat-label {
+  font-size: 0.8125rem; color: var(--text-body); font-weight: 600;
+}
+.why-stats-note {
+  text-align: center; font-size: 0.75rem; color: var(--text-light);
+  margin-top: 1rem; font-style: italic;
+}
+
+/* ---- Trust Banner (Sky Scene) ---- */
+.trust-banner {
+  padding: 0; overflow: hidden;
+  background: linear-gradient(180deg, #1a9de0 0%, var(--azure) 40%, #5cc8f5 100%);
+  position: relative;
+}
+.trust-clouds {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; pointer-events: none; z-index: 0;
+}
+.sky-cloud {
+  position: absolute; font-size: 5rem; line-height: 1;
+  opacity: 1; will-change: transform;
+}
+.sky-cloud.lg { font-size: 8rem; }
+.sky-cloud.xl { font-size: 11rem; }
+.sky-cloud.sm { font-size: 3.5rem; }
+
+/* Text banner */
+.trust-text-wrap {
+  position: relative; z-index: 1;
+  min-height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 3rem 2rem;
+}
+.trust-banner-box {
+  background: #fff;
+  padding: 1.75rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  animation: bannerBob 4s ease-in-out infinite;
+  display: flex; flex-direction: column; align-items: center;
+}
+@keyframes bannerBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.trust-banner-box h2 {
+  font-size: clamp(1.4rem, 2.8vw, 2rem); font-weight: 700;
+  color: var(--navy); line-height: 1.4; margin: 0;
+  text-align: center; white-space: nowrap;
+}
+.trust-banner-box h2 em {
+  font-style: italic; font-weight: 900; color: var(--azure);
+}
+.trust-banner-sub {
+  font-size: 0.875rem; color: var(--text-body); line-height: 1.6;
+  margin: 0.75rem 0 0; text-align: center; max-width: 480px;
+}
+@media (max-width: 768px) {
+  .trust-text-wrap { min-height: 280px; padding: 2rem; }
+  .trust-banner-box { padding: 1rem 2rem; }
+  .trust-banner-box h2 { white-space: normal; }
+}
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Layout stacking for small screens */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .lifecycle-grid { grid-template-columns: repeat(2, 1fr); }
+  .lifecycle-line { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .story-timeline { grid-template-columns: 1fr; padding-top: 0; }
+  .story-progress { display: none; }
+  .what-grid { grid-template-columns: 1fr; }
+  .what-text { text-align: center; }
+  .why-cards { grid-template-columns: repeat(2, 1fr); }
+  .why-stats { grid-template-columns: repeat(2, 1fr); }
+  .wf-compare { grid-template-columns: 1fr; }
+  .trust-points { flex-direction: column; align-items: center; }
+  .cta-box { padding: 3rem 1.5rem; }
+}
+
+/* ---- Service Model / Engagement ---- */
+.engage-section {
+  padding: 6rem 0; background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%);
+  position: relative; overflow: hidden;
+}
+.engage-header {
+  text-align: center; max-width: 640px; margin: 0 auto 3.5rem;
+}
+.engage-badge {
+  display: inline-block; padding: 0.375rem 1.25rem;
+  background: rgba(41,183,234,0.1); color: var(--azure);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; border-radius: 50px; margin-bottom: 1.25rem;
+}
+.engage-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700;
+  color: var(--white); margin-bottom: 0.75rem;
+}
+.engage-header p {
+  font-size: 1.0625rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+}
+.engage-steps {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 0; max-width: 960px; margin: 0 auto 3rem;
+}
+.engage-step {
+  flex: 1; text-align: center; padding: 0 1.5rem; position: relative;
+}
+.engage-step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--azure); color: var(--white);
+  font-size: 0.875rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 0 0 4px rgba(41,183,234,0.15), 0 4px 12px rgba(0,0,0,0.2);
+}
+.engage-step-icon {
+  font-size: 2rem; margin-bottom: 0.75rem;
+}
+.engage-step h3 {
+  font-size: 1.25rem; font-weight: 700; color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.engage-step p {
+  font-size: 0.9375rem; color: rgba(255,255,255,0.55); line-height: 1.7;
+}
+.engage-connector {
+  display: flex; align-items: center; padding-top: 16px;
+  flex: 0 0 40px;
+}
+.engage-connector-line {
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, rgba(41,183,234,0.4), rgba(57,185,196,0.4));
+  border-radius: 1px;
+}
+.engage-bridge {
+  text-align: center; max-width: 640px; margin: 0 auto;
+  font-size: 0.9375rem; color: rgba(255,255,255,0.45); line-height: 1.7;
+  padding: 1.5rem 2rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+.engage-bridge a {
+  color: var(--azure); text-decoration: none; font-weight: 600;
+  transition: color 0.2s;
+}
+.engage-bridge a:hover { color: var(--teal); }
+@media (max-width: 768px) {
+  .engage-steps { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .engage-connector { flex: 0 0 auto; padding: 0; }
+  .engage-connector-line { width: 2px; height: 24px; }
+  .engage-step { padding: 0; max-width: 360px; }
+}
+
+/* ---- Social Proof ---- */
+.social-proof {
+  padding: 5rem 0; background: var(--canvas); overflow: hidden;
+}
+.sp-inner { text-align: center; max-width: 860px; margin: 0 auto; }
+.sp-carousel-section { max-width: 100%; margin: 0; }
+.sp-headline {
+  font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700;
+  color: var(--navy); margin-bottom: 0.75rem;
+}
+.sp-sub {
+  font-size: 1.0625rem; color: var(--text-body); line-height: 1.7;
+  max-width: 640px; margin: 0 auto 3rem;
+}
+.sp-metrics {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  margin-bottom: 3rem;
+}
+.sp-metric {
+  padding: 1.5rem 1rem; border-radius: 16px;
+  background: var(--white); border: 1px solid var(--field-gray);
+}
+.sp-metric-num {
+  font-size: 1.75rem; font-weight: 700; color: var(--azure);
+  margin-bottom: 0.25rem;
+}
+.sp-metric-label {
+  font-size: 0.8125rem; color: var(--text-body); font-weight: 600;
+}
+.sp-logos {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.sp-ms-logo {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  width: 28px; height: 28px;
+}
+.sp-ms-logo span { display: block; }
+.sp-logo-amp {
+  font-size: 1rem; font-weight: 700; color: var(--text-light);
+}
+.sp-google-logo {
+  font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px;
+}
+.sp-google-logo span:nth-child(1) { color: #4285F4; }
+.sp-google-logo span:nth-child(2) { color: #EA4335; }
+.sp-google-logo span:nth-child(3) { color: #FBBC05; }
+.sp-google-logo span:nth-child(4) { color: #4285F4; }
+.sp-google-logo span:nth-child(5) { color: #34A853; }
+.sp-google-logo span:nth-child(6) { color: #EA4335; }
+.sp-carousel-wrap {
+  position: relative; overflow: hidden;
+  /* Break out of sp-inner's max-width to use full container */
+  width: calc(100% + 280px); margin-left: -140px;
+  padding: 0 2rem;
+  mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+.sp-carousel {
+  display: flex; gap: 1.25rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1.5rem;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.sp-carousel::-webkit-scrollbar { display: none; }
+.sp-card {
+  flex: 0 0 320px;
+  background: var(--white); border: 1px solid var(--field-gray);
+  border-radius: 16px; padding: 2rem 1.75rem;
+  text-align: left; position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+.sp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(37,66,107,0.1);
+}
+}
+.sp-card::before {
+  content: '\201C'; position: absolute; top: 14px; left: 18px;
+  font-size: 3.5rem; font-weight: 700; color: var(--azure);
+  opacity: 0.12; line-height: 1; font-family: Georgia, serif;
+}
+.sp-card-quote {
+  font-size: 0.9375rem; color: var(--navy); line-height: 1.7;
+  font-style: italic; margin-bottom: 1.25rem;
+  min-height: 100px;
+}
+.sp-card-author {
+  font-size: 0.875rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 2px;
+}
+.sp-card-org {
+  font-size: 0.75rem; color: var(--text-light); font-weight: 600;
+}
+@media (max-width: 768px) {
+  .sp-card { flex: 0 0 280px; }
+  .sp-metrics { grid-template-columns: 1fr; }
+  .sp-carousel-wrap { width: calc(100% + 4rem); margin-left: -2rem; }
+}
+
+/* ============================================================
+   ONEFORM VIDEO SECTIONS (integrated from approved prototype v1)
+   Scoped under .of-video-band (light) and .of-video-dark (dark).
+   Keyframes namespaced (ofvid-*) to avoid collision with page anims.
+   Brand tokens reused from :root — not redefined.
+   ============================================================ */
+
+/* Shared header pattern within the video bands
+   (the page's global .section-header has no eyebrow/sub styles, so
+    these are scoped locally to the video bands to stay self-contained) */
+.of-video-band .ofvid-header,
+.of-video-dark .ofvid-header { text-align: center; margin-bottom: 3.25rem; }
+.of-video-band .ofvid-header h2,
+.of-video-dark .ofvid-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700;
+  color: var(--navy); margin-bottom: 0.75rem; line-height: 1.15;
+}
+.of-video-band .ofvid-header h2 span,
+.of-video-dark .ofvid-header h2 span { color: var(--azure); }
+.of-video-band .ofvid-sub,
+.of-video-dark .ofvid-sub {
+  font-size: 1.0625rem; color: var(--text-body);
+  max-width: 560px; margin: 0.75rem auto 0; line-height: 1.7;
+}
+.of-video-band .ofvid-eyebrow,
+.of-video-dark .ofvid-eyebrow {
+  display: inline-block; padding: 0.375rem 1rem;
+  background: rgba(232,168,56,0.1); color: var(--gold);
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; border-radius: 50px;
+  margin-bottom: 1.25rem;
+}
+.of-video-band .ofvid-divider,
+.of-video-dark .ofvid-divider {
+  width: 60px; height: 4px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--azure), var(--teal));
+  margin: 1.25rem auto 0;
+}
+
+/* ---- SECTION 1 — Overview video (light --canvas band) ---- */
+.of-video-band {
+  background: var(--canvas);
+  padding: 6rem 0;
+}
+.of-video-band .ofvid-card {
+  max-width: 860px; margin: 0 auto;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--field-gray);
+  box-shadow: 0 20px 60px rgba(37,66,107,0.1), 0 1px 3px rgba(37,66,107,0.06);
+  overflow: hidden;
+}
+.of-video-band .ofvid-frame { padding: 56.25% 0 0 0; position: relative; }
+.of-video-band .ofvid-frame iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+
+/* ---- SECTION 2 — Run-through video (dark navy cinematic band) ---- */
+.of-video-dark {
+  background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%);
+  padding: 7rem 0;
+  position: relative; overflow: hidden;
+}
+.of-video-dark::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(48,157,236,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(57,185,196,0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.of-video-dark .container { position: relative; z-index: 1; }
+.of-video-dark .ofvid-header h2 { color: var(--white); }
+.of-video-dark .ofvid-sub { color: rgba(255,255,255,0.6); }
+.of-video-dark .ofvid-eyebrow { background: rgba(232,168,56,0.14); color: var(--gold); }
+
+/* YouTube facade card */
+.of-video-dark .ofvid-yt-facade {
+  position: relative;
+  max-width: 900px; margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  background-color: var(--deep-navy);
+  background-size: cover; background-position: center;
+  cursor: pointer;
+  display: block; width: 100%;
+  padding: 0; appearance: none; -webkit-appearance: none;
+  font-family: inherit; text-align: left;
+}
+.of-video-dark .ofvid-yt-facade::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,44,66,0.15) 0%, rgba(26,44,66,0.35) 55%, rgba(26,44,66,0.75) 100%);
+  pointer-events: none;
+}
+.of-video-dark .ofvid-yt-play {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--azure);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 40px rgba(41,183,234,0.45), 0 0 0 0 rgba(41,183,234,0.4);
+  z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  animation: ofvid-yt-pulse 2.8s ease-in-out infinite;
+}
+.of-video-dark .ofvid-yt-play svg { width: 34px; height: 34px; margin-left: 5px; }
+.of-video-dark .ofvid-yt-facade:hover .ofvid-yt-play,
+.of-video-dark .ofvid-yt-facade:focus-visible .ofvid-yt-play {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 16px 50px rgba(41,183,234,0.6);
+}
+.of-video-dark .ofvid-yt-facade:focus-visible {
+  outline: 3px solid var(--azure); outline-offset: 4px;
+}
+@keyframes ofvid-yt-pulse {
+  0%, 100% { box-shadow: 0 12px 40px rgba(41,183,234,0.45), 0 0 0 0 rgba(41,183,234,0.45); }
+  50% { box-shadow: 0 12px 40px rgba(41,183,234,0.45), 0 0 0 18px rgba(41,183,234,0); }
+}
+.of-video-dark .ofvid-yt-duration {
+  position: absolute; bottom: 1.25rem; right: 1.25rem; z-index: 3;
+  background: rgba(26,44,66,0.85);
+  color: var(--white);
+  font-size: 0.8125rem; font-weight: 700;
+  padding: 0.4rem 0.9rem; border-radius: 50px;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.of-video-dark .ofvid-yt-duration svg { width: 14px; height: 14px; opacity: 0.85; }
+.of-video-dark .ofvid-yt-label {
+  position: absolute; bottom: 1.25rem; left: 1.25rem; z-index: 3;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--white); font-size: 0.8125rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.of-video-dark .ofvid-yt-label::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold);
+}
+.of-video-dark .ofvid-yt-iframe-wrap {
+  position: relative; max-width: 900px; margin: 0 auto;
+  aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+.of-video-dark .ofvid-yt-iframe-wrap iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+
+/* ---- Video sections — responsive ---- */
+@media (max-width: 600px) {
+  .of-video-band { padding: 4rem 0; }
+  .of-video-dark { padding: 4.5rem 0; }
+  .of-video-dark .ofvid-yt-play { width: 72px; height: 72px; }
+  .of-video-dark .ofvid-yt-play svg { width: 26px; height: 26px; }
+  .of-video-dark .ofvid-yt-duration,
+  .of-video-dark .ofvid-yt-label { font-size: 0.7rem; bottom: 0.9rem; }
+  .of-video-dark .ofvid-yt-duration { right: 0.9rem; }
+  .of-video-dark .ofvid-yt-label { left: 0.9rem; }
+}
+
+/* ---- Video sections — reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .of-video-dark .ofvid-yt-play { animation: none; }
+  .of-video-dark .ofvid-yt-facade:hover .ofvid-yt-play,
+  .of-video-dark .ofvid-yt-facade:focus-visible .ofvid-yt-play { transform: translate(-50%, -50%); }
+  .of-video-dark .ofvid-yt-play,
+  .of-video-dark .ofvid-yt-facade:hover .ofvid-yt-play { transition: none; }
+}
+
+/* ============================================================
+   SCENARIO FAQ — page-local, fully namespaced under .scenario-faq.
+   OneForm is the deliberate design exception (design principles §15):
+   the DOM is the same accordion about.html ships, but it is SKINNED in
+   OneForm's own register — azure accent, --canvas band, OneForm's 16px
+   card radius and --field-gray hairline, OneForm's centered
+   .section-header + .section-divider treatment — rather than SyTech
+   navy/gold. It sits at the bottom edge, below the CTA, where the
+   handoff to the SyTech footer already happens.
+   16:9 frame lifted verbatim from media.html (.media-frame, ~L40).
+   CONTRAST NOTE: --azure (#29b7ea) measures 2.3:1 on white, so it is
+   used for FILLS and BORDERS only. Eyebrow text uses --navy (9.4:1);
+   the disclosure icon uses OneForm's own darker hero-gradient azure
+   #1a9de0 (3.0:1) so the affordance clears the 3:1 non-text minimum.
+   ============================================================ */
+.scenario-faq { padding: 6rem 0; background: var(--canvas); }
+.scenario-faq .scenario-faq-head { text-align: center; max-width: 760px; margin: 0 auto 3rem; }
+.scenario-faq .scenario-faq-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.75rem; }
+.scenario-faq h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.2; }
+.scenario-faq .section-divider { width: 60px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--azure), var(--teal)); margin: 0 auto; }
+.scenario-faq .faq-list { margin: 0 auto; max-width: 920px; }
+.scenario-faq .faq-item { background: var(--white); border: 1px solid var(--field-gray); border-radius: 16px; margin-bottom: 1rem; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.scenario-faq .faq-item:hover { border-color: rgba(41,183,234,0.55); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.scenario-faq .faq-item[open] { border-color: var(--azure); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.scenario-faq .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.75rem; cursor: pointer; font-weight: 700; font-size: 1.02rem; color: var(--navy); list-style: none; text-align: left; transition: background 0.2s ease; }
+.scenario-faq .faq-question::-webkit-details-marker { display: none; }
+.scenario-faq .faq-question:focus-visible { outline: 2px solid var(--navy); outline-offset: -2px; }
+.scenario-faq .faq-question:hover { background: rgba(41,183,234,0.06); }
+.scenario-faq .faq-icon { flex-shrink: 0; margin-left: 1rem; width: 22px; height: 22px; position: relative; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { content: ''; position: absolute; background: #1a9de0; border-radius: 1px; transition: opacity 0.25s ease; }
+.scenario-faq .faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.scenario-faq .faq-icon::after { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.scenario-faq .faq-item[open] .faq-icon { transform: rotate(180deg); }
+.scenario-faq .faq-item[open] .faq-icon::before { opacity: 0; }
+.scenario-faq .faq-answer { padding: 0 1.75rem 1.75rem; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); text-align: left; }
+.scenario-faq .faq-answer p { margin: 0; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); }
+.scenario-faq .faq-video { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); margin-top: 1.25rem; border-radius: 12px; overflow: hidden; }
+.scenario-faq .faq-video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .scenario-faq .faq-item, .scenario-faq .faq-icon, .scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { transition: none !important; }
+}
+@media (max-width: 900px) {
+  .scenario-faq { padding: 4rem 0; }
+  .scenario-faq .faq-question { padding: 1.15rem 1.25rem; }
+  .scenario-faq .faq-answer { padding: 0 1.25rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- SyTech Multipage Navigation (shared across all pages) -->
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<div class="hero-grid">
+<div>
+<!-- White "window" wraps the wordmark + amber eyebrow so both read on white against the
+     steel-blue hero wash (2026-06-23). Hugs its content; sits above the h1. -->
+<div class="hero-logo-window">
+<div class="hero-badge-block">
+<!-- HERO oneFORM wordmark — INLINED (was <img src="assets/oneform-wordmark.svg">) so the
+     "one" fill can be scoped inside .hero. The shared SVG asset stays azure for every other
+     page's hero; the nav + footer use the SyTech logo, NOT this wordmark, so they are
+     untouched. "FORM" stays navy (.ofwm-form). "one" → AZURE #2bb8eb (.ofwm-one) — the white
+     window now provides the contrast (the earlier WHITE "one" was reverted). Paths are
+     byte-for-byte the same as the asset file. -->
+<svg class="oneform-wordmark ofwm-hero" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 849.09 172.38" role="img" aria-label="OneForm"><title>OneForm</title><path class="ofwm-form" d="M849.09,128.67c-3.5-.56-24,1.54-24-1.9v-43.59c-7.28,7.61-11.72,18.65-17.88,26.97-.81,1.09-1.19,2.49-2.94,2.08l-20.87-30.32v46.75h-22.74V44.02h23.37c2.79,0,18.44,31.03,20.23,31.6,2.36.75,1.69-.94,2.17-1.65,2.75-4.11,16.16-28.81,17.65-29.67,3.04-1.76,20.11.74,25.01-.27v84.66Z"/><path class="ofwm-form" d="M628.02,129.94h-18.95c-49.22-10.69-45.71-82.63,4.37-87.24,57.77-5.31,69.08,73.22,14.58,87.24ZM613.78,64.53c-22.33,4.1-20.35,41.33.94,43.95,34.32,4.23,32.17-50.03-.94-43.95Z"/><path class="ofwm-form" d="M722.14,44.02c30.46,3.61,38.09,41.46,10.71,54.99l18.97,29.67h-25.9c-2.91,0-13.71-22.62-17.06-24.63-2.57-1.54-7.12-.29-10.1-.64v25.27h-22.11c-.13,0-1.89-1.76-1.89-1.9V45.91c0-.13,1.76-1.9,1.89-1.9,13.73,0,32.48-1.54,45.48,0ZM698.76,84.45h18.32c10.89,0,9.97-18.95,2.53-18.95h-20.84v18.95Z"/><path class="ofwm-form" d="M566.12,44.02v21.48h-42.95v12.64h39.16v20.22h-39.16v30.32h-22.11c-.13,0-1.89-1.76-1.89-1.9V45.91c0-.13,1.76-1.9,1.89-1.9h65.06Z"/><path class="ofwm-one" d="M101.05-.19c21.89,3.91,40.19,10.74,56.64,26.01,1.53,1.42,1.53,3.75,3.26,3.95V6.47l58.8.55v19.42c4.66-3.17,7.9-8.1,12.3-11.56,28.18-22.16,71.49-15.25,86.99,18.19,10.24-13.85,24.19-24.13,40.76-29.12,5.78-1.74,11.81-2.18,17.48-4.15h16.64c5.48,1.75,11.29,2.11,16.88,3.65,27.68,7.58,46.39,28.79,53.58,56.26,1.62,6.19,1.9,12.8,3.87,18.87v23.3h-109.83c5.12,27.26,35.76,32.95,57.7,20.55,5.32-3.01,8.54-7.37,13.88-9.43,2.02.06,28.22,22.07,30.52,26.06-30.67,42.46-100.26,43.26-136.49,7.21v22.75c0,.12-1.55,1.66-1.66,1.66h-55.47c-.12,0-1.66-1.55-1.66-1.66V60.84h-46.04c-1.33,0-15.51,10.35-18.3,11.65v26.08h17.2c.12,0,1.66,1.55,1.66,1.66v68.8c0,.12-1.55,1.66-1.66,1.66h-55.47c-.12,0-1.66-1.55-1.66-1.66v-26.08c-40.32,42.4-116.62,38.86-148.01-12.29C5.84,119.09,2.79,107.31.1,94.13c.21-3.65-.3-7.46,0-11.1C3.23,44.86,27.89,14.31,64.7,3.96L83.3-.19h17.75ZM413.9,71.94c-4.57-38.57-51.35-38.36-56.58,0h56.58ZM84.12,50.01c-39.66,6.21-34.61,77.95,11.82,72.84,44.16-4.85,37.71-80.59-11.82-72.84Z"/><path class="ofwm-one" d="M468.26,78.59c-1.97-6.07-2.25-12.69-3.87-18.87-7.19-27.47-25.9-48.68-53.58-56.26-5.59-1.53-11.4-1.9-16.88-3.65h-16.64c-5.67,1.97-11.7,2.41-17.48,4.15-16.57,4.98-30.52,15.27-40.76,29.12-1.21-2.62-2.62-5.06-4.15-7.35-15.05,16.76-31.68,32.08-49.65,45.72v97.58c0,.12,1.55,1.66,1.66,1.66h55.47c.12,0,1.66-1.55,1.66-1.66v-22.75c36.23,36.05,105.82,35.25,136.49-7.21-2.3-3.99-28.49-26-30.52-26.06-5.34,2.06-8.56,6.43-13.88,9.43-21.95,12.41-52.58,6.71-57.7-20.54h109.83v-23.31ZM357.32,71.94c5.23-38.36,52.01-38.57,56.58,0h-56.58ZM219.75,100.77v68.26c0,.12-1.55,1.66-1.66,1.66h-55.47c-.12,0-1.66-1.55-1.66-1.66v-26.08c-37.15,39.06-104.84,39.13-139.81-1.1,10.09.87,20.3,1.31,30.62,1.31,60.8,0,118.02-15.35,167.99-42.39Z"/><path class="ofwm-one" d="M265.24,84.09c68-.92,135.13-5.47,201.18-13.49-.62-3.64-1.11-7.33-2.04-10.88-7.19-27.47-25.9-48.68-53.58-56.26-5.59-1.53-11.4-1.9-16.88-3.65h-16.64c-5.67,1.97-11.7,2.41-17.48,4.15-16.57,4.98-30.52,15.27-40.76,29.12C303.54-.37,260.23-7.28,232.05,14.89c-4.4,3.46-7.64,8.39-12.3,11.56V7.02l-58.8-.55v23.3c-1.73-.2-1.74-2.53-3.26-3.95C141.24,10.56,122.94,3.72,101.05-.19h-17.75l-18.6,4.15C32.44,13.03,9.51,37.63,2.23,69.27c18.68,2.38,37.44,4.47,56.29,6.29,2.84-12.58,11.32-23.31,25.61-25.55,24.35-3.81,38.28,12.56,40.91,30.77,25.16,1.53,50.45,2.56,75.86,3.08v-11.37c2.79-1.3,16.98-11.65,18.3-11.65h46.04v23.24ZM413.9,71.94h-56.58c5.23-38.36,52.01-38.57,56.58,0Z"/></svg>
+<span class="hero-badge-tag">E-Forms — Built on the Systems You Already Own</span>
+</div>
+</div>
+<h1>From Paper to <span>eForms.</span></h1>
+<p class="hero-sub" data-aud="of-lead">Public agencies across California face the same challenge — forms trapped in paper, or locked inside e-form software that doesn't connect to anything. OneForm replaces both with seamless, scalable eForms inside the cloud you already own.</p>
+<div class="hero-actions">
+<a href="#cta" class="btn-primary">Request a Free Assessment</a>
+<a href="#engage" class="btn-secondary">See How It Works
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+</div>
+</div>
+
+<!-- HERO CINEMATIC ANIMATION -->
+<div class="hero-visual">
+<div class="cinema-stage" id="cinemaStage">
+<div class="cinema-header">
+<div class="cinema-dots"><span></span><span></span><span></span></div>
+<div class="cinema-title-bar" id="cinemaTitle">OneForm Designer</div>
+<div style="width:16px"></div>
+</div>
+<div class="cinema-body">
+<div class="cinema-phase build" id="cinemaPhase">BUILD</div>
+
+<!-- Stage 1: Build -->
+<div class="build-canvas" id="buildCanvas">
+<div class="build-field" id="bf1" style="top:30px;left:0;right:0;height:40px;">
+<div class="build-field-label">Full Name</div>
+<div class="build-field-icon">Aa</div>
+</div>
+<div class="build-field" id="bf2" style="top:95px;left:0;width:48%;height:40px;">
+<div class="build-field-label">Email</div>
+<div class="build-field-icon">@</div>
+</div>
+<div class="build-field" id="bf3" style="top:95px;right:0;width:48%;height:40px;">
+<div class="build-field-label">Phone</div>
+<div class="build-field-icon">#</div>
+</div>
+<div class="build-field" id="bf4" style="top:160px;left:0;right:0;height:60px;">
+<div class="build-field-label">Upload Document</div>
+<div class="build-field-icon" style="font-size:1rem;">&#x2B06;</div>
+</div>
+<div class="build-field" id="bf5" style="top:245px;left:0;width:140px;height:38px;background:var(--azure);border-color:var(--azure);">
+<div class="build-field-icon" style="color:var(--white);opacity:1;">Submit &#x2192;</div>
+</div>
+<div class="build-cursor" id="buildCursor">
+<svg viewBox="0 0 24 24"><path d="M5 3l14 8-7 2-3 7z" fill="var(--navy)" stroke="var(--white)" stroke-width="1.5"/></svg>
+</div>
+</div>
+
+<!-- Stage 2: Automate — Branching node workflow -->
+<div class="auto-canvas" id="autoCanvas">
+<svg id="autoSvg" viewBox="0 0 400 300" style="width:100%;height:100%;">
+<defs>
+<marker id="arrowT" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><path d="M0 0 L4 2 L0 4 z" fill="var(--teal)" opacity="0.7"/></marker>
+<marker id="arrowA" markerWidth="4" markerHeight="4" refX="3" refY="2" orient="auto"><path d="M0 0 L4 2 L0 4 z" fill="var(--azure)" opacity="0.7"/></marker>
+</defs>
+<!-- Connection lines — with generous gaps between arrows and boxes -->
+<line class="auto-line" id="al-s1" x1="200" y1="50" x2="200" y2="66" marker-end="url(#arrowA)"/>
+<line class="auto-line" id="al-12" x1="200" y1="110" x2="200" y2="112" marker-end="url(#arrowA)"/>
+<!-- Diamond to 3 branches -->
+<line class="auto-line" id="al-ba" x1="176" y1="158" x2="112" y2="182" marker-end="url(#arrowT)"/>
+<line class="auto-line" id="al-bb" x1="200" y1="172" x2="200" y2="182" marker-end="url(#arrowT)"/>
+<line class="auto-line" id="al-bc" x1="224" y1="158" x2="288" y2="182" marker-end="url(#arrowT)"/>
+<!-- Branches to end nodes -->
+<line class="auto-line" id="al-ea" x1="72" y1="226" x2="72" y2="250" marker-end="url(#arrowA)"/>
+<line class="auto-line" id="al-eb" x1="200" y1="226" x2="200" y2="250" marker-end="url(#arrowA)"/>
+<line class="auto-line" id="al-ec" x1="328" y1="226" x2="328" y2="250" marker-end="url(#arrowA)"/>
+
+<!-- Start node -->
+<g class="auto-node-g" id="ang-start">
+<rect x="148" y="14" width="104" height="28" rx="8" fill="rgba(48,157,236,0.08)" stroke="var(--azure)" stroke-width="1.2"/>
+<text x="200" y="32" text-anchor="middle" font-size="10" font-weight="700" font-family="Tahoma,sans-serif" fill="var(--azure)">Form Submitted</text>
+</g>
+
+<!-- Process node -->
+<g class="auto-node-g" id="ang-process">
+<rect x="152" y="74" width="96" height="28" rx="8" fill="rgba(48,157,236,0.06)" stroke="var(--azure)" stroke-width="1"/>
+<text x="200" y="92" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="var(--azure)">Validate Data</text>
+</g>
+
+<!-- Decision diamond -->
+<g class="auto-node-g" id="ang-diamond">
+<rect x="178" y="120" width="44" height="44" rx="4" transform="rotate(45 200 142)" fill="rgba(239,168,55,0.12)" stroke="#EFA837" stroke-width="1.5"/>
+<text x="200" y="146" text-anchor="middle" font-size="8" font-weight="700" font-family="Tahoma,sans-serif" fill="#D49230">Route</text>
+</g>
+
+<!-- Branch A: Approve -->
+<g class="auto-node-g" id="ang-ba">
+<rect x="32" y="190" width="80" height="28" rx="8" fill="rgba(57,185,196,0.08)" stroke="var(--teal)" stroke-width="1"/>
+<text x="72" y="208" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="var(--teal)">Approve</text>
+</g>
+<!-- Branch B: Review -->
+<g class="auto-node-g" id="ang-bb">
+<rect x="160" y="190" width="80" height="28" rx="8" fill="rgba(57,185,196,0.08)" stroke="var(--teal)" stroke-width="1"/>
+<text x="200" y="208" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="var(--teal)">Review</text>
+</g>
+<!-- Branch C: Escalate -->
+<g class="auto-node-g" id="ang-bc">
+<rect x="288" y="190" width="80" height="28" rx="8" fill="rgba(57,185,196,0.08)" stroke="var(--teal)" stroke-width="1"/>
+<text x="328" y="208" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="var(--teal)">Escalate</text>
+</g>
+
+<!-- End nodes (green) -->
+<g class="auto-node-g" id="ang-ea">
+<rect x="32" y="258" width="80" height="28" rx="8" fill="rgba(72,187,120,0.1)" stroke="#48BB78" stroke-width="1.2"/>
+<text x="72" y="276" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="#38A169">Archive</text>
+</g>
+<g class="auto-node-g" id="ang-eb">
+<rect x="160" y="258" width="80" height="28" rx="8" fill="rgba(72,187,120,0.1)" stroke="#48BB78" stroke-width="1.2"/>
+<text x="200" y="276" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="#38A169">Archive</text>
+</g>
+<g class="auto-node-g" id="ang-ec">
+<rect x="288" y="258" width="80" height="28" rx="8" fill="rgba(72,187,120,0.1)" stroke="#48BB78" stroke-width="1.2"/>
+<text x="328" y="276" text-anchor="middle" font-size="9" font-weight="700" font-family="Tahoma,sans-serif" fill="#38A169">Archive</text>
+</g>
+
+<!-- Traveling form document -->
+<g id="autoTraveler" opacity="0">
+<rect x="-10" y="-13" width="20" height="26" rx="3" fill="var(--azure)" stroke="white" stroke-width="1.5"/>
+<line x1="-5" y1="-5" x2="5" y2="-5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="-5" y1="0" x2="3" y2="0" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+<line x1="-5" y1="5" x2="1" y2="5" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+</g>
+
+<!-- Status label that pops in -->
+<g class="auto-notif-g" id="aNotif1" opacity="0">
+<rect x="280" y="295" width="74" height="20" rx="6" fill="rgba(72,187,120,0.1)" stroke="#48BB78" stroke-width="0.8"/>
+<text x="317" y="309" text-anchor="middle" font-size="7.5" font-weight="700" font-family="Tahoma,sans-serif" fill="#38A169">Completed</text>
+</g>
+</svg>
+</div>
+
+<!-- Stage 3: Cloud / AI -->
+<div class="cloud-canvas" id="cloudCanvas">
+<svg width="0" height="0"><defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5BB8F5" stop-opacity="0.6"/><stop offset="100%" stop-color="#29b7ea" stop-opacity="0.05"/></linearGradient></defs></svg>
+<div class="cloud-dash">
+<div class="cloud-metric" id="cm1">
+<div class="cloud-metric-label">Forms Today</div>
+<div class="cloud-metric-value">247</div>
+<div class="cloud-metric-change">&#x2191; 12%</div>
+</div>
+<div class="cloud-metric" id="cm2">
+<div class="cloud-metric-label">Avg Process</div>
+<div class="cloud-metric-value">1.4h</div>
+<div class="cloud-metric-change">&#x2193; 38%</div>
+</div>
+<div class="cloud-metric" id="cm3">
+<div class="cloud-metric-label">Compliance</div>
+<div class="cloud-metric-value">99.2%</div>
+<div class="cloud-metric-change">&#x2191; 0.4%</div>
+</div>
+</div>
+<div class="cloud-chart" id="cloudChart">
+<svg viewBox="0 0 400 140" preserveAspectRatio="none">
+<path class="chart-area" id="chartArea" d="M0 140 L0 100 Q50 80 100 70 T200 50 T300 35 T400 20 L400 140 Z"/>
+<path class="chart-glow" id="chartGlow" d="M0 100 Q50 80 100 70 T200 50 T300 35 T400 20"/>
+<path class="chart-line" id="chartLine" d="M0 100 Q50 80 100 70 T200 50 T300 35 T400 20"/>
+</svg>
+</div>
+<div class="cloud-ai-badge" id="cloudAI">
+<div class="cloud-ai-icon">AI</div>
+<div class="cloud-ai-text"><strong>Copilot Insight:</strong> Processing time dropped 38% after workflow optimization. 14 forms flagged for retention review.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="float-chip">
+<div class="float-chip-icon">&#x2713;</div>
+Compliance Verified
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================
+     OneForm video — Section 1: Overview (light band, inline Vimeo)
+     ============================================ -->
+<section class="of-video-band" aria-labelledby="ofvid-overview-heading">
+<div class="container">
+<div class="ofvid-header">
+<span class="ofvid-eyebrow">See It Work</span>
+<h2 id="ofvid-overview-heading">See OneForm <span>in action</span></h2>
+<div class="ofvid-divider"></div>
+<p class="ofvid-sub">Watch the 2-minute overview.</p>
+</div>
+<div class="ofvid-card">
+<div class="ofvid-frame">
+<iframe src="https://player.vimeo.com/video/1200851826?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="OneForm 2.0"></iframe>
+</div>
+</div>
+</div>
+</section>
+
+<!-- What is OneForm -->
+<section class="what-section" id="whatwhy">
+<div class="what-glow" id="whatGlow"></div>
+<div class="container">
+<div class="what-grid">
+<div class="what-text reveal">
+<h2>What is <span style="color:var(--azure)">OneForm</span>?</h2>
+<p>OneForm is both an eForms platform and a service designed to replace outdated paper processes with open, scalable digital forms — all inside the cloud environment you already own.</p>
+</div>
+<div class="what-animation" id="whatAnimation">
+<div class="chain-stage" id="chainStage">
+
+<!-- Form card -->
+<div class="chain-card chain-form" id="chainForm">
+<div class="chain-card-inner">
+<div class="chain-icon">&#x1F4CB;</div>
+<div class="chain-card-title">OneForm</div>
+<div class="chain-card-sub">eForms Engine</div>
+<div class="chain-lines">
+<div class="chain-line w85"></div>
+<div class="chain-line w65"></div>
+<div class="chain-line w75"></div>
+<div class="chain-line w50"></div>
+</div>
+<div class="chain-card-btn">Submit</div>
+</div>
+</div>
+
+<!-- Chain link with data flow -->
+<div class="chain-link-wrap" id="chainLinkWrap">
+<div class="data-flow-lines" id="dataFlowLines">
+<div class="data-line dl1"></div>
+<div class="data-line dl2"></div>
+<div class="data-line dl3"></div>
+<div class="data-line dl4"></div>
+<div class="data-line dl5"></div>
+<div class="data-line dl6"></div>
+<div class="data-line dl7"></div>
+<div class="data-line dl8"></div>
+<div class="data-line dl9"></div>
+<div class="data-line dl10"></div>
+<div class="data-line dl11"></div>
+<div class="data-line dl12"></div>
+</div>
+<div class="chain-lock-icon" id="chainLock">&#x1F517;</div>
+</div>
+
+<!-- Microsoft / Google card -->
+<div class="chain-card chain-ms" id="chainMs">
+<div class="chain-card-inner">
+<div class="chain-right-wrap">
+<div class="chain-right-content visible" id="msContent">
+<div class="chain-ms-logo">
+<div style="background:#F25022"></div>
+<div style="background:#7FBA00"></div>
+<div style="background:#00A4EF"></div>
+<div style="background:#FFB900"></div>
+</div>
+<div class="chain-card-title">Microsoft 365</div>
+<div class="chain-card-sub">Your Existing Licenses</div>
+<div class="chain-ms-apps"><span>SharePoint</span></div>
+<div class="chain-glow-text">Your data stays in your environment — not proprietary software.</div>
+</div>
+<div class="chain-right-content" id="googleContent">
+<div class="chain-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
+<div class="chain-card-title">Google Workspace</div>
+<div class="chain-card-sub">Your Existing Licenses</div>
+<div class="chain-ms-apps"><span>Google Drive</span></div>
+<div class="chain-glow-text">Your data stays in your environment — not proprietary software.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Toggle switch -->
+<div class="chain-toggle" id="chainToggle">
+<span class="chain-toggle-label active" id="toggleLabelMs">Microsoft</span>
+<div class="chain-toggle-switch" id="toggleSwitch" role="switch" aria-checked="false" aria-label="Toggle between Microsoft and Google" tabindex="0"></div>
+<span class="chain-toggle-label" id="toggleLabelG">Google</span>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why OneForm -->
+<section class="why-section" id="whyOneform">
+<div class="container">
+<div class="why-header reveal">
+<h2>Why <span>OneForm</span>?</h2>
+<p>Public agencies face real problems. OneForm solves them — without adding complexity.</p>
+</div>
+
+<!-- Pain Point Flip Cards -->
+<div class="why-cards">
+
+<div class="flip-card reveal wiggle" id="firstFlipCard" role="button" tabindex="0" aria-label="Paper Bottlenecks — tap to see how OneForm fixes this">
+<div class="flip-nudge">&#x1F449; Hover over me!</div>
+<div class="flip-card-inner">
+<div class="flip-front">
+<div class="flip-icon">&#x1F4C4;</div>
+<div class="flip-problem">Paper Bottlenecks</div>
+<div class="flip-desc">Forms move slowly. Approvals take days. Staff re-enter data by hand.</div>
+<div class="flip-hint"><span class="flip-hint-hover">Hover to see the fix &rarr;</span><span class="flip-hint-tap">Tap to see the fix &rarr;</span></div>
+</div>
+<div class="flip-back">
+<div class="flip-solve-label">The Fix</div>
+<div class="flip-solve">Digital forms with built-in routing. Submissions trigger instant workflows — no paper, no re-entry, no delays.</div>
+</div>
+</div>
+</div>
+
+<div class="flip-card reveal" role="button" tabindex="0" aria-label="Data Silos — tap to see how OneForm fixes this">
+<div class="flip-card-inner">
+<div class="flip-front">
+<div class="flip-icon">&#x1F5C4;</div>
+<div class="flip-problem">Data Silos</div>
+<div class="flip-desc">E-form tools sit outside your records system. Another login. Another silo. Another problem.</div>
+<div class="flip-hint"><span class="flip-hint-hover">Hover to see the fix &rarr;</span><span class="flip-hint-tap">Tap to see the fix &rarr;</span></div>
+</div>
+<div class="flip-back">
+<div class="flip-solve-label">The Fix</div>
+<div class="flip-solve">Everything lives in SharePoint or Google Drive — your existing cloud. One system, one login, zero silos.</div>
+</div>
+</div>
+</div>
+
+<div class="flip-card reveal" role="button" tabindex="0" aria-label="Rising Software Costs — tap to see how OneForm fixes this">
+<div class="flip-card-inner">
+<div class="flip-front">
+<div class="flip-icon">&#x1F4B8;</div>
+<div class="flip-problem">Rising Software Costs</div>
+<div class="flip-desc">Standalone platforms are expensive to license, maintain, and support year after year.</div>
+<div class="flip-hint"><span class="flip-hint-hover">Hover to see the fix &rarr;</span><span class="flip-hint-tap">Tap to see the fix &rarr;</span></div>
+</div>
+<div class="flip-back">
+<div class="flip-solve-label">The Fix</div>
+<div class="flip-solve">Built on the licenses you already own. No new software to buy. Reduce long-term costs while gaining more capability.</div>
+</div>
+</div>
+</div>
+
+<div class="flip-card reveal" role="button" tabindex="0" aria-label="Compliance Gaps — tap to see how OneForm fixes this">
+<div class="flip-card-inner">
+<div class="flip-front">
+<div class="flip-icon">&#x1F6E1;</div>
+<div class="flip-problem">Compliance Gaps</div>
+<div class="flip-desc">Records are hard to track. Retention policies are manual. Audits are stressful.</div>
+<div class="flip-hint"><span class="flip-hint-hover">Hover to see the fix &rarr;</span><span class="flip-hint-tap">Tap to see the fix &rarr;</span></div>
+</div>
+<div class="flip-back">
+<div class="flip-solve-label">The Fix</div>
+<div class="flip-solve">Forms create records. Records feed compliance. Automated retention, audit trails, and governance — all built in.</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- Stat Counters -->
+<div class="why-stats" id="whyStats">
+<div class="why-stat">
+<div class="why-stat-num" data-target="60" data-suffix="%">0%</div>
+<div class="why-stat-label">Faster Form Processing</div>
+</div>
+<div class="why-stat">
+<div class="why-stat-num" data-target="0" data-countdown="20" data-suffix="">20</div>
+<div class="why-stat-label">New Licenses Required</div>
+</div>
+<div class="why-stat">
+<div class="why-stat-num" data-target="99" data-suffix="%" data-decimal=".2">0%</div>
+<div class="why-stat-label">Compliance Rate</div>
+</div>
+<div class="why-stat">
+<div class="why-stat-num" data-target="3" data-suffix="x">0x</div>
+<div class="why-stat-label">Faster Deployment</div>
+</div>
+</div>
+<p class="why-stats-note">Based on public agency implementations</p>
+
+</div>
+</section>
+
+<!-- ============================================
+     OneForm video — Section 2: Run-through (dark navy band, YouTube click-to-play)
+     Placement: between the light why-section (above) and the light lifecycle
+     "how it works" comparison (below) — the page's only light -> dark -> light
+     window. The other two dark bands (what-section, story-section) bracket the
+     in-between content, so this was the one slot that keeps the run-through
+     band flanked by light on BOTH sides (no two dark bands adjacent).
+     ============================================ -->
+<section class="of-video-dark" aria-labelledby="ofvid-runthrough-heading">
+<div class="container">
+<div class="ofvid-header">
+<span class="ofvid-eyebrow">Full Walkthrough</span>
+<h2 id="ofvid-runthrough-heading">See exactly <span>how it works</span></h2>
+<div class="ofvid-divider"></div>
+<p class="ofvid-sub">A full walkthrough of OneForm, start to finish.</p>
+</div>
+
+<!-- Hidden thumbnail probe: if maxresdefault.jpg fails to load, swap the
+     facade background to hqdefault.jpg so it never renders blank. -->
+<img src="https://img.youtube.com/vi/IWZIal_nVLA/maxresdefault.jpg" alt=""
+     aria-hidden="true" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;"
+     onerror="(function(i){var f=document.getElementById('ofvidYtFacade');if(f){f.style.backgroundImage=&quot;linear-gradient(180deg, rgba(26,44,66,0.15), rgba(26,44,66,0.55)), url('https://img.youtube.com/vi/IWZIal_nVLA/hqdefault.jpg')&quot;;}i.remove();})(this)">
+
+<!-- Click-to-play facade (no YouTube loaded until clicked) -->
+<button type="button" class="ofvid-yt-facade" id="ofvidYtFacade"
+        aria-label="Play the full OneForm walkthrough video, 13 minutes"
+        style="background-image: linear-gradient(180deg, rgba(26,44,66,0.15), rgba(26,44,66,0.55)), url('https://img.youtube.com/vi/IWZIal_nVLA/maxresdefault.jpg');">
+<span class="ofvid-yt-label">Full walkthrough</span>
+<span class="ofvid-yt-play" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+</span>
+<span class="ofvid-yt-duration" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+13 min walkthrough
+</span>
+</button>
+</div>
+</section>
+
+<section class="lifecycle" id="lifecycle">
+<div class="container">
+<div class="section-header reveal">
+<h2>Before &amp; After <span style="color:var(--azure)">OneForm</span></h2>
+<div class="section-divider"></div>
+</div>
+
+<div class="wf-compare">
+
+<!-- Manual side -->
+<div class="wf-side manual" id="wfManual">
+<div class="wf-badge">WITHOUT OneForm</div>
+<h3>Manual Process</h3>
+<div class="wf-steps">
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x1F4C4;</div>
+<div class="wf-step-text">
+<h4>Paper Form Submitted</h4>
+<p>Staff fills out a paper form and walks it to the next office.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x23F3;</div>
+<div class="wf-step-text">
+<h4>Wait for Approval</h4>
+<p>Form sits in an inbox or on a desk. Approvals take days or weeks.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x270D;</div>
+<div class="wf-step-text">
+<h4>Re-Enter Data</h4>
+<p>Staff manually types the same data into a spreadsheet or system.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x1F4C1;</div>
+<div class="wf-step-text">
+<h4>File in a Cabinet</h4>
+<p>Paper gets filed away. Hard to find, impossible to audit.</p>
+</div>
+</div>
+
+</div>
+<div class="wf-time">&#x23F1; Average: 5–10 business days</div>
+</div>
+
+<!-- Automated side -->
+<div class="wf-side automated" id="wfAuto">
+<div class="wf-badge">WITH OneForm</div>
+<h3>Automated Process</h3>
+<div class="wf-steps">
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x1F4CB;</div>
+<div class="wf-step-text">
+<h4>Digital Form Submitted</h4>
+<p>Staff submits an eForms from any device. Data captured instantly.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x26A1;</div>
+<div class="wf-step-text">
+<h4>Workflow Triggers Automatically</h4>
+<p>Power Automate routes the form to the right approver. No waiting.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x1F4BE;</div>
+<div class="wf-step-text">
+<h4>Record Created in SharePoint</h4>
+<p>Data flows directly into your existing cloud — no re-entry needed.</p>
+</div>
+</div>
+
+<div class="wf-step">
+<div class="wf-step-icon">&#x1F6E1;</div>
+<div class="wf-step-text">
+<h4>Compliance Built In</h4>
+<p>Retention policies, audit trails, and governance — all automatic.</p>
+</div>
+</div>
+
+</div>
+<div class="wf-time">&#x26A1; Average: Minutes, not days</div>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- DEEP STORY ANIMATION SECTION -->
+<section class="story-section" id="story">
+<canvas class="story-dots-canvas" id="storyDotsCanvas"></canvas>
+<div class="container">
+<div class="story-header reveal">
+<h2>See the <span>OneForm</span> Journey</h2>
+<p>From form creation to AI-powered insights — all inside Microsoft 365.</p>
+</div>
+<div class="story-progress reveal" id="storyProgress">
+<div class="story-progress-track">
+<div class="story-progress-fill" id="progressFill"></div>
+<div class="story-progress-dot" id="progressDot"></div>
+<div class="story-progress-stops">
+<div class="story-progress-stop reached" id="ps0"></div>
+<div class="story-progress-stop" id="ps1"></div>
+<div class="story-progress-stop" id="ps2"></div>
+</div>
+</div>
+</div>
+<div class="story-timeline" id="storyTimeline">
+
+<!-- Panel 1: Drag & Drop Build -->
+<div class="story-panel reveal" id="storyPanel0">
+<div class="story-stage-num s1" id="stageNum0">1</div>
+<div class="story-label">Build</div>
+<div class="story-desc">Drag fields from the toolbar and drop them into your form — no code needed.</div>
+<div class="story-box">
+<div class="dnd-scene" id="dndScene">
+<div class="dnd-sidebar">
+<div class="dnd-tool">Aa</div>
+<div class="dnd-tool">@</div>
+<div class="dnd-tool">#</div>
+<div class="dnd-tool">&#x2B06;</div>
+<div class="dnd-tool">&#x2192;</div>
+</div>
+<div class="dnd-form-area" id="dndFormArea">
+<div class="dnd-slot" id="ds0" style="height:36px;">
+<div class="dnd-slot-content">
+<div class="dnd-slot-icon">Aa</div>
+<div class="dnd-slot-label">Full Name</div>
+<div class="dnd-slot-mock"></div>
+</div>
+</div>
+<div class="dnd-slot" id="ds1" style="height:36px;">
+<div class="dnd-slot-content">
+<div class="dnd-slot-icon">@</div>
+<div class="dnd-slot-label">Email</div>
+<div class="dnd-slot-mock"></div>
+</div>
+</div>
+<div class="dnd-slot" id="ds2" style="height:36px;">
+<div class="dnd-slot-content">
+<div class="dnd-slot-icon">#</div>
+<div class="dnd-slot-label">Phone</div>
+<div class="dnd-slot-mock"></div>
+</div>
+</div>
+<div class="dnd-slot" id="ds3" style="height:44px;">
+<div class="dnd-slot-content">
+<div class="dnd-slot-icon">&#x2B06;</div>
+<div class="dnd-slot-label">Upload</div>
+<div class="dnd-slot-mock" style="border-style:dashed;"></div>
+</div>
+</div>
+<div class="dnd-slot" id="ds4" style="height:34px;">
+<div class="dnd-slot-content">
+<div class="dnd-slot-icon">&#x2192;</div>
+<div class="dnd-slot-label" style="color:var(--azure);">Submit</div>
+</div>
+</div>
+</div>
+<div class="dnd-ghost" id="dndGhost"></div>
+<div class="dnd-cursor" id="dndCursor">
+<svg viewBox="0 0 24 24"><path d="M5 3l14 8-7 2-3 7z" fill="white" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Panel 2: Workflow with Traveling Form -->
+<div class="story-panel reveal" id="storyPanel1">
+<div class="story-stage-num s2" id="stageNum1">2</div>
+<div class="story-label">Automate</div>
+<div class="story-desc">Your form moves through each workflow stage automatically — routing, approvals, and archival.</div>
+<div class="story-box">
+<div class="wf-scene" id="wfScene">
+<div class="wf-track-wrap">
+<div class="wf-track"><div class="wf-track-fill" id="wfTrackFill"></div></div>
+</div>
+<div class="wf-row" id="wn0"><div class="wf-node-dot">&#x1F4C4;</div><div class="wf-node-spacer"></div><div class="wf-node-label">Submitted</div></div>
+<div class="wf-row" id="wn1"><div class="wf-node-dot">&#x2192;</div><div class="wf-node-spacer"></div><div class="wf-node-label">Route</div></div>
+<div class="wf-row" id="wn2"><div class="wf-node-dot">&#x2713;</div><div class="wf-node-spacer"></div><div class="wf-node-label">Approve</div></div>
+<div class="wf-row" id="wn3"><div class="wf-node-dot">&#x1F4C1;</div><div class="wf-node-spacer"></div><div class="wf-node-label">Record</div></div>
+<div class="wf-row" id="wn4"><div class="wf-node-dot">&#x1F512;</div><div class="wf-node-spacer"></div><div class="wf-node-label">Archive</div></div>
+<div class="wf-traveler" id="wfTraveler" style="top:26px;">
+<svg viewBox="0 0 22 28" fill="none">
+<rect x="1" y="1" width="20" height="26" rx="3" fill="#29b7ea" stroke="white" stroke-width="1.5"/>
+<line x1="6" y1="8" x2="16" y2="8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="6" y1="13" x2="14" y2="13" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+<line x1="6" y1="18" x2="12" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Panel 3: Clean Dashboard -->
+<div class="story-panel reveal" id="storyPanel2">
+<div class="story-stage-num s3" id="stageNum2">3</div>
+<div class="story-label">Analyze</div>
+<div class="story-desc">Cloud dashboards and AI surface insights from your operational data.</div>
+<div class="story-box">
+<div class="dash-scene" id="dashScene">
+<div class="dash-metrics">
+<div class="dash-metric">
+<div class="dash-metric-label">Forms</div>
+<div class="dash-metric-value">247</div>
+<div class="dash-metric-delta up">&#x2191; 12%</div>
+</div>
+<div class="dash-metric">
+<div class="dash-metric-label">Avg Time</div>
+<div class="dash-metric-value">1.4h</div>
+<div class="dash-metric-delta down">&#x2193; 38%</div>
+</div>
+<div class="dash-metric">
+<div class="dash-metric-label">Compliance</div>
+<div class="dash-metric-value">99.2%</div>
+<div class="dash-metric-delta up">&#x2191; 0.4%</div>
+</div>
+</div>
+<div class="dash-chart">
+<div class="dash-chart-label">Form Volume — 30 Days</div>
+<svg viewBox="0 0 300 100" preserveAspectRatio="none">
+<defs>
+<linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#5BB8F5" stop-opacity="0.7"/>
+<stop offset="100%" stop-color="#29b7ea" stop-opacity="0.05"/>
+</linearGradient>
+</defs>
+<path class="dash-chart-area" d="M0 100 L0 70 Q30 60 60 55 T120 40 T180 30 T240 22 T300 15 L300 100 Z" fill="url(#dashGrad)"/>
+<path class="dash-chart-glow" d="M0 70 Q30 60 60 55 T120 40 T180 30 T240 22 T300 15"/>
+<path class="dash-chart-line" d="M0 70 Q30 60 60 55 T120 40 T180 30 T240 22 T300 15"/>
+</svg>
+</div>
+<div class="dash-ai">
+<div class="dash-ai-icon">AI</div>
+<div class="dash-ai-text"><strong>Copilot Insight:</strong> Processing time dropped 38% after workflow optimization. 14 forms flagged for retention review.</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+<div class="container">
+<div class="section-header reveal"><h2>Built for <span>Security</span>, Records, and Integration</h2><div class="section-divider"></div></div>
+<div class="features-grid">
+<div class="feature-card reveal">
+<div class="feature-icon azure"><span class="feature-emoji">&#x1F512;</span></div>
+<h3>Enterprise-Grade Security</h3><p>OneForm inherits your tenant's existing security policies — Azure AD, conditional access, MFA, and DLP. No third-party exposure. No separate admin console. Your IT team already controls everything.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon teal"><span class="feature-emoji">&#x1F4C2;</span></div>
+<h3>Managed Records Lifecycle</h3><p>Every submission automatically becomes a managed record with retention policies, audit trails, and disposition tracking. Records are governed from creation to archival — not piling up in folders.</p>
+</div>
+<div class="feature-card reveal">
+<div class="feature-icon navy"><span class="feature-emoji">&#x1F517;</span></div>
+<h3>Native Integrations</h3><p>Power Automate for workflows. Power BI for reporting. Teams for notifications. SharePoint for storage. OneForm connects to what you already use — no APIs to configure, no middleware to maintain.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Service Model: How Engagement Works -->
+<section class="engage-section" id="engage">
+<div class="container">
+<div class="engage-header reveal">
+<div class="engage-badge">A Partnership — Not a Platform</div>
+<h2>How We Work With You</h2>
+<p>OneForm isn't software you install and figure out alone. It's a hands-on engagement — we configure, build, and support everything inside the cloud you already own.</p>
+</div>
+<div class="engage-steps reveal">
+<div class="engage-step">
+<div class="engage-step-num">1</div>
+<div class="engage-step-icon">&#x1F50D;</div>
+<h3>Assess</h3>
+<p>We evaluate your current forms, processes, and cloud environment to identify what can be modernized — and what to tackle first.</p>
+</div>
+<div class="engage-connector"><div class="engage-connector-line"></div></div>
+<div class="engage-step">
+<div class="engage-step-num">2</div>
+<div class="engage-step-icon">&#x1F527;</div>
+<h3>Build</h3>
+<p>We configure OneForm inside your existing Microsoft 365 or Google platform — forms, workflows, records, and compliance, all connected.</p>
+</div>
+<div class="engage-connector"><div class="engage-connector-line"></div></div>
+<div class="engage-step">
+<div class="engage-step-num">3</div>
+<div class="engage-step-icon">&#x1F91D;</div>
+<h3>Support</h3>
+<p>Ongoing optimization, workflow tuning, and governance as your needs grow. We stay with you — not just during setup, but after.</p>
+</div>
+</div>
+<div class="engage-bridge reveal">
+Need help with records migration, legacy digitization, or broader modernization? OneForm is part of the SyTech Solutions services — <a href="#cta">ask us about Organize, Unify, and Scale.</a>
+</div>
+</div>
+</section>
+
+
+<!-- Social Proof -->
+<section class="social-proof" id="socialProof">
+<div class="container">
+<div class="sp-inner reveal">
+<div class="sp-headline">Partnering with Public Agencies Across California</div>
+<p class="sp-sub">School districts and county agencies trust SyTech Solutions to modernize forms, records, and workflows — without disrupting the systems they already depend on.</p>
+<div class="sp-metrics">
+<div class="sp-metric">
+<div class="sp-metric-num">100+</div>
+<div class="sp-metric-label">Public Agency Projects Delivered</div>
+</div>
+<div class="sp-metric">
+<div class="sp-metric-num sp-logos">
+<span class="sp-ms-logo"><span style="background:#F25022"></span><span style="background:#7FBA00"></span><span style="background:#00A4EF"></span><span style="background:#FFB900"></span></span>
+<span class="sp-logo-amp">&amp;</span>
+<span class="sp-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
+</div>
+<div class="sp-metric-label">Built on Platforms You Already Own</div>
+</div>
+<div class="sp-metric">
+<div class="sp-metric-num">25+ Years</div>
+<div class="sp-metric-label">Records & Data Expertise</div>
+</div>
+</div>
+<div class="sp-carousel-wrap">
+<div class="sp-carousel" id="spCarousel">
+<div class="sp-card">
+<div class="sp-card-quote">"SyTech understood our district's needs from day one. They didn't try to sell us new software — they helped us use what we already had."</div>
+<div class="sp-card-author">District Administrator</div>
+<div class="sp-card-org">California School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"We eliminated three separate systems and moved everything into SharePoint. Our staff finally has one login and one place to go."</div>
+<div class="sp-card-author">IT Director</div>
+<div class="sp-card-org">County Office of Education</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"The forms-to-records pipeline changed how we handle compliance. What used to take weeks now happens automatically."</div>
+<div class="sp-card-author">Records Manager</div>
+<div class="sp-card-org">Unified School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"Other vendors wanted us to buy their platform. SyTech built on what we already owned. That made the decision easy."</div>
+<div class="sp-card-author">Assistant Superintendent</div>
+<div class="sp-card-org">California School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"We went from paper purchase orders to fully automated workflows in under two months. The ROI was immediate."</div>
+<div class="sp-card-author">Business Services Director</div>
+<div class="sp-card-org">Joint Powers Authority</div>
+</div>
+<!-- Duplicate set for seamless infinite loop -->
+<div class="sp-card">
+<div class="sp-card-quote">"SyTech understood our district's needs from day one. They didn't try to sell us new software — they helped us use what we already had."</div>
+<div class="sp-card-author">District Administrator</div>
+<div class="sp-card-org">California School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"We eliminated three separate systems and moved everything into SharePoint. Our staff finally has one login and one place to go."</div>
+<div class="sp-card-author">IT Director</div>
+<div class="sp-card-org">County Office of Education</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"The forms-to-records pipeline changed how we handle compliance. What used to take weeks now happens automatically."</div>
+<div class="sp-card-author">Records Manager</div>
+<div class="sp-card-org">Unified School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"Other vendors wanted us to buy their platform. SyTech built on what we already owned. That made the decision easy."</div>
+<div class="sp-card-author">Assistant Superintendent</div>
+<div class="sp-card-org">California School District</div>
+</div>
+<div class="sp-card">
+<div class="sp-card-quote">"We went from paper purchase orders to fully automated workflows in under two months. The ROI was immediate."</div>
+<div class="sp-card-author">Business Services Director</div>
+<div class="sp-card-org">Joint Powers Authority</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Trust Banner -->
+<section class="trust-banner" id="trustBanner">
+<div class="trust-clouds" id="trustClouds">
+  <span class="sky-cloud xl" style="top:5%; left:-8%;">☁️</span>
+  <span class="sky-cloud sm" style="top:18%; left:20%;">☁️</span>
+  <span class="sky-cloud" style="top:3%; left:42%;">☁️</span>
+  <span class="sky-cloud lg" style="top:22%; left:65%;">☁️</span>
+  <span class="sky-cloud sm" style="top:10%; left:88%;">☁️</span>
+  <span class="sky-cloud lg" style="top:42%; left:8%;">☁️</span>
+  <span class="sky-cloud sm" style="top:50%; left:32%;">☁️</span>
+  <span class="sky-cloud xl" style="top:35%; left:52%;">☁️</span>
+  <span class="sky-cloud" style="top:48%; left:78%;">☁️</span>
+  <span class="sky-cloud sm" style="top:33%; left:95%;">☁️</span>
+  <span class="sky-cloud lg" style="top:68%; left:2%;">☁️</span>
+  <span class="sky-cloud" style="top:72%; left:28%;">☁️</span>
+  <span class="sky-cloud sm" style="top:62%; left:50%;">☁️</span>
+  <span class="sky-cloud lg" style="top:75%; left:70%;">☁️</span>
+  <span class="sky-cloud xl" style="top:58%; left:85%;">☁️</span>
+  <span class="sky-cloud" style="top:85%; left:15%;">☁️</span>
+  <span class="sky-cloud sm" style="top:82%; left:58%;">☁️</span>
+  <span class="sky-cloud" style="top:15%; left:5%;">☁️</span>
+</div>
+<div class="trust-text-wrap">
+  <div class="trust-banner-box">
+    <h2>Your data stays in <em>your</em> cloud</h2>
+    <p class="trust-banner-sub">No third-party servers. No data extraction. Your records never leave your environment.</p>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+<div class="container">
+<div class="cta-box reveal">
+<h2>Let's Start With an <span>Assessment</span></h2>
+<p data-aud="of-cta-p">Every engagement begins the same way — we evaluate your current forms, processes, and cloud environment, then show you exactly what's possible. No commitment, no pressure, no new software to buy.</p>
+<a href="contact.html" class="btn-cta">Request a Free Assessment</a>
+<div class="cta-email"><a href="mailto:support@sytechsolutions.com">support@sytechsolutions.com</a> &middot; <a href="https://sytechsolutions.com" target="_blank">sytechsolutions.com</a></div>
+<div class="cta-badge"><span class="cta-badge-label">Powered by</span><span class="cta-badge-name">SyTech Solutions</span></div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================
+     SCENARIO FAQ — copy: scenario-videos/copy-scenario-faq-mapping.md §3.3
+     Bottom edge, below the CTA and immediately above the SyTech footer,
+     where the OneForm-to-SyTech register handoff already happens.
+     Skinned in OneForm's azure register per the mapping doc's register note
+     and design principles §15.
+     ============================================================ -->
+<section class="scenario-faq" aria-label="Scenarios: forms problems, solved">
+  <div class="container">
+    <div class="scenario-faq-head">
+      <span class="scenario-faq-eyebrow">Scenarios</span>
+      <h2>Forms Problems, Solved.</h2>
+      <div class="section-divider" aria-hidden="true"></div>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Can new-hire onboarding run entirely on forms like these, signatures and all?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>That is exactly what one HR team asked for. Their onboarding across school campuses and the district office was outdated and error prone, confusing for the HR team and the new hires both, and gathering every signature and every piece of information was the part that never went smoothly. We built the process into the Microsoft apps the district already owned. The district says it now secures legally binding electronic signatures, and the rest of what it needs, quicker than ever. Watch the HR team describe it.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-2-hr-poster.jpg"
+                   aria-label="Video: a school district HR team describes its new employee onboarding process">
+              <source src="assets/video/scenario-2-hr.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-2-hr.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Can volunteers apply and sign online without our office chasing paperwork?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes. A school district came to us with volunteer applications spread across forms and electronic attachments, and links that often did not work by the time a volunteer clicked them. We built the whole application, attachments and electronic signatures included, into the Microsoft apps the district already owned, and every file, document, and signature lands in one secure, cloud-based place. The district says the easier process brought more volunteers in. Watch them explain what changed.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-1-new-branding-poster.jpg"
+                   aria-label="Video: a school district describes onboarding volunteers">
+              <source src="assets/video/scenario-1-new-branding.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-1-new-branding.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scenario FAQ — page-local, namespaced. Closing an item pauses its video;
+   playing one scenario video pauses any other on this page. Nothing else. */
+(function () {
+  var items = document.querySelectorAll('.scenario-faq details.faq-item');
+  if (!items.length) return;
+  var vids = [];
+  Array.prototype.forEach.call(items, function (item) {
+    var v = item.querySelector('video');
+    if (!v) return;
+    vids.push(v);
+    item.addEventListener('toggle', function () { if (!item.open) { v.pause(); } });
+  });
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+</main>
+
+<!-- SyTech Multipage Footer (shared across all pages) -->
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+// ============================================
+// SyTech multipage nav: hamburger toggle + mega-menu
+// ============================================
+(function() {
+  'use strict';
+})();
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 120);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// ============================================
+// MASTER STORY CONTROLLER
+// Orchestrates all 3 panels + progress line
+// Total cycle: ~15s (5s per stage)
+// ============================================
+(function() {
+  const STAGE_DURATION = 5000;
+  const TOTAL_CYCLE = STAGE_DURATION * 3;
+  let masterTimer = null;
+  let stageTimers = [];
+
+  // Progress bar elements
+  const progressFill = document.getElementById('progressFill');
+  const progressDot = document.getElementById('progressDot');
+  const stops = [document.getElementById('ps0'), document.getElementById('ps1'), document.getElementById('ps2')];
+
+  function clearStageTimers() {
+    stageTimers.forEach(t => clearTimeout(t));
+    stageTimers = [];
+  }
+
+  function st(fn, ms) {
+    const t = setTimeout(fn, ms);
+    stageTimers.push(t);
+    return t;
+  }
+
+  // ---- Progress line ----
+  function setProgress(stageIndex) {
+    // stageIndex: 0=build active, 1=automate active, 2=analyze active
+    const pcts = ['0%', '50%', '100%'];
+    if (progressFill) progressFill.style.width = pcts[stageIndex];
+    if (progressDot) progressDot.style.left = pcts[stageIndex];
+    stops.forEach((s, i) => {
+      if (s) s.classList.toggle('reached', i <= stageIndex);
+    });
+  }
+
+  // ---- PANEL 1: Drag-and-Drop ----
+  const ghost = document.getElementById('dndGhost');
+  const dndCursor = document.getElementById('dndCursor');
+  const dndSlots = [
+    document.getElementById('ds0'), document.getElementById('ds1'),
+    document.getElementById('ds2'), document.getElementById('ds3'),
+    document.getElementById('ds4')
+  ];
+  const dndTools = document.querySelectorAll('.dnd-tool');
+  const dndLabels = ['Aa', '@', '#', '⬆', '→'];
+  const dndScene = document.getElementById('dndScene');
+
+  function dndMoveTo(el, x, y) { el.style.left = x + 'px'; el.style.top = y + 'px'; }
+
+  function resetDnD() {
+    dndSlots.forEach(s => { if(s) s.classList.remove('filled', 'dropping'); });
+    if (ghost) { ghost.style.opacity = '0'; ghost.style.transition = 'none'; }
+    if (dndCursor) { dndCursor.style.opacity = '0'; dndCursor.style.transition = 'none'; }
+  }
+
+  function runDnD() {
+    resetDnD();
+    if (!dndScene) return;
+    let step = 0;
+
+    // Get position relative to scene container using offsetTop/offsetLeft
+    function getRelPos(el) {
+      let x = 0, y = 0;
+      let current = el;
+      while (current && current !== dndScene) {
+        x += current.offsetLeft;
+        y += current.offsetTop;
+        current = current.offsetParent;
+      }
+      return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight };
+    }
+
+    function dropNext() {
+      if (step >= 5) return;
+      const tool = dndTools[step];
+      const slot = dndSlots[step];
+      if (!tool || !slot) return;
+
+      const tp = getRelPos(tool);
+      const tx = tp.x + tp.w/2;
+      const ty = tp.y + tp.h/2;
+
+      dndCursor.style.transition = 'none';
+      ghost.style.transition = 'none';
+      void dndCursor.offsetHeight;
+      dndMoveTo(dndCursor, tx, ty);
+      dndCursor.style.opacity = '1';
+
+      st(() => {
+        ghost.textContent = dndLabels[step];
+        ghost.style.opacity = '1';
+        dndMoveTo(ghost, tx - 28, ty - 12);
+
+        const sp = getRelPos(slot);
+        const sx = sp.x + sp.w/2;
+        const sy = sp.y + sp.h/2;
+
+        st(() => {
+          dndCursor.style.transition = 'left 0.6s ease, top 0.6s ease';
+          ghost.style.transition = 'left 0.6s ease, top 0.6s ease, opacity 0.3s';
+          dndMoveTo(dndCursor, sx, sy);
+          dndMoveTo(ghost, sx - 28, sy - 12);
+          slot.classList.add('dropping');
+
+          st(() => {
+            ghost.style.opacity = '0';
+            slot.classList.remove('dropping');
+            slot.classList.add('filled');
+            dndCursor.style.opacity = '0';
+            step++;
+            st(dropNext, 200);
+          }, 650);
+        }, 50);
+      }, 150);
+    }
+    dropNext();
+  }
+
+  // ---- PANEL 2: Workflow Traveler ----
+  const traveler = document.getElementById('wfTraveler');
+  const trackFill = document.getElementById('wfTrackFill');
+  const wfNodes = [
+    document.getElementById('wn0'), document.getElementById('wn1'),
+    document.getElementById('wn2'), document.getElementById('wn3'),
+    document.getElementById('wn4')
+  ];
+  const wfTrackPcts = ['0%', '25%', '50%', '75%', '100%'];
+
+  function getWfPositions() {
+    // Calculate center Y of each row relative to wf-scene
+    const scene = document.getElementById('wfScene');
+    if (!scene) return [26, 70, 114, 158, 202];
+    const sr = scene.getBoundingClientRect();
+    return wfNodes.map(n => {
+      if (!n) return 0;
+      const r = n.getBoundingClientRect();
+      return r.top - sr.top + r.height / 2;
+    });
+  }
+
+  function resetWF() {
+    if (!traveler) return;
+    const positions = getWfPositions();
+    traveler.style.transition = 'none';
+    traveler.style.top = positions[0] + 'px';
+    void traveler.offsetHeight;
+    if (trackFill) { trackFill.style.transition = 'none'; trackFill.style.height = '0%'; void trackFill.offsetHeight; }
+    wfNodes.forEach(n => { if(n) n.className = 'wf-row'; });
+    if (wfNodes[0]) wfNodes[0].classList.add('active');
+  }
+
+  function runWF() {
+    resetWF();
+    if (!traveler) return;
+    let current = 0;
+    function advance() {
+      if (current >= 4) return;
+      st(() => {
+        current++;
+        const positions = getWfPositions();
+        traveler.style.transition = 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+        traveler.style.top = positions[current] + 'px';
+        if (trackFill) { trackFill.style.transition = 'height 0.7s ease'; trackFill.style.height = wfTrackPcts[current]; }
+        wfNodes.forEach((n, i) => {
+          if (!n) return;
+          n.className = 'wf-row';
+          if (i < current) n.classList.add('completed');
+          if (i === current) n.classList.add('active');
+        });
+        advance();
+      }, 900);
+    }
+    advance();
+  }
+
+  // ---- PANEL 3: Dashboard ----
+  const dashMetrics = document.querySelectorAll('.dash-metric');
+  const dashChart = document.querySelector('.dash-chart');
+  const dashChartLine = document.querySelector('.dash-chart-line');
+  const dashChartGlow = document.querySelector('.dash-chart-glow');
+  const dashChartArea = document.querySelector('.dash-chart-area');
+  const dashAi = document.querySelector('.dash-ai');
+
+  function resetDash() {
+    dashMetrics.forEach(m => m.classList.remove('show'));
+    if (dashChart) dashChart.classList.remove('show');
+    if (dashChartLine) {
+      dashChartLine.classList.remove('draw');
+      dashChartLine.style.transition = 'none';
+      dashChartLine.style.strokeDashoffset = '500';
+      void dashChartLine.getBBox();
+      dashChartLine.style.transition = 'stroke-dashoffset 2s ease';
+    }
+    if (dashChartGlow) {
+      dashChartGlow.classList.remove('draw');
+      dashChartGlow.style.transition = 'none';
+      dashChartGlow.style.strokeDashoffset = '500';
+      void dashChartGlow.getBBox();
+      dashChartGlow.style.transition = 'stroke-dashoffset 2s ease';
+    }
+    if (dashChartArea) dashChartArea.classList.remove('show');
+    if (dashAi) dashAi.classList.remove('show');
+  }
+
+  // Show all dashboard elements instantly (no stagger) for background display
+  function showDashInstant() {
+    dashMetrics.forEach(m => m.classList.add('show'));
+    if (dashChart) dashChart.classList.add('show');
+    if (dashChartLine) {
+      dashChartLine.style.transition = 'none';
+      dashChartLine.style.strokeDashoffset = '0';
+      dashChartLine.classList.add('draw');
+    }
+    if (dashChartGlow) {
+      dashChartGlow.style.transition = 'none';
+      dashChartGlow.style.strokeDashoffset = '0';
+      dashChartGlow.classList.add('draw');
+    }
+    if (dashChartArea) dashChartArea.classList.add('show');
+    if (dashAi) dashAi.classList.add('show');
+  }
+
+  function runDash() {
+    resetDash();
+    dashMetrics.forEach((m, i) => st(() => m.classList.add('show'), i * 200 + 200));
+    st(() => {
+      if (dashChart) dashChart.classList.add('show');
+      if (dashChartLine) { dashChartLine.style.strokeDashoffset = '0'; dashChartLine.classList.add('draw'); }
+      if (dashChartGlow) { dashChartGlow.style.strokeDashoffset = '0'; dashChartGlow.classList.add('draw'); }
+    }, 800);
+    st(() => { if (dashChartArea) dashChartArea.classList.add('show'); }, 1600);
+    st(() => { if (dashAi) dashAi.classList.add('show'); }, 2200);
+  }
+
+  // ---- MASTER CYCLE ----
+  let currentStage = -1;
+  const storyPanels = [
+    document.getElementById('storyPanel0'),
+    document.getElementById('storyPanel1'),
+    document.getElementById('storyPanel2')
+  ];
+
+  function highlightPanel(activeIdx) {
+    storyPanels.forEach((p, i) => {
+      if (!p) return;
+      if (i === activeIdx) {
+        p.classList.remove('dimmed');
+        p.classList.add('active-panel');
+      } else {
+        p.classList.remove('active-panel');
+        p.classList.add('dimmed');
+      }
+    });
+  }
+
+  function runCycle() {
+    clearStageTimers();
+
+    // Reset build and workflow, but leave dash in its last state (looks good dimmed)
+    resetDnD();
+    resetWF();
+
+    currentStage = 0;
+
+    // Stage 1: Build
+    st(() => {
+      setProgress(0);
+      highlightPanel(0);
+      runDnD();
+    }, 100);
+
+    // Stage 2: Automate (at 5s)
+    st(() => {
+      currentStage = 1;
+      setProgress(1);
+      highlightPanel(1);
+      runWF();
+    }, STAGE_DURATION);
+
+    // Stage 3: Analyze (at 10s) — reset and run fresh
+    st(() => {
+      currentStage = 2;
+      setProgress(2);
+      highlightPanel(2);
+      resetDash();
+      runDash();
+    }, STAGE_DURATION * 2);
+
+    // Reset and loop (at 15s) — don't reset dash so it stays visible while dimmed
+    st(() => {
+      resetDnD();
+      resetWF();
+      setProgress(0);
+      st(runCycle, 500);
+    }, TOTAL_CYCLE);
+  }
+
+  // Pre-populate dashboard immediately so it always has content
+  showDashInstant();
+
+  // Jump to a specific stage on click
+  function jumpToStage(idx) {
+    clearStageTimers();
+
+    // Reset all animations
+    resetDnD();
+    resetWF();
+
+    currentStage = idx;
+    setProgress(idx);
+    highlightPanel(idx);
+
+    // Run the selected stage
+    if (idx === 0) {
+      runDnD();
+    } else if (idx === 1) {
+      runWF();
+    } else if (idx === 2) {
+      resetDash();
+      runDash();
+    }
+
+    // After this stage finishes, resume auto-cycle from the next stage
+    st(() => {
+      const nextIdx = (idx + 1) % 3;
+      if (nextIdx === 0) {
+        // Full loop restart
+        resetDnD();
+        resetWF();
+        setProgress(0);
+        st(runCycle, 500);
+      } else {
+        // Continue from next stage
+        currentStage = nextIdx;
+        setProgress(nextIdx);
+        highlightPanel(nextIdx);
+        if (nextIdx === 1) runWF();
+        if (nextIdx === 2) { resetDash(); runDash(); }
+
+        // Then schedule remaining stages
+        if (nextIdx === 1) {
+          st(() => {
+            currentStage = 2;
+            setProgress(2);
+            highlightPanel(2);
+            resetDash();
+            runDash();
+          }, STAGE_DURATION);
+          st(() => {
+            resetDnD();
+            resetWF();
+            setProgress(0);
+            st(runCycle, 500);
+          }, STAGE_DURATION * 2);
+        } else {
+          // nextIdx === 2, just finish and restart
+          st(() => {
+            resetDnD();
+            resetWF();
+            setProgress(0);
+            st(runCycle, 500);
+          }, STAGE_DURATION);
+        }
+      }
+    }, STAGE_DURATION);
+  }
+
+  // Click listeners for stage numbers
+  for (let i = 0; i < 3; i++) {
+    const numEl = document.getElementById('stageNum' + i);
+    if (numEl) numEl.addEventListener('click', () => jumpToStage(i));
+  }
+
+  // Click listeners for progress bar stops
+  stops.forEach((s, i) => {
+    if (s) s.addEventListener('click', () => jumpToStage(i));
+  });
+
+  // Click listeners for panels (click a dimmed panel to jump to it)
+  storyPanels.forEach((p, i) => {
+    if (p) p.addEventListener('click', () => {
+      if (currentStage !== i) jumpToStage(i);
+    });
+  });
+
+  // Start cycle when section is visible
+  const storySection = document.getElementById('story');
+  if (storySection) {
+    const sObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setTimeout(runCycle, 300);
+        sObs.disconnect();
+      }
+    }, { threshold: 0.15 });
+    sObs.observe(storySection);
+  }
+})();
+// 3 stages: Build (5s) → Automate (5s) → Cloud (5s) → repeat
+// ============================================
+const PHASE_DURATION = 5000;
+const TRANSITION = 600;
+let phase = 0;
+const phases = ['build', 'automate', 'cloud'];
+const titles = ['OneForm Designer', 'Power Automate Workflow', 'Cloud Dashboard & AI'];
+const phaseLabels = ['BUILD', 'AUTOMATE', 'ANALYZE'];
+
+const buildCanvas = document.getElementById('buildCanvas');
+const autoCanvas = document.getElementById('autoCanvas');
+const cloudCanvas = document.getElementById('cloudCanvas');
+const cinemaPhase = document.getElementById('cinemaPhase');
+const cinemaTitle = document.getElementById('cinemaTitle');
+const canvases = [buildCanvas, autoCanvas, cloudCanvas];
+
+function resetBuild() {
+  const fields = buildCanvas.querySelectorAll('.build-field');
+  const cursor = document.getElementById('buildCursor');
+  fields.forEach(f => f.classList.remove('show'));
+  cursor.classList.remove('show');
+  // Stagger field appearance with cursor movement
+  const positions = [
+    {top: 50, left: 200}, {top: 115, left: 100}, {top: 115, left: 300},
+    {top: 190, left: 200}, {top: 265, left: 70}
+  ];
+  fields.forEach((f, i) => {
+    setTimeout(() => {
+      cursor.style.top = positions[i].top + 'px';
+      cursor.style.left = positions[i].left + 'px';
+      cursor.classList.add('show');
+      f.classList.add('show');
+    }, i * 700 + 200);
+  });
+  setTimeout(() => cursor.classList.remove('show'), fields.length * 700 + 600);
+}
+
+function resetAutomate() {
+  const lines = autoCanvas.querySelectorAll('.auto-line');
+  const nodeGs = autoCanvas.querySelectorAll('.auto-node-g');
+  const traveler = document.getElementById('autoTraveler');
+  const notif = document.getElementById('aNotif1');
+
+  // Reset everything
+  lines.forEach(l => { l.style.strokeDashoffset = '200'; l.style.strokeDasharray = '200'; l.style.transition = 'none'; });
+  nodeGs.forEach(n => { n.style.opacity = '0'; n.style.transition = 'none'; });
+  if (traveler) { traveler.setAttribute('opacity', '0'); traveler.querySelectorAll('animateMotion').forEach(a => a.remove()); }
+  if (notif) { notif.style.opacity = '0'; notif.style.transition = 'none'; }
+
+  void autoCanvas.offsetHeight;
+
+  // Animate nodes and lines in sequence
+  setTimeout(() => { nodeGs[0].style.transition = 'opacity 0.4s'; nodeGs[0].style.opacity = '1'; }, 100);
+  setTimeout(() => { lines[0].style.transition = 'stroke-dashoffset 0.5s ease'; lines[0].style.strokeDashoffset = '0'; }, 300);
+  setTimeout(() => { nodeGs[1].style.transition = 'opacity 0.4s'; nodeGs[1].style.opacity = '1'; }, 600);
+  setTimeout(() => { lines[1].style.transition = 'stroke-dashoffset 0.5s ease'; lines[1].style.strokeDashoffset = '0'; }, 800);
+  setTimeout(() => { nodeGs[2].style.transition = 'opacity 0.4s'; nodeGs[2].style.opacity = '1'; }, 1100);
+  setTimeout(() => {
+    lines[2].style.transition = 'stroke-dashoffset 0.6s ease'; lines[2].style.strokeDashoffset = '0';
+    lines[3].style.transition = 'stroke-dashoffset 0.6s ease'; lines[3].style.strokeDashoffset = '0';
+    lines[4].style.transition = 'stroke-dashoffset 0.6s ease'; lines[4].style.strokeDashoffset = '0';
+  }, 1300);
+  setTimeout(() => { nodeGs[3].style.transition = 'opacity 0.3s'; nodeGs[3].style.opacity = '1'; }, 1600);
+  setTimeout(() => { nodeGs[4].style.transition = 'opacity 0.3s'; nodeGs[4].style.opacity = '1'; }, 1700);
+  setTimeout(() => { nodeGs[5].style.transition = 'opacity 0.3s'; nodeGs[5].style.opacity = '1'; }, 1800);
+  setTimeout(() => {
+    lines[5].style.transition = 'stroke-dashoffset 0.5s ease'; lines[5].style.strokeDashoffset = '0';
+    lines[6].style.transition = 'stroke-dashoffset 0.5s ease'; lines[6].style.strokeDashoffset = '0';
+    lines[7].style.transition = 'stroke-dashoffset 0.5s ease'; lines[7].style.strokeDashoffset = '0';
+  }, 1900);
+  setTimeout(() => { nodeGs[6].style.transition = 'opacity 0.3s'; nodeGs[6].style.opacity = '1'; }, 2200);
+  setTimeout(() => { nodeGs[7].style.transition = 'opacity 0.3s'; nodeGs[7].style.opacity = '1'; }, 2300);
+  setTimeout(() => { nodeGs[8].style.transition = 'opacity 0.3s'; nodeGs[8].style.opacity = '1'; }, 2400);
+
+  // Form traveler — use SVG animateMotion for smooth path animation
+  setTimeout(() => {
+    if (!traveler) return;
+    const routes = [
+      'M200,28 L200,88 L200,142 L72,204 L72,272',
+      'M200,28 L200,88 L200,142 L200,204 L200,272',
+      'M200,28 L200,88 L200,142 L328,204 L328,272'
+    ];
+    const route = routes[Math.floor(Math.random() * 3)];
+
+    // Remove any old animation
+    traveler.querySelectorAll('animateMotion').forEach(a => a.remove());
+
+    // Create animateMotion element
+    const anim = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+    anim.setAttribute('path', route);
+    anim.setAttribute('dur', '2.5s');
+    anim.setAttribute('fill', 'freeze');
+    anim.setAttribute('begin', 'indefinite');
+    anim.setAttribute('calcMode', 'spline');
+    anim.setAttribute('keyTimes', '0;0.2;0.4;0.7;1');
+    anim.setAttribute('keySplines', '0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1');
+
+    traveler.appendChild(anim);
+    traveler.setAttribute('opacity', '1');
+    traveler.setAttribute('transform', 'translate(0,0)');
+    anim.beginElement();
+
+    // Show completed notif at end
+    setTimeout(() => { if (notif) { notif.style.transition = 'opacity 0.4s'; notif.style.opacity = '1'; } }, 2800);
+  }, 2600);
+}
+
+function resetCloud() {
+  const metrics = cloudCanvas.querySelectorAll('.cloud-metric');
+  const chart = document.getElementById('cloudChart');
+  const chartLine = document.getElementById('chartLine');
+  const chartGlow = document.getElementById('chartGlow');
+  const chartArea = document.getElementById('chartArea');
+  const aiBadge = document.getElementById('cloudAI');
+  metrics.forEach(m => m.classList.remove('show'));
+  chart.classList.remove('show');
+  // Snap line/glow back to hidden
+  if (chartLine) { chartLine.classList.remove('draw'); chartLine.style.transition = 'none'; chartLine.style.strokeDashoffset = '500'; void chartLine.getBBox(); chartLine.style.transition = 'stroke-dashoffset 2s ease'; }
+  if (chartGlow) { chartGlow.classList.remove('draw'); chartGlow.style.transition = 'none'; chartGlow.style.strokeDashoffset = '500'; void chartGlow.getBBox(); chartGlow.style.transition = 'stroke-dashoffset 2s ease'; }
+  chartArea.classList.remove('show');
+  aiBadge.classList.remove('show');
+  // Stagger animations
+  metrics.forEach((m, i) => setTimeout(() => m.classList.add('show'), i * 300 + 200));
+  setTimeout(() => {
+    chart.classList.add('show');
+    if (chartLine) { chartLine.style.strokeDashoffset = '0'; chartLine.classList.add('draw'); }
+    if (chartGlow) { chartGlow.style.strokeDashoffset = '0'; chartGlow.classList.add('draw'); }
+  }, 1000);
+  setTimeout(() => chartArea.classList.add('show'), 1800);
+  setTimeout(() => aiBadge.classList.add('show'), 2800);
+}
+
+function runPhase() {
+  const p = phases[phase];
+  // Hide all canvases
+  canvases.forEach(c => c.classList.remove('show'));
+  canvases.forEach(c => c.style.opacity = '0');
+  // Update phase badge
+  cinemaPhase.className = 'cinema-phase ' + p;
+  cinemaPhase.textContent = phaseLabels[phase];
+  cinemaTitle.textContent = titles[phase];
+
+  // Reset the target phase elements while canvas is still hidden (opacity 0)
+  if (phase === 0) {
+    const fields = buildCanvas.querySelectorAll('.build-field');
+    const cursor = document.getElementById('buildCursor');
+    fields.forEach(f => f.classList.remove('show'));
+    if (cursor) cursor.classList.remove('show');
+  }
+  if (phase === 2) {
+    // Clear all cloud elements instantly while hidden
+    const metrics = cloudCanvas.querySelectorAll('.cloud-metric');
+    const chart = document.getElementById('cloudChart');
+    const chartLine = document.getElementById('chartLine');
+    const chartGlow = document.getElementById('chartGlow');
+    const chartArea = document.getElementById('chartArea');
+    const aiBadge = document.getElementById('cloudAI');
+    metrics.forEach(m => m.classList.remove('show'));
+    if (chart) chart.classList.remove('show');
+    if (chartLine) { chartLine.classList.remove('draw'); chartLine.style.transition = 'none'; chartLine.style.strokeDashoffset = '500'; }
+    if (chartGlow) { chartGlow.classList.remove('draw'); chartGlow.style.transition = 'none'; chartGlow.style.strokeDashoffset = '500'; }
+    if (chartArea) chartArea.classList.remove('show');
+    if (aiBadge) aiBadge.classList.remove('show');
+    // Force reflow so offsets snap
+    if (chartLine) void chartLine.getBBox();
+    if (chartGlow) void chartGlow.getBBox();
+    // Re-enable transitions for the animated draw
+    if (chartLine) chartLine.style.transition = 'stroke-dashoffset 2s ease';
+    if (chartGlow) chartGlow.style.transition = 'stroke-dashoffset 2s ease';
+  }
+
+  // Show current canvas after transition, then start animation
+  setTimeout(() => {
+    canvases[phase].style.opacity = '1';
+    canvases[phase].classList.add('show');
+    if (phase === 0) resetBuild();
+    if (phase === 1) resetAutomate();
+    if (phase === 2) resetCloud();
+  }, TRANSITION);
+}
+
+// Start the loop
+runPhase();
+setInterval(() => {
+  phase = (phase + 1) % 3;
+  runPhase();
+}, PHASE_DURATION);
+// ============================================
+// WORKFLOW COMPARISON: Scroll reveal
+// ============================================
+(function() {
+  const manual = document.getElementById('wfManual');
+  const auto = document.getElementById('wfAuto');
+  if (!manual || !auto) return;
+
+  const wfObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      manual.classList.add('revealed');
+      auto.classList.add('revealed');
+      wfObs.disconnect();
+    }
+  }, { threshold: 0.2 });
+  wfObs.observe(manual);
+})();
+
+// ============================================
+// TRUST BANNER: Cloud drift (plane is stationary)
+// ============================================
+(function() {
+  var clouds = document.querySelectorAll('.sky-cloud');
+  var section = document.getElementById('trustBanner');
+  if (!section || !clouds.length) return;
+
+  var speeds = [];
+  for (var i = 0; i < clouds.length; i++) {
+    speeds.push({
+      x: 0.15 + Math.random() * 0.25,
+      offset: parseFloat(clouds[i].style.left) || 0
+    });
+  }
+
+  var isVisible = false;
+  var animId = null;
+
+  function drift() {
+    for (var i = 0; i < clouds.length; i++) {
+      speeds[i].offset += speeds[i].x * 0.016;
+      if (speeds[i].offset > 110) speeds[i].offset = -20;
+      clouds[i].style.left = speeds[i].offset + '%';
+    }
+    if (isVisible) animId = requestAnimationFrame(drift);
+  }
+
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      isVisible = true;
+      if (!animId) drift();
+    } else {
+      isVisible = false;
+      if (animId) { cancelAnimationFrame(animId); animId = null; }
+    }
+  }, { threshold: 0.1 });
+  obs.observe(section);
+})();
+
+// ============================================
+// CHAIN LINK ANIMATION + MOUSE GLOW + TOGGLE
+// ============================================
+(function() {
+  const section = document.querySelector('.what-section');
+  const glow = document.getElementById('whatGlow');
+  const animEl = document.getElementById('whatAnimation');
+  if (!section || !animEl) return;
+
+  // Mouse glow - centered on cursor, uses transform for smooth performance
+  let rafId = null;
+  section.addEventListener('mousemove', (e) => {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      const rect = section.getBoundingClientRect();
+      const x = e.clientX - rect.left - 200;
+      const y = e.clientY - rect.top - 200;
+      glow.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      glow.style.opacity = '1';
+      rafId = null;
+    });
+  });
+  section.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+
+  // Chain animation
+  const chainForm = document.getElementById('chainForm');
+  const chainMs = document.getElementById('chainMs');
+  const chainLink = document.getElementById('chainLinkWrap');
+  const chainToggle = document.getElementById('chainToggle');
+  const dataFlow = document.querySelector('.data-flow-lines');
+  let hasPlayed = false;
+
+  function runChain() {
+    if (hasPlayed) return;
+    hasPlayed = true;
+
+    chainForm.classList.add('show');
+    setTimeout(() => chainMs.classList.add('show'), 200);
+    setTimeout(() => chainLink.classList.add('show'), 500);
+    // Start data flow lines after the chain emoji pops in
+    setTimeout(() => { if (dataFlow) dataFlow.classList.add('flowing'); }, 1800);
+    if (chainToggle) chainToggle.classList.add('show');
+  }
+
+  const chainObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !hasPlayed) {
+      setTimeout(runChain, 300);
+      chainObs.disconnect();
+    }
+  }, { threshold: 0.3 });
+  chainObs.observe(animEl);
+
+  // Toggle switch
+  const toggleSwitch = document.getElementById('toggleSwitch');
+  const msContent = document.getElementById('msContent');
+  const googleContent = document.getElementById('googleContent');
+  const labelMs = document.getElementById('toggleLabelMs');
+  const labelG = document.getElementById('toggleLabelG');
+  let isGoogle = false;
+
+  if (toggleSwitch) {
+    function doToggle() {
+      isGoogle = !isGoogle;
+      toggleSwitch.classList.toggle('google', isGoogle);
+      toggleSwitch.setAttribute('aria-checked', isGoogle);
+      msContent.classList.toggle('visible', !isGoogle);
+      googleContent.classList.toggle('visible', isGoogle);
+      labelMs.classList.toggle('active', !isGoogle);
+      labelG.classList.toggle('active', isGoogle);
+    }
+    toggleSwitch.addEventListener('click', doToggle);
+    toggleSwitch.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doToggle(); }
+    });
+  }
+})();
+
+// ============================================
+// STAT COUNTER ANIMATION
+// ============================================
+(function() {
+  // Stop wiggle on first flip card when ANY card is hovered
+  const firstCard = document.getElementById('firstFlipCard');
+  if (firstCard) {
+    const allFlipCards = document.querySelectorAll('.flip-card');
+    allFlipCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        firstCard.classList.remove('wiggle');
+        firstCard.classList.add('wiggle-done');
+      }, { once: true });
+    });
+  }
+
+  // Tap-to-flip on touch devices + keyboard support
+  const flipCards = document.querySelectorAll('.flip-card');
+  function flipHandler(card) {
+    // Close any other open card
+    flipCards.forEach(c => { if (c !== card) c.classList.remove('flipped'); });
+    card.classList.toggle('flipped');
+    // Also stop wiggle
+    if (firstCard) {
+      firstCard.classList.remove('wiggle');
+      firstCard.classList.add('wiggle-done');
+    }
+  }
+  // Batch 3: on touch / non-hover devices the cards render as static stacked
+  // cards (problem + fix both visible), so there is nothing to activate. Strip
+  // the button semantics (role/tabindex/aria-label) and attach NO handlers.
+  const isHoverDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  flipCards.forEach(card => {
+    if (!isHoverDevice) {
+      card.removeAttribute('role');
+      card.removeAttribute('tabindex');
+      card.removeAttribute('aria-label');
+      return;
+    }
+    card.addEventListener('click', function(e) {
+      // Only toggle on touch devices or narrow screens
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      e.preventDefault();
+      flipHandler(card);
+    });
+    // Keyboard: Enter or Space to flip
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        flipHandler(card);
+      }
+    });
+  });
+
+  const statsSection = document.getElementById('whyStats');
+  if (!statsSection) return;
+  let hasCounted = false;
+
+  function animateCounters() {
+    if (hasCounted) return;
+    hasCounted = true;
+    const nums = statsSection.querySelectorAll('.why-stat-num');
+    nums.forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const decimal = el.dataset.decimal || '';
+      const countdown = el.dataset.countdown ? parseInt(el.dataset.countdown) : 0;
+      const duration = 2000;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        var current;
+        if (countdown) {
+          // Count down from countdown value to target
+          current = Math.round(countdown - eased * (countdown - target));
+        } else {
+          current = Math.round(eased * target);
+        }
+        if (decimal && progress >= 1) {
+          el.textContent = prefix + target + decimal + suffix;
+        } else {
+          el.textContent = prefix + current + suffix;
+        }
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  const statsObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      setTimeout(animateCounters, 300);
+      statsObs.disconnect();
+    }
+  }, { threshold: 0.5 });
+  statsObs.observe(statsSection);
+})();
+
+// ============================================
+// BLUEPRINT GRID REVEAL: Grid appears near cursor
+// ============================================
+(function() {
+  const canvas = document.getElementById('storyDotsCanvas');
+  const section = document.getElementById('story');
+  if (!canvas || !section) return;
+
+  const ctx = canvas.getContext('2d');
+  const SPACING = 32;
+  const REVEAL_RADIUS = 160;
+  let mouseX = -999, mouseY = -999;
+  let rafId = null;
+
+  function resize() {
+    const rect = section.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (mouseX < -500) { rafId = null; return; }
+
+    var R = REVEAL_RADIUS;
+    var R2 = R * R;
+
+    // Draw vertical grid lines (only in reveal area)
+    var xStart = Math.max(0, Math.floor((mouseX - R) / SPACING) * SPACING);
+    var xEnd = Math.min(canvas.width, mouseX + R + SPACING);
+    var yTop = Math.max(0, mouseY - R);
+    var yBot = Math.min(canvas.height, mouseY + R);
+
+    ctx.lineWidth = 0.5;
+    for (var x = xStart; x <= xEnd; x += SPACING) {
+      var dx = x - mouseX;
+      if (Math.abs(dx) > R) continue;
+      ctx.beginPath();
+      var started = false;
+      for (var y = yTop; y <= yBot; y += 2) {
+        var dy = y - mouseY;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < R2) {
+          var alpha = (1 - Math.sqrt(d2) / R) * 0.1;
+          ctx.strokeStyle = 'rgba(48,157,236,' + alpha + ')';
+          if (!started) { ctx.moveTo(x, y); started = true; }
+          else { ctx.lineTo(x, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y); }
+        }
+      }
+      ctx.stroke();
+    }
+
+    // Draw horizontal grid lines
+    var yStart = Math.max(0, Math.floor((mouseY - R) / SPACING) * SPACING);
+    var yEnd = Math.min(canvas.height, mouseY + R + SPACING);
+    var xLeft = Math.max(0, mouseX - R);
+    var xRight = Math.min(canvas.width, mouseX + R);
+
+    for (var y = yStart; y <= yEnd; y += SPACING) {
+      var dy = y - mouseY;
+      if (Math.abs(dy) > R) continue;
+      ctx.beginPath();
+      var started = false;
+      for (var x = xLeft; x <= xRight; x += 2) {
+        var dx = x - mouseX;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < R2) {
+          var alpha = (1 - Math.sqrt(d2) / R) * 0.1;
+          ctx.strokeStyle = 'rgba(48,157,236,' + alpha + ')';
+          if (!started) { ctx.moveTo(x, y); started = true; }
+          else { ctx.lineTo(x, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y); }
+        }
+      }
+      ctx.stroke();
+    }
+
+    // Tiny crosshair dots at intersections
+    for (var x = xStart; x <= xEnd; x += SPACING) {
+      var dx = x - mouseX;
+      if (Math.abs(dx) > R) continue;
+      for (var y = yStart; y <= yEnd; y += SPACING) {
+        var dy = y - mouseY;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < R2) {
+          var alpha = (1 - Math.sqrt(d2) / R) * 0.15;
+          ctx.fillStyle = 'rgba(57,185,196,' + alpha + ')';
+          ctx.fillRect(x - 1.5, y - 0.25, 3, 0.5);
+          ctx.fillRect(x - 0.25, y - 1.5, 0.5, 3);
+        }
+      }
+    }
+
+    rafId = null;
+  }
+
+  function schedDraw() {
+    if (!rafId) rafId = requestAnimationFrame(draw);
+  }
+
+  section.addEventListener('mousemove', function(e) {
+    var rect = section.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+    schedDraw();
+  });
+
+  section.addEventListener('mouseleave', function() {
+    mouseX = -999;
+    mouseY = -999;
+    schedDraw();
+  });
+
+  window.addEventListener('resize', function() { resize(); schedDraw(); });
+  resize();
+})();
+
+// ============================================
+// SOCIAL PROOF CAROUSEL: Infinite seamless scroll
+// ============================================
+(function() {
+  var carousel = document.getElementById('spCarousel');
+  if (!carousel) return;
+
+  var scrollSpeed = 1;
+  var isPaused = false;
+  var halfWidth = 0;
+  var accumulated = 0;
+
+  function measureHalf() {
+    // Measure the exact width of the first 5 cards (original set) including gaps
+    var cards = carousel.querySelectorAll('.sp-card');
+    var origCount = Math.floor(cards.length / 2);
+    if (origCount < 1) return;
+    var firstCard = cards[0];
+    var lastOrigCard = cards[origCount - 1];
+    // Distance from start of first card to end of last original card + gap
+    var style = getComputedStyle(carousel);
+    var gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 20;
+    halfWidth = lastOrigCard.offsetLeft + lastOrigCard.offsetWidth + gap - firstCard.offsetLeft;
+  }
+
+  function autoScroll() {
+    if (!isPaused && halfWidth > 0) {
+      accumulated += scrollSpeed;
+      if (accumulated >= 1) {
+        var px = Math.floor(accumulated);
+        accumulated -= px;
+        carousel.scrollLeft += px;
+        if (carousel.scrollLeft >= halfWidth) {
+          carousel.scrollLeft -= halfWidth;
+        }
+      }
+    }
+    requestAnimationFrame(autoScroll);
+  }
+
+  carousel.addEventListener('mouseenter', function() { isPaused = true; });
+  carousel.addEventListener('mouseleave', function() { isPaused = false; });
+  carousel.addEventListener('touchstart', function() { isPaused = true; }, { passive: true });
+  carousel.addEventListener('touchend', function() {
+    setTimeout(function() { isPaused = false; }, 3000);
+  });
+
+  window.addEventListener('resize', measureHalf);
+  measureHalf();
+  requestAnimationFrame(autoScroll);
+})();
+</script>
+
+<!-- Vimeo player API (OneForm overview video, Section 1) -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<!-- Click-to-play swap for the YouTube run-through facade (Section 2) -->
+<script>
+(function () {
+  var facade = document.getElementById('ofvidYtFacade');
+  if (!facade) return;
+  facade.addEventListener('click', function () {
+    var wrap = document.createElement('div');
+    wrap.className = 'ofvid-yt-iframe-wrap';
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/IWZIal_nVLA?si=dLWx2mhNKZysyGps&autoplay=1';
+    iframe.title = 'YouTube video player';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    wrap.appendChild(iframe);
+    facade.replaceWith(wrap);
+  });
+})();
+</script>
+</body>
+</html>

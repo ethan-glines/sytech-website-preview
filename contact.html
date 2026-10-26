@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Contact</title>
+<meta name="description" content="Request a free assessment from SyTech Solutions. No commitment. We learn where you are, what is working, and what is not — then map a clear path forward."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+.page-hero { padding: 11rem 0 5rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 720px; }
+
+.contact-section { padding: 5rem 0; background: var(--light); }
+.contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+.form-card { background: var(--white); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(37,66,107,0.08); }
+.form-card h2 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); font-weight: 700; margin-bottom: 0.5rem; color: var(--navy); }
+.form-card .form-intro { font-size: 0.95rem; color: var(--text-body); margin-bottom: 2rem; }
+.form-row { margin-bottom: 1.25rem; }
+.form-row label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 0.45rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.form-row label .req { color: var(--gold); }
+.form-row input, .form-row textarea, .form-row select {
+  width: 100%; padding: 0.85rem 1rem; font-size: 16px; font-family: inherit;
+  background: var(--light); border: 1px solid #E3E9EF; border-radius: 6px; color: var(--navy);
+  transition: border-color 0.2s, background 0.2s;
+}
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus {
+  outline: none; border-color: var(--gold); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(229,166,48,0.15);
+}
+.form-row textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-actions { margin-top: 1.5rem; }
+.btn-primary {
+  display: inline-block; padding: 0.95rem 2rem; background: var(--gold); color: var(--deep-navy);
+  font-size: 0.95rem; font-weight: 700; border-radius: 6px;
+  text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; letter-spacing: 0.02em;
+}
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+.form-disclaimer { font-size: 0.78rem; color: #8b96a3; margin-top: 1rem; line-height: 1.55; }
+
+.contact-info-card { background: var(--navy); color: var(--white); padding: 2.5rem; border-radius: 10px; }
+.contact-info-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--white); border-bottom: 2px solid var(--gold); padding-bottom: 0.75rem; display: inline-block; }
+.contact-info-card .info-block { margin-bottom: 1.5rem; }
+.contact-info-card .info-block .info-label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.4rem; text-transform: uppercase; }
+.contact-info-card .info-block .info-value { font-size: 0.97rem; color: rgba(255,255,255,0.9); line-height: 1.5; }
+.contact-info-card .info-block a { color: rgba(255,255,255,0.9); border-bottom: 1px dotted rgba(255,255,255,0.3); transition: color 0.2s, border-color 0.2s; }
+.contact-info-card .info-block a:hover { color: var(--gold); border-color: var(--gold); }
+.contact-info-card .reassurance { background: rgba(229,166,48,0.1); border: 1px solid rgba(229,166,48,0.25); padding: 1rem 1.15rem; border-radius: 6px; font-size: 0.88rem; color: rgba(255,255,255,0.85); margin-top: 1.75rem; line-height: 1.55; }
+
+.what-next { padding: 5rem 0; background: var(--white); }
+.what-next h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; margin-bottom: 1rem; color: var(--navy); }
+.what-next .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.what-next p.lead { max-width: 720px; font-size: 1.05rem; color: var(--text-body); margin-bottom: 2.5rem; }
+.next-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.step-card { background: var(--light); padding: 1.75rem; border-radius: 10px; border-top: 3px solid var(--gold); }
+.step-card .step-num { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.6rem; }
+.step-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--navy); }
+.step-card p { font-size: 0.93rem; line-height: 1.65; color: var(--text-body); margin: 0; }
+
+/* ===== What an Assessment Covers (Deliverables) ===== */
+.assessment-covers { padding: 5rem 0; background: var(--deep-navy); color: var(--white); position: relative; overflow: hidden; }
+.assessment-covers::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.assessment-covers > .container { position: relative; z-index: 1; }
+.assessment-covers .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.assessment-covers h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--white); }
+.assessment-covers p.lead { max-width: 760px; font-size: 1.05rem; color: rgba(255,255,255,0.82); margin-bottom: 2.5rem; line-height: 1.7; }
+.deliverables-list { list-style: none; padding: 0; margin: 0; max-width: 880px; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.deliverables-list li {
+  position: relative; padding: 1.25rem 1.5rem 1.25rem 5rem;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10); border-radius: 8px;
+  font-size: 1rem; line-height: 1.65; color: rgba(255,255,255,0.92);
+  transition: background 0.2s ease, border-color 0.2s ease;
+  counter-increment: deliverable;
+}
+.deliverables-list { counter-reset: deliverable; }
+.deliverables-list li:hover { background: rgba(255,255,255,0.06); border-color: rgba(229,166,48,0.45); }
+.deliverables-list li::before {
+  content: counter(deliverable, decimal-leading-zero);
+  position: absolute; left: 1.5rem; top: 1.2rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+  color: var(--gold); font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+}
+.deliverables-list li::after {
+  content: ''; position: absolute; left: 3.5rem; top: 1.4rem;
+  width: 1px; height: 14px; background: rgba(229,166,48,0.45);
+}
+
+/* ===== What to Prepare Checklist ===== */
+.prepare-section { padding: 5rem 0; background: var(--light); }
+.prepare-section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.prepare-section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.prepare-section p.lead { max-width: 720px; font-size: 1.05rem; color: var(--text-body); margin-bottom: 2rem; line-height: 1.7; }
+.prepare-list { list-style: none; padding: 0; margin: 0; max-width: 820px; display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+.prepare-list li {
+  position: relative; padding: 1rem 1.25rem 1rem 3rem;
+  background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px;
+  font-size: 0.97rem; line-height: 1.65; color: var(--text-body);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.prepare-list li:hover { border-color: rgba(229,166,48,0.45); box-shadow: 0 4px 12px rgba(37,66,107,0.05); }
+.prepare-list li::before {
+  content: ''; position: absolute; left: 1rem; top: 1.15rem;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--gold);
+  background-image: linear-gradient(135deg, var(--gold) 0%, #d4952a 100%);
+  box-shadow: 0 1px 3px rgba(229,166,48,0.35);
+}
+.prepare-list li::after {
+  content: ''; position: absolute; left: 1.36rem; top: 1.45rem;
+  width: 10px; height: 5px;
+  border-left: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  transform: rotate(-45deg);
+}
+
+/* ===== FAQ Accordion (mini, contact page) ===== */
+.faq-section { padding: 5rem 0; background: var(--white); }
+.faq-section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.faq-section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.faq-list { margin-top: 2rem; max-width: 920px; }
+.faq-item {
+  background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px;
+  margin-bottom: 0.85rem; overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.faq-item:hover { border-color: rgba(229,166,48,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.faq-item[open] { border-color: var(--gold); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.faq-question {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.5rem; cursor: pointer;
+  font-weight: 700; font-size: 1.02rem; color: var(--navy);
+  list-style: none;
+  transition: background 0.2s ease;
+}
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.faq-question:hover { background: rgba(229,166,48,0.04); }
+.faq-icon {
+  flex-shrink: 0; margin-left: 1rem;
+  width: 22px; height: 22px; position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-icon::before, .faq-icon::after {
+  content: ''; position: absolute; background: var(--gold);
+  border-radius: 1px;
+  transition: opacity 0.25s ease;
+}
+.faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.faq-icon::after  { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.faq-item[open] .faq-icon { transform: rotate(180deg); }
+.faq-item[open] .faq-icon::before { opacity: 0; }
+.faq-answer {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  font-size: 0.97rem; line-height: 1.75; color: var(--text-body);
+}
+.faq-answer p { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-item, .faq-icon, .faq-icon::before, .faq-icon::after { transition: none !important; }
+}
+
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .form-grid-2 { grid-template-columns: 1fr; }
+  .contact-section, .what-next, .assessment-covers, .prepare-section, .faq-section { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Get In Touch</span>
+    <h1>Let's Start With an <span>Assessment.</span></h1>
+    <p class="lead" data-aud="ct-lead">Every engagement begins with a conversation. We learn where you are, what is working, and what is not — then map a clear path forward. No commitment required. We have been doing this for over 25 years.</p>
+    <p style="margin:1.1rem 0 0"><a href="right-partner.html" style="display:inline-block;font-size:0.92rem;font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid #E5A630;padding-bottom:2px">Not sure we're the right partner? Find out in seven quick steps &rarr;</a></p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="form-card">
+        <h2>Request a Free Assessment</h2>
+        <p class="form-intro" data-aud="ct-form-intro">Tell us a bit about your agency and where you are today. We will reach out within one business day to schedule a conversation.</p>
+        <form action="#" method="post" aria-label="Assessment request form">
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="name">Name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required autocomplete="name"/>
+            </div>
+            <div class="form-row">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email"/>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="organization" data-aud="ct-org-label">Organization <span class="req">*</span></label>
+              <input type="text" id="organization" name="organization" required autocomplete="organization"/>
+            </div>
+            <div class="form-row">
+              <label for="role">Role / Title</label>
+              <input type="text" id="role" name="role" autocomplete="organization-title"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="agency-type">Agency Type</label>
+            <select id="agency-type" name="agency-type" data-aud-select="ct-agency-type">
+              <option value="">Select one</option>
+              <option>K–12 School District</option>
+              <option>County Office of Education</option>
+              <option>City / County Government</option>
+              <option>State Agency</option>
+              <option>Other Public Agency</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Briefly describe your needs <span class="req">*</span></label>
+            <textarea id="message" name="message" data-aud-placeholder="ct-message-hint" required placeholder="What are you trying to solve? Are you currently using paper, e-forms software, or a mix?"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Request a Free Assessment</button>
+            <p class="form-disclaimer">By submitting this form, you agree that SyTech may contact you to schedule an assessment conversation. We never share your information. <a href="privacy-policy.html">See our Privacy Policy</a>.</p>
+          </div>
+        </form>
+      </div>
+
+      <aside class="contact-info-card">
+        <h3>Reach SyTech Directly</h3>
+        <div class="info-block">
+          <span class="info-label">Email</span>
+          <span class="info-value"><a href="mailto:support@sytechsolutions.com">support@sytechsolutions.com</a></span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Phone</span>
+          <span class="info-value"><a href="tel:+19163813010">(916) 381-3010</a></span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Office</span>
+          <span class="info-value">SyTech Solutions<br/>8930 Big Horn Blvd<br/>Elk Grove, CA 95758</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Response Time</span>
+          <span class="info-value">Within one business day for all assessment requests.</span>
+        </div>
+        <div class="reassurance">
+          No commitment required. We have been doing this for over 25 years — public sector procurement cycles do not surprise us.
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="what-next">
+  <div class="container">
+    <span class="section-eyebrow">What Happens Next</span>
+    <h2>From Form to Forward Path.</h2>
+    <p class="lead">An assessment with SyTech is structured, low-commitment, and built around understanding your environment before any recommendations are made.</p>
+    <div class="next-steps">
+      <div class="step-card">
+        <span class="step-num">STEP 01</span>
+        <h3>Initial Conversation</h3>
+        <p>We schedule a 30-minute call to understand your current state, goals, and the platforms you already own and operate.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 02</span>
+        <h3>Assessment</h3>
+        <p>We map your records environment, identify quick wins, and surface the structural issues worth solving first.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">STEP 03</span>
+        <h3>Path Forward</h3>
+        <p>You receive a clear plan structured around Organize, Unify, and Scale — with phased options and no obligation to proceed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="assessment-covers" aria-label="What an assessment covers">
+  <div class="container">
+    <span class="section-eyebrow">What You Walk Away With</span>
+    <h2>What an Assessment Actually Covers.</h2>
+    <p class="lead">The first conversation is short. What follows is structured. By the end of an assessment, your team owns a clear picture of where your records environment is — and a defensible plan for what comes next.</p>
+    <ol class="deliverables-list">
+      <li>A current-state map of your records environment — where data lives, what governs it, and what's working.</li>
+      <li>A compliance posture aligned to your retention requirements and audit obligations.</li>
+      <li>An accessibility assessment — who can find what, how long it takes, and where the friction is.</li>
+      <li>A retention and lifecycle plan that simplifies what your team currently manages by hand.</li>
+      <li>A prioritized path forward — sequenced by impact and feasibility, with cost ranges your finance team can plan against.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="prepare-section" aria-label="What to prepare for the assessment call">
+  <div class="container">
+    <span class="section-eyebrow">Before the Conversation</span>
+    <h2>What to Have Ready (Optional).</h2>
+    <p class="lead">The assessment call works without any prep — we'll lead the conversation. But if you want to come in with a clearer picture, these four things help us move faster.</p>
+    <ul class="prepare-list">
+      <li>A rough sense of which cloud platform your agency operates in — Microsoft 365, Google Workspace, or both.</li>
+      <li>The records area causing the most friction right now: paper backlog, e-forms tool, legacy DMS, retention compliance, or something else.</li>
+      <li>Your approximate user count and the departments most affected.</li>
+      <li>Any procurement constraints we should know about up front — RFP cycles, fiscal year timing, existing master agreements.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="faq-section" aria-label="Frequently asked questions">
+  <div class="container">
+    <span class="section-eyebrow">Common Questions</span>
+    <h2>Before You Reach Out.</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Is the assessment really free?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes. The assessment is a working conversation — we learn your environment, identify quick wins, and outline a path forward. No deliverable charge. No obligation to engage further. If we are not a fit, we will tell you.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>How long does an assessment take?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>The first conversation is usually 30 minutes. If we go deeper into a specific records area, a follow-up working session is typically 60 to 90 minutes. We do not run multi-week discovery engagements before an agency knows whether we are the right partner.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>We are early in our procurement cycle. Should we still reach out?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes — earlier is often better. Procurement cycles in the public sector are long, and the right time to talk is well before an RFP goes out. We will not pressure your timeline. We will help you understand what is possible and what to ask for when you are ready.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+
+</body>
+</html>

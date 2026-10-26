@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Archive Scanning — SyTech Solutions</title>
+<meta name="description" content="Paper records become searchable digital records — without leaving your governance. SyTech's five-step archive scanning process, chain of custody, and a track record of over 25 years."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<link rel="stylesheet" href="assets/css/phosphor.css">
+<style>
+/* === Per-page accent (color pass 2026-06-18) === */
+:root { --accent: #C2683A; --accent-ink: #A8542B; }
+/* ==========================================================================
+   services-scanning-topgradient.html — TOP-COLOR GRADIENT HERO variant (2026-06-18)
+   Forked from services-scanning-lighthero.html. ONLY the .page-hero region changes:
+   the hero background is a 180deg VERTICAL gradient — a SOFT, TRANSLUCENT copper WASH
+   at the top (behind breadcrumb/eyebrow/headline) fading straight down to light/white.
+   Top hero text uses the DARK light-hero treatment (navy h1 + copper-ink accents + slate
+   lead) so it stays legible on the now-paler copper top. The white scanner-animation card
+   and every .hs-* on-white value are KEPT VERBATIM (card is opaque). Nothing below the
+   hero changes.
+   SOFTENED-COPPER REVISION (2026-06-18): Ethan wanted the copper top at LOWER opacity — a
+   translucent copper wash over the light canvas, not a solid deepened copper. Top alpha
+   SHIPPED = 0.52 (rgba(194,104,58,0.52) over --light → effective ~rgb(218,172,148),
+   lum ~0.47; raised from 0.42 on 2026-06-18 for a touch more copper). Contrast on this top:
+   navy #25426B ~4.7:1 (clears 4.5:1 AA); copper-ink #A8542B ~3.1:1 (clears 3:1 large —
+   the h1 accent span passes; the small eyebrow at this alpha is ~3.1:1, under 4.5:1 AA for
+   small text — kept by design, flagged); slate --text-body ~6.0:1.
+   Hero text flipped BACK to the dark treatment accordingly.
+   Spec: planning/spec-service-page-color-palette-2026-06-18.md →
+   "Top-Color Gradient Hero (copper-top → light-bottom) — Scanning (exploration)".
+   ========================================================================== */
+
+
+/* ---- Page Hero (extended from services.html .page-hero with breadcrumb + 2-col layout) ---- */
+/* TOP-GRADIENT HERO (2026-06-18, SOFTENED) — full 180deg vertical fade: translucent copper
+   WASH top → light → white floor. The copper is built as rgba over the light canvas (not a
+   solid hex) so it reads as a soft, premium tint. Navy h1 / copper-ink accents / slate lead
+   all clear AA on it. */
+.page-hero {
+  padding: 11rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--navy); /* dark text treatment — top is a pale copper wash, not solid copper */
+  background: linear-gradient(180deg,
+      rgba(194,104,58,0.52)  0%,    /* SHIPPED top alpha 0.52 — soft copper wash over --light (navy ~4.7:1) */
+      rgba(194,104,58,0.18) 40%,    /* wash thins toward the light canvas */
+      var(--light)          75%,    /* #F5F5F5 — into the light canvas */
+      var(--white)         100%);   /* #FFFFFF — white floor at the very bottom of the hero */
+}
+/* ::before copper corner glow REMOVED (spec Part 4) — the vertical gradient now carries all the copper;
+   a separate corner glow would double up and muddy. */
+
+/* ---- Mouse-reactive dot field (interactive, 2026-06-18) ----
+   REPLACES the old static ::after radial-gradient dot tile AND the removed cursor-following glow.
+   A <canvas> renders the SAME resting look as the old tile — navy dots rgba(37,66,107,0.10),
+   ~1px radius, 24px grid spacing — but each dot can displace individually toward/away from the
+   cursor (a CSS background tile can't move per-dot). JS owns the field; see the canvas block in
+   <script>. The canvas sits ABOVE the hero gradient background but BELOW .container (z-index 1),
+   so all hero content (eyebrow, h1, lead, breadcrumb, white card) stays fully legible, and
+   pointer-events:none so it never intercepts clicks/hovers.
+   At rest (and on reduced-motion / touch / no-hover) JS paints the static grid once — identical
+   to the old tile, no layout shift. */
+.hero-dotfield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;            /* above the gradient background; below .container (z-index 1) */
+  display: block;
+}
+.page-hero .container { position: relative; z-index: 1; }
+.page-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 3.5rem; align-items: center; }
+.page-hero-copy { min-width: 0; }
+/* Eyebrow — DEEPENED copper-brown #6E3318 (A11Y FIX 2026-06-18): the small 0.7rem uppercase label
+   needs small-text AA (4.5:1). The old --accent-ink #A8542B reached only ~3.12:1 on the 0.52 copper
+   top (effective ~rgb(218,172,148) = 0.52 copper over #F5F5F5) — under 4.5:1. #6E3318 measures 4.85:1
+   on that top tint, clearing small-text AA, while staying in the warm copper/brown family (NOT navy).
+   Scoped to the hero eyebrow ONLY — h1 / accent span / lead / breadcrumb / gradient / dots / glow
+   all unchanged. */
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #6E3318; margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; color: var(--navy); }
+/* h1 highlight span — the colored POP word returns. On the SOFTENED copper top, --accent #C2683A only
+   reaches ~2.1:1 (fails 3:1 large), so the span uses --accent-ink #A8542B (~3.0:1, clears 3:1 large at
+   the 32px+ bold h1 size). The navy base + copper-ink pop now both read on the pale copper wash. */
+.page-hero h1 span { color: var(--accent-ink); }
+/* Lead — slate --text-body. On the softened copper wash near the top it still clears ~6.8:1; it renders
+   mostly in the lower/light zone where it is well above AA. */
+.page-hero p.lead { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
+
+/* Breadcrumb — light-version accent treatment (restored for the softened pale-copper top):
+   links slate --text-body, separators + hover copper-ink/accent, current-page navy bold. All read
+   on the pale copper wash + light field. */
+.breadcrumb { margin-bottom: 1.25rem; }
+.breadcrumb ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-size: 0.8rem; }
+.breadcrumb li { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-body); }
+.breadcrumb li + li::before { content: '\203A'; color: var(--accent-ink); font-size: 0.95rem; line-height: 1; padding-right: 0.25rem; }
+.breadcrumb a { color: var(--text-body); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb [aria-current="page"] { color: var(--navy); font-weight: 700; }
+.breadcrumb [aria-current="step"] { color: var(--text-body); }
+
+/* ==========================================================================
+   Hero Story Animation — continuous, on-loop, paused offscreen.
+   Paper enters at left → travels into scanner → emerges scanned → follows
+   dotted path to cloud → cloud "ingests" paper. ~12s per full lifecycle;
+   new paper spawns every 3s for a 4-paper steady stream.
+   Reduced motion: static composed scene (paper, scanner, dotted line, cloud
+   all visible simultaneously) shown instead of motion.
+   ========================================================================== */
+.hero-story { position: relative; width: 100%; max-width: 560px; margin-left: auto; opacity: 0; transform: translateY(10px); transition: opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1); }
+.hero-story.is-visible { opacity: 1; transform: translateY(0); }
+/* White card (OneForm .cinema-stage model) — KEPT VERBATIM from the light version. The card is OPAQUE,
+   so the copper→light gradient behind it never bleeds through; the animation's contrast context stays
+   the white card. The card visually bridges the gradient (copper above / light below) — a feature. */
+.hero-story-frame {
+  position: relative;
+  background: var(--white);
+  border: 1px solid rgba(37,66,107,0.12);
+  border-radius: 14px;
+  padding: 1.25rem 1rem 1rem;
+  box-shadow: 0 20px 60px rgba(37,66,107,0.10), 0 1px 3px rgba(37,66,107,0.06);
+  /* Batch 4: lock text-selection/long-press-copy on the graphic frame (SVG diagram text +
+     stage legend); keep an arrow cursor. Clickable legend items keep cursor:pointer via
+     the more specific .hero-story-legend .hsl-item[role="button"] rule below. The
+     .hero-caption prose sits outside this frame and stays selectable. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: default;
+}
+.hero-story-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(194,104,58,0.6), transparent);
+}
+.hero-story-svg { width: 100%; height: auto; display: block; aspect-ratio: 600 / 360; }
+.hero-story-legend {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 0.6rem; padding: 0 0.25rem;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-body);
+}
+.hero-story-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.hero-story-legend .dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+/* ==========================================================================
+   STAGE TIMELINE (2026-07-01, spec-scanning-hero-stage-timeline.md) — the copper
+   dot becomes a playhead that walks Paper → Scanning → Governed Record, bound into
+   the existing journey tl. One label lit at a time (active = navy/1; others slate/0.55).
+   All .hsl-* namespaced, named-prop transitions only. Legend stays FLAT (no .sl-plate).
+   ========================================================================== */
+.hero-story-legend { position: relative; padding-left: 0.5rem; } /* seat the leading marker; existing flex + font kept */
+.hero-story-legend .hsl-item { color: var(--text-body); opacity: 0.55; transition: color 220ms ease, opacity 220ms ease; }
+.hero-story-legend .hsl-item.is-active { color: var(--navy); opacity: 1; }
+/* CHANGE 2 (2026-07-02): the three labels are upgraded to stage controls in JS (journey branch only),
+   so this interactive affordance applies ONLY to the JS-added role="button" items — the reduced-motion /
+   no-GSAP fallback legend stays plain/decorative. Visual label styling is otherwise unchanged. */
+.hero-story-legend .hsl-item[role="button"] { cursor: pointer; }
+.hero-story-legend .hsl-item[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* The leading dot's ~0.35rem lead is ALREADY supplied by the existing
+   `.hero-story-legend span { gap: 0.35rem }` rule (the `.hsl-item`s are spans), so the
+   spec's `.hsl-item .dot { margin-right: 0.35rem }` is intentionally OMITTED — adding it
+   would DOUBLE the gap and break the byte-consistent rest state §1 requires. */
+/* floating traveling marker — hidden until the journey takes over */
+.hero-story-legend .hsl-marker {
+  display: none;
+  position: absolute; left: 0; top: 50%; margin-top: -3px; /* vertical-center a 6px dot WITHOUT translateY, so GSAP x can't fight it */
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  pointer-events: none;
+}
+/* journey mode: hide the inline dot, show the traveling marker */
+.hero-story-legend.is-animated .hsl-item .dot { display: none; }
+.hero-story-legend.is-animated .hsl-marker { display: block; }
+/* Caption — sits BELOW the white card, in the lower/light zone of the hero, so slate stays legible. */
+.hero-caption { margin-top: 1.1rem; font-size: 0.82rem; line-height: 1.55; color: var(--text-body); font-style: italic; }
+
+/* ==========================================================================
+   HERO SHOWPIECE — "The Scan-Line" (2026-07-01, spec-scanning-hero-showpiece.md)
+   Replaces the looping paper→scanner→cloud SVG inside .hero-story-frame ONLY.
+   A copper scan-line sweeps a single aged paper record ONCE; the analog page
+   resolves in its wake into a crisp, searchable, GOVERNED digital record, then a
+   navy frame draws — then HOLDS (no idle loop). (The small gold lock seal was
+   REMOVED 2026-07-01 at Ethan's call; do NOT restore it.)
+   ALL classes / keyframes are namespaced .sl-* so nothing leaks to shared CSS.
+   The DEFAULT rendered state is the resolved POSTER (reduced-motion / no-GSAP
+   fallback); GSAP resets to the start frame only when motion is allowed + loaded.
+   Navy = structure · Copper = the active transformation. (Gold note removed.)
+   ========================================================================== */
+/* Faint navy "system" grid backdrop */
+.sl-grid { stroke: rgba(37,66,107,0.06); stroke-width: 1; }
+
+/* --- ANALOG "before" sheet (aged cream, tilted, grey typewriter ink) --- */
+.sl-sheet-analog { fill: #FCEFD1; stroke: rgba(37,66,107,0.25); stroke-width: 1; }
+.sl-typeline { stroke: #8A8578; stroke-width: 1.4; stroke-linecap: round; }
+.sl-coffee { fill: none; stroke: rgba(120,70,30,0.18); stroke-width: 2; }
+.sl-clip-glyph { fill: none; stroke: rgba(37,66,107,0.55); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.sl-note { fill: none; stroke: #6E6A60; stroke-width: 1.2; stroke-linecap: round; }
+
+/* --- DIGITAL "after" record (crisp white, upright, structured) --- */
+.sl-sheet-digital { fill: #FFFFFF; stroke: #25426B; stroke-width: 1; }
+.sl-header { fill: #25426B; }
+.sl-header-underline { fill: #C2683A; }
+.sl-header-glyph { fill: none; stroke: #FFFFFF; stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; }
+.sl-header-label { fill: #FFFFFF; font-size: 8px; font-weight: 700; letter-spacing: 1.2px; font-family: Tahoma,'Segoe UI',sans-serif; }
+.sl-ocr-line { fill: rgba(37,66,107,0.78); }
+.sl-ocr-hit { fill: rgba(194,104,58,0.22); }
+.sl-chip-box { fill: rgba(194,104,58,0.12); stroke: #C2683A; stroke-width: 1; }
+.sl-chip-text { fill: #8A3E1C; font-size: 6px; font-weight: 700; letter-spacing: 0.2px; font-family: Tahoma,'Segoe UI',sans-serif; text-anchor: middle; }
+.sl-search-box { fill: #FFFFFF; stroke: #C2683A; stroke-width: 1.3; }
+.sl-search-glyph { fill: none; stroke: #C2683A; stroke-width: 1.4; stroke-linecap: round; }
+.sl-search-text { fill: #25426B; font-size: 9px; font-weight: 600; font-family: Tahoma,'Segoe UI',sans-serif; }
+.sl-search-caret { fill: #C2683A; font-size: 10px; font-weight: 400; font-family: Tahoma,'Segoe UI',sans-serif; }
+
+/* --- SCAN LINE (the copper light pass) --- */
+.sl-scan-glow { stroke: #C2683A; stroke-width: 3; stroke-linecap: round; }
+.sl-scan-core { stroke: #FFFFFF; stroke-width: 1; stroke-linecap: round; opacity: 0.9; }
+
+/* --- GOVERNED FRAME (navy bezel). GOLD LOCK SEAL REMOVED 2026-07-01 (Ethan's explicit
+   call — the graphic no longer carries the gold note; the copper hairline is unchanged;
+   do NOT restore the lock or its .sl-lock-* classes). --- */
+.sl-frame { fill: none; stroke: #25426B; stroke-width: 1.5; }
+
+/* DEFAULT = the resolved POSTER frame (also the reduced-motion / no-GSAP fallback).
+   These defaults are exactly what a JS/GSAP failure leaves on screen — never blank:
+   analog hidden + scan-line gone, while the reveal rect (SVG attr height=280),
+   frame stroke, chips, search query + highlight all render finished (no gold lock —
+   removed 2026-07-01).
+   GSAP resets these to the start frame at init only when motion is allowed. */
+.sl-analog { opacity: 0; }   /* analog hidden in the resolved poster */
+.sl-scan   { opacity: 0; }   /* scan-line gone in the resolved poster */
+
+/* Caret blink — the ONLY resting motion (spec §3, step 7); disabled on reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .sl-search-caret { animation: sl-caret-blink 1.05s steps(1) infinite; }
+}
+@keyframes sl-caret-blink { 50% { opacity: 0; } }
+
+
+/* ==========================================================================
+   HERO SHOWPIECE — "MILLED MATERIAL" STACKED-DEPTH HOVER (2026-07-01)
+   spec-scanning-hero-stacked-hover.md. REPLACES the removed 3D perspective tilt.
+   At rest the card is the exact flat poster. On hover (only AFTER the scan journey
+   arms the card with .sl-armed) every meaningful object gains physical THICKNESS
+   on ONE plane: the top face lifts a few px (translateY -lift), a single hard
+   drop-shadow at +lift paints the machined side-wall, a soft ground shadow grows,
+   and a thin bevel highlight (a real <line>/<rect> inside each plate group) fades
+   in. No rotateX/Y, no perspective, no parallax, no depth-plane separation.
+   Thickness graded = plates milled from the same block: card 2 · frame 3 ·
+   header 4 · search 5 · chips 6 (the copper index chips now CROWN the stack).
+   [Gold lock / brass seal plate REMOVED 2026-07-01 — do NOT restore.]
+   GATED to fine-hover + motion-allowed pointers; touch / no-hover / reduced-motion
+   never match → the card stays the byte-identical flat poster. Keyboard parity via
+   tabindex + :focus-visible. All .sl-* namespaced; nothing leaks to shared CSS.
+   ========================================================================== */
+/* .sl-tilt-stage is now a bare positioning wrapper (the tilt 3D machinery is gone). */
+.sl-tilt-stage { position: relative; }
+
+/* ---- Shared plate mechanic ---- */
+/* The wrapper carries ONLY the translateY lift, so a plate's solid body AND its
+   text/icons/hairlines lift together and stay perfectly registered (they share this
+   one lifted element — nothing can drift). Named-prop transitions ONLY. */
+.sl-plate {
+  transform: translateY(0);
+  transition: transform 420ms cubic-bezier(.22,1,.36,1);
+  --sh-y: calc(var(--lift) + 4px);   /* ground-shadow offset */
+  --sh-blur: 9px;                    /* ground-shadow softness */
+}
+/* The machined side-wall + ground shadow are cast ONLY by each plate's solid BODY
+   shape. drop-shadow() paints the FULL alpha silhouette of its element, so on the group
+   it ghosts every thin glyph/hairline as a literal second copy (the doubled-text bug).
+   Body-only = a clean wall for OPAQUE-FILLED bodies (the navy header bar). For
+   STROKE-DOMINANT bodies (frame bezel, chip pills, search field) even the body-only
+   silhouette is ring-dominated, so a hard 0-blur wall would double the OUTLINE — those
+   get a SOFT ground shadow only instead (see the overrides below). Flat resting =
+   zero-offset shadows (invisible); every rule keeps the SAME two drop-shadow() functions
+   (colors constant, offsets/blur change) so the filter interpolates cleanly. */
+.sl-plate-body {
+  filter: drop-shadow(0 0 0 var(--wall)) drop-shadow(0 0 0 var(--ground));
+  transition: filter 420ms cubic-bezier(.22,1,.36,1);
+}
+/* The governed frame is a STROKE-ONLY bezel — a hard 0-blur wall would read as a
+   doubled outline, so its body casts a SOFT ground shadow only (still two soft
+   drop-shadow() functions for smooth interpolation, no hard wall). */
+.sl-mat-navy-frame.sl-plate-body {
+  filter: drop-shadow(0 0 0 var(--ground)) drop-shadow(0 0 0 var(--ground));
+  /* the frame is the ONE element carrying both .sl-plate and .sl-plate-body, so restate
+     the combined transition here (the shorthand doesn't merge across those two rules). */
+  transition: transform 420ms cubic-bezier(.22,1,.36,1),
+              filter    420ms cubic-bezier(.22,1,.36,1);
+}
+/* CHIP PILLS + SEARCH FIELD are ALSO stroke-dominant rounded rects (a full copper ring on
+   a translucent/white fill). A hard 0-blur wall paints their alpha silhouette — which the
+   ring dominates — as a SECOND offset copper RING (the doubled-outline bug Ethan flagged on
+   the 2nd hover test, 2026-07-01). SAME remedy as the frame: a SOFT ground shadow only in
+   both states (two soft drop-shadow() functions, no hard wall). They still LIFT via
+   .sl-plate's translateY, so the milled-depth read is preserved; only the wall becomes a
+   soft ground. (These bodies live on a separate descendant element from .sl-plate, so the
+   base .sl-plate-body filter transition still applies — no need to restate it here.) */
+.sl-chip-box.sl-plate-body,
+.sl-search-box.sl-plate-body {
+  filter: drop-shadow(0 0 0 var(--ground)) drop-shadow(0 0 0 var(--ground));
+}
+.sl-bevel {
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(.22,1,.36,1);
+}
+
+/* Raised state — GATED to fine-hover pointers with motion allowed, and only after
+   the journey arms the card (.sl-armed). Touch / no-hover / reduced-motion never
+   match → the card stays the exact flat poster. Both flat + raised states carry the
+   SAME two drop-shadow() functions (only offsets/blur change; colors constant) so
+   the filter interpolates cleanly — never change the function count between states. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* wrapper lifts the whole plate (body + text + hairlines, in lockstep) */
+  .hero-story-frame.sl-armed:hover .sl-plate,
+  .hero-story-frame.sl-armed:focus-visible .sl-plate {
+    transform: translateY(calc(-1 * var(--lift)));
+  }
+  /* body shape alone casts the hard machined side-wall + soft ground shadow */
+  .hero-story-frame.sl-armed:hover .sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-plate-body {
+    filter: drop-shadow(0 var(--lift) 0 var(--wall))
+            drop-shadow(0 var(--sh-y) var(--sh-blur) var(--ground));
+  }
+  /* frame bezel: soft ground shadow only (no hard doubled outline) */
+  .hero-story-frame.sl-armed:hover .sl-mat-navy-frame.sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-navy-frame.sl-plate-body {
+    filter: drop-shadow(0 var(--lift) 3px var(--ground))
+            drop-shadow(0 var(--sh-y) var(--sh-blur) var(--ground));
+  }
+  /* chip pills + search field: soft ground shadow only (no hard doubled copper RING) */
+  .hero-story-frame.sl-armed:hover .sl-chip-box.sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-chip-box.sl-plate-body,
+  .hero-story-frame.sl-armed:hover .sl-search-box.sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-search-box.sl-plate-body {
+    filter: drop-shadow(0 var(--lift) 3px var(--ground))
+            drop-shadow(0 var(--sh-y) var(--sh-blur) var(--ground));
+  }
+  .hero-story-frame.sl-armed:hover .sl-bevel,
+  .hero-story-frame.sl-armed:focus-visible .sl-bevel { opacity: 1; }
+
+  /* whole slab lifts a hair + deepens its shadow */
+  .hero-story-frame.sl-armed:hover,
+  .hero-story-frame.sl-armed:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 30px 80px rgba(37,66,107,0.16), 0 4px 10px rgba(37,66,107,0.10);
+  }
+
+  /* SUBTLE stagger — plates "separate" in sequence (enter only; crisp settle on leave).
+     Delay BOTH the wrapper's transform AND its body's filter so lift + side-wall stay in
+     lockstep. (The frame is its own body, so its single selector covers both.) */
+  .hero-story-frame.sl-armed:hover .sl-mat-navy-frame,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-navy-frame { transition-delay: 20ms; }
+  .hero-story-frame.sl-armed:hover .sl-mat-navy,
+  .hero-story-frame.sl-armed:hover .sl-mat-navy .sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-navy,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-navy .sl-plate-body       { transition-delay: 40ms; }
+  .hero-story-frame.sl-armed:hover .sl-mat-acrylic,
+  .hero-story-frame.sl-armed:hover .sl-mat-acrylic .sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-acrylic,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-acrylic .sl-plate-body    { transition-delay: 55ms; }
+  /* copper index chips are LAST in the stagger — they now crown the stack
+     (the gold lock/brass plate was removed 2026-07-01). */
+  .hero-story-frame.sl-armed:hover .sl-mat-copper,
+  .hero-story-frame.sl-armed:hover .sl-mat-copper .sl-plate-body,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-copper,
+  .hero-story-frame.sl-armed:focus-visible .sl-mat-copper .sl-plate-body     { transition-delay: 70ms; }
+}
+
+/* The card transitions its lift + shadow with the same easing */
+.hero-story-frame {
+  transition: transform 420ms cubic-bezier(.22,1,.36,1),
+              box-shadow 420ms cubic-bezier(.22,1,.36,1);
+  outline: none;
+}
+.hero-story-frame:focus-visible { box-shadow: 0 0 0 3px rgba(194,104,58,0.55), 0 20px 60px rgba(37,66,107,0.10); }
+
+/* ---- Per-material vars ---- */
+/* NAVY — matte powder-coated aluminium (header + frame) */
+.sl-mat-navy        { --wall:#1B3050; --ground:rgba(27,48,80,0.26); --lift:4px; }
+.sl-mat-navy-frame  { --wall:#1B3050; --ground:rgba(27,48,80,0.22); --lift:3px; }
+/* COPPER — brushed anodized metal (index chips) */
+.sl-mat-copper      { --wall:#8E4522; --ground:rgba(138,62,28,0.22); --lift:6px; }
+/* WHITE — matte acrylic / ceramic (search field) */
+.sl-mat-acrylic     { --wall:#DCE1E8; --ground:rgba(37,66,107,0.16); --lift:5px; }
+/* BRASS material REMOVED 2026-07-01 — the gold lock seal it served was deleted (Ethan's
+   call). Do NOT restore .sl-mat-brass or the lock. */
+
+
+/* ---- Generic section scaffolding (extends services.html patterns) ---- */
+/* SUBPAGE PATTERN: section headers (eyebrow + h2 + intro) center-align by default —
+   matches OneForm body-section header treatment. Cards/grids below remain in their
+   existing layouts; only the header trio centers. */
+.section { padding: 5rem 0; border-bottom: 1px solid rgba(37,66,107,0.08); }
+.section.alt { background: var(--light); }
+.section.breathe { padding: 7rem 0; }
+.section-header { text-align: center; max-width: 760px; margin: 0 auto 2.5rem; }
+.section .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.section h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.section-header h2 { max-width: 760px; margin-left: auto; margin-right: auto; }
+.section-intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-body); margin: 0 auto 0; max-width: 640px; }
+
+
+/* ---- Section 1: Animated Process Diagram (extends .steps from services.html) ---- */
+/* Reusing the .steps / .step / .step-num / .step-label / .step-copy / .archive-trust /
+   .archive-quote patterns from services.html — these are imported below verbatim
+   so this subpage stands alone. */
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin: 1.5rem 0 1.75rem; position: relative; list-style: none; padding: 0; }
+.steps::before { content: ''; position: absolute; top: 66px; left: calc(10% + 18px); right: calc(10% + 18px); height: 2px; background: linear-gradient(to right, rgba(194,104,58,0.45), rgba(194,104,58,0.45) 80%, rgba(194,104,58,0.10)); z-index: 0; pointer-events: none; }
+.step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.step-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 8px; background: rgba(194,104,58,0.10); margin-bottom: 0.5rem; }
+.step-icon i { font-size: 28px; color: var(--navy); line-height: 1; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #FFFFFF; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 0.85rem; box-shadow: 0 0 0 4px var(--white); }
+.step-label { font-size: 0.82rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.step-copy { font-size: 0.88rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+.archive-trust { font-size: 0.85rem; color: var(--text-body); opacity: 0.85; font-style: italic; margin-top: 1.25rem; padding-left: 1rem; border-left: 2px solid rgba(194,104,58,0.35); max-width: 680px; }
+
+/* Scroll-triggered entrance for each step — single-fire, staggered */
+@media (prefers-reduced-motion: no-preference) {
+  .step { opacity: 0; transform: translateY(8px); transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), transform 400ms cubic-bezier(0.4,0,0.2,1); }
+  .steps.is-visible .step { opacity: 1; transform: translateY(0); }
+  .steps.is-visible .step:nth-child(1) { transition-delay: 0ms; }
+  .steps.is-visible .step:nth-child(2) { transition-delay: 120ms; }
+  .steps.is-visible .step:nth-child(3) { transition-delay: 240ms; }
+  .steps.is-visible .step:nth-child(4) { transition-delay: 360ms; }
+  .steps.is-visible .step:nth-child(5) { transition-delay: 480ms; }
+}
+
+
+/* ---- Section 2: Chain of Custody Schematic — NEW pattern ---- */
+.schematic { max-width: 880px; margin: 3rem auto 0; }
+.schematic-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 0; }
+.schematic-node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.5rem 1rem; background: var(--white); border: 1px solid rgba(37,66,107,0.15); border-radius: 10px; min-height: 140px; box-shadow: 0 2px 8px rgba(37,66,107,0.04); transition: border-color 200ms ease, box-shadow 200ms ease; opacity: 0; transform: translateY(8px); }
+.section.alt .schematic-node { background: var(--white); }
+.schematic-node:hover { border-color: rgba(194,104,58,0.45); box-shadow: 0 4px 14px rgba(37,66,107,0.08); }
+.schematic-node i { font-size: 44px; color: var(--navy); line-height: 1; }
+.schematic-node-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); text-align: center; }
+.schematic-connector { position: relative; width: 100%; min-width: 48px; height: 2px; background: var(--accent); margin: 0 0.5rem; opacity: 0; }
+.schematic-connector::after { content: ''; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 8px solid var(--accent); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+.schematic-caption { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); text-align: center; margin: 2rem auto 0; max-width: 640px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .schematic-node { transition: opacity 400ms cubic-bezier(0.4,0,0.2,1), transform 400ms cubic-bezier(0.4,0,0.2,1), border-color 200ms ease, box-shadow 200ms ease; }
+  .schematic.is-visible .schematic-node { opacity: 1; transform: translateY(0); }
+  .schematic.is-visible .schematic-node:nth-of-type(1) { transition-delay: 0ms; }
+  .schematic.is-visible .schematic-node:nth-of-type(2) { transition-delay: 250ms; }
+  .schematic.is-visible .schematic-node:nth-of-type(3) { transition-delay: 500ms; }
+  .schematic-connector { transition: opacity 600ms ease-out; }
+  .schematic.is-visible .schematic-connector { opacity: 1; }
+  .schematic.is-visible .schematic-connector:nth-of-type(2) { transition-delay: 250ms; }
+  .schematic.is-visible .schematic-connector:nth-of-type(4) { transition-delay: 500ms; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .schematic-node, .schematic-connector { opacity: 1; transform: none; }
+}
+
+
+/* ---- Section 3: Stat Reveal — NEW pattern ---- */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin: 2rem auto 0; max-width: 880px; }
+.stat-block { padding: 2rem 1rem; text-align: center; }
+.stat-number { display: block; font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; color: var(--accent); line-height: 1; letter-spacing: -0.02em; margin-bottom: 0.75rem; font-variant-numeric: tabular-nums; }
+.stat-label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--navy); letter-spacing: 0.16em; text-transform: uppercase; }
+.stat-support { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); text-align: center; margin: 2.5rem auto 0; max-width: 640px; }
+
+
+/* ---- Section 4: Editorial Pull-Quote (reuses .archive-quote from services.html) ---- */
+.archive-quote { max-width: 760px; margin: 0 auto; padding: 2rem 2.25rem; background: rgba(194,104,58,0.08); border-left: 4px solid var(--accent); border-radius: 4px; opacity: 0; transform: translateY(8px); transition: opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1); }
+.archive-quote.is-visible { opacity: 1; transform: translateY(0); }
+.archive-quote p { font-size: 1.25rem; line-height: 1.5; color: var(--navy); font-weight: 700; margin: 0; letter-spacing: -0.005em; }
+
+
+/* ---- Section 5: CTA Strip (reuses pattern from services.html) ---- */
+.cta-strip { background: var(--navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; max-width: 720px; margin-left: auto; margin-right: auto; }
+.cta-strip p { color: rgba(255,255,255,0.78); max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.7; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--accent); color: #FFFFFF; font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--accent-ink); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(194,104,58,0.35); }
+.btn-primary:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+
+
+/* ---- Section 6: Cross-Link Section — NEW pattern ---- */
+.cross-link { padding: 5rem 0; background: var(--light); text-align: center; }
+.cross-link .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.cross-link h2 { font-size: clamp(1.6rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.2; margin-bottom: 2.5rem; letter-spacing: -0.01em; color: var(--navy); }
+.cross-link-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 880px; margin: 0 auto 2rem; text-align: left; }
+.cross-link-card { display: flex; flex-direction: column; gap: 0.75rem; padding: 1.75rem 1.75rem 1.5rem; background: var(--white); border-left: 4px solid var(--xlink-ui); border-radius: 4px; box-shadow: 0 2px 8px rgba(37,66,107,0.04); transition: transform 300ms ease, box-shadow 300ms ease; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) {
+.cross-link-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,66,107,0.10); }
+}
+.cross-link-card:focus-visible { outline: 3px solid var(--xlink-ui); outline-offset: 3px; }
+.cross-link-card .card-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--xlink-ink); }
+.cross-link-card h3 { font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-weight: 700; color: var(--navy); line-height: 1.25; letter-spacing: -0.005em; position: relative; display: inline-block; }
+.cross-link-card h3::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--xlink-ui); transition: width 300ms ease; }
+.cross-link-card:hover h3::after { width: 100%; }
+.cross-link-card p { font-size: 0.95rem; line-height: 1.65; color: var(--text-body); margin: 0; }
+.cross-link-card .card-arrow { margin-top: auto; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; padding-top: 0.5rem; }
+.cross-link-card .card-arrow i { font-size: 18px; transition: transform 300ms ease; }
+@media (hover: hover) and (pointer: fine) {
+.cross-link-card:hover .card-arrow i { transform: translateX(4px); color: var(--xlink-ui); }
+}
+/* Destination color-coding — Scanning links to Data Migration + Compliance Setup. The whole
+   Organize family is now COPPER (family-wide recolor 2026-06-23), so both destination cards wear
+   copper too: --xlink-ui copper #C2683A on decorative strokes; --xlink-ink copper-ink #A8542B for
+   the small uppercase card-eyebrow text (the already-validated copper-ink-on-white pairing). Values
+   on white per spec §C. (Was slate-violet #473C7A / bronze #7A5418 under the old per-page palette.) */
+.cross-link-card.dest-data-migration { --xlink-ui: #C2683A; --xlink-ink: #A8542B; }
+.cross-link-card.dest-compliance     { --xlink-ui: #C2683A; --xlink-ink: #A8542B; }
+.cross-link-framework { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; position: relative; }
+.cross-link-framework::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 100%; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 300ms ease; }
+.cross-link-framework:hover { color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+.cross-link-framework:hover::after { transform: scaleX(1); }
+}
+
+
+/* ---- Section reveal animation (generic) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(8px); transition: opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 600ms cubic-bezier(0.4,0,0.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ---- Responsive ---- */
+@media (max-width: 960px) {
+  /* Hero — collapse to single column; animation moves below copy */
+  .page-hero-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+  .hero-story { margin-left: 0; max-width: 560px; }
+}
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .section { padding: 3.5rem 0; }
+  .section.breathe { padding: 5rem 0; }
+  .cross-link { padding: 3.5rem 0; }
+
+  /* Process Diagram — stack and switch to row layout per step */
+  .steps { grid-template-columns: 1fr; gap: 1.25rem; }
+  .steps::before { display: none; }
+  .step { flex-direction: row; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+  .step-icon { margin-bottom: 0; flex-shrink: 0; }
+  .step-num { margin-bottom: 0; flex-shrink: 0; box-shadow: none; }
+  .step-body { flex: 1; min-width: 0; }
+
+  /* Chain of Custody Schematic — stack vertically */
+  .schematic-row { grid-template-columns: 1fr; gap: 0.75rem; }
+  .schematic-connector { width: 2px; height: 32px; margin: 0 auto; }
+  .schematic-connector::after { right: 50%; top: auto; bottom: -1px; transform: translateX(50%); border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--accent); border-bottom: 0; }
+
+  /* Stat grid */
+  .stat-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+  /* Cross-Link grid */
+  .cross-link-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .page-hero h1 { font-size: clamp(1.65rem, 7vw, 2.2rem); }
+  .archive-quote { padding: 1.5rem 1.5rem; }
+  .archive-quote p { font-size: 1.1rem; }
+}
+
+/* ============================================================
+   SCENARIO FAQ — page-local, fully namespaced under .scenario-faq.
+   Accordion values lifted verbatim from about.html (.faq-section,
+   ~L96-139). 16:9 frame lifted verbatim from media.html
+   (.media-frame, ~L40). Nothing here touches shared CSS.
+   Centered section header per design principles §11; hairline
+   border-bottom matches this page's own .section rule.
+   Band tone: white, between the light pull-quote band above and
+   the dark .cta-strip below (§19).
+   ============================================================ */
+.scenario-faq { padding: 5rem 0; background: var(--white); border-bottom: 1px solid rgba(37,66,107,0.08); }
+.scenario-faq .scenario-faq-head { text-align: center; max-width: 760px; margin: 0 auto; }
+/* Family accent (§9.5): this page is Organize/copper, so the component's
+   accent maps to --accent / --accent-ink, matching every other eyebrow and
+   focal highlight on the page. Geometry and timing are unchanged. */
+.scenario-faq .section-eyebrow { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.75rem; }
+.scenario-faq h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin: 0; letter-spacing: -0.01em; color: var(--navy); }
+.scenario-faq .faq-list { margin: 2.5rem auto 0; max-width: 920px; }
+.scenario-faq .faq-item { background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px; margin-bottom: 0.85rem; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.scenario-faq .faq-item:hover { border-color: rgba(194,104,58,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.scenario-faq .faq-item[open] { border-color: var(--accent); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.scenario-faq .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; font-size: 1.02rem; color: var(--navy); list-style: none; text-align: left; transition: background 0.2s ease; }
+.scenario-faq .faq-question::-webkit-details-marker { display: none; }
+.scenario-faq .faq-question:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
+.scenario-faq .faq-question:hover { background: rgba(194,104,58,0.04); }
+.scenario-faq .faq-icon { flex-shrink: 0; margin-left: 1rem; width: 22px; height: 22px; position: relative; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { content: ''; position: absolute; background: var(--accent); border-radius: 1px; transition: opacity 0.25s ease; }
+.scenario-faq .faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.scenario-faq .faq-icon::after { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.scenario-faq .faq-item[open] .faq-icon { transform: rotate(180deg); }
+.scenario-faq .faq-item[open] .faq-icon::before { opacity: 0; }
+.scenario-faq .faq-answer { padding: 0 1.5rem 1.5rem; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); text-align: left; }
+.scenario-faq .faq-answer p { margin: 0; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); }
+.scenario-faq .faq-video { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); margin-top: 1.25rem; }
+.scenario-faq .faq-video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .scenario-faq .faq-item, .scenario-faq .faq-icon, .scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { transition: none !important; }
+}
+@media (max-width: 900px) {
+  .scenario-faq { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <!-- Mouse-reactive navy dot field (interactive). Painted above the gradient background but
+       below .container. JS draws the resting grid and displaces dots near the cursor. -->
+  <canvas class="hero-dotfield" id="heroDotField" aria-hidden="true"></canvas>
+  <div class="container">
+    <div class="page-hero-grid">
+      <div class="page-hero-copy">
+        <span class="eyebrow">Organize</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="services.html">Services</a></li>
+            <li><span aria-current="step">Organize</span></li>
+            <li><span aria-current="page">Archive Scanning</span></li>
+          </ol>
+        </nav>
+        <h1>What Happens When You Hand Us a <span>Banker's Box.</span></h1>
+        <p class="lead" data-aud="scan-lead">Decades of paper records sit in storage rooms across every public agency in California. We pick them up, scan them, index them, and format for your cloud &mdash; searchable, compliant, and governed by your policies. Here is exactly how that happens.</p>
+      </div>
+
+      <div class="hero-story" id="heroStory" role="img" aria-label="Animation: a paper record is scanned by a copper light and becomes a searchable, governed digital record.">
+        <div class="sl-tilt-stage" id="slTiltStage">
+          <div class="hero-story-frame" tabindex="0" aria-label="Governed record graphic. On hover or focus its layers rise into stacked machined plates.">
+          <svg class="hero-story-svg" id="scanlineSvg" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <!-- The reveal rect clips the digital record; its HEIGHT is driven 0→280 in the
+                   light's wake (default 280 = fully-resolved poster; GSAP resets to 0 at start). -->
+              <clipPath id="sl-reveal">
+                <rect id="sl-reveal-rect" x="200" y="40" width="200" height="280"/>
+              </clipPath>
+              <!-- Soft copper glow for the scan-line "light". -->
+              <filter id="sl-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3.2" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <!-- Trailing afterglow band gradient. -->
+              <linearGradient id="sl-afterglow-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0"    stop-color="#C2683A" stop-opacity="0"/>
+                <stop offset="0.45" stop-color="#C2683A" stop-opacity="0.30"/>
+                <stop offset="1"    stop-color="#C2683A" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Faint navy "system" grid backdrop -->
+            <g aria-hidden="true">
+              <line class="sl-grid" x1="0" y1="80"  x2="600" y2="80"/>
+              <line class="sl-grid" x1="0" y1="160" x2="600" y2="160"/>
+              <line class="sl-grid" x1="0" y1="240" x2="600" y2="240"/>
+              <line class="sl-grid" x1="0" y1="320" x2="600" y2="320"/>
+            </g>
+
+            <!-- ANALOG "before" — outer group carries GSAP opacity/translate; inner group holds the
+                 static -1.6deg tilt (kept separate so GSAP's transform never fights the rotate). -->
+            <g id="sl-analog" class="sl-analog">
+              <g transform="rotate(-1.6 300 180)">
+                <rect class="sl-sheet-analog" x="204" y="44" width="192" height="272" rx="3"/>
+                <!-- skewed grey typewriter lines (uneven lengths) -->
+                <line class="sl-typeline" x1="224" y1="92"  x2="360" y2="92"  transform="rotate(-0.5 224 92)"/>
+                <line class="sl-typeline" x1="224" y1="108" x2="346" y2="108" transform="rotate(0.4 224 108)"/>
+                <line class="sl-typeline" x1="224" y1="124" x2="372" y2="124" transform="rotate(-0.3 224 124)"/>
+                <line class="sl-typeline" x1="224" y1="140" x2="332" y2="140" transform="rotate(0.6 224 140)"/>
+                <line class="sl-typeline" x1="224" y1="156" x2="364" y2="156" transform="rotate(-0.5 224 156)"/>
+                <line class="sl-typeline" x1="224" y1="172" x2="348" y2="172" transform="rotate(0.3 224 172)"/>
+                <line class="sl-typeline" x1="224" y1="188" x2="336" y2="188" transform="rotate(-0.4 224 188)"/>
+                <line class="sl-typeline" x1="224" y1="204" x2="356" y2="204" transform="rotate(0.5 224 204)"/>
+                <!-- coffee ring (upper-right) -->
+                <circle class="sl-coffee" cx="366" cy="96" r="17"/>
+                <circle class="sl-coffee" cx="366" cy="96" r="12"/>
+                <!-- paperclip (top-left, over the edge) -->
+                <path class="sl-clip-glyph" d="M220 62 l0 -9 a4.5 4.5 0 0 1 9 0 l0 18 a3 3 0 0 1 -6 0 l0 -13"/>
+                <!-- handwritten margin note squiggle -->
+                <path class="sl-note" d="M224 250 q6 -6 12 0 t12 0 t12 0"/>
+              </g>
+            </g>
+
+            <!-- DIGITAL "after" — clipped by the reveal rect, so it resolves in the light's wake. -->
+            <g id="sl-digital" clip-path="url(#sl-reveal)">
+              <rect class="sl-sheet-digital" x="200" y="40" width="200" height="280" rx="3"/>
+              <!-- header bar + copper underline + file glyph + label — PLATE (navy powder-coat, lift 4px) -->
+              <g class="sl-plate sl-mat-navy">
+                <rect class="sl-header sl-plate-body" x="200" y="40" width="200" height="26"/>
+                <rect class="sl-header-underline" x="200" y="66" width="200" height="2"/>
+                <path class="sl-header-glyph" d="M209 47 h7 l3 3 v8 h-10 z M216 47 v3 h3"/>
+                <text class="sl-header-label" x="226" y="57">DIGITAL RECORD</text>
+                <line class="sl-bevel" x1="202" y1="40.6" x2="398" y2="40.6" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+              </g>
+              <!-- clean OCR text lines (bars); the 4th is the search "match" -->
+              <rect class="sl-ocr-line" x="216" y="84"  width="160" height="4" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="98"  width="150" height="4" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="112" width="168" height="4" rx="2"/>
+              <rect id="sl-ocr-hit" class="sl-ocr-hit" x="214" y="123" width="126" height="9" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="126" width="120" height="4" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="140" width="158" height="4" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="154" width="140" height="4" rx="2"/>
+              <rect class="sl-ocr-line" x="216" y="168" width="118" height="4" rx="2"/>
+              <!-- index chips (structural labels — no numbers/dates) -->
+              <g id="sl-chips">
+                <!-- Each chip is a brushed-copper PLATE (lift 6px). GSAP still animates the INNER
+                     .sl-chip (scale) at journey time; the hover translateY lives on the OUTER wrapper
+                     so the two never collide. -->
+                <!-- CHANGE 4 (2026-07-02): row rebalanced within the sheet [200,400] so the widened
+                     third pill fits with comfortable padding. Widths 40 / 52 / 74, 6px gaps, ~14px
+                     left + ~8px right margin off the sheet edge (chip3 ends 392, sheet edge 400). The
+                     "CHAIN OF CUSTODY" pill grew 64→74 (~5.5px padding each side, matching INDEXED /
+                     SEARCHABLE). Text centers + bevels moved with their rects. -->
+                <g class="sl-plate sl-mat-copper">
+                  <g class="sl-chip">
+                    <rect class="sl-chip-box sl-plate-body" x="214" y="190" width="40" height="16" rx="8"/>
+                    <text class="sl-chip-text" x="234" y="201">INDEXED</text>
+                  </g>
+                  <line class="sl-bevel" x1="216" y1="190.6" x2="252" y2="190.6" stroke="rgba(255,240,220,0.50)" stroke-width="1"/>
+                </g>
+                <g class="sl-plate sl-mat-copper">
+                  <g class="sl-chip">
+                    <rect class="sl-chip-box sl-plate-body" x="260" y="190" width="52" height="16" rx="8"/>
+                    <text class="sl-chip-text" x="286" y="201">SEARCHABLE</text>
+                  </g>
+                  <line class="sl-bevel" x1="262" y1="190.6" x2="310" y2="190.6" stroke="rgba(255,240,220,0.50)" stroke-width="1"/>
+                </g>
+                <g class="sl-plate sl-mat-copper">
+                  <g class="sl-chip">
+                    <rect class="sl-chip-box sl-plate-body" x="318" y="190" width="74" height="16" rx="8"/>
+                    <text class="sl-chip-text" x="355" y="201">CHAIN OF CUSTODY</text>
+                  </g>
+                  <line class="sl-bevel" x1="320" y1="190.6" x2="390" y2="190.6" stroke="rgba(255,240,220,0.50)" stroke-width="1"/>
+                </g>
+              </g>
+              <!-- search field: magnifier + typed query + blinking caret — PLATE (matte acrylic, lift 5px) -->
+              <g class="sl-search sl-plate sl-mat-acrylic">
+                <rect class="sl-search-box sl-plate-body" x="216" y="250" width="168" height="28" rx="7"/>
+                <circle class="sl-search-glyph" cx="231" cy="264" r="6"/>
+                <line class="sl-search-glyph" x1="235.5" y1="268.5" x2="240" y2="273"/>
+                <text x="246" y="268"><tspan id="sl-search-text" class="sl-search-text">meeting minutes</tspan><tspan id="sl-search-caret" class="sl-search-caret" dx="1">|</tspan></text>
+                <line class="sl-bevel" x1="218" y1="250.6" x2="382" y2="250.6" stroke="rgba(255,255,255,0.85)" stroke-width="1"/>
+              </g>
+            </g>
+
+            <!-- SCAN LINE — the whole group translates down; the afterglow trails automatically. -->
+            <g id="sl-scan" class="sl-scan">
+              <rect id="sl-afterglow" x="200" y="34" width="200" height="20" fill="url(#sl-afterglow-grad)"/>
+              <line class="sl-scan-glow" x1="200" y1="40" x2="400" y2="40" filter="url(#sl-glow)"/>
+              <line class="sl-scan-core" x1="200" y1="40" x2="400" y2="40"/>
+            </g>
+
+            <!-- GOVERNED FRAME (DrawSVG). Gold lock seal REMOVED 2026-07-01 (Ethan's call) — do NOT restore. -->
+            <g id="sl-frame-group">
+              <!-- governed frame — PLATE (navy powder-coat bezel, lift 3px, lowest structure). GSAP animates
+                   its drawSVG (stroke-dashoffset), which does not conflict with the CSS transform/filter. -->
+              <rect id="sl-frame" class="sl-frame sl-plate sl-plate-body sl-mat-navy-frame" x="188" y="28" width="224" height="304" rx="12"/>
+            </g>
+          </svg>
+          <!-- STAGE TIMELINE (2026-07-01, spec-scanning-hero-stage-timeline.md): the copper
+               dot walks Paper → Scanning → Governed Record, frame-locked into the journey tl.
+               DEFAULT (no-JS / reduced-motion / no-GSAP) = finished poster: inline dot inside the
+               Governed Record span, that span .is-active. The journey branch adds .is-animated
+               (hides the inline dot, reveals the floating .hsl-marker), resets to Paper, and glides. -->
+          <div class="hero-story-legend" aria-hidden="true">
+            <span class="hsl-item">Paper</span>
+            <span class="hsl-item">Scanning</span>
+            <span class="hsl-item is-active"><span class="dot"></span>Governed Record</span>
+            <span class="hsl-marker" aria-hidden="true"></span>
+          </div>
+          </div><!-- /.hero-story-frame -->
+        </div><!-- /.sl-tilt-stage -->
+        <p class="hero-caption">Paper records become searchable digital records &mdash; without leaving your governance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 1 — ANIMATED PROCESS DIAGRAM (5 steps)
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">The Process</span>
+      <h2>Five Steps. One Working System.</h2>
+      <p class="section-intro">What happens from the moment your records leave your office until they come back as searchable digital records.</p>
+    </div>
+
+    <ol class="steps" id="processSteps" aria-label="Five-step archive scanning process">
+      <li class="step">
+        <span class="step-icon" aria-hidden="true"><i class="ph ph-package"></i></span>
+        <span class="step-num" aria-hidden="true">01</span>
+        <div class="step-body">
+          <span class="step-label">Pickup</span>
+          <p class="step-copy">Your records leave your office under GPS-tracked chain of custody.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-icon" aria-hidden="true"><i class="ph ph-tray"></i></span>
+        <span class="step-num" aria-hidden="true">02</span>
+        <div class="step-body">
+          <span class="step-label">Preparation</span>
+          <p class="step-copy">Staples, bindings, and clips removed; pages prepared for high-volume scanning.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-icon" aria-hidden="true"><i class="ph ph-scan"></i></span>
+        <span class="step-num" aria-hidden="true">03</span>
+        <div class="step-body">
+          <span class="step-label">Scanning</span>
+          <p class="step-copy">300 DPI capture with automatic color detection, every page.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-icon" aria-hidden="true"><i class="ph ph-check-square"></i></span>
+        <span class="step-num" aria-hidden="true">04</span>
+        <div class="step-body">
+          <span class="step-label">QC &amp; Indexing</span>
+          <p class="step-copy">Every batch reviewed for image clarity and indexed by keyword.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-icon" aria-hidden="true"><i class="ph ph-cloud-arrow-up"></i></span>
+        <span class="step-num" aria-hidden="true">05</span>
+        <div class="step-body">
+          <span class="step-label">Digital Delivery</span>
+          <p class="step-copy">Records formatted for your cloud platform, fully searchable and indexed.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 2 — CHAIN OF CUSTODY SCHEMATIC
+     ============================================================ -->
+<section class="section alt breathe">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Chain of Custody</span>
+      <h2>Tracked, Start to Finish.</h2>
+    </div>
+
+    <div class="schematic" id="chainSchematic" role="figure" aria-label="Chain of custody: pickup, GPS-tracked transit, scanning facility">
+      <div class="schematic-row">
+        <div class="schematic-node">
+          <i class="ph ph-package" aria-hidden="true"></i>
+          <span class="schematic-node-label">Pickup</span>
+        </div>
+        <div class="schematic-connector" aria-hidden="true"></div>
+        <div class="schematic-node">
+          <i class="ph ph-truck" aria-hidden="true"></i>
+          <span class="schematic-node-label">GPS-Tracked Transit</span>
+        </div>
+        <div class="schematic-connector" aria-hidden="true"></div>
+        <div class="schematic-node">
+          <i class="ph ph-buildings" aria-hidden="true"></i>
+          <span class="schematic-node-label">Scanning Facility</span>
+        </div>
+      </div>
+      <p class="schematic-caption">Every box is logged at pickup, GPS-tracked in transit, and signed in at our facility.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3 — STAT REVEAL
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">What We Have Done</span>
+      <h2>Over Twenty-Five Years of Experience.</h2>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-block">
+        <span class="stat-number" data-target="4579" data-format="number">0</span>
+        <span class="stat-label">Active Cloud Clients</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-number" data-target="2000" data-format="year">Since 0</span>
+        <span class="stat-label">Building Cloud Records Services</span>
+      </div>
+    </div>
+
+    <p class="stat-support">Public agencies across California &mdash; school districts, county offices, statewide departments.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 4 — EDITORIAL PULL-QUOTE
+     ============================================================ -->
+<section class="section alt breathe">
+  <div class="container">
+    <blockquote class="archive-quote" id="archiveQuote">
+      <p>Archive scanning costs less than a photocopy &mdash; and less than a new file cabinet.</p>
+    </blockquote>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCENARIO FAQ — copy: scenario-videos/copy-scenario-faq-mapping.md §3.5
+     Placed after "Over Twenty-Five Years of Experience." and before the CTA
+     strip; sits after the pull-quote band so tones alternate (§19).
+     ============================================================ -->
+<section class="scenario-faq" aria-label="Scenarios: what came out of the file room">
+  <div class="container">
+    <div class="scenario-faq-head">
+      <span class="section-eyebrow">Scenarios</span>
+      <h2>What Came Out of the File Room.</h2>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>What happens to the years of paper time cards we are required to keep?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>They get scanned. A district told us its employee time cards had been on paper for decades, that cards were misplaced and lost in the shuffle, and that the cards had gone from hundreds to thousands. We converted their time cards and paper records into digital files, and built digital time cards inside the Microsoft apps they already owned. Watch the district describe the change.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-6-time-cards-poster.jpg"
+                   aria-label="Video: a school district describes replacing paper time cards">
+              <source src="assets/video/scenario-6-time-cards.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-6-time-cards.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>We have years of paper purchase orders. How long does digitizing something like that actually take?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>It depends on the volume. A public agency hit by an unexpected surge in demand told us the sheer volume of physical purchase orders was so labor intensive that payments to local contractors and businesses slipped through the cracks. We digitized all their previous documents in a matter of weeks, and we built the invoice approval path inside the Microsoft environment they already owned. Watch the agency describe where they started and where they landed.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-4-public-agencies-poster.jpg"
+                   aria-label="Video: a public agency describes its purchase order and invoice approval process">
+              <source src="assets/video/scenario-4-public-agencies.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-4-public-agencies.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scenario FAQ — page-local, namespaced. Closing an item pauses its video;
+   playing one scenario video pauses any other on this page. Nothing else. */
+(function () {
+  var items = document.querySelectorAll('.scenario-faq details.faq-item');
+  if (!items.length) return;
+  var vids = [];
+  Array.prototype.forEach.call(items, function (item) {
+    var v = item.querySelector('video');
+    if (!v) return;
+    vids.push(v);
+    item.addEventListener('toggle', function () { if (!item.open) { v.pause(); } });
+  });
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+<!-- ============================================================
+     SECTION 5 — CTA STRIP
+     ============================================================ -->
+<section class="cta-strip">
+  <div class="container">
+    <h2 data-aud="scan-cta-h2">Have a Storage Room Full of Boxes?</h2>
+    <p data-aud="scan-cta-p">Every engagement begins with an assessment. We take the time to understand your environment and define the path forward, then provide a clear project quote your finance team can confidently budget for.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — CROSS-LINK
+     ============================================================ -->
+<section class="cross-link" aria-labelledby="cross-link-heading">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">More in Organize</span>
+      <h2 id="cross-link-heading">Other Ways We Organize.</h2>
+    </div>
+
+    <div class="cross-link-grid">
+      <a href="services-data-migration.html" class="cross-link-card dest-data-migration">
+        <span class="card-eyebrow">Organize</span>
+        <h3>Data Migration</h3>
+        <p>Move legacy data into the cloud platform your agency already owns.</p>
+        <span class="card-arrow">Explore <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a href="services-compliance-setup.html" class="cross-link-card dest-compliance">
+        <span class="card-eyebrow">Organize</span>
+        <h3>Records Management &amp; Compliance Setup</h3>
+        <p>Configure retention, permissions, and audit posture inside SharePoint Online &mdash; aligned to your governance obligations.</p>
+        <span class="card-arrow">Explore <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+
+    <a href="services.html" class="cross-link-framework">See the full framework <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<!-- GSAP core + free plugins (v3.13.0 — all plugins are free as of 3.13), pinned on jsDelivr.
+     Powers the hero "Scan-Line" showpiece. Loaded blocking, before the controller below, so
+     window.gsap is present when it runs. If any of these fail to load, the controller detects
+     the missing libs and leaves the resolved POSTER frame intact (never a blank card). -->
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/DrawSVGPlugin.min.js"></script>
+<script src="assets/js/TextPlugin.min.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ----- Mobile nav toggle (carried from sibling pages) -----
+
+  // ----- Reduced-motion detection -----
+  var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ============================================================
+  // MOUSE-REACTIVE DOT FIELD (interactive, 2026-06-18)
+  // Replaces the old cursor-following copper glow AND the static ::after dot tile.
+  // A <canvas> renders the SAME resting look as the old CSS tile — navy dots
+  // rgba(37,66,107,0.10), ~1px radius, 24px grid — but each dot can displace
+  // individually, which a CSS background tile cannot do.
+  //
+  // Interaction model:
+  // - Each dot has a HOME (grid) position and a current (rendered) position.
+  // - On pointermove the pointer's hero-relative coords are stored.
+  // - Per frame: any dot within RADIUS (~120px) of the pointer is pushed AWAY
+  //   from it (soft repel), strongest at the center and easing to zero at the
+  //   radius edge via a smooth cubic falloff; max push capped (~14px) so it
+  //   stays gentle/premium, never jumpy.
+  // - Every dot eases back toward its home each frame (spring-like return), so
+  //   the disturbance trails the cursor and settles smoothly when it leaves.
+  // - rAF loop runs only while the pointer is active OR while any dot is still
+  //   settling (> a tiny epsilon from home); it idles when fully at rest.
+  // - ResizeObserver (with a window-resize fallback) rebuilds the grid + DPR.
+  //
+  // Guards: prefers-reduced-motion and touch / no-hover devices paint the
+  // static grid ONCE (identical to the old tile) and wire NO listeners — no
+  // motion, no layout shift.
+  // ============================================================
+  (function() {
+    var hero = document.querySelector('.page-hero');
+    var canvas = document.getElementById('heroDotField');
+    if (!hero || !canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+
+    // Resting look — matched 1:1 to the old ::after tile.
+    var GRID = 24;                 // px spacing (was background-size: 24px)
+    var DOT_R = 1;                 // px radius (was 1px dots)
+    var DOT_COLOR = 'rgba(37,66,107,0.10)';  // navy at low alpha (was the tile color)
+
+    // Interaction tuning — subtle/premium repel.
+    var RADIUS = 120;              // px influence radius around the pointer
+    var MAX_PUSH = 14;             // px max displacement at the pointer center
+    var EASE = 0.14;              // per-frame return toward home (spring stiffness)
+    var EPSILON = 0.05;          // settle threshold to idle the loop
+
+    var dots = [];                 // { hx, hy, x, y }  home + current
+    var dpr = 1;
+    var pointerX = -9999, pointerY = -9999;
+    var pointerActive = false;
+    var rafId = null;
+
+    var canHover = !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var interactive = !prefersReducedMotion && canHover;
+
+    // Build the dot grid for the current hero size; reset current pos to home.
+    function buildGrid(w, h) {
+      dots.length = 0;
+      // Inset the grid by half a cell so it reads centered like the CSS tile.
+      var startX = GRID / 2, startY = GRID / 2;
+      for (var y = startY; y < h; y += GRID) {
+        for (var x = startX; x < w; x += GRID) {
+          dots.push({ hx: x, hy: y, x: x, y: y });
+        }
+      }
+    }
+
+    // Draw the current dot positions (single pass).
+    function draw(w, h) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = DOT_COLOR;
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Size the canvas to the hero, account for devicePixelRatio, rebuild grid, repaint.
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      var w = Math.max(1, Math.round(rect.width));
+      var h = Math.max(1, Math.round(rect.height));
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);  // cap DPR for perf (spec §3)
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildGrid(w, h);
+      draw(w, h);   // paint the static resting grid immediately (no layout shift, no FOUC)
+    }
+
+    // Smooth cubic falloff: 1 at center → 0 at edge.
+    function falloff(t) { var u = 1 - t; return u * u * u; }
+
+    function loop() {
+      var rect = hero.getBoundingClientRect();
+      var w = rect.width, h = rect.height;
+      var moving = false;
+      var r2 = RADIUS * RADIUS;
+
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var tx = d.hx, ty = d.hy;   // target defaults to home
+
+        if (pointerActive) {
+          var dx = d.hx - pointerX;
+          var dy = d.hy - pointerY;
+          var dist2 = dx * dx + dy * dy;
+          if (dist2 < r2) {
+            var dist = Math.sqrt(dist2) || 0.0001;
+            var push = falloff(dist / RADIUS) * MAX_PUSH;
+            // Repel: push dot outward, away from the pointer, along the radial.
+            tx = d.hx + (dx / dist) * push;
+            ty = d.hy + (dy / dist) * push;
+          }
+        }
+
+        // Ease current position toward the target (toward push pos, or back home).
+        d.x += (tx - d.x) * EASE;
+        d.y += (ty - d.y) * EASE;
+
+        if (Math.abs(d.x - tx) > EPSILON || Math.abs(d.y - ty) > EPSILON) moving = true;
+      }
+
+      draw(w, h);
+
+      // Keep running while the pointer is active or while dots are still settling.
+      if (pointerActive || moving) {
+        rafId = window.requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+        draw(w, h);   // final crisp resting frame
+      }
+    }
+
+    function ensureLoop() {
+      if (rafId === null) rafId = window.requestAnimationFrame(loop);
+    }
+
+    // Initial sizing + static paint (runs for ALL cases, including reduced-motion/touch).
+    resize();
+
+    // Track resize for both interactive and static cases (canvas must follow hero size).
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(function() { resize(); });
+      ro.observe(hero);
+    } else {
+      window.addEventListener('resize', resize, { passive: true });
+    }
+
+    // No interaction on reduced-motion / touch / no-hover — leave the static grid as-is.
+    if (!interactive) return;
+
+    hero.addEventListener('pointermove', function(e) {
+      if (e.pointerType === 'touch') return;   // ignore touch contacts
+      var rect = hero.getBoundingClientRect();
+      pointerX = e.clientX - rect.left;
+      pointerY = e.clientY - rect.top;
+      pointerActive = true;
+      ensureLoop();
+    }, { passive: true });
+
+    hero.addEventListener('pointerenter', function(e) {
+      if (e.pointerType === 'touch') return;
+      pointerActive = true;
+      ensureLoop();
+    });
+
+    hero.addEventListener('pointerleave', function() {
+      pointerActive = false;   // dots ease back home; loop runs until settled, then idles
+      ensureLoop();
+    });
+  })();
+
+  // ============================================================
+  // HERO SHOWPIECE — "The Scan-Line" (GSAP + DrawSVG), 2026-07-01
+  // Spec: planning/spec-scanning-hero-showpiece.md
+  //
+  // A copper scan-line sweeps a single aged paper record ONCE; the
+  // analog page resolves in its wake into a crisp, searchable,
+  // governed digital record, then a navy frame draws. (The gold lock
+  // seal beat was REMOVED 2026-07-01.) Plays ONCE on scroll-into-view,
+  // then HOLDS the resolved record (no idle loop; only the caret blinks).
+  //
+  // The SVG's DEFAULT state IS the resolved POSTER, so reduced
+  // motion OR a GSAP load failure both leave a finished, on-message
+  // card — never a blank/broken one. Only when motion is allowed AND
+  // gsap + ScrollTrigger loaded do we RESET to the start frame and play.
+  // ============================================================
+  (function() {
+    var heroStory = document.getElementById('heroStory');
+    var svg = document.getElementById('scanlineSvg');
+    if (!heroStory) return;
+
+    var gsapReady = !!(window.gsap && window.ScrollTrigger && svg);
+    var hasDraw = gsapReady && !!window.DrawSVGPlugin;
+    var hasText = gsapReady && !!window.TextPlugin;
+
+    // Reduced motion OR libs missing → keep the default poster; just fade the card in.
+    if (prefersReducedMotion || !gsapReady) {
+      window.setTimeout(function() { heroStory.classList.add('is-visible'); }, 200);
+      // No journey runs here to arm the stacked-hover later, so ARM it immediately and
+      // open the clip headroom. (reduced-motion never matches the hover media query, so
+      // this is inert there; on a no-GSAP-but-motion-allowed device the poster hovers.)
+      var f = heroStory.querySelector('.hero-story-frame');
+      if (f) f.classList.add('sl-armed');
+      var rr = document.getElementById('sl-reveal-rect');
+      if (rr) { rr.setAttribute('y', '20'); rr.setAttribute('height', '300'); }
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+    if (hasDraw) gsap.registerPlugin(DrawSVGPlugin);
+    if (hasText) gsap.registerPlugin(TextPlugin);
+
+    gsap.context(function() {
+      var analog     = svg.querySelector('#sl-analog');
+      var revealRect = svg.querySelector('#sl-reveal-rect');
+      var scan       = svg.querySelector('#sl-scan');
+      var afterglow  = svg.querySelector('#sl-afterglow');
+      var frame      = svg.querySelector('#sl-frame');
+      /* #sl-lock / #sl-lock-shine references REMOVED 2026-07-01 — the gold lock seal was deleted. */
+      var chips      = svg.querySelectorAll('#sl-chips .sl-chip');
+      var ocrHit     = svg.querySelector('#sl-ocr-hit');
+      var searchText = svg.querySelector('#sl-search-text');
+      var storyFrame = heroStory.querySelector('.hero-story-frame');  // .sl-armed / focus / hover target
+      var QUERY = 'meeting minutes';   // neutral query — not a fabricated claim
+      var REVEAL_H = 280;              // reveal rect full height (doc y 40 → 320)
+      var passProxy = { p: 0 };
+
+      // ---- LOOP GATE (spec §3): loop ONLY where a hover CAN pause it. Touch/no-hover play
+      //      once + hold forever (today's behavior); reduced-motion/no-GSAP never reach here. ----
+      var canHoverFine = !!(window.matchMedia &&
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+      var loopEnabled = canHoverFine;
+
+      // ---- LEGEND setup (helpers defined EARLY so resetToStart() + the dissolve glide can reuse them) ----
+      // The copper marker walks Paper → Scanning → Governed Record, frame-locked to the journey, and
+      // glides HOME to Paper during the dissolve exhale. (Forward glide tweens are added below, after tl.)
+      var legend    = heroStory.querySelector('.hero-story-legend');
+      var hslItems  = legend ? legend.querySelectorAll('.hsl-item') : null;   // [Paper, Scanning, Governed]
+      var hslMarker = legend ? legend.querySelector('.hsl-marker') : null;
+      var MARK_GAP  = 11;      // dot width (6) + leading gap (~5) — tunable feel knob
+      var activeIndex = 0;
+      // leading-dot X for label i (offsetLeft valid even while the card is opacity:0). Clamped ≥0.
+      function stopFor(i){ return hslItems ? Math.max(0, hslItems[i].offsetLeft - MARK_GAP) : 0; }
+      function activate(i){
+        activeIndex = i;
+        if (!hslItems) return;
+        hslItems.forEach(function(el, idx){ el.classList.toggle('is-active', idx === i); });
+      }
+      if (legend) legend.classList.add('is-animated');   // hide inline dot, reveal floating marker
+
+      // ---- resetToStart(): rebuild the RAW start frame every cycle so each loop is byte-identical
+      //      to the first play. RE-CLOSES the clip to y40/h0 (NOT the opened y20/h300). ----
+      function resetToStart() {
+        revealRect.setAttribute('y', '40');       // re-close clip TOP to the true start (undo the y20 open)
+        revealRect.setAttribute('height', '0');   // fully clipped — the digital record is hidden again
+        scan.setAttribute('transform', 'translate(0,0)');
+        if (searchText) searchText.textContent = '';
+        passProxy.p = 0;
+        gsap.set(analog,   { opacity: 0, y: 8 });
+        gsap.set(scan,     { opacity: 0 });
+        gsap.set(afterglow,{ opacity: 0 });
+        gsap.set(chips,    { opacity: 0, scale: 0.8, transformOrigin: '50% 50%' });
+        gsap.set(ocrHit,   { scaleX: 0, transformOrigin: '0% 50%' });
+        if (hasDraw) gsap.set(frame, { drawSVG: '0%' });
+        else gsap.set(frame, { opacity: 0 });
+        if (legend) { activate(0); gsap.set(hslMarker, { x: stopFor(0) }); }  // idempotent (dissolve glided it home)
+      }
+
+      // Apply the start frame once, then reveal the card (no poster flash).
+      resetToStart();
+      heroStory.classList.add('is-visible');
+
+      // ============================================================
+      // LOOP CONTROLLER — two gates (inView, hovering) drive one syncPlayState().
+      // phase: 'idle' | 'playing' | 'holding' | 'dissolving' | 'done'
+      //   HOVER now FREEZES-IN-PLACE (Change 3) instead of force-finishing, so there is no
+      //   transient 'settling' phase any more — hover simply pauses whatever phase is live.
+      // ============================================================
+      var HOLD_DUR   = 2.0;    // GOVERNED dwell — rebalanced to ≈ paper dwell (CHANGE 1: was 6.5, 2026-07-02)
+      var MIN_SETTLE = 0.45;   // ≥ plate settle (420ms) so plates fully lower before a dissolve
+      var phase    = 'idle';
+      var inView   = false;
+      var hovering = false;    // pointer OVER the card OR keyboard focus within it
+      var holdCall = null;     // gsap.delayedCall handle for the hold countdown
+
+      // ---- MASTER TIMELINE (~6.20s w/ the ~2.0s paper dwell, paused until scrolled into view) ----
+      var tl = gsap.timeline({
+        paused: true,
+        onComplete: onJourneyComplete
+      });
+
+      // ---- DISSOLVE (spec §4): svg-ROOT crossfade — ONE target, no internal-group dependencies.
+      //      Fades the resolved record + navy frame + copper chips + search field + faint grid as a
+      //      single unit (the card "exhales"), rebuilds the start frame under cover, breathes, replays.
+      //      Built once, paused; replayed each cycle via dissolveTl.restart(). ----
+      var dissolveTl = gsap.timeline({
+        paused: true,
+        onStart: function(){ if (storyFrame) storyFrame.classList.remove('sl-armed'); },  // DISARM first
+        onComplete: onDissolveComplete
+      });
+      // 0.00 → 0.70  exhale: svg fades out with a subtle centered scale settle (NO slide, no blur).
+      dissolveTl.to(svg, { opacity: 0, scale: 0.99, transformOrigin: '50% 50%',
+        duration: 0.70, ease: 'power2.inOut' }, 0);
+      // 0.05 → 0.65  legend marker glides HOME to Paper (mirrors the forward glides); label flips at glide start.
+      if (legend) {
+        dissolveTl.to(hslMarker, { x: stopFor(0), duration: 0.60, ease: 'power2.inOut',
+          onStart: function(){ activate(0); } }, 0.05);
+      }
+      // 0.72  scene rebuilt to the raw start frame while the svg is invisible (clip re-closes here).
+      dissolveTl.call(function(){ resetToStart(); }, null, 0.72);
+      // 0.74  bare ruled grid reappears (all content reset/empty).
+      dissolveTl.set(svg, { opacity: 1, scale: 1 }, 0.74);
+      // 0.74 → 0.94  empty-grid breath (no tweens) — spacer holds the timeline open so onComplete fires at ~0.94.
+      dissolveTl.to({}, { duration: 0.20 }, 0.74);
+
+      // ---- Controller functions (declarations = hoisted; safe to reference in tl/dissolveTl configs above) ----
+
+      // ---- arriveFinished(): the "we're now at the fully-resolved, armed frame" arrival, reached ONLY
+      //      by the NATURAL journey completion (Change 3 removed the hover force-finish path). Arms the
+      //      stacked-hover, opens the clip TOP so lifted plates (header sits at the clip's top edge, y40)
+      //      don't clip (bottom stays 320 = 20+300; nothing is drawn above y40, so ZERO visual change at
+      //      rest), parks the legend on Governed, then enters the ~2.0s HOLD (paused instantly if
+      //      hovering/off-screen). Every finish routes through here → 'holding' → beginDissolve →
+      //      resetToStart(), so the reset/replay path stays byte-identical every cycle. ----
+      function arriveFinished(){
+        if (storyFrame) storyFrame.classList.add('sl-armed');
+        revealRect.setAttribute('y', '20');
+        revealRect.setAttribute('height', '300');
+        if (legend){ activate(2); gsap.set(hslMarker, { x: stopFor(2) }); }   // park legend on Governed
+        if (!loopEnabled){ phase = 'done'; return; }   // touch/no-hover: hold forever (unchanged)
+        phase = 'holding';
+        holdCall = gsap.delayedCall(HOLD_DUR, beginDissolve);
+        syncPlayState();                                // hovering/off-screen → pause the hold instantly
+      }
+
+      function onJourneyComplete(){
+        // Natural end of playback. Hover freezes (pauses) the journey now, so tl only completes while
+        // NOT hovering; the guard just ignores any spurious complete outside a live play.
+        if (phase !== 'playing') return;
+        arriveFinished();
+      }
+
+      function beginDissolve(){
+        phase = 'dissolving';
+        dissolveTl.restart();   // onStart disarms; onComplete → onDissolveComplete
+      }
+      function onDissolveComplete(){
+        phase = 'playing';
+        tl.invalidate();        // re-read the freshly-reset values as each .to()'s start state
+        tl.play(0);
+        syncPlayState();
+      }
+
+      // ---- HOVER = FREEZE-IN-PLACE (CHANGE 3, 2026-07-02). Pointer-enter/focus PAUSES the journey at
+      //      the current playhead (NO jump to the finished frame) and ARMS the stacked lift on whatever
+      //      plates are visible right now; leave/blur DISARMS (plates settle) and RESUMES from the exact
+      //      frame. This REPLACES the old hoverForceFinish()/arriveFinished()-on-hover glide-to-end. ----
+      var freezeClip = null;   // saved {y,h} of the clip so a mid-journey freeze restores cleanly
+      // Open ONLY the clip's TOP edge to y20 so lifted plates gain headroom (the header sits AT the clip
+      // top, y40; its lifted top face would otherwise clip). We move the top up but KEEP the bottom
+      // reveal line exactly where the scan has reached — so a mid-scan freeze never exposes content the
+      // light hasn't passed yet, and nothing is drawn between y20 and y40 so the opened strip is empty.
+      function openClipTopForFreeze(){
+        var y = parseFloat(revealRect.getAttribute('y'));      if (isNaN(y)) y = 40;
+        var h = parseFloat(revealRect.getAttribute('height')); if (isNaN(h)) h = 0;
+        freezeClip = { y: y, h: h };
+        var bottom = y + h;
+        revealRect.setAttribute('y', '20');
+        revealRect.setAttribute('height', String(Math.max(0, bottom - 20)));
+      }
+      function restoreClipAfterFreeze(){
+        if (!freezeClip) return;
+        revealRect.setAttribute('y', String(freezeClip.y));
+        revealRect.setAttribute('height', String(freezeClip.h));
+        freezeClip = null;
+      }
+      function onHoverEnter(){
+        hovering = true;
+        if (!loopEnabled) return;                 // touch/no-hover never freezes (poster just holds)
+        openClipTopForFreeze();                   // headroom for the lift; bottom reveal line preserved
+        if (storyFrame) storyFrame.classList.add('sl-armed');
+        syncPlayState();                          // hovering === true → pauses whatever phase is live
+      }
+      function onHoverLeave(){
+        hovering = false;
+        if (!loopEnabled) return;
+        if (storyFrame) storyFrame.classList.remove('sl-armed');  // plates settle (CSS 420ms)
+        restoreClipAfterFreeze();                 // clip back to its pre-freeze journey state
+        syncPlayState();                          // resume from the exact frozen frame
+      }
+
+      function syncPlayState(){
+        var run = inView && !hovering;            // a phase advances only when watched AND not frozen
+        if (phase === 'playing'){
+          run ? tl.play() : tl.pause();
+        } else if (phase === 'holding' && holdCall){
+          if (run){
+            var remaining = holdCall.duration() - holdCall.time();
+            if (remaining < MIN_SETTLE) holdCall.time(holdCall.duration() - MIN_SETTLE); // don't yank plates
+            holdCall.resume();
+          } else {
+            holdCall.pause();
+          }
+        } else if (phase === 'dissolving'){
+          run ? dissolveTl.play() : dissolveTl.pause();
+        }
+      }
+
+      // ---- STAGE SEEK (CHANGE 2, 2026-07-02): clicking a legend label seeks the journey to the START
+      //      of that stage and PLAYS FORWARD from there (Ethan's call: play forward, not pause). The
+      //      click clears any in-flight hover-freeze + running dissolve and re-runs the loop from the
+      //      stage. Retimed stage starts: Paper 0 · Scanning 1.8 (scan-ignite) · Governed 4.85 (marker
+      //      landed on Governed; frame drawn; chips crowning). 4.85 is used (not the 4.35 Slide-2 START)
+      //      so the marker Slide-2 tween is already COMPLETE — the legend jumps cleanly to Governed with
+      //      no re-glide fight. ----
+      var STAGE_T = [0, 1.8, 4.85];
+      function seekToStage(i){
+        var t = STAGE_T[i] || 0;
+        // 1. clear a running dissolve + any pending hold, un-fade the svg, disarm, drop the hover-freeze.
+        dissolveTl.pause();
+        gsap.set(svg, { opacity: 1, scale: 1 });
+        if (holdCall){ holdCall.kill(); holdCall = null; }
+        if (storyFrame) storyFrame.classList.remove('sl-armed');
+        freezeClip = null;
+        hovering = false;   // the click/keypress is a deliberate GO — override the pointer-over freeze;
+                            // a fresh pointer leave→enter re-arms the freeze normally.
+        // 2. clean baseline, then seek the timeline to the stage start (tween-driven state renders here).
+        resetToStart();
+        tl.pause();
+        tl.invalidate();
+        tl.time(t);         // events suppressed — renders all tween props (analog/scan/frame/chips/…) at t
+        // 3. reconcile the setAttribute-driven reveal (it lives in the pass onUpdate, not a plain tween).
+        //    Stage starts land only at pp = 0 (Paper/Scanning) or 1 (Governed), so the ease is moot.
+        var pp = (t < 2.0) ? 0 : (t >= 4.2 ? 1 : (t - 2.0) / 2.2);
+        var d = REVEAL_H * pp;
+        revealRect.setAttribute('y', '40');
+        revealRect.setAttribute('height', String(d));
+        scan.setAttribute('transform', 'translate(0,' + d + ')');
+        passProxy.p = pp;
+        // 4. jump the legend marker + active label to the clicked stage immediately.
+        if (legend){ activate(i); gsap.set(hslMarker, { x: stopFor(i) }); }
+        // 5. play forward from the stage (respect off-screen; hovering was just cleared).
+        phase = 'playing';
+        if (inView) tl.play(); else tl.pause();
+      }
+
+      // ---- Hover / focus bindings (freeze-in-place). Bound to the frame, not the wrapper. ----
+      if (storyFrame){
+        storyFrame.addEventListener('pointerenter', function(e){ if(e.pointerType==='touch') return; onHoverEnter(); });
+        storyFrame.addEventListener('pointerleave', function(e){ if(e.pointerType==='touch') return; onHoverLeave(); });
+        storyFrame.addEventListener('focusin',  function(){ onHoverEnter(); });
+        storyFrame.addEventListener('focusout', function(){ onHoverLeave(); });
+      }
+
+      // ---- STAGE TIMELINE: copper marker walks Paper → Scanning → Governed Record ----
+      // Frame-locked into the master tl. Legend refs + stopFor()/activate() are defined above
+      // (shared with resetToStart + the dissolve glide-home); here we only add the FORWARD glides.
+      if (legend) {
+        // Capture the two destination stops now — layout is stable at this point.
+        var s1 = stopFor(1), s2 = stopFor(2);
+        // Slide 1 → Scanning as the sweep begins (Scanning lights on onStart; dot arrives ~2.5).
+        // (CHANGE 1, 2026-07-02: scan block shifted −0.2 as a rigid block → 2.2 became 2.0.)
+        tl.to(hslMarker, { x: s1, duration: 0.5, ease: 'power2.inOut',
+          onStart: function(){ activate(1); } }, 2.0);
+        // Slide 2 → Governed Record as the frame closes / chips crown (dot lands ~4.85).
+        // (CHANGE 1: 4.55 became 4.35.)
+        tl.to(hslMarker, { x: s2, duration: 0.5, ease: 'power2.inOut',
+          onStart: function(){ activate(2); } }, 4.35);
+
+        // Resize safety: reseat the marker at the CURRENT active label's stop.
+        window.addEventListener('resize', function(){
+          gsap.set(hslMarker, { x: stopFor(activeIndex) });
+        }, { passive: true });
+
+        // ---- CHANGE 2 (2026-07-02): upgrade the three labels into stage controls that PLAY FORWARD
+        //      from the clicked stage. Done here in the JOURNEY branch ONLY — the reduced-motion /
+        //      no-GSAP fallback keeps the plain decorative legend (no dead buttons). Works for pointer,
+        //      touch (tap), and keyboard (Enter/Space). NOTE: the legend sits inside .hero-story
+        //      [role="img"], which can suppress screen-reader exposure of these controls; keyboard
+        //      focus + activation still work. (Flagged for Cole — restructuring role="img" is out of
+        //      scope for this pass.) ----
+        legend.removeAttribute('aria-hidden');
+        if (hslMarker) hslMarker.setAttribute('aria-hidden', 'true');
+        var dotEl = legend.querySelector('.dot'); if (dotEl) dotEl.setAttribute('aria-hidden', 'true');
+        var STAGE_LABELS = ['Replay from Paper', 'Replay from Scanning', 'Replay from Governed Record'];
+        hslItems.forEach(function(el, i){
+          el.setAttribute('role', 'button');
+          el.setAttribute('tabindex', '0');
+          el.setAttribute('aria-label', STAGE_LABELS[i]);
+          el.addEventListener('click', function(){ seekToStage(i); });
+          el.addEventListener('keydown', function(ev){
+            if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar'){ ev.preventDefault(); seekToStage(i); }
+          });
+        });
+      }
+
+      // ---- PACING (CHANGE 1, 2026-07-02): ~2.0s PAPER DWELL. The analog sheet still settles in at 0
+      //      (0.0–0.35) and HOLDS visible through the gap 0.35 → 1.8 (dot rests on PAPER) until the scan
+      //      ignites. The scan block + EVERY downstream beat + the two legend slides were shifted −0.2s
+      //      as a RIGID BLOCK (internal spacing UNCHANGED — the scan-ignite→sweep→resolve segment is
+      //      untouched) to trim the paper dwell from ~2.2s to ~2.0s. Old→new insert times: scan ignite
+      //      2.0→1.8 · pass 2.2→2.0 · fades 4.2→4.0 / 4.15→3.95 · frame 4.25→4.05 · chips 4.75→4.55 ·
+      //      search 5.25→5.05 · OCR 5.95→5.75. Journey now ends ~6.20s (was 6.40). resetToStart()
+      //      re-hides analog each loop, so the paper fades in and dwells identically every cycle. ----
+
+      // 1. analog settles in (0.0–0.35), then HOLDS visible (paper dwell ≈ 2.0s) until scan ignites at 1.8
+      tl.to(analog, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0);
+
+      // 2. scan-line ignites at the top edge (1.8–2.0)   [scan block start; internal timing unchanged]
+      tl.to(scan,      { opacity: 1, duration: 0.2, ease: 'power1.out' }, 1.8);
+      tl.to(afterglow, { opacity: 1, duration: 0.2, ease: 'power1.out' }, 1.8);
+
+      // 3. THE PASS (2.0–4.2) — reveal + scan-line locked to ONE progress value (duration 2.2 unchanged),
+      //    so the digital record resolves exactly in the light's wake.
+      tl.to(passProxy, {
+        p: 1, duration: 2.2, ease: 'power2.inOut',
+        onUpdate: function() {
+          var d = REVEAL_H * passProxy.p;
+          revealRect.setAttribute('height', d);                    // digital resolves top→down
+          scan.setAttribute('transform', 'translate(0,' + d + ')'); // light rides the seam
+        }
+      }, 2.0);
+
+      // 4. scan fades out at the bottom; analog cleans up; governed frame draws.   [−0.2 block offsets]
+      //    (Gold lock seal beat REMOVED 2026-07-01 — the timeline now runs straight from
+      //     the frame draw into the chip stagger; no lock/lockShine tweens, no orphaned targets.)
+      tl.to(scan,      { opacity: 0, duration: 0.3, ease: 'power1.in' }, 4.0);
+      tl.to(afterglow, { opacity: 0, duration: 0.3, ease: 'power1.in' }, 4.0);
+      tl.to(analog,    { opacity: 0, duration: 0.3, ease: 'power1.in' }, 3.95);
+      if (hasDraw) tl.to(frame, { drawSVG: '100%', duration: 0.55, ease: 'power1.inOut' }, 4.05);
+      else tl.to(frame, { opacity: 1, duration: 0.55, ease: 'power1.inOut' }, 4.05);
+
+      // 5. index chips stagger in (4.55–4.90) — subtle, premium, not bouncy
+      tl.to(chips, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: 'back.out(1.3)' }, 4.55);
+
+      // 6. search types a neutral query, then the OCR "match" highlights (5.05–6.20)
+      if (hasText && searchText) {
+        tl.to(searchText, { duration: 0.7, text: { value: QUERY }, ease: 'none' }, 5.05);
+      } else if (searchText) {
+        tl.call(function() { searchText.textContent = QUERY; }, null, 5.05);
+      }
+      tl.to(ocrHit, { scaleX: 1, duration: 0.45, ease: 'power2.out' }, 5.75);
+
+      // ---- ScrollTrigger (spec §6): toggle pauses/resumes EVERY phase off-screen (was once:true).
+      //      First kick starts the journey; thereafter inView drives whatever object is live
+      //      (journey tl, holdCall, or dissolveTl) via syncPlayState(), so the loop never churns
+      //      while unwatched and resumes exactly where it left off. ----
+      var st = ScrollTrigger.create({
+        trigger: heroStory,
+        start: 'top 85%',
+        end: 'bottom 15%',
+        onToggle: function(self){
+          inView = self.isActive;
+          if (inView && phase === 'idle'){ phase = 'playing'; tl.play(0); }  // first kick
+          else syncPlayState();
+        }
+      });
+      // Load-in-view safety (onToggle may not fire if already active at creation):
+      if (st.isActive && phase === 'idle'){ inView = true; phase = 'playing'; tl.play(0); }
+    }, heroStory);
+  })();
+
+  // ============================================================
+  // HERO SHOWPIECE — 3D PERSPECTIVE TILT: REMOVED (2026-07-01)
+  // The mouse-proximity perspective tilt was replaced by the "Milled Material"
+  // stacked-depth HOVER, which is pure declarative CSS (see the stacked-hover
+  // <style> block, gated behind @media (hover)+(pointer:fine)+(no-preference)
+  // and the .sl-armed class the journey adds on completion). No JS runs the hover;
+  // the only JS hook is arming .sl-armed + opening the clip rect, handled inside
+  // the Scan-Line controller above (onComplete / poster branch). Nothing here now.
+  // ============================================================
+
+  // ----- IntersectionObserver helper (single-fire) -----
+  function observe(el, onEnter, threshold) {
+    if (!el) return;
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      onEnter(el);
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          onEnter(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: threshold || 0.25, rootMargin: '0px 0px -50px 0px' });
+    io.observe(el);
+  }
+
+  // ----- Process Diagram step reveal -----
+  observe(document.getElementById('processSteps'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.2);
+
+  // ----- Chain of Custody schematic reveal -----
+  observe(document.getElementById('chainSchematic'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.25);
+
+  // ----- Editorial pull-quote reveal -----
+  observe(document.getElementById('archiveQuote'), function(el) {
+    el.classList.add('is-visible');
+  }, 0.3);
+
+  // ----- Counter-up for Stat Reveal -----
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateNumber(el, target, duration, formatter) {
+    var start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var elapsed = ts - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutCubic(progress);
+      var current = Math.round(target * eased);
+      el.textContent = formatter(current);
+      if (progress < 1) {
+        window.requestAnimationFrame(tick);
+      } else {
+        el.textContent = formatter(target);
+      }
+    }
+    window.requestAnimationFrame(tick);
+  }
+
+  var statGrid = document.getElementById('statGrid');
+  observe(statGrid, function(el) {
+    var nums = el.querySelectorAll('.stat-number');
+    nums.forEach(function(n) {
+      var target = parseInt(n.getAttribute('data-target'), 10);
+      var format = n.getAttribute('data-format');
+      if (prefersReducedMotion) {
+        n.textContent = (format === 'year') ? ('Since ' + target) : target.toLocaleString('en-US');
+        return;
+      }
+      var formatter;
+      if (format === 'year') {
+        formatter = function(v) { return 'Since ' + v; };
+      } else {
+        formatter = function(v) { return v.toLocaleString('en-US'); };
+      }
+      animateNumber(n, target, 1400, formatter);
+    });
+  }, 0.4);
+
+})();
+</script>
+
+</body>
+</html>

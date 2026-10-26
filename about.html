@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — About</title>
+<meta name="description" content="A different kind of records partner since 2000. SyTech builds records management inside the cloud public agencies already own — services, not licenses. 25+ years, 4,579 active cloud clients, 10.7M records under management."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<style>
+/* Page-specific :root vars (extras beyond the 8 shared in sytech-shared.css) */
+:root {
+  --gold-soft: rgba(229, 166, 48, 0.12);
+  --navy-soft: rgba(37, 66, 107, 0.07);
+}
+
+/* ========== PAGE HERO ========== */
+.page-hero {
+  padding: 11rem 0 6rem;
+  background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%);
+  position: relative; overflow: hidden;
+  color: var(--white);
+}
+.page-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px; pointer-events: none;
+}
+.page-hero .eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.page-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em;
+}
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead {
+  font-size: 1.15rem; line-height: 1.7;
+  color: rgba(255,255,255,0.82); max-width: 720px;
+}
+
+/* ========== CONTENT SECTIONS ========== */
+.section { padding: 5rem 0; }
+.section.alt { background: var(--light); }
+.section h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700;
+  line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em;
+  color: var(--navy);
+}
+.section .section-eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+}
+.section p { font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1.25rem; }
+.section .lead-row { max-width: 820px; margin-bottom: 2.5rem; }
+
+/* ===== Differentiators grid (migrated from why-sytech, verbatim) ===== */
+.diff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.diff-card { background: var(--white); padding: 2rem; border-radius: 10px; border: 1px solid #E3E9EF; box-shadow: 0 2px 8px rgba(37, 66, 107, 0.04); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; }
+.diff-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+@media (hover: hover) and (pointer: fine) {
+.diff-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37, 66, 107, 0.10); }
+}
+.diff-card .num { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.75rem; }
+.diff-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy); }
+.diff-card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-body); margin: 0; }
+
+/* ===== POV (Anti-SaaS Callout) Section (migrated from why-sytech, verbatim) ===== */
+.pov-section { padding: 5rem 0; background: var(--deep-navy); color: var(--white); position: relative; overflow: hidden; }
+.pov-section::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px; pointer-events: none;
+}
+.pov-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 1; }
+.pov-section .section-eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+}
+.pov-headline {
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.01em;
+  color: var(--white); margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--gold);
+  max-width: 760px;
+}
+.pov-body {
+  font-size: 1.05rem; line-height: 1.8;
+  color: rgba(255,255,255,0.85); max-width: 760px; margin: 0;
+}
+
+/* ===== FAQ Accordion (migrated from why-sytech, verbatim) ===== */
+.faq-section { padding: 5rem 0; background: var(--white); }
+.faq-section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.faq-section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.faq-list { margin-top: 2.5rem; max-width: 920px; }
+.faq-item {
+  background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px;
+  margin-bottom: 0.85rem; overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.faq-item:hover { border-color: rgba(229,166,48,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.faq-item[open] { border-color: var(--gold); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.faq-question {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.5rem; cursor: pointer;
+  font-weight: 700; font-size: 1.02rem; color: var(--navy);
+  list-style: none;
+  transition: background 0.2s ease;
+}
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.faq-question:hover { background: rgba(229,166,48,0.04); }
+.faq-icon {
+  flex-shrink: 0; margin-left: 1rem;
+  width: 22px; height: 22px; position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-icon::before, .faq-icon::after {
+  content: ''; position: absolute; background: var(--gold);
+  border-radius: 1px;
+  transition: opacity 0.25s ease;
+}
+.faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.faq-icon::after  { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.faq-item[open] .faq-icon { transform: rotate(180deg); }
+.faq-item[open] .faq-icon::before { opacity: 0; }
+.faq-answer {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  font-size: 0.97rem; line-height: 1.75; color: var(--text-body);
+}
+.faq-answer p { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-item, .faq-icon, .faq-icon::before, .faq-icon::after { transition: none !important; }
+}
+
+/* ===== Trust doorway link row ===== */
+/* [C25 CLIENT AUDIT 2026-09-24] Casey moved this out of its own band and under
+   "How We Are Built", as the label only with no paragraph. The .trust-doorway
+   section rules below are now unused and are left in place so a revert is a
+   one-block paste. The link selectors were widened from
+   `.trust-doorway a.doorway-link` to `a.doorway-link` — the class is used exactly
+   once in this file and nowhere in assets/css/sytech-shared.css, so the widening
+   is rendered-identical. margin-top moved 0.5rem -> 2rem to match the 2rem
+   .feature-grid rhythm it now sits under. */
+.trust-doorway { padding: 3rem 0; background: var(--light); }
+.trust-doorway .doorway-inner { max-width: 820px; }
+.trust-doorway p { font-size: 1.05rem; line-height: 1.75; color: var(--text-body); margin: 0; }
+a.doorway-link {
+  display: inline-block; margin-top: 2rem;
+  font-size: 1.02rem; font-weight: 700; color: var(--navy);
+  border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+a.doorway-link:hover { color: var(--gold); }
+
+/* ===== Our Story — feature grid + stats ===== */
+.feature-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.feature-card {
+  background: var(--white); padding: 2rem; border-radius: 10px;
+  border: 1px solid #E3E9EF; box-shadow: 0 2px 8px rgba(37, 66, 107, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.section.alt .feature-card { background: var(--white); }
+@media (hover: hover) and (pointer: fine) {
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37, 66, 107, 0.10); }
+}
+.feature-card h3 {
+  font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy);
+}
+.feature-card .num {
+  display: inline-block; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.6rem;
+}
+.feature-card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-body); margin: 0; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem;
+  border-top: 1px solid rgba(37,66,107,0.10);
+}
+.stat-block { text-align: center; }
+.stat-block .num {
+  display: block; font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 700;
+  color: var(--navy); line-height: 1;
+}
+.stat-block .num span { color: var(--gold); }
+.stat-block .label { font-size: 0.8rem; color: var(--text-body); margin-top: 0.5rem; letter-spacing: 0.04em; }
+
+/* CTA strip */
+.cta-strip { background: var(--deep-navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; }
+.cta-strip p { color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 1.75rem; }
+.btn-primary {
+  display: inline-block; padding: 0.85rem 2rem;
+  background: var(--gold); color: var(--deep-navy);
+  font-size: 0.95rem; font-weight: 700; border-radius: 6px;
+  text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 9rem 0 4rem; }
+  .section, .pov-section, .faq-section { padding: 3.5rem 0; }
+}
+
+/* ============================================================
+   HISTORY TIMELINE GRAPHIC  (namespace: htl-)
+   Build #1 under standards-animated-graphic-blueprint-v1.md.
+   JOURNEY · play-once-hold-forever · clickable node stages ·
+   stacked-material hover-lift · bulletproof finished-poster default.
+   All values pulled from blueprint §4 tables. Nothing to shared CSS.
+   ============================================================ */
+
+/* ---- graphic-local design tokens ---- */
+.htl-wrap {
+  --htl-navy: #25426B;
+  --htl-gold: #E5A630;
+  --htl-gold-lite: #F2C25A;
+  --htl-brass: #B8801F;
+  --htl-kick: 72px;                    /* CHANGE 2: how far the curved "runway" hook rises above the flat
+                                          spine at the right end — the same upward flourish the header's
+                                          gold underline makes. Feel knob; lower = gentler hook. */
+  --htl-spine-y: 340px;               /* above-zone height = spine baseline (asymmetric, NOT centered).
+                                          JS fitStage() overrides this + --htl-h from measured card
+                                          heights so no card can overlap; 340px is the safe no-JS floor. */
+  --htl-stem: 30px;                    /* dot → lane gap (feel knob) — tightened so dot→stem→chip→card read as one column */
+  --htl-cardw: clamp(126px, 11.5vw, 160px);   /* ITER-6: the 4 draft placeholders are now FULL story cards
+                                          (same size/format as the real ones), so there are 10 big cards on
+                                          the spine. Slimmed again from 150–184 (equally for real AND draft —
+                                          they stay identical) so 10 cards spaced evenly 6%→87% (9% apart,
+                                          strict A/B/A/B) leave a clean same-side gap (~30–45px at desktop
+                                          widths) with no card-to-card or card-to-tech-pill overlap. */
+  --htl-h: 740px;                      /* above-zone (340) + below-zone (400); JS tightens to exact fit */
+  /* HOVER-EXPAND (2026-07-29): collapsed vs expanded slate-pill widths (uniform among pills). Feel knobs.
+     Only consumed inside the desktop hover-gate media query below; mobile/touch pills keep natural width. */
+  --htl-wn-w:     84px;                 /* collapsed pill width (year + short name only) */
+  --htl-wn-w-exp: 188px;               /* expanded pill width (adds "+N yrs" tag + significance line) */
+  margin: 2.5rem 0 0.5rem;
+  /* Batch 4: lock text-selection/long-press-copy across the whole graphic; keep an arrow
+     cursor (not the text I-beam). Clickable stage nodes keep cursor:pointer via the more
+     specific .htl-node[role="button"] rule below. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: default;
+}
+
+/* ---- material var blocks (blueprint §4 material table) ---- */
+/* dark-bg (navy hero) material tuning: grounds go deep/near-black so the stacked-lift shadow
+   reads on the navy gradient; walls are the plate's lit thickness edge. */
+.htl-mat-navy    { --wall:#0C1D33;   --ground:rgba(0,0,0,0.34);     --lift:4px; }
+.htl-mat-surface { --wall:#C9D3E0;   --ground:rgba(0,0,0,0.40);     --lift:5px; }
+.htl-mat-gold    { --wall:#8A5F16;   --ground:rgba(0,0,0,0.42);     --lift:6px; }  /* action crowns the stack */
+.htl-mat-seal    { --wall:#8A5F16;   --ground:rgba(0,0,0,0.44);     --lift:7px; }  /* single highest plate */
+
+/* ---- shared plate mechanic (named-property transitions ONLY — never transition:all) ---- */
+.htl-plate {
+  transform: translateY(0);
+  transition: transform 420ms cubic-bezier(.22,1,.36,1);
+  --sh-y: calc(var(--lift) + 4px);
+  --sh-blur: 9px;
+  /* PER-GRAPHIC MATERIAL CHOICE (rest/hover plate shadow as VARS so each plate's rest↔hover shadow
+     shares ONE transition + ONE hover-selector list, and keeps an equal drop-shadow function COUNT for
+     smooth interpolation). DEFAULT below = the machined HARD-WALL (0-blur offset wall + soft ground) —
+     now used ONLY by the thin navy spine bar. Content CARDS, DATE pills, and the brass CROWN seal
+     OVERRIDE these two vars to a single SOFT blurred shadow (see the Ethan 2026-07-02 notes below) —
+     on those plates over navy the hard wall renders a solid offset DOUBLE (a duplicated copy), so they
+     get a clean soft LIFT instead. */
+  --pb-rest:  drop-shadow(0 0 0 var(--wall)) drop-shadow(0 0 0 var(--ground));
+  --pb-hover: drop-shadow(0 var(--lift) 0 var(--wall)) drop-shadow(0 var(--sh-y) var(--sh-blur) var(--ground));
+}
+.htl-plate-body {                       /* SOLID-fill bodies: rest shadow via --pb-rest (see .htl-plate) */
+  position: absolute; inset: 0; z-index: 0;
+  filter: var(--pb-rest);
+  transition: filter 420ms cubic-bezier(.22,1,.36,1);
+}
+.htl-bevel {                            /* 1px top-edge light-catch, opacity 0 at rest */
+  position: absolute; top: 0; left: 0; right: 0; height: 1px; z-index: 1;
+  opacity: 0; transition: opacity 420ms cubic-bezier(.22,1,.36,1);
+  pointer-events: none;
+}
+
+/* ============ STAGE (desktop horizontal composition) ============ */
+.htl-stage {
+  position: relative;
+  width: 100%;
+  height: var(--htl-h);
+  outline: none;
+}
+/* spine track = full-width band under the nodes; carries spine + dash + era wash + mobile rail.
+   (The dots live in each node; the playhead is a direct child of the stage so it paints on top.) */
+.htl-spine-track {
+  position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none;
+}
+/* the spine bar — a SOLID navy plate (lift 4). Revealed via scaleX (blueprint-sanctioned width tween:
+   spine is a SOLID plate per §4a, not a stroke, so DrawSVG doesn't apply — DrawSVG is used for the crown). */
+.htl-spine {
+  position: absolute; top: var(--htl-spine-y); left: 0;
+  width: 87%; height: 4px; margin-top: -2px;
+  transform-origin: left center;
+  border-radius: 2px;
+}
+.htl-spine-body { border-radius: 2px; background: rgba(255,255,255,0.85); }  /* light spine on navy hero */
+/* CHANGE 2: curved dashed "runway" HOOK (was the straight .htl-spine-dash bar). Anchored where the solid
+   spine ends (87%) and rising by --htl-kick to the top-right — tracing the EXACT curve of the header's
+   gold underline (the c/l bezier deltas below are pulled verbatim from the .nav-shape gold path). It stays
+   LIGHT + dashed (NOT gold) so the graphic keeps exactly two gold accents — the playhead and the crown.
+   Geometry: the SVG viewBox is 0 0 421.17 99.14; the path's flat edge (y=99.14) sits on the band BOTTOM
+   = the spine baseline, and the hook tip (y=0) sits on the band TOP = spine-y − kick. preserveAspectRatio
+   "none" stretches x to fill the 13% width; vector-effect keeps the stroke a uniform 2px; overflow:visible
+   stops the round stroke clipping at the band edges. Default opacity = visible in the no-JS / reduced-motion
+   poster; the controller resets it to 0 and fades it in as the playhead climbs. */
+.htl-spine-hook {
+  position: absolute; left: 87%; right: 0;
+  top: calc(var(--htl-spine-y) - var(--htl-kick));
+  height: var(--htl-kick);
+  overflow: visible; opacity: 0.85;
+  pointer-events: none;
+}
+/* the traveling gold playhead (the ONE traveler; gold place #1 of 2) */
+.htl-playhead {
+  position: absolute; top: var(--htl-spine-y); left: 87%;
+  width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, var(--htl-gold-lite), var(--htl-gold) 70%);
+  box-shadow: 0 0 0 4px rgba(229,166,48,0.16), 0 0 14px 2px rgba(229,166,48,0.45);
+  z-index: 4;
+}
+.htl-playhead::after {                  /* soft forward glow, strengthened at rest/park */
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  box-shadow: 0 0 12px 3px rgba(229,166,48,0.35);
+}
+
+/* node anchor = zero-width full-height line at the milestone x */
+.htl-node {
+  position: absolute; top: 0; bottom: 0; left: var(--x);
+  width: 0;
+}
+.htl-dot {                              /* the node point on the spine */
+  position: absolute; top: var(--htl-spine-y); left: 0;
+  width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px;
+  border-radius: 50%; background: #DCE6F2;             /* light bead on navy */
+  box-shadow: 0 0 0 3px rgba(10,20,38,0.55);           /* dark ring separates bead from the light spine */
+  z-index: 3;
+}
+.htl-stem {                             /* hairline connector — rides flush, never lifts */
+  position: absolute; left: 0; width: 2px; margin-left: -1px;
+  background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.32));
+  z-index: 2;
+}
+/* LANE-AWARE stem. below: runs DOWN from the dot on the spine to the chip below.
+   above: a TRUE MIRROR — runs UP from the dot to the chip above the spine. Anchor the above stem by
+   TOP at (spine-y − stem): its BOTTOM edge lands on the spine (touching the dot) and its TOP edge lands
+   at the above-lane chip's bottom (no gap, no overlap onto the spine). The base .htl-stem gradient
+   (bright→faint top-to-bottom) already renders bright-near-chip / faint-near-spine for the above case,
+   mirroring the below override below. (Was `bottom:var(--htl-spine-y)`, which — because spine-y is a
+   distance from the TOP, not the bottom, on this asymmetric stage — drew the above stem BELOW the spine
+   pointing DOWN, away from the card.) */
+.htl-above .htl-stem { top: calc(var(--htl-spine-y) - var(--htl-stem)); height: var(--htl-stem); }
+.htl-below .htl-stem { top: var(--htl-spine-y); height: var(--htl-stem);
+  background: linear-gradient(rgba(255,255,255,0.32), rgba(255,255,255,0.85)); }
+
+/* the date+card pair lives in a non-lifting flex lane, anchored off the spine.
+   Horizontal anchor uses margin-left (a factor of card width) — NOT transform —
+   so GSAP owns the lane's transform for the y-rise reveal (no inline-transform clash
+   with the CSS hover-lift on the plates inside). */
+.htl-lane {
+  position: absolute; left: 0; width: var(--htl-cardw);
+  margin-left: calc(var(--htl-cardw) * var(--txf, -0.5));
+  display: flex; flex-direction: column; gap: 4px;   /* chip hugs the card */
+  z-index: 2;
+}
+/* above lane sits ABOVE the spine: its BOTTOM edge is exactly one stem-length above the spine
+   ((spine-y − stem) from the top), so the chip clears the spine line entirely (never sits on it).
+   Written as a distance-from-BOTTOM: 100% − (spine-y − stem) = (100% − spine-y) + stem, where 100% =
+   the node's height = the stage height, so it tracks fitStage()'s measured --htl-h at any width.
+   column-reverse puts the chip at the visual bottom (nearest the spine) with the card above it →
+   both lanes now read identically: spine → stem → chip → card. */
+.htl-above .htl-lane { bottom: calc(100% - var(--htl-spine-y) + var(--htl-stem)); flex-direction: column-reverse; }
+.htl-below .htl-lane { top: calc(var(--htl-spine-y) + var(--htl-stem)); }
+
+/* date chip — navy plate (lift 4) */
+.htl-date {
+  position: relative; align-self: center;
+  padding: 4px 11px; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--htl-navy); overflow: visible;          /* dark text on the light chip (AA on the navy hero) */
+}
+.htl-date .htl-plate-body { background: #E8EEF6; border-radius: 999px; }   /* light chip on navy */
+.htl-date .htl-bevel { display: none;   /* Ethan 2026-07-31 (round 2): removed the thin white top-edge
+  light-catch on the YEAR PILLS too — same fix as the message cards below. Was a 1px gradient
+  (rgba(255,255,255,0.6)→transparent) that lit on stage-hover and read as a detached highlight line
+  above the pills. The <span class="htl-bevel"> stays in the DOM; it just renders nothing.
+  Prior rule (removed): border-radius:999px 999px 0 0; background:linear-gradient(rgba(255,255,255,0.6),transparent); */ }
+.htl-date-num { position: relative; z-index: 1; }   /* numeral only — was `.htl-date > span`, which also matched
+  `.htl-plate-body`/`.htl-bevel` and collapsed the pill (specificity 0,1,1 beat the plate-body rule → 0×0 chip) */
+
+/* card — white surface plate (lift 5) */
+.htl-card {
+  position: relative;
+  padding: 0.8rem 0.95rem 0.9rem;
+  border-radius: 11px;
+  min-height: 195px;    /* EQUAL-HEIGHT FLOOR (Ethan 2026-07-02) — every card renders the SAME height.
+                           This CSS floor is the no-JS / GSAP-CDN-fail POSTER fallback so the six cards
+                           read close-to-uniform even without JS (chosen to comfortably clear the tallest
+                           card's content across desktop card widths ~178–218px, so all cards sit at the
+                           floor and look uniform). Once JS runs (INCLUDING reduced-motion, which still
+                           runs fitStage — only the GSAP animation is gated), equalizeCards() OVERRIDES
+                           this with an inline height + min-height = the EXACT tallest natural card, so the
+                           result is pixel-exact equal, not just floored. Released to 0 on mobile (≤900px)
+                           so stacked phone cards stay natural height. */
+}
+.htl-card .htl-card-body {
+  background: var(--white);
+  border: 1px solid #E3E9EF;
+  border-radius: 11px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.30);       /* deeper resting shadow so white cards float on navy */
+}
+.htl-card .htl-bevel { display: none; }   /* Ethan 2026-07-31: removed the 1px top-edge light-catch on the
+  white message CARDS. On stage-hover every card's bevel lit (opacity 0→1) at once, and the bright 1px white
+  line at top:0 read as a detached highlight stroke floating above the card on the navy bg. Card top is now
+  clean. The <span class="htl-bevel"> stays in the DOM (untouched); it just renders nothing on the cards.
+  Date-pill bevel (.htl-date .htl-bevel) was ALSO removed round 2 (2026-07-31) — see that rule above.
+  Everything else (fill, size, position, drop-shadow depth, dashed draft borders, plate lift) is unchanged. */
+.htl-title {
+  position: relative; z-index: 1;
+  font-size: 0.94rem; font-weight: 700; line-height: 1.2;
+  color: var(--htl-navy); margin: 0 0 0.3rem;
+  text-wrap: balance;
+}
+.htl-detail {
+  position: relative; z-index: 1;
+  font-size: 0.8rem; line-height: 1.45; color: var(--text-body); margin: 0;
+  text-wrap: pretty;
+}
+
+/* ============ CARDS + DATE PILLS = CLEAN SOFT LIFT (Ethan 2026-07-02) ============
+   PER-GRAPHIC MATERIAL CHOICE — DO NOT revert these two to the machined hard-wall. On these large
+   rectangular content cards / date pills over the navy bg, the default hard 0-blur offset wall reads as
+   a literal DOUBLE of the card (a second stacked slab). So cards + dates lift a subtle ~7px on hover/
+   focus and their shadow grows from a resting SOFT shadow to a slightly larger/deeper SOFT (blurred)
+   shadow — one soft element lifting off the surface, no wall, no double. Same drop-shadow function COUNT
+   rest↔hover (both a single soft function) so `filter` interpolates smoothly (blueprint §4a). The brass
+   crown seal gets the SAME soft-lift fix below (it doubled too on the navy bg — Ethan 2026-07-02); the
+   thin navy spine bar keeps the machined default. */
+.htl-card, .htl-date { --lift: 7px; }                    /* subtle premium lift (scanning-graphic feel) */
+/* card rest float stays the .htl-card-body box-shadow (poster unchanged); the filter adds ONLY the
+   growing lift-cast on hover — transparent at rest → soft blurred on lift. */
+.htl-card { --pb-rest: drop-shadow(0 0 0 rgba(0,0,0,0)); --pb-hover: drop-shadow(0 18px 34px rgba(0,0,0,0.42)); }
+/* date pill has no body box-shadow → keep it flat at rest (poster unchanged), soft lift on hover. */
+.htl-date { --pb-rest: drop-shadow(0 0 0 rgba(0,0,0,0)); --pb-hover: drop-shadow(0 9px 20px rgba(0,0,0,0.42)); }
+
+/* HERO node (2002) — gold surface (lift 6) + brass crown seal (lift 7) */
+.htl-hero .htl-card { padding: 0.9rem 1.05rem 1rem; }
+.htl-hero .htl-card-body {
+  background: #FBEED2;
+  border: 1px solid rgba(184,128,31,0.55);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.34);      /* signature 2002 card lifts most on navy */
+}
+.htl-hero .htl-title { color: #2A3E5E; }
+.htl-hero .htl-detail { color: #4b4326; }
+.htl-hero .htl-date { color: var(--white); }                        /* keep WHITE text on the brass (gold) chip */
+.htl-hero .htl-date .htl-plate-body { background: #8A5F16; }   /* deepened from #B8801F so white text clears AA (~5.7:1) now the pill paints */
+.htl-crown {                            /* brushed-brass governance seal (gold place #2 of 2) */
+  position: absolute; top: -14px; right: 12px; z-index: 2;
+  width: 34px; height: 34px;
+}
+.htl-crown .htl-plate-body {
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #F2C25A, #C89226 72%);
+  box-shadow: 0 3px 9px rgba(184,128,31,0.30);   /* resting float (stays); hover lift-cast is the soft filter below */
+}
+.htl-crown svg { position: relative; z-index: 1; display: block; width: 34px; height: 34px; }
+/* crown seal = CLEAN SOFT LIFT too (Ethan 2026-07-02): the machined hard-wall cast a solid 0-blur offset
+   DOUBLE of the brass circle on hover (read as a duplicated crown). Same fix as .htl-card/.htl-date —
+   transparent filter at rest (resting float stays the .htl-plate-body box-shadow above) growing to a
+   single SOFT blurred lift-cast on hover; equal drop-shadow COUNT rest↔hover so `filter` interpolates. */
+.htl-crown { --pb-rest: drop-shadow(0 0 0 rgba(0,0,0,0)); --pb-hover: drop-shadow(0 8px 14px rgba(0,0,0,0.34)); }
+
+/* end-anchored node (Today): date chip centered on the node, like every other node */
+.htl-anchor-end .htl-date { align-self: center; }
+
+/* .htl-light (2019 ExpressLink) and .htl-major (2021 CNRA) are now INERT markers only.
+   Per Ethan (2026-07-02) card widths are ALSO uniform: every card inherits the base
+   --htl-cardw: clamp(178px, 16.5vw, 218px) from .htl-wrap. No per-card WIDTH override and
+   no per-card TEXT hierarchy remains (title 0.94rem / body 0.8rem across all six cards).
+   Do NOT re-add per-card --htl-cardw widths or smaller title/body font-sizes. */
+
+/* ============================================================
+   ITER-6 — DRAFT PLACEHOLDER CARDS (namespace add-on: .htl-draft on a real .htl-node).
+   The four unconfirmed milestones (2005 / 2008 / 2013 / 2015) are now FULL story cards —
+   IDENTICAL width/height/type treatment to the real SyTech cards (same .htl-node > .htl-lane >
+   .htl-date + .htl-card structure, so equalizeCards() sizes them to the exact same height and the
+   STOPS array treats them as ordinary 'node' stops). ONLY three things mark them as draft so no one
+   mistakes them for confirmed history:
+     1. slightly reduced opacity on the whole node (still fully legible),
+     2. a DASHED card border (vs the real cards' solid hairline), and
+     3. a small "PLACEHOLDER · CONFIRM" flag above the title.
+   The reduced opacity sits on the NODE; GSAP animates the LANE's opacity (0→1) on reveal, and the two
+   multiply — so the reveal still works and the card settles at its draft opacity. Kept intentionally
+   subtle: the dashed border + flag do most of the "this is a draft" signalling. ============ */
+.htl-draft { opacity: 0.86; }
+.htl-draft .htl-card-body {
+  border-style: dashed;
+  border-width: 1.5px;
+  border-color: rgba(184,128,31,0.6);   /* brass dashed edge = "draft, to be confirmed" */
+}
+.htl-draft-flag {
+  position: relative; z-index: 1;
+  display: none; margin: 0 0 0.4rem;   /* flag text hidden per Ethan (dashed draft border kept) */
+  font-size: 0.55rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: #8A5F16;   /* deep brass — ~5.7:1 on the white card (AA), not the
+                                                   lighter --htl-brass #B8801F which is only ~3.5:1 */
+}
+/* seeked/active draft keeps the SAME gold underline tick the real nodes use (via .htl-date::after) —
+   it does NOT brighten out of its draft opacity, so it always still reads as a placeholder. */
+
+/* active-node indicator — a gold underline tick under the date chip (NOT a progress bar;
+   no green, no checkmarks, no dimming of poster content — government register). */
+.htl-date::after {
+  content: ''; position: absolute; left: 11px; right: 11px; bottom: -5px; height: 2px;
+  background: var(--htl-gold); border-radius: 2px;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 300ms cubic-bezier(.22,1,.36,1);
+}
+.htl-node.htl-active .htl-date::after { transform: scaleX(1); }
+
+/* node as a stage control (added in JS) */
+.htl-node[role="button"] { cursor: pointer; }
+.htl-node[role="button"] .htl-lane { cursor: pointer; }
+
+/* ============ RAISED STATE — triple-gated + armed. Un-enhanced = byte-identical flat poster ============ */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  /* whole field lifts as one milled object on stage hover; a single node lifts on keyboard focus */
+  .htl-stage.htl-armed:hover .htl-plate,
+  .htl-node:focus-visible .htl-plate {
+    transform: translateY(calc(-1 * var(--lift)));
+  }
+  .htl-stage.htl-armed:hover .htl-plate-body,
+  .htl-node:focus-visible .htl-plate-body {
+    filter: var(--pb-hover);
+  }
+  .htl-stage.htl-armed:hover .htl-bevel,
+  .htl-node:focus-visible .htl-bevel { opacity: 1; }
+
+  /* enter-only stagger: structure → surface → action (0 delay on leave = clean together-settle) */
+  .htl-stage.htl-armed:hover .htl-mat-navy,
+  .htl-stage.htl-armed:hover .htl-mat-navy .htl-plate-body    { transition-delay: 40ms; }
+  .htl-stage.htl-armed:hover .htl-mat-surface,
+  .htl-stage.htl-armed:hover .htl-mat-surface .htl-plate-body { transition-delay: 55ms; }
+  .htl-stage.htl-armed:hover .htl-mat-gold,
+  .htl-stage.htl-armed:hover .htl-mat-gold .htl-plate-body,
+  .htl-stage.htl-armed:hover .htl-mat-seal,
+  .htl-stage.htl-armed:hover .htl-mat-seal .htl-plate-body    { transition-delay: 70ms; }
+
+  /* focus ring parity (family = brand gold on this off-family page) */
+  .htl-node:focus-visible { outline: none; }
+  .htl-node:focus-visible .htl-card-body {
+    box-shadow: 0 0 0 3px rgba(229,166,48,0.55), 0 12px 30px rgba(37,66,107,0.14);
+  }
+}
+/* keyboard focus ring even where hover-lift is gated out (touch/reduced-motion desktop-emulated) */
+.htl-node:focus-visible .htl-card-body,
+.htl-node:focus-visible .htl-date .htl-plate-body {
+  outline: 2px solid var(--htl-gold); outline-offset: 2px;
+}
+
+/* ============================================================
+   ITER-4 (LAYOUT REBUILD) — TECH-WORLD MARKERS = SMALL SLATE PILLS RIDING ON THE SPINE (namespace htl-wn).
+   TIER 2. The six "outside tech world" milestones (AWS 2006, Azure 2010, Office 365 2011, Cloud First 2011,
+   SharePoint 2016, AI 2023) are deliberately SECONDARY to the six big SyTech story cards. They are now
+   COMPACT slate pills (#54637A) — year + a short name only — that HUG the spine on a tiny 8px connector
+   (NOT the old boxed-on-a-tall-40px-stem, which competed with the cards for space). Slate fill + small type
+   read instantly as a different, secondary layer from (a) SyTech's white/gold milestone CARDS and (b) the
+   dashed draft placeholders. Each pill's label alternates ABOVE vs BELOW the line (htl-wn--above / --below)
+   so two near pills never touch and no pill collides with an adjacent card's near-line date chip. The four
+   emphasized nodes keep a small gold "+N yrs" tag tying back to SyTech's 2002 cloud build (AWS +4, Azure
+   +8, Office 365 +9, Cloud First +9); SharePoint 2016 + AI 2023 carry no tag. Not a .htl-node / .htl-card,
+   so equalizeCards() + fitStage()'s lane measurement leave them alone; the tall card-sized above/below
+   zones always contain these near-line pills. Default opacity = visible (no-JS / reduced-motion poster);
+   the controller resets to 0 and fades each in as the playhead passes.
+   ============================================================ */
+.htl-wn { position: absolute; left: var(--x); width: 0; top: 0; bottom: 0; z-index: 2; }
+.htl-wn-dot {                                    /* tiny filled slate bead ON the spine (distinct from the light node bead + hollow-dashed placeholder bead) */
+  position: absolute; top: var(--htl-spine-y); left: 0; width: 7px; height: 7px;
+  margin: -3.5px 0 0 -3.5px; border-radius: 50%;
+  background: #5A6B84;
+  box-shadow: 0 0 0 2px rgba(10,20,38,0.5);      /* dark separator on the light spine */
+}
+.htl-wn-stem {                                   /* hairline 8px connector dot -> pill (solid slate; placeholders own the dashed look) */
+  position: absolute; left: 0; width: 2px; margin-left: -1px; height: 8px;
+  background: rgba(140,158,186,0.55);
+}
+.htl-wn--above .htl-wn-stem { bottom: calc(100% - var(--htl-spine-y) + 4px); }
+.htl-wn--below .htl-wn-stem { top: calc(var(--htl-spine-y) + 4px); }
+.htl-wn-pill {                                   /* the compact slate pill, hugging just off the line */
+  position: absolute; left: 0; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  background: #54637A; border: 1px solid #6C7E98;
+  border-radius: 9px; padding: 3px 9px; text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.22);
+}
+.htl-wn--above .htl-wn-pill { bottom: calc(100% - var(--htl-spine-y) + 12px); }
+.htl-wn--below .htl-wn-pill { top: calc(var(--htl-spine-y) + 12px); }
+.htl-wn-top { display: flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.htl-wn-yr  { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.02em; color: #FFFFFF; }
+.htl-wn-tag {                                    /* faint-gold "+N yrs" tie-back to SyTech's 2002 build */
+  font-size: 0.48rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap;
+  color: var(--htl-gold-lite);
+}
+.htl-wn-lbl { font-size: 0.56rem; font-weight: 600; line-height: 1.2; white-space: nowrap; color: rgba(255,255,255,0.82); }
+/* ITER-3/4: tech-world pills are FIRST-CLASS sequenced + clickable stops (revealed by the playhead in year
+   order; seekable on click / Enter / Space once the journey finishes). The active state warms the pill
+   border in gold — echoing the real nodes' gold underline tick — without losing the slate fill. */
+.htl-wn[role="button"] { cursor: pointer; }
+.htl-wn.htl-active .htl-wn-pill {
+  border-color: rgba(242,194,90,0.7);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.htl-wn:focus-visible { outline: none; }
+.htl-wn:focus-visible .htl-wn-pill { outline: 2px solid var(--htl-gold); outline-offset: 2px; }
+
+/* ============================================================
+   *** SUPERSEDED BY ITER-6 (see .htl-draft block above) — the four placeholders are now FULL story
+   cards (.htl-node.htl-draft), NOT these small dashed pills. The .htl-ph rules below are DEAD (no
+   .htl-ph elements remain in the HTML) and kept only for reference/rollback. ***
+   ------------------------------------------------------------
+   ITER-4 (LAYOUT REBUILD) — DRAFT PLACEHOLDER MARKERS = SMALL DASHED PILLS ON THE SPINE (namespace htl-ph).
+   TIER 2. The four unconfirmed SyTech milestones (2005 / 2008 / 2013 / 2015) are draft markers: compact
+   dashed pills that HUG the spine on a tiny 8px connector, reduced opacity + a small "PLACEHOLDER" flag so
+   no one mistakes them for confirmed facts. A fixed NARROW width (label wraps to 2 lines) keeps their
+   footprint small; each pill's label alternates ABOVE vs BELOW the line (htl-ph--above / --below) so no two
+   touch and no pill collides with an adjacent card's near-line date chip. Kept visibly SECONDARY to the six
+   big SyTech cards. Sequenced + clickable like every other stop. (The old --phlvl rung stack is gone — the
+   density-aware spacing + above/below label alternation replace it.)
+   ============================================================ */
+.htl-ph { position: absolute; left: var(--x); width: 0; top: 0; bottom: 0; z-index: 2; opacity: 0.9; }
+.htl-ph-dot {                                    /* hollow dashed DRAFT bead on the spine */
+  position: absolute; top: var(--htl-spine-y); left: 0; width: 8px; height: 8px;
+  margin: -4px 0 0 -4px; border-radius: 50%;
+  background: transparent; border: 1.5px dashed rgba(255,255,255,0.55);
+}
+.htl-ph-stem {                                   /* hairline dashed 8px connector dot -> pill */
+  position: absolute; left: 0; width: 0; height: 8px;
+  border-left: 1.5px dashed rgba(255,255,255,0.32);
+}
+.htl-ph--above .htl-ph-stem { bottom: calc(100% - var(--htl-spine-y) + 4px); }
+.htl-ph--below .htl-ph-stem { top: calc(var(--htl-spine-y) + 4px); }
+.htl-ph-pill {                                   /* compact dashed draft pill, narrow (label wraps to 2-3 lines).
+                                                    WIDTH CAP RATIONALE: the stage lives in .container (max
+                                                    1160px, content ~1096px), so marker spacing is a % of a
+                                                    CAPPED width while a vw unit keeps growing past it. The
+                                                    max here (92px) is deliberately BELOW the tightest
+                                                    same-side placeholder spacing (~10% ≈ 110px at the cap),
+                                                    and the 78px min covers the 901-1000px low end — so two
+                                                    same-side pills never collide at ANY width. */
+  width: clamp(66px, 5.8vw, 74px); text-align: center;   /* ITER-5: trimmed from 78-92 so the two drafts
+                                                    stuck in the tight 2011->2016 year-gap (2013 + 2015)
+                                                    clear the flanking slate tech pills, and 2005/2008 gain
+                                                    breathing room from the 2000/2010s cards. "PLACEHOLDER"
+                                                    still fits — the flag font was reduced in lockstep. */
+  background: rgba(255,255,255,0.04);
+  border: 1.5px dashed rgba(255,255,255,0.4);
+  border-radius: 8px; padding: 4px 8px;
+}
+.htl-ph--above .htl-ph-pill { bottom: calc(100% - var(--htl-spine-y) + 12px); }
+.htl-ph--below .htl-ph-pill { top: calc(var(--htl-spine-y) + 12px); }
+/* ITER-5 — SECOND RUNG (above only). 2013 and 2015 both fall in the tight year-gap between the 2011 and
+   2016 tech pills, where the below lane is boxed in by the 2011 Cloud First pill and the 2019 story card.
+   Rather than cram both drafts side-by-side (they touched: "PLACEHOLDERPLACEHOLDER") this raises 2015 one
+   step above 2013 so they stack with a clear vertical gap and a small x-offset. The longer dashed stem
+   keeps the tentative draft look and visibly ties the raised pill back to its point on the spine. Well
+   within the measured above-zone, so no clipping; poster/reduced-motion/no-JS states are unaffected. */
+.htl-ph--above.htl-ph--r2 .htl-ph-pill { bottom: calc(100% - var(--htl-spine-y) + 62px); }
+.htl-ph--above.htl-ph--r2 .htl-ph-stem { height: 58px; }
+.htl-ph-flag {
+  display: block; margin-bottom: 2px;
+  font-size: 0.42rem; font-weight: 700; letter-spacing: 0.07em;   /* ITER-5: reduced with the narrower pill so
+                                                    the single word "PLACEHOLDER" still fits on one line. */
+  color: var(--htl-gold-lite);
+}
+.htl-ph-body { display: block; font-size: 0.56rem; line-height: 1.25; text-wrap: pretty; }
+.htl-ph-yr  { font-weight: 700; color: rgba(255,255,255,0.9); }
+.htl-ph-txt { color: rgba(255,255,255,0.62); }
+
+/* ITER-2/4: placeholders are FIRST-CLASS sequenced + clickable stops (revealed by the playhead in year
+   order, seekable on click/Enter/Space like the real nodes). They keep the dashed DRAFT look; the active
+   state warms the pill's border/fill in gold to echo the real nodes' gold underline tick. */
+.htl-ph[role="button"] { cursor: pointer; }
+.htl-ph.htl-active { opacity: 1; }
+.htl-ph.htl-active .htl-ph-pill {
+  border-color: rgba(242,194,90,0.65);
+  background: rgba(242,194,90,0.08);
+}
+.htl-ph:focus-visible { outline: none; }
+.htl-ph:focus-visible .htl-ph-pill { outline: 2px solid var(--htl-gold); outline-offset: 2px; }
+
+/* Entrance fade is a GSAP-only enhancement (motion branch). Default = fully visible,
+   so the no-JS / reduced-motion / mobile poster is never hidden. */
+
+/* ============================================================
+   COLLAPSE → EXPAND ON HOVER/FOCUS  (Ethan 2026-07-29) — DESKTOP HOVER DEVICES ONLY
+   ------------------------------------------------------------
+   Gate: @media (hover:hover) and (pointer:fine) and (min-width:901px).
+   The min-width:901px pin keeps this OUT of the ≤900px mobile-reflow band even on a
+   hover-capable narrow desktop window — so touch / no-hover / ≤900px keep the CURRENT
+   behavior EXACTLY (full descriptions visible, tiles as they were).
+   MODEL:
+     - AT REST every tile shows its TITLE ONLY. Story-card .htl-detail and the pill
+       .htl-wn-sig / .htl-wn-tag are CLIPPED (max-height/opacity/overflow — NOT display:none),
+       so screen readers + no-JS + reduced-motion still reach the full text.
+     - ON hover OR keyboard focus the tile EXPANDS to reveal the description AND raises its
+       z-index so it pops ON TOP of neighbors (neighbors never move — no reflow).
+     - The stage ZONES stay sized to the EXPANDED tile (JS measures with .htl-measuring), so
+       a card that expands has reserved room and is NEVER clipped by the stage or the hero.
+       At rest the collapsed tiles hug the spine; the reserved room is outer air top+bottom.
+   Pure-CSS :hover/:focus-within so it works with NO JS; JS only supplies exact heights/widths.
+   ============================================================ */
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+
+  /* ---- story cards: title-only at rest, description on hover/focus ---- */
+  /* Better no-JS collapsed floor than the base 195px (JS overrides with the exact uniform
+     collapsed height via inline min-height). */
+  .htl-card { min-height: 58px; }
+
+  .htl-card .htl-detail {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 360ms cubic-bezier(.22,1,.36,1), opacity 240ms ease;
+  }
+  .htl-node:hover .htl-detail,
+  .htl-node:focus-within .htl-detail {
+    max-height: var(--htl-detail-h, 320px);   /* JS sets the exact px (detail scrollHeight); 320 = safe fallback */
+    opacity: 1;
+  }
+  /* MEASURING pass (JS toggles .htl-measuring on the stage): force the full text open so
+     lane heights read at their EXPANDED size for zone reservation. Specificity (0,3,0) beats
+     the collapse rule (0,2,0); measuring never coincides with :hover so no !important needed. */
+  .htl-stage.htl-measuring .htl-detail { max-height: none; opacity: 1; }
+
+  /* keep the DRAFT signalling visible while collapsed (only the body hides) — the .htl-draft-flag
+     and dashed .htl-card-body border already render at rest; nothing to hide here. */
+
+  /* ---- tech-world slate pills: "year + name" at rest, significance + "+N yrs" on hover/focus ---- */
+  .htl-wn-pill {
+    width: var(--htl-wn-w);                    /* uniform collapsed pill width */
+    transition: width 360ms cubic-bezier(.22,1,.36,1),
+                background 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  }
+  .htl-wn-tag { display: none; }               /* "+N yrs" moves into the expanded state */
+  .htl-wn-sig {
+    display: block; width: 100%;
+    max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+    font-size: 0.5rem; line-height: 1.28; color: rgba(255,255,255,0.72);
+    text-wrap: pretty;
+    transition: max-height 360ms cubic-bezier(.22,1,.36,1),
+                opacity 240ms ease, margin-top 360ms cubic-bezier(.22,1,.36,1);
+  }
+  .htl-wn:hover .htl-wn-pill,
+  .htl-wn:focus-within .htl-wn-pill { width: var(--htl-wn-w-exp); }
+  .htl-wn:hover .htl-wn-tag,
+  .htl-wn:focus-within .htl-wn-tag { display: inline; }
+  .htl-wn:hover .htl-wn-sig,
+  .htl-wn:focus-within .htl-wn-sig {
+    max-height: var(--htl-sig-h, 6em); opacity: 1; margin-top: 4px;
+  }
+  /* MEASURING pass — open the pill to expanded width + full sig so JS can read --htl-sig-h. */
+  .htl-stage.htl-measuring .htl-wn-pill { width: var(--htl-wn-w-exp); }
+  .htl-stage.htl-measuring .htl-wn-tag  { display: inline; }
+  .htl-stage.htl-measuring .htl-wn-sig  { max-height: none; opacity: 1; margin-top: 4px; }
+
+  /* ---- POP ON TOP: the hovered/focused tile raises above its neighbors (neighbors do NOT move) ---- */
+  .htl-node { z-index: 2; }                    /* establish a base so the raise is deterministic */
+  .htl-node:hover, .htl-node:focus-within { z-index: 30; }
+  .htl-wn:hover,   .htl-wn:focus-within   { z-index: 30; }   /* .htl-wn base z-index:2 already set */
+}
+
+/* Reduced motion on a hover desktop: KEEP collapse/expand (title-only at rest, reveal on hover)
+   but make the reveal INSTANT — no animation. */
+@media (prefers-reduced-motion: reduce) {
+  .htl-detail, .htl-wn-pill, .htl-wn-sig { transition: none !important; }
+}
+
+/* ============ MOBILE REFLOW ≤900px — vertical stack, no horizontal hijack ============ */
+@media (max-width: 900px) {
+  .htl-stage {
+    height: auto;
+    padding-left: 26px;                 /* room for the vertical rail */
+  }
+  .htl-spine-track { position: absolute; inset: 0; }
+  .htl-spine, .htl-spine-hook, .htl-playhead { display: none; }
+  /* ITER-3/6: the tech-world slate pills ride the horizontal spine geometry — hide them on the mobile
+     vertical-rail stack for this prototype pass (a purpose-built mobile treatment is a follow-up). The
+     draft placeholders are now full .htl-node cards, so they STACK naturally in the mobile rail like the
+     real cards, keeping their .htl-draft dashed-border / flag / reduced-opacity draft styling. */
+  .htl-wn { display: none; }
+  /* vertical rail down the left edge */
+  .htl-vrail {
+    position: absolute; left: 5px; top: 6px; bottom: 6px; width: 3px;
+    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.3));
+    border-radius: 2px;
+  }
+  .htl-node {
+    position: relative; top: auto; bottom: auto; left: auto; width: 100%;
+    margin-bottom: 1.4rem;
+  }
+  .htl-node .htl-dot {
+    top: 14px; left: -21px; margin: 0;
+  }
+  .htl-stem { display: none; }
+  .htl-lane {
+    position: relative; left: auto; top: auto; bottom: auto;
+    width: 100%; transform: none; margin-left: 0;   /* reset the desktop anchor offset */
+  }
+  /* reset the desktop above-lane reverse — chip on top by the rail dot */
+  .htl-above .htl-lane { flex-direction: column; }
+  /* neutralize BOTH lanes' desktop vertical anchors on mobile. `.htl-above/.htl-below .htl-lane` are
+     0,2,0 and outrank the `.htl-lane { top/bottom:auto }` reset above (0,1,0), so without this the
+     desktop `bottom`/`top` calc would leak into the mobile relative-flow stack and shift the cards.
+     This restores the intended normal vertical stack along the left rail at all mobile widths. */
+  .htl-above .htl-lane, .htl-below .htl-lane { top: auto; bottom: auto; }
+  .htl-crown { top: -12px; right: 10px; }
+  .htl-title { font-size: 1rem; }
+  .htl-detail { font-size: 0.86rem; }
+  /* EQUAL-HEIGHT is a desktop-composition concern only. Release the CSS floor here so stacked phone
+     cards are natural height (fitStage() also clears any inline height on mobile via clearCardHeights). */
+  .htl-card { min-height: 0; }
+}
+.htl-vrail { display: none; }            /* desktop: hidden (horizontal spine shown) */
+@media (max-width: 900px) { .htl-vrail { display: block; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .htl-wrap { transition: none; }
+  .htl-plate, .htl-plate-body, .htl-bevel, .htl-date::after { transition: none !important; }
+}
+/* ============================================================
+   NAV CTA / BAND MACHINERY — MOVED TO SHARED CSS (2026-07-10)
+   ------------------------------------------------------------
+   The old CTA-wall (amber-clearance margin), CTA-hide (1025-1150),
+   801-1024 hamburger-counter block, and amber links-wall were all
+   REMOVED here and replaced by shared rules in
+   assets/css/sytech-shared.css ("CTA VISIBILITY + NAV FIT" section) so
+   every page — this one AND every other SyTech page — behaves identically:
+     > 1150px : full nav WITH the CTA (amber-clearance wall in shared).
+     801-1150 : full nav, CTA hidden, links tightened + no-wrap.
+     <= 800px : hamburger (flat mobile menu block below is unchanged).
+   Nothing page-specific is needed above 800px anymore; the shared
+   hamburger cutoff is already 800px, so no counter block is required.
+   ============================================================ */
+
+/* ============================================================
+   FLAT MOBILE MENU (isolated prototype, fork only, <=800px)
+   ------------------------------------------------------------
+   Replaces the shared stylesheet's ACCORDION hamburger menu with a
+   SIMPLE FLAT, SCROLLABLE list: NO chevrons, NO expand/collapse, nothing
+   to tap-to-reveal. Every item is a plain link, all visible at once; the
+   user just scrolls.
+
+   Flat item order (matches DOM order exactly — no reflow needed):
+     Home / About / Services / Who We Serve / White Papers /
+     Downloads / Contact
+   - SERVICES  = single plain link to services.html (the 7 sub-page links
+     in its mega panel are hidden on mobile).
+   - RESOURCES group is FLATTENED: its trigger row is CSS-hidden (Resources
+     has no standalone page), and its two children (White Papers, Downloads)
+     surface as their own top-level flat rows. NO "Resources" label — this
+     keeps the list to Ethan's exact 7 items and needs no DOM reorder.
+
+   The accordion toggle JS is neutralized at <=800px in the inline nav
+   script (see NAV block) so no row has a tap-to-expand handler; taps on a
+   trigger row just navigate.
+
+   Scoped under #nav + @media(max-width:800px) so it overrides the shared
+   @media(max-width:1024px) accordion rules (higher specificity via #nav,
+   later in the cascade). Desktop nav >800px is untouched.
+   DIALS: panel max-height offset (64px = nav height); row padding
+   (0.875rem 2rem = shared mobile row metric).
+   ============================================================ */
+@media (max-width: 800px) {
+
+  /* --- SCROLLABLE PANEL: never clip, even on a short screen --- */
+  /* Cap the open dropdown at viewport-height-minus-header and scroll the
+     overflow. 100dvh (dynamic viewport) preferred; 100vh is the fallback
+     for browsers without dvh. Nav is position:fixed, height 64px at
+     hamburger widths, so the panel starts 64px below the top. */
+  #nav .nav-links.open {
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;   /* iOS momentum scroll */
+  }
+
+  /* --- SERVICES: collapse to a single plain link --- */
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .mega { display: none; }
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .nav-mega-chevron { display: none; }
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .nav-mega-trigger {
+    display: block;                 /* plain flat link row */
+    justify-content: flex-start;    /* inert once block; belt + suspenders */
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    /* border-bottom inherited from shared .nav-links a — left intact */
+  }
+
+  /* --- RESOURCES group: flatten to two plain rows --- */
+  /* Hide the "Resources" trigger row (no standalone page; its children
+     surface directly, right after "Who We Serve"). */
+  #nav .nav-has-mega--compact > .nav-mega-trigger { display: none; }
+  /* Force the compact panel permanently OPEN + FLAT — no accordion state. */
+  #nav .mega.mega--compact {
+    display: block;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: none;
+  }
+  #nav .mega--compact .mega-inner { padding: 0; }
+  #nav .mega-simple-list { margin: 0; padding: 0; }
+  #nav .mega-simple-list li { width: 100%; }
+  /* White Papers + Downloads styled EXACTLY like the other flat rows
+     (flush 2rem indent, 1rem text, divider under each). */
+  #nav .mega-simple-list a {
+    display: block;
+    min-height: 0;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    white-space: normal;
+    border-bottom: 1px solid #E3E9EF;
+  }
+
+  /* --- DEFENSIVE: kill any lingering accordion/expand affordance --- */
+  /* Hide every chevron across the mobile list. */
+  #nav .nav-mega-chevron { display: none; }
+  /* Even if .is-open were somehow toggled, the services mega stays hidden
+     and the compact list stays flat — no expand can happen. */
+  #nav .nav-has-mega.is-open:not(.nav-has-mega--compact) .mega { display: none; }
+  #nav .nav-has-mega--compact.is-open .mega.mega--compact { max-height: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO — merged why-led hero (Reed item #1; "Since 2000" override)
+     ============================================================ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">About SyTech</span>
+    <h1>A Different Kind of Records Partner. <span>Since 2000.</span></h1>
+    <p class="lead" data-aud="about-lead">Most vendors sell public agencies another platform to license and maintain. Since 2000, SyTech has taken the opposite approach. We build records management within the cloud environment you already own, so you pay for the work, not someone else's software. Here's what makes that approach different and how we got here.</p>
+
+    <!-- HISTORY TIMELINE GRAPHIC (htl-) relocated INTO the hero (navy gradient) — structure tones
+         flipped light (spine/stems/dots/date-chips/era wash/rail); white cards + all gold kept.
+         Journey kicks on load (above the fold). fitStage() sizes the stage so nothing overlaps. -->
+    <div class="htl-wrap" id="htlWrap" role="group"
+         aria-label="SyTech company timeline, 2000 to today, interwoven with when the rest of the technology industry caught up: SyTech founded 2000; first cloud records system 2002, years before the industry moved; AWS 2006; Microsoft Azure 2010; Office 365 and the government Cloud First mandate 2011; expansion across California through the 2010s; SharePoint modernized 2016; ExpressLink 2019; 50 million records for the California Natural Resources Agency 2021; AI reaching everyday office tools 2023; and continuing today.">
+      <div class="htl-stage" id="htlStage">
+
+        <!-- spine layer (decorative) -->
+        <div class="htl-spine-track" aria-hidden="true">
+          <div class="htl-spine htl-plate htl-mat-navy" id="htlSpine"><span class="htl-plate-body htl-spine-body"></span></div>
+          <!-- CHANGE 2: curved dashed runway HOOK. The flat spine kicks UP toward the top-right, tracing
+               the EXACT curve of the header's gold underline (bezier deltas below are pulled verbatim from
+               the .nav-shape gold path at the top of this page). The playhead climbs this hook at the end. -->
+          <svg class="htl-spine-hook" id="htlHook" viewBox="0 0 421.17 99.14" preserveAspectRatio="none" aria-hidden="true">
+            <path id="htlHookPath" d="M0,99.14 c30.6,0,59.34,-11.37,78.86,-31.19 l28.26,-28.69 c24.03,-24.4,59.04,-38.49,96.04,-38.64 l218.01,-0.62"
+                  fill="none" stroke="rgba(255,255,255,0.72)" stroke-width="2" stroke-linecap="round"
+                  stroke-dasharray="5 7" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="htl-vrail"></div>
+        </div>
+
+        <!-- NODE 0 — 2000 · above · seq 0 -->
+        <div class="htl-node htl-above htl-anchor-start" data-idx="0" data-seq="0" style="--x:6%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2000</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <h3 class="htl-title">Bryan Golden and two co-founders start SyTech with $20,000 in his garage.</h3>
+              <!-- [C17] De-duplicated. The h3 above is Jon's approved client wording and owns the
+                   founders, the $20,000 and the garage. This line no longer restates them; it carries
+                   only the two facts that exist nowhere else on the card (document scanning, agile from
+                   day one). Shorter also trims the hover-expanded card height. -->
+              <p class="htl-detail">The first service is document scanning, and the company is built agile from day one.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NODE 1 — 2002 · below · HERO (gold plate + brass crown seal) · seq 1 -->
+        <div class="htl-node htl-below htl-hero" data-idx="1" data-seq="1" style="--x:15%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-gold"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2002</span></span>
+            <div class="htl-card htl-plate htl-mat-gold">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <div class="htl-crown htl-plate htl-mat-seal" aria-hidden="true">
+                <span class="htl-plate-body"></span>
+                <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 22.5 L9 15 L13 18.5 L17 12.5 L21 18.5 L25 15 L25 22.5 Z"
+                        fill="none" stroke="#5F4310" stroke-width="1.6" stroke-linejoin="round" id="htlCrownRing"/>
+                  <line x1="9" y1="24.4" x2="25" y2="24.4" stroke="#5F4310" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="htl-title">Cloud, before it was the word.</h3>
+              <p class="htl-detail">SyTech builds its first native cloud records system for Stockton Unified School District, years before the industry left on-premise servers.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NODE 2 — 2010s · above · ERA BAND · seq 6 -->
+        <div class="htl-node htl-above" data-idx="2" data-seq="6" style="--x:45%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2010s</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <h3 class="htl-title">Proven across California.</h3>
+              <p class="htl-detail">Expansion from single districts to county offices to statewide departments, hundreds of public agencies, one cloud engagement at a time.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NODE 3 — 2019 · below · LIGHT plate (ExpressLink) · seq 12 (ITER-4: strict A/B/A/B/A/B alternation of the six big cards) -->
+        <div class="htl-node htl-below htl-light" data-idx="3" data-seq="12" style="--x:72%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2019</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <h3 class="htl-title">Connective tools arrive.</h3>
+              <p class="htl-detail">ExpressLink releases, a lightweight watch-folder tool that feeds documents straight into the cloud. Connective tools, not more silos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NODE 4 — 2021 · above · MAJOR (50M records) · seq 13 (ITER-4: strict A/B/A/B/A/B alternation of the six big cards) -->
+        <div class="htl-node htl-above htl-major" data-idx="4" data-seq="13" style="--x:78%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2021</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <h3 class="htl-title">50 million records.</h3>
+              <p class="htl-detail">The California Natural Resources Agency: 50M records digitized ahead of a 2021 building move. Likely the largest SharePoint Online deployment for a California public agency.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NODE 5 — Today · below · FORWARD CAP (dashed runway) · seq 15 -->
+        <div class="htl-node htl-below htl-forward htl-anchor-end htl-active" data-idx="5" data-seq="15" style="--x:87%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">TODAY</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <h3 class="htl-title">The next 25 years.</h3>
+              <p class="htl-detail">25+ years in, and still modernizing public records the same way: inside the cloud you already own, one practical step at a time. Cloud, automation, and AI next.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             ITER-6 — DRAFT PLACEHOLDER MILESTONES (2005/2008/2013/2015) are now FULL STORY CARDS, identical
+             in size/format to the real SyTech cards (same .htl-node > .htl-lane > .htl-date + .htl-card
+             structure → equalizeCards() gives them the exact same height; the STOPS array treats them as
+             ordinary 'node' stops revealed by the playhead in year order …2002 → 2005 → 2008 → 2010s → 2013
+             → 2015 → 2019…). The ONLY draft distinction is the .htl-draft add-on class: reduced opacity +
+             dashed card border + a "PLACEHOLDER · CONFIRM" flag above the title. They alternate above/below
+             on the even 9% grid (2005 above @24, 2008 below @33, 2013 below @51, 2015 above @60) and are
+             clickable/keyboard seek targets like every node; the JS appends "(placeholder, to be confirmed)"
+             to each aria-label at upgrade.
+             ======================================================== -->
+        <div class="htl-node htl-above htl-draft" data-idx="6" data-seq="2" style="--x:23%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2005</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <span class="htl-draft-flag">Placeholder &middot; Confirm</span>
+              <h3 class="htl-title">First county goes live.</h3>
+              <p class="htl-detail">A county records office moves onto SyTech's cloud.</p>
+            </div>
+          </div>
+        </div>
+        <div class="htl-node htl-below htl-draft" data-idx="7" data-seq="4" style="--x:34%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2008</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <span class="htl-draft-flag">Placeholder &middot; Confirm</span>
+              <h3 class="htl-title">1DocStop launches.</h3>
+              <p class="htl-detail">SyTech's cloud document-management platform is released, giving agencies one place to store and access records.</p>
+            </div>
+          </div>
+        </div>
+        <div class="htl-node htl-below htl-draft" data-idx="8" data-seq="9" style="--x:56%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2013</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <span class="htl-draft-flag">Placeholder &middot; Confirm</span>
+              <h3 class="htl-title">E-forms replace paper.</h3>
+              <p class="htl-detail">OneForm turns paper intake into online forms for public agencies.</p>
+            </div>
+          </div>
+        </div>
+        <div class="htl-node htl-above htl-draft" data-idx="9" data-seq="10" style="--x:61%; --txf:-0.5;">
+          <span class="htl-dot" aria-hidden="true"></span>
+          <span class="htl-stem" aria-hidden="true"></span>
+          <div class="htl-lane">
+            <span class="htl-date htl-plate htl-mat-navy"><span class="htl-plate-body"></span><span class="htl-bevel"></span><span class="htl-date-num">2015</span></span>
+            <div class="htl-card htl-plate htl-mat-surface">
+              <span class="htl-card-body htl-plate-body"></span><span class="htl-bevel"></span>
+              <span class="htl-draft-flag">Placeholder &middot; Confirm</span>
+              <h3 class="htl-title">First SharePoint Online build.</h3>
+              <p class="htl-detail">OSCAR for the California State Lands Commission, one of SyTech's first SharePoint Online projects for a large agency.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             ITER-4 — TECH-WORLD MARKERS = TIER-2 small SLATE PILLS (#54637A) riding on the main spine,
+             interleaved into the ONE year-ordered sequence by data-seq so the playhead reveals them in turn
+             between the SyTech + placeholder stops. Compact/secondary (context, not the hero story) — year +
+             a short name only. The four emphasized nodes keep the gold "+N yrs" tie-back to SyTech's 2002
+             build (AWS/Azure/O365/CloudFirst); SharePoint 2016 + AI 2023 carry no tag.
+
+             ITER-7 (Ethan 2026-07-24): EVERY DISTINCT YEAR GETS ITS OWN POINT ON THE SPINE. Previously each
+             pill sat at the SAME --x as a story card (just on the opposite lane), so a card-year and a
+             pill-year stacked on ONE connection dot (e.g. 2005 card over 2006 AWS pill). Fixed: each pill is
+             now nudged OFF the card grid into the GAP between its two flanking card dots, so — reading the
+             dots left→right — the spine now runs in TRUE year order with no shared points.
+             ITER-8 (Ethan 2026-07-24) — SPACING-ONLY PASS to stop the busy-middle (2006-2013) chips/pills
+             from touching. LEVER 2 (widen node spacing): the middle was re-distributed to a UNIFORM ~8% gap
+             on every collision pair, borrowing the slack in the sparse 6→23 (left) and 61→87 (right) zones.
+             Endpoints 2000(6) + Today(87) are FIXED (the spine width / hook anchor / playhead park all key
+             off Today's 87% via BASE_PCT), so all spreading happens in the interior. New dot order L→R:
+               2000(6) 2002(15) 2005(23) [AWS 2006 @26] 2008(34) [Azure 2010 @37] 2010s(45)
+               [O365 2011 @48] [Cloud First 2011 @53] 2013(56) 2015(61) [SharePoint 2016 @66] 2019(72)
+               2021(78) [AI 2023 @80] Today(87).
+             The four collision pairs that touched pre-ITER-8 — Azure/2010s, 2010s/CloudFirst (the top-heavy
+             sandwich), AWS/2008, and O365/2013 — are each now a full 8% apart (chip-to-pill). The two genuine
+             same-year 2011s (O365 @48 below, Cloud First @53 above) stay a TIGHT PAIR on OPPOSITE lanes (5%,
+             own dots) — deliberately NOT flipped onto one side, which would read as a duplicate "2011 +9 yrs"
+             pill. Lanes are UNCHANGED from ITER-6/7 (below/above/… identical) — only --x moved. All 16 --x
+             values stay strictly increasing with data-seq, so the playhead (which reads --x from CSS and hops
+             in data-seq order) still travels monotonically L→R with no reversal.
+             CLEARANCE NOTE: pills hug the spine (12px off) and the tagged pills' "+N yrs" line is the widest
+             element. At 8% spacing every collision pair clears at ALL desktop widths — ~22-26px of air at the
+             widest preview (container caps ~1096px content), and still ~6-10px at the 901px narrow-desktop
+             floor (pills are fixed-rem so gap = 8%·width − pill/chip half-widths ≈ 6px at 901px). This
+             resolves the ITER-7 narrow-band tighten; the "+N yrs" tags are UNCHANGED (Ethan wants them).
+             ======================================================== -->
+        <div class="htl-wn htl-wn--below" data-seq="3" style="--x:26%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2006</span><span class="htl-wn-tag">+4 yrs</span></span>
+            <span class="htl-wn-lbl">AWS</span>
+            <span class="htl-wn-sig">The modern cloud everyone now uses started here. SyTech had already built in the cloud 4 years earlier.</span>
+          </div>
+        </div>
+        <div class="htl-wn htl-wn--above" data-seq="5" style="--x:37%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2010</span><span class="htl-wn-tag">+8 yrs</span></span>
+            <span class="htl-wn-lbl">Azure</span>
+            <span class="htl-wn-sig">Microsoft's own cloud arrives 8 years after SyTech's first cloud build.</span>
+          </div>
+        </div>
+        <div class="htl-wn htl-wn--below" data-seq="7" style="--x:48%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2011</span><span class="htl-wn-tag">+9 yrs</span></span>
+            <span class="htl-wn-lbl">Office 365</span>
+            <span class="htl-wn-sig">The office tools agencies live in finally move to the cloud, 9 years after SyTech.</span>
+          </div>
+        </div>
+        <div class="htl-wn htl-wn--above" data-seq="8" style="--x:53%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2011</span><span class="htl-wn-tag">+9 yrs</span></span>
+            <span class="htl-wn-lbl">Cloud First</span>
+            <span class="htl-wn-sig">The federal government mandates cloud, 9 years after SyTech was already there.</span>
+          </div>
+        </div>
+        <div class="htl-wn htl-wn--below" data-seq="11" style="--x:66%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2016</span></span>
+            <span class="htl-wn-lbl">SharePoint</span>
+            <span class="htl-wn-sig">SharePoint modernizes and becomes the platform SyTech's practice is built on.</span>
+          </div>
+        </div>
+        <div class="htl-wn htl-wn--below" data-seq="14" style="--x:80%;">
+          <span class="htl-wn-dot"></span><span class="htl-wn-stem"></span>
+          <div class="htl-wn-pill">
+            <span class="htl-wn-top"><span class="htl-wn-yr">2023</span></span>
+            <span class="htl-wn-lbl">AI</span>
+            <span class="htl-wn-sig">AI reaches everyday office tools, and SyTech is early again.</span>
+          </div>
+        </div>
+
+        <!-- traveling gold playhead (last child → paints above the nodes as it travels) -->
+        <div class="htl-playhead" id="htlPlayhead" aria-hidden="true"></div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY US — Differentiators (migrated from why-sytech Block 2, verbatim)
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <span class="section-eyebrow">Why SyTech</span>
+    <h2>What Makes SyTech Different.</h2>
+    <p class="lead-row">Public agencies have plenty of options for records and forms software. SyTech's approach is structured around five core differentiators that change the economics, security posture, and long-term flexibility of every engagement.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <span class="num">01 — PLATFORM APPROACH</span>
+        <h3>No New Software Required</h3>
+        <p>SyTech builds inside Microsoft 365 and Google Workspace — platforms your agency already owns. There is no new app to procure, license, or maintain.</p>
+      </div>
+      <div class="diff-card">
+        <span class="num">02 — DATA SOVEREIGNTY</span>
+        <h3>Your Data Stays in Your Cloud</h3>
+        <p>No vendor-controlled servers. Your records, forms, and workflows live in your agency's own cloud tenant. Your security policies govern your data — always.</p>
+      </div>
+      <div class="diff-card">
+        <span class="num">03 — SERVICES MODEL</span>
+        <h3>Services, Not Licenses</h3>
+        <p>SyTech is a partnership, not a subscription. We combine connective tools with hands-on implementation, workflow configuration, and ongoing support — structured around outcomes, not seat counts.</p>
+      </div>
+      <div class="diff-card">
+        <span class="num">04 — FUTURE-PROOF</span>
+        <h3>Native AI and Automation</h3>
+        <p>Because we build inside your existing cloud, you get native access to Microsoft Copilot, Power Automate, and Azure capabilities — no vendor add-ons, no custom integrations to maintain.</p>
+      </div>
+      <div class="diff-card">
+        <span class="num">05 — PROVEN AT SCALE</span>
+        <h3>25+ Years of Experience</h3>
+        <p>Over twenty-five years of public sector records work, at every scale, from single districts to statewide departments. Thousands of active cloud clients and millions of records under management. We have not just done this before. We have done it bigger.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     POV CALLOUT (migrated from why-sytech Block 4, verbatim)
+     ============================================================ -->
+<section class="pov-section" aria-label="Our point of view">
+  <div class="container">
+    <div class="pov-inner">
+      <span class="section-eyebrow">Our Point of View</span>
+      <h2 class="pov-headline">Your records shouldn't be locked behind someone else's license.</h2>
+      <p class="pov-body">For over 25 years, we have watched agencies spend budget on annual software fees only to find their records buried inside platforms they don't control. Our approach is the opposite. We build records management inside the cloud platforms your agency already owns and funds — Microsoft 365, Google Workspace. The software vendor changes. The contract ends. Your records stay where they belong: in your tenant, under your governance, accessible on your terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ — objection handling (migrated from why-sytech Block 10, verbatim)
+     ============================================================ -->
+<section class="faq-section" aria-label="Frequently asked questions">
+  <div class="container">
+    <span class="section-eyebrow">Questions We Often Hear</span>
+    <h2>Questions Worth Asking Before You Buy More Software.</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Do we need to license another platform to modernize our records?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>No. SyTech builds inside the cloud platforms your agency already owns — Microsoft 365 or Google Workspace. There is no new app to procure, no additional license to fund, no second login for your staff to manage. The capability is already in your tenant. We turn it on and configure it around how your team actually works.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>We already have a document management system. Why change?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Most agencies are paying annual fees on systems that were built for a different era — closed platforms that don't connect to the cloud tools your staff use every day. We move your data out of those systems and into open cloud platforms, then build records management around the licenses you already fund. The result: one platform, lower recurring cost, full data portability.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Can we really build records management inside Microsoft 365 or Google?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes — and most agencies have no idea their current cloud subscription already supports it. Microsoft 365 and Google Workspace are not just productivity tools; they are extensible records and data platforms. The capability is there. What is usually missing is the implementation work, governance setup, and workflow configuration. That is the work we do.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>What are best practices for our records and data going forward?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Move information into open, extensible cloud platforms. Avoid closed, hierarchical software that forces your processes to match its structure. Build retention, security, and workflow around your agency — not around a vendor's product roadmap. The cloud you already own can do all of this. Most agencies just need a partner who has done it across thousands of cloud clients.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST DOORWAY (Reed item #2) — link to Trust & Security
+     [C25 CLIENT AUDIT 2026-09-24] This section was REMOVED from here. Casey asked
+     for it to sit under "How We Are Built" as the label only, so the explanatory
+     sentence "Security and compliance get their own page, with the cameras,
+     agreements, and certificates spelled out." is GONE and the link now lives at
+     the foot of the "Two Teams, One Mission." section below, relabelled
+     "See our Trust & Security Posture". Nothing else moved.
+     ============================================================ -->
+
+<!-- ============================================================
+     OUR STORY — existing About narrative (kept intact, moved below the why case)
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="lead-row">
+      <span class="section-eyebrow">Our Story</span>
+      <h2>From Paper to Cloud, One Agency at a Time.</h2>
+      <p>Since 2000, SyTech has provided digital transformation services for hundreds of public agencies across California — school districts, county offices, statewide departments. We have never been in the business of reselling proprietary software. From the start, our work has been to help agencies move their records and data into open, extensible cloud platforms — and to spend their budgets on outcomes instead of licenses.</p>
+      <p>Over twenty-five years later, that approach has produced 4,579 active cloud clients, 10.7 million managed records, and a client roster that includes some of the largest public agencies in the state.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-block"><div class="num">25<span>+</span></div><div class="label">Years in Public Sector</div></div>
+      <div class="stat-block"><div class="num">4,579</div><div class="label">Active Cloud Clients</div></div>
+      <div class="stat-block"><div class="num">10.7<span>M</span></div><div class="label">Managed Records</div></div>
+      <div class="stat-block"><div class="num">256</div><div class="label">Cloud Solutions</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="lead-row">
+      <span class="section-eyebrow">A Cloud-First Practice — Since 2002</span>
+      <h2>We Built Our First Cloud Deployment Before "Cloud" Was the Word for It.</h2>
+      <p>In 2002, we built our first native cloud records management solution for Stockton Unified School District — years before the rest of the industry moved off on-premise servers. That early bet shaped everything that followed.</p>
+      <p>Since then, we have built thousands of cloud-based records and data services for public agencies across California, including Los Angeles County, the California Department of Child Support Services, the California Department of Natural Resources, and Yolo County District Attorney's Office. Open cloud was the right path then. It is the right path now.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section-eyebrow">How We Are Built</span>
+    <h2>Two Teams, One Mission.</h2>
+    <p class="lead-row">SyTech is structured around two internal teams that work together to deliver every engagement. One handles the hands-on work of moving information. The other builds the systems that make that information useful for years to come.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="num">01 — Services Team</span>
+        <h3>Hands-On Records Work</h3>
+        <p>Our Services Team handles the heavy lifting: scanning, structuring, and migrating information from paper and legacy systems into modern cloud platforms. They are the practitioners who turn clutter into compliant, indexed records.</p>
+      </div>
+      <div class="feature-card">
+        <span class="num">02 — Development Team</span>
+        <h3>Cloud-Native Tools</h3>
+        <p>Our Development Team builds scalable tools that replace outdated software, using the cloud platforms our clients already own. Forms, workflows, and automation that live inside Microsoft 365 or Google Workspace, not on a vendor server.</p>
+      </div>
+    </div>
+    <!-- [C25 CLIENT AUDIT 2026-09-24] Relocated here from the standalone
+         .trust-doorway band that used to sit between the FAQ and Our Story.
+         Label per Casey: "See our Trust & Security Posture". -->
+    <a href="trust-security.html" class="doorway-link">See our Trust &amp; Security Posture &rarr;</a>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <span class="section-eyebrow">Our Mission</span>
+    <h2>From Complexity to Clarity.</h2>
+    <p class="lead-row">SyTech delivers practical, future-ready services that reduce complexity, lower costs, and help public agencies work smarter. Through our proven approach: Organize, Unify, Scale, we help organizations move confidently toward the future of open cloud, automation, and AI.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     ONE CTA STRIP (collapsed from About + why-sytech)
+     ============================================================ -->
+<section class="cta-strip">
+  <div class="container">
+    <h2 data-aud="about-cta-h2">Let's Start With an Assessment.</h2>
+    <p data-aud="about-cta-p">Every engagement begins with a conversation. We learn where you are, what is working, and what is not — then map a clear path forward.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+<script>
+(function() {
+  'use strict';
+  var nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  }
+})();
+</script>
+
+<!-- ============================================================
+     GSAP + plugins — SELF-HOSTED at promotion (blueprint §8.6): repointed from the
+     jsDelivr CDN to local files under assets/js/ so the live site has no third-party
+     CDN dependency (government networks may block CDNs). To refresh a lib, re-download
+     the SAME pinned version noted beside each tag from cdn.jsdelivr.net/npm/gsap@3.13.0.
+     A total script 404 still lands on the finished poster (default DOM = poster).
+     Load order: gsap → ScrollTrigger → DrawSVGPlugin → the inline controller below.
+     ============================================================ -->
+<script src="assets/js/gsap.min.js"></script>          <!-- gsap@3.13.0 (core) — was cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js -->
+<script src="assets/js/ScrollTrigger.min.js"></script> <!-- gsap@3.13.0 ScrollTrigger plugin — was cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js -->
+<script src="assets/js/DrawSVGPlugin.min.js"></script> <!-- gsap@3.13.0 DrawSVGPlugin — was cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js -->
+
+<!-- ============================================================
+     HISTORY TIMELINE CONTROLLER (htl-)
+     JOURNEY · play once → hold forever · click-to-revisit · freeze-in-place hover.
+     ============================================================ -->
+<script>
+(function(){
+  'use strict';
+  var wrap  = document.getElementById('htlWrap');
+  var stage = document.getElementById('htlStage');
+  if (!wrap || !stage) return;
+
+  var gsapReady = !!(window.gsap && window.ScrollTrigger);
+  var hasDraw   = gsapReady && !!window.DrawSVGPlugin;
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+
+  // ============================================================
+  // fitStage() — ROOT-CAUSE overlap fix. Cards are absolutely positioned, so the stage can't
+  //   auto-grow to contain them. Measure each lane's real rendered height and size the stage so it
+  //   contains the TALLEST above-lane and TALLEST below-lane cards + stem + clearance, with an
+  //   ASYMMETRIC spine baseline (--htl-spine-y = the above-zone). This guarantees nothing above/below
+  //   the graphic is ever overlapped — at any desktop width and after web-font swap. On mobile (≤900px)
+  //   the stage is a flow-stacked rail (height:auto), so we clear the inline vars and let CSS own it.
+  //   Runs in EVERY branch (incl. the reduced-motion / no-GSAP poster), not just the animated path.
+  // ============================================================
+  var laneNodes = Array.prototype.slice.call(stage.querySelectorAll('.htl-node'));
+  var cardEls   = Array.prototype.slice.call(stage.querySelectorAll('.htl-card'));
+
+  // equalizeCards() — make all six .htl-card boxes the SAME height (= the tallest natural card). Text stays
+  //   TOP-aligned (normal flow); shorter cards simply gain empty space at the bottom. The absolute
+  //   .htl-card-body (inset:0) background fills the taller box automatically, so no gap shows.
+  //   RATCHET GUARD: every pass RESETS each card to natural height AND neutralizes the CSS min-height floor
+  //   (inline minHeight:0) BEFORE measuring, so the max is recomputed from TRUE natural heights each time —
+  //   never from a previously-applied fixed height (which would only ratchet upward on resize) and never
+  //   inflated by the floor. box-sizing is border-box site-wide, so offsetHeight == the height we set back;
+  //   the applied inline min-height also OVERRIDES the CSS floor so the exact tallest natural wins, not 195.
+  function equalizeCards(){
+    var maxH = 0, i;
+    for (i = 0; i < cardEls.length; i++){        // 1) reset to natural (also kill the CSS floor for the measure)
+      cardEls[i].style.height = '';
+      cardEls[i].style.minHeight = '0px';
+    }
+    for (i = 0; i < cardEls.length; i++){        // 2) measure true natural border-box heights → max
+      var h = cardEls[i].offsetHeight;           //    (this first read forces one reflow flushing the resets above)
+      if (h > maxH) maxH = h;
+    }
+    if (!maxH){                                  // not laid out yet — restore the CSS floor, bail
+      for (i = 0; i < cardEls.length; i++){ cardEls[i].style.minHeight = ''; }
+      return;
+    }
+    for (i = 0; i < cardEls.length; i++){        // 3) apply the exact tallest height to all six
+      cardEls[i].style.boxSizing = 'border-box'; //    guarantee height == the border-box value we measured
+      cardEls[i].style.height = maxH + 'px';
+      cardEls[i].style.minHeight = maxH + 'px';  //    inline min-height beats the CSS 195px floor → exact equal
+    }
+  }
+  function clearCardHeights(){                    // mobile: release equal-height → natural stacked cards
+    for (var i = 0; i < cardEls.length; i++){
+      cardEls[i].style.height = '';
+      cardEls[i].style.minHeight = '';
+      cardEls[i].style.boxSizing = '';
+    }
+  }
+
+  // ---- HOVER-EXPAND HELPERS (2026-07-29) --------------------------------------------------
+  // Media gate MUST match the CSS collapse block: (hover:hover)+(pointer:fine)+(min-width:901px).
+  // Evaluated fresh in fitStage so a resize across the 900px line re-picks the right regime.
+  function hoverExpandActive(){
+    return !!(window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 901px)').matches);
+  }
+  // Per-detail --htl-detail-h = the collapsed detail's scrollHeight (accurate at rest: max-height
+  //   clips the RENDERED height but the element's WIDTH is unchanged, so scrollHeight is the true
+  //   expanded content height). +8 buffer so the last line never clips at the expanded max-height.
+  function measureDetailVars(){
+    var ds = stage.querySelectorAll('.htl-detail');
+    for (var i = 0; i < ds.length; i++){
+      ds[i].style.setProperty('--htl-detail-h', (ds[i].scrollHeight + 8) + 'px');
+    }
+  }
+  // Uniform COLLAPSED story cards: set min-height ONLY (never a fixed height) = the tallest collapsed
+  //   card, so every tile rests at the same title-only height but STILL grows on hover to reveal the
+  //   description. Reset to natural + neutralize the CSS floor before measuring (same ratchet guard as
+  //   equalizeCards) so the max is recomputed from TRUE collapsed heights each pass, never inflated.
+  function equalizeCollapsedCards(){
+    var maxH = 0, i;
+    for (i = 0; i < cardEls.length; i++){ cardEls[i].style.height = ''; cardEls[i].style.minHeight = '0px'; }
+    for (i = 0; i < cardEls.length; i++){ var h = cardEls[i].offsetHeight; if (h > maxH) maxH = h; }
+    if (!maxH){ for (i = 0; i < cardEls.length; i++){ cardEls[i].style.minHeight = ''; } return; }
+    for (i = 0; i < cardEls.length; i++){ cardEls[i].style.minHeight = maxH + 'px'; }
+  }
+  // Per-sig --htl-sig-h — MUST run while .htl-measuring is on (pill forced to expanded width) so the
+  //   significance line wraps at its real expanded width and scrollHeight is correct.
+  function measureSigVars(){
+    var ss = stage.querySelectorAll('.htl-wn-sig');
+    for (var i = 0; i < ss.length; i++){
+      ss[i].style.setProperty('--htl-sig-h', (ss[i].scrollHeight + 6) + 'px');
+    }
+  }
+  // Size the stage zones from the current lane heights (extracted so both regimes reuse it).
+  function sizeZonesFromLanes(){
+    var STEM = 30, CLEAR = 40, aboveMax = 0, belowMax = 0;   // STEM matches --htl-stem (30); CLEAR = outer breathing room
+    laneNodes.forEach(function(el){
+      var lane = el.querySelector('.htl-lane');
+      if (!lane) return;
+      var h = lane.offsetHeight;                 // content height (transform + opacity don't affect it)
+      if (el.classList.contains('htl-above')) aboveMax = Math.max(aboveMax, h);
+      else                                    belowMax = Math.max(belowMax, h);
+    });
+    if (!aboveMax && !belowMax) return;          // nodes not laid out yet — keep the CSS floor
+    var aboveZone = STEM + aboveMax + CLEAR;
+    var belowZone = STEM + belowMax + CLEAR;
+    wrap.style.setProperty('--htl-spine-y', aboveZone + 'px');
+    wrap.style.setProperty('--htl-h', (aboveZone + belowZone) + 'px');
+  }
+
+  function fitStage(){
+    if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches){
+      clearCardHeights();                        // no equal-height on the phone stack (natural heights)
+      wrap.style.removeProperty('--htl-spine-y');
+      wrap.style.removeProperty('--htl-h');
+      return;
+    }
+    if (hoverExpandActive()){
+      // HOVER-DESKTOP REGIME: uniform COLLAPSED cards at rest, but reserve room for the EXPANDED tile
+      //   so a hover-expanded card is never clipped by the stage/hero. Steps:
+      //   1) measure per-detail expanded heights (accurate while collapsed),
+      //   2) equalize the collapsed cards (min-height only → still expandable),
+      //   3) with .htl-measuring forcing every detail + sig OPEN, measure per-sig heights and size the
+      //      zones from the now-EXPANDED lanes, then drop the measuring class (add→measure→remove is
+      //      synchronous in one frame, so no flash).
+      measureDetailVars();
+      equalizeCollapsedCards();
+      stage.classList.add('htl-measuring');
+      measureSigVars();
+      sizeZonesFromLanes();                      // reading offsetHeight forces the measuring reflow
+      stage.classList.remove('htl-measuring');
+      return;
+    }
+    // NON-HOVER DESKTOP (e.g. a wide touch panel): CURRENT behavior — details always visible, every
+    //   card equalized to the tallest, zones sized from those full lanes.
+    equalizeCards();
+    sizeZonesFromLanes();
+  }
+  fitStage();
+  window.addEventListener('resize', fitStage, { passive: true });
+  window.addEventListener('load', fitStage, { passive: true });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(fitStage); }  // re-fit after font swap
+
+  // ---- FALLBACK BRANCH: reduced-motion OR libs missing OR mobile stack → keep the default finished
+  //      poster untouched. ARM the stacked-hover (inert under the reduced-motion / touch media gate,
+  //      live on a no-GSAP fine-hover desktop). Never reset to the blank start frame here. ----
+  if (prefersReduced || !gsapReady || isMobile) {
+    stage.classList.add('htl-armed');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  if (hasDraw) gsap.registerPlugin(DrawSVGPlugin);
+
+  gsap.context(function(){
+    // ---- element refs (queried once) ----
+    var spine    = document.getElementById('htlSpine');
+    var hook     = document.getElementById('htlHook');       // CHANGE 2: curved dashed runway (<svg>)
+    var hookPath = document.getElementById('htlHookPath');   // CHANGE 2: the path the playhead climbs
+    var playhead = document.getElementById('htlPlayhead');
+    var crownRing = document.getElementById('htlCrownRing');
+
+    // ---- STOPS = UNIFIED spine sequence (single source of truth). ITER-3: 6 real SyTech nodes + 4 draft
+    //      placeholders + 6 tech-world nodes = 16 stops, ordered by data-seq (= the combined year order).
+    //      Each entry knows its kind ('node' [real OR .htl-draft card] | 'world'), its --x percent (read from CSS so the HTML
+    //      stays the one place geometry lives), and the element the timeline REVEALS (the .htl-lane for a
+    //      real node; the whole element for a placeholder or a tech-world node). The beat loop, STAGE_T
+    //      seek array, and stage controls all iterate THIS array. ----
+    var STOPS = Array.prototype.slice.call(stage.querySelectorAll('.htl-node, .htl-wn'))
+      .sort(function(a, b){ return (+a.getAttribute('data-seq')) - (+b.getAttribute('data-seq')); })
+      .map(function(el){
+        // ITER-6: only two kinds now — a real/draft story CARD ('node') or a tech-world slate pill
+        // ('world'). Draft cards are ordinary .htl-node stops (full lane reveal); the .htl-draft flag
+        // only drives the shorter dwell + the "(placeholder, to be confirmed)" aria suffix.
+        var kind = el.classList.contains('htl-wn') ? 'world' : 'node';
+        return {
+          el: el,
+          kind: kind,
+          draft: el.classList.contains('htl-draft'),
+          xPct: parseFloat(getComputedStyle(el).getPropertyValue('--x')) || 0,
+          revealEl: (kind === 'node') ? el.querySelector('.htl-lane') : el,
+          hero: el.classList.contains('htl-hero')
+        };
+      });
+
+    // ============================================================
+    // ADDING / CONFIRMING A MILESTONE (spec §7): (1) insert ONE .htl-node (real SyTech card), a
+    //   .htl-node.htl-draft (unconfirmed draft card) or a .htl-wn (tech-world context pill) block in the HTML
+    //   at its chronological spot with the next data-seq value + its --x, (2) done — the STOPS array above
+    //   picks it up automatically. To CONFIRM a draft, just delete its .htl-draft class + the .htl-draft-flag
+    //   span. Real + draft cards reveal a full card lane; world pills fade in. No geometry is hand-coded twice.
+    // ============================================================
+    var N = STOPS.length;
+    var BASE_PCT = STOPS[N-1].xPct;   // playhead CSS base is left:87% (parked at Today in the poster)
+
+    // ---- geometry helpers (px, resolution-independent; playhead uses transform x on top of its CSS left) ----
+    function pxForPct(pct){ return stage.clientWidth * (pct/100); }
+    function travelX(i){ return pxForPct(STOPS[i].xPct) - pxForPct(BASE_PCT); }  // 0 at Today
+
+    // ---- CHANGE 2: the playhead follows the curved hook at the end of the journey ----
+    // The playhead's CSS anchor is left:87% / top:spine-y (parked at Today). GSAP drives a transform
+    // (x,y) delta on top of that anchor. For the flat node hops y stays 0; for the hook climb we read the
+    // real rendered pixel point at fraction `frac` (0 = flat start @87%, 1 = elevated tip) via getScreenCTM,
+    // which stays correct regardless of the SVG's preserveAspectRatio:none stretch.
+    var hookClimb = { t: 0 };
+    var PARK_FRAC = 0.9;                           // park the playhead near (not ON) the tip so the 15px
+                                                   // dot doesn't half-clip at the 100% right edge; the last
+                                                   // stretch of dashed hook reads as the un-reached future.
+    function getSpineY(){
+      var v = parseFloat(getComputedStyle(wrap).getPropertyValue('--htl-spine-y'));
+      return isNaN(v) ? 340 : v;                  // 340 = the CSS floor if the var isn't set yet
+    }
+    function hookStagePoint(frac){                 // stage-relative {x,y} px at `frac` along the hook path
+      if (!hookPath || !hookPath.getTotalLength) return { x: pxForPct(BASE_PCT), y: getSpineY() };
+      var p = hookPath.getPointAtLength(hookPath.getTotalLength() * frac);
+      var m = hookPath.getScreenCTM();
+      if (!m || !hook.createSVGPoint) return { x: pxForPct(BASE_PCT), y: getSpineY() };
+      var sp = hook.createSVGPoint(); sp.x = p.x; sp.y = p.y;
+      var scr = sp.matrixTransform(m);
+      var r = stage.getBoundingClientRect();
+      return { x: scr.x - r.left, y: scr.y - r.top };
+    }
+    function movePlayheadTo(px, py){               // convert an absolute stage point to the anchor-relative transform
+      gsap.set(playhead, { x: px - pxForPct(BASE_PCT), y: py - getSpineY() });
+    }
+
+    // ---- active-node indicator (gold underline tick; NOT a progress bar — no green/checks/dimming) ----
+    var activeIndex = 0;
+    function activate(i){
+      activeIndex = i;
+      STOPS.forEach(function(s, idx){ s.el.classList.toggle('htl-active', idx === i); });
+    }
+
+    // ============================================================
+    // resetToStart() — rebuild the BLANK start frame. Used at init + by the stage-seek path.
+    //   (No auto-loop/dissolve exists — spec §6 play-once-hold — so this is never on a cycle.)
+    //   NOTE the discipline: GSAP only ever writes transform to the LANE (rise), the PLAYHEAD (x),
+    //   the DASH (scaleX) and the CHEVRON glyph (scale) — never to a .htl-plate wrapper, so the CSS
+    //   hover-lift transforms on the plates never fight an inline GSAP transform.
+    // ============================================================
+    var RISE_Y = 18;
+    function resetToStart(){
+      gsap.set(spine,    { width: 0 });
+      gsap.set(hook,     { opacity: 0 });                          // CHANGE 2: curved runway hidden until Today
+      hookClimb.t = 0;
+      gsap.set(playhead, { x: travelX(0), y: 0, opacity: 0, scale: 0.6 });
+      for (var i=0; i<N; i++){
+        if (STOPS[i].kind === 'node') gsap.set(STOPS[i].revealEl, { y: RISE_Y, opacity: 0 });  // real + draft card lane rises in
+        else                          gsap.set(STOPS[i].el,       { opacity: 0 });             // tech-world slate pill fades in
+      }
+      if (crownRing){ if (hasDraw) gsap.set(crownRing, { drawSVG: '0%' }); else gsap.set(crownRing, { opacity: 0 }); }
+      STOPS.forEach(function(s){ s.el.classList.remove('htl-active'); });
+      activeIndex = 0;
+    }
+
+    // ============================================================
+    // MASTER TIMELINE (the single play). Stepped gold playhead HOPS between nodes (power2.inOut),
+    //   each node's lane RISES with a springy back.out; hero lingers; era wash fades; crown draws;
+    //   the dashed runway reveals at the forward (Today) node. STAGE_T[i] = the hop-start time = seek target.
+    // ============================================================
+    // ---- feel knobs (tune in review) ----
+    var SPINE_DUR   = 0.85;   // spine draw (width tween, power2.out)
+    var PLAYHEAD_IN = 0.45;   // playhead materialize at origin
+    var HOP_DUR     = 0.62;   // ITER-2: playhead hop between stops — tightened (10 stops now, not 6)
+    var HOP0_DUR    = 0.30;   // "hop" to stop 0 (already at origin — timing beat only)
+    var DWELL       = 0.45;   // readable pause after a real card rises
+    var DWELL_DRAFT = 0.34;   // ITER-6: draft card is a full card now, so a real (if slightly lighter) beat —
+                              //         between a real card's DWELL and a tech pill's, keeping drafts secondary
+    var DWELL_WORLD = 0.34;   // ITER-3: tech-world node pause — between a real card and a placeholder (context beat)
+    var RISE_DUR    = 0.55;   // real card lane rise
+    var WN_IN_DUR   = 0.44;   // ITER-3: tech-world slate pill fade-in as the playhead passes
+    var HERO_LINGER = 0.35;   // extra dwell on the 2002 hero (emphasis beat)
+    var HOP_EASE    = 'power2.inOut';
+    var RISE_EASE   = 'back.out(1.2)';
+
+    var tl = gsap.timeline({ paused: true, onComplete: onJourneyComplete });
+
+    // spine draws left→right, then the playhead materializes at the origin (node 0)
+    tl.to(spine,    { width: '87%', duration: SPINE_DUR, ease: 'power2.out' }, 0);
+    tl.to(playhead, { opacity: 1, scale: 1, duration: PLAYHEAD_IN, ease: 'back.out(1.6)' }, 0.55);
+
+    var STAGE_T = [];
+    var t = 0.90;
+    STOPS.forEach(function(s, i){
+      STAGE_T[i] = t;
+      var hop = (i === 0) ? HOP0_DUR : HOP_DUR;
+      tl.to(playhead, { x: travelX(i), duration: hop, ease: HOP_EASE }, t);
+      var arrive = t + hop;
+      if (s.kind === 'node'){
+        // real OR draft card: the lane rises (date + card); plates lift via CSS independently of this
+        // transform. ITER-6: a .htl-draft card animates identically (the .htl-draft opacity sits on the
+        // NODE, this reveal tween drives the LANE opacity 0→1 — they multiply, settling at the draft
+        // opacity), it just gets the lighter DWELL_DRAFT beat and never the hero crown.
+        tl.to(s.revealEl, { y: 0, opacity: 1, duration: RISE_DUR, ease: RISE_EASE,
+          onStart: function(){ activate(i); } }, arrive - 0.12);
+        if (s.hero && crownRing){
+          if (hasDraw) tl.to(crownRing, { drawSVG: '100%', duration: 0.6, ease: 'power1.inOut' }, arrive + 0.10);
+          else tl.to(crownRing, { opacity: 1, duration: 0.4 }, arrive + 0.10);
+        }
+        t = arrive + (s.draft ? DWELL_DRAFT : DWELL) + (s.hero ? HERO_LINGER : 0);
+      } else {
+        // ITER-3: tech-world slate pill fades fully in as the playhead passes its year (a context beat —
+        // shorter than a SyTech card's dwell)
+        tl.to(s.el, { opacity: 1, duration: WN_IN_DUR, ease: 'power1.out',
+          onStart: function(){ activate(i); } }, arrive - 0.06);
+        t = arrive + DWELL_WORLD;
+      }
+    });
+
+    // ---- CHANGE 2: final beat — reveal the curved dashed runway, then glide the playhead UP the hook
+    //      into "the next 25 years" (the playhead follows the header-matched curve to its elevated tip). ----
+    tl.to(hook, { opacity: 0.85, duration: 0.5, ease: 'power2.out' }, '>-0.05');
+    tl.to(hookClimb, { t: PARK_FRAC, duration: 1.0, ease: 'power2.inOut',
+      onUpdate: function(){ var p = hookStagePoint(hookClimb.t); movePlayheadTo(p.x, p.y); } }, '<0.1');
+
+    // ---- ITER-3: the draft placeholders AND the tech-world nodes are ALL revealed inline by the playhead
+    //      in the beat loop above — there is no end-group fade anymore. The separate lower world sub-track
+    //      was removed; those six milestones now ride the main spine as slate .htl-wn stops. ----
+
+    // ============================================================
+    // STATE — two gates (inView, hovering) drive one syncPlayState(). phase: idle → playing → done.
+    //   No 'holding'/'dissolving' phases — this graphic plays ONCE and holds (spec §6).
+    // ============================================================
+    var phase = 'idle', inView = false, hovering = false, upgraded = false;
+
+    function syncPlayState(){
+      var run = inView;                          // CHANGE 1: hover no longer gates playback. Only the
+      if (phase === 'playing') { run ? tl.play() : tl.pause(); }   // off-screen gate can pause the play.
+    }
+
+    // arriveFinished(): the resolved, held frame == the finished poster. Arms the stacked-hover
+    // permanently and upgrades the nodes into stage controls. Reached by natural completion,
+    // or on load in the (handled elsewhere) fallback branch.
+    function arriveFinished(){
+      phase = 'done';
+      stage.classList.add('htl-armed');
+      activate(N - 1);                 // Today lit as the current/last stage
+      upgradeStages();
+    }
+    function onJourneyComplete(){ if (phase !== 'playing') return; arriveFinished(); }
+
+    // ---- HOVER = LIFT ONLY (CHANGE 1). The graphic NO LONGER freezes on hover — the play runs straight
+    //      through. On enter we just ARM the stacked-lift so whatever is currently revealed rises; the
+    //      animation keeps advancing underneath it (GSAP writes transforms only to lanes/playhead/dash,
+    //      never to the .htl-plate wrappers the CSS lift moves, so the two never fight). ----
+    function onHoverEnter(){
+      hovering = true;
+      stage.classList.add('htl-armed');          // hover-LIFT only — no pause
+    }
+    function onHoverLeave(){
+      hovering = false;
+      if (phase !== 'done') stage.classList.remove('htl-armed');   // once 'done' the stage stays armed
+    }
+    stage.addEventListener('pointerenter', function(e){ if (e.pointerType === 'touch') return; onHoverEnter(); });
+    stage.addEventListener('pointerleave', function(e){ if (e.pointerType === 'touch') return; onHoverLeave(); });
+    stage.addEventListener('focusin',  onHoverEnter);
+    stage.addEventListener('focusout', function(e){
+      if (stage.contains(e.relatedTarget)) return;   // focus moving between nodes — stay frozen
+      onHoverLeave();
+    });
+
+    // ---- STAGE SEEK = reset → seek → play forward (spec §4c / blueprint §8.4). All revealed state is
+    //      plain-tween-driven (lane opacity/y, spine width, playhead x, era/crown/chevron/dash), so
+    //      tl.time() re-renders everything — NO onUpdate/setAttribute reconcile step is needed here. ----
+    function seekToStage(i){
+      var tt = STAGE_T[i] || 0;
+      stage.classList.remove('htl-armed');       // disarm; the click is a deliberate GO, not a freeze
+      hovering = false;
+      resetToStart();
+      tl.pause(); tl.invalidate(); tl.time(tt);   // render all tween props at tt (events suppressed)
+      activate(i);                                // light the clicked node
+      phase = 'playing';
+      if (inView) tl.play(); else tl.pause();     // play forward, respecting off-screen
+    }
+
+    // ---- upgrade nodes → stage controls (JOURNEY branch only, so the no-JS/reduced poster keeps a
+    //      plain decorative timeline — no dead buttons). role="button" on nodes; wrap is role="group"
+    //      (NOT role="img"), so these controls ARE exposed to assistive tech (blueprint §4c AT fix). ----
+    function upgradeStages(){
+      if (upgraded) return; upgraded = true;
+      STOPS.forEach(function(s, i){
+        var el = s.el;
+        var title = ((el.querySelector('.htl-title') || el.querySelector('.htl-wn-lbl') || {}).textContent || '').trim();
+        var date  = ((el.querySelector('.htl-date-num') || el.querySelector('.htl-wn-yr') || {}).textContent || '').trim();
+        var label = 'Replay timeline from ' + date + ': ' + title;
+        if (s.draft) label += ' (placeholder, to be confirmed)';               // ITER-6: draft cards are seekable too
+        else if (s.kind === 'world') label += ' (tech industry context)';      // ITER-3: world pills are seekable too
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('aria-label', label);
+        el.addEventListener('click', function(){ seekToStage(i); });
+        el.addEventListener('keydown', function(ev){
+          if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar'){ ev.preventDefault(); seekToStage(i); }
+        });
+      });
+    }
+
+    // ---- resize: reseat the pixel-based playhead. When 'done' it parks at the hook tip (CHANGE 2);
+    //      otherwise on the active node (lanes/dots are %/margin, so they auto-track). ----
+    window.addEventListener('resize', function(){
+      if (phase === 'done'){ var p = hookStagePoint(PARK_FRAC); movePlayheadTo(p.x, p.y); }
+      else if (phase === 'idle'){ gsap.set(playhead, { x: travelX(activeIndex), y: 0 }); }
+    }, { passive: true });
+
+    // ============================================================
+    // INIT — apply the blank start frame, fade the wrap in (no poster flash), wire ScrollTrigger,
+    //        then KICK on load. The graphic now lives in the ABOVE-THE-FOLD hero, so the journey
+    //        starts on load (~0.4s after libs confirm) instead of on scroll-enter. ScrollTrigger is
+    //        kept ONLY as the off-screen gate: pause when scrolled away mid-play, resume on return.
+    // ============================================================
+    resetToStart();
+    fitStage();                                   // ensure the stage is sized before the reveal
+    gsap.set(wrap, { autoAlpha: 0, y: 14 });
+    gsap.to(wrap, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' });
+
+    var st = ScrollTrigger.create({
+      trigger: wrap, start: 'top 85%', end: 'bottom 15%',
+      onToggle: function(self){
+        inView = self.isActive;
+        syncPlayState();                          // gate ONLY — pause/resume off-screen; the kick is time-based
+      }
+    });
+    inView = st.isActive;                          // seed from the current scroll position
+
+    // load kick (hero is above the fold). If the user scrolls the hero out of view within the delay,
+    // phase becomes 'playing' but syncPlayState keeps it paused until the graphic is scrolled back in.
+    gsap.delayedCall(0.4, function(){
+      if (phase !== 'idle') return;
+      phase = 'playing';
+      syncPlayState();
+    });
+  }, stage);
+})();
+</script>
+
+</body>
+</html>

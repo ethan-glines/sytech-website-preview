@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Who We Serve</title>
+<meta name="description" content="California's public agencies have trusted SyTech with over 100 million pages of records. We modernize school districts, county offices, and public agencies."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+<!-- Three.js r147 for the Earth-Wrap hero photo globe (self-hosted from assets/ at promotion) -->
+<script src="assets/js/three.min.js"></script>
+<style>
+.page-hero { padding: 9.5rem 0 3rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 720px; }
+
+.section { padding: 5rem 0; }
+.section.alt { background: var(--light); }
+.section h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--navy); }
+.section .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.section p { font-size: 1.05rem; line-height: 1.8; color: var(--text-body); margin-bottom: 1.25rem; }
+.section .lead-row { max-width: 820px; margin-bottom: 2.5rem; }
+
+.audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.audience-card { background: var(--white); padding: 2rem; border-radius: 10px; border: 1px solid #E3E9EF; box-shadow: 0 2px 8px rgba(37, 66, 107, 0.04); }
+.section.alt .audience-card { background: var(--white); }
+.audience-card .icon-box { width: 44px; height: 44px; border-radius: 8px; background: var(--gold); display: flex; align-items: center; justify-content: center; color: var(--deep-navy); font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
+.audience-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--navy); }
+.audience-card p { font-size: 0.95rem; line-height: 1.7; color: var(--text-body); margin: 0; }
+
+.persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+.persona-card { background: var(--white); padding: 2.25rem; border-radius: 10px; border-top: 4px solid var(--gold); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.persona-card .label { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; }
+.persona-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--navy); }
+.persona-card p { font-size: 0.97rem; line-height: 1.7; color: var(--text-body); margin-bottom: 1rem; }
+.persona-card .pain { font-size: 0.85rem; padding: 0.85rem 1rem; background: var(--light); border-left: 3px solid var(--navy); color: var(--text-body); margin-top: 1rem; border-radius: 0 6px 6px 0; }
+
+.logo-strip { padding: 4rem 0; background: var(--white); border-top: 1px solid rgba(37,66,107,0.06); border-bottom: 1px solid rgba(37,66,107,0.06); }
+.logo-strip h3 { text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; }
+.logo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2.5rem 2rem; align-items: center; justify-items: center; max-width: 1080px; margin: 0 auto; }
+.logo-cell { width: 100%; max-width: 160px; height: 72px; display: flex; align-items: center; justify-content: center; padding: 0 0.5rem; }
+/* [C81] Client logos display in FULL COLOUR at rest, per client request (Jon),
+   owner-approved. The former grayscale(100%) + opacity 0.55 treatment and the
+   hover-to-reveal-colour rule are REMOVED: with the marks already at full
+   colour and full opacity there is nothing left for a hover to restore, and
+   inventing a new hover effect (lift/scale/brightness) on third-party agency
+   marks is not ours to decide. The wall is now static. The per-logo max-height
+   nudges below are SIZING, not colour, and stay. Mirrored on index.html
+   (.proof-logo img) so both strips match. */
+.logo-cell img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+/* Per-logo optical nudges — equalize footprint across mixed aspect ratios */
+.logo-cell img[src*="yolo_logo"] { max-height: 64%; }   /* near-square + heavy — shrink to sit uniformly */
+.logo-cell img[src*="cnra"]      { max-height: 78%; }   /* tall seal-style mark — size down */
+/* NOTE: the former .logo-cell img[src*="dgs"] { opacity: 0.72 } nudge is GONE.
+   It existed only to claw legibility back from the 0.55 grayscale wash; at full
+   colour it would leave DGS dimmer than every other mark on the wall. */
+
+/* ===== Case Study Cards — ROOMY 2-column layout ===== */
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+@media (max-width: 760px) { .case-grid { grid-template-columns: 1fr; } }
+.case-card {
+  background: var(--white); padding: 2.5rem;
+  border-radius: 10px; border: 1px solid #E3E9EF;
+  box-shadow: 0 2px 8px rgba(37, 66, 107, 0.04);
+  border-top: 4px solid var(--gold);
+  display: flex; flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* Inline metric chips — derived from the existing .case-project chip styling.
+   Hard numbers read in 2 seconds before the prose. */
+.case-metrics {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.case-metrics .metric {
+  display: inline-flex; align-items: baseline; gap: 0.35rem;
+  padding: 0.45rem 0.7rem; background: rgba(229,166,48,0.10);
+  border-radius: 4px;
+}
+.case-metrics .metric .m-num { font-size: 0.95rem; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+.case-metrics .metric .m-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+.section.alt .case-card { background: var(--white); }
+@media (hover: hover) and (pointer: fine) {
+  .case-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(37, 66, 107, 0.10); }
+}
+.case-card .case-client {
+  display: block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.16em; color: var(--gold); margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+.case-card h3 {
+  font-size: 1.15rem; font-weight: 700; line-height: 1.3;
+  margin-bottom: 1rem; color: var(--navy);
+}
+.case-card .case-project {
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--text-body); letter-spacing: 0.04em;
+  padding: 0.4rem 0.7rem; background: rgba(229,166,48,0.10);
+  border-radius: 4px; align-self: flex-start;
+  margin-bottom: 1.25rem;
+}
+.case-card p {
+  font-size: 0.95rem; line-height: 1.7;
+  color: var(--text-body); margin: 0;
+}
+
+/* ===== Testimonial Callout ===== */
+.testimonial-section { padding: 4rem 0; background: var(--white); }
+.testimonial-card {
+  max-width: 880px; margin: 0 auto;
+  background: var(--white); border-radius: 10px;
+  border-left: 4px solid var(--gold);
+  padding: 2.5rem 2.75rem;
+  box-shadow: 0 4px 20px rgba(37,66,107,0.08);
+  position: relative;
+}
+.testimonial-card .mark {
+  display: block; font-size: 3.5rem; line-height: 0.6;
+  color: var(--gold); font-family: Georgia, 'Times New Roman', serif;
+  margin-bottom: 0.5rem; opacity: 0.85;
+}
+.testimonial-card blockquote {
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.6;
+  color: var(--navy); font-weight: 400; font-style: normal;
+  margin: 0 0 1.5rem 0; quotes: none;
+}
+.testimonial-card cite {
+  display: block; font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); font-style: normal;
+  padding-top: 1rem; border-top: 1px solid rgba(37,66,107,0.10);
+}
+
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(37,66,107,0.10); }
+.stat-block { text-align: center; }
+.stat-block .num { display: block; font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 700; color: var(--navy); line-height: 1; }
+.stat-block .num span { color: var(--gold); }
+.stat-block .label { font-size: 0.8rem; color: var(--text-body); margin-top: 0.5rem; letter-spacing: 0.04em; }
+
+/* ===== Comparison Table (migrated from why-sytech Block 5, verbatim) ===== */
+.compare-table { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(37,66,107,0.06); border: 1px solid #E3E9EF; margin-top: 2rem; }
+.compare-table table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.compare-table thead { background: var(--navy); color: var(--white); }
+.compare-table th, .compare-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid #E3E9EF; }
+.compare-table th { font-weight: 700; letter-spacing: 0.04em; font-size: 0.85rem; }
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody tr:nth-child(even) { background: #FAFBFC; }
+.compare-table td:first-child { font-weight: 700; color: var(--navy); }
+.compare-table td.yes { color: #2a7a4a; font-weight: 700; }
+.compare-table td.no { color: #999; }
+
+.cta-strip { background: var(--deep-navy); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-strip h2 { color: var(--white); font-size: clamp(1.5rem, 2.4vw, 2rem); margin-bottom: 1rem; }
+.cta-strip p { color: rgba(255,255,255,0.75); max-width: 600px; margin: 0 auto 1.75rem; }
+.btn-primary { display: inline-block; padding: 0.85rem 2rem; background: var(--gold); color: var(--deep-navy); font-size: 0.95rem; font-weight: 700; border-radius: 6px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; }
+.btn-primary:hover { background: #d4952a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229,166,48,0.35); }
+
+/* ============================================================
+   EARTH-WRAP SCALE HERO — two-column layout + graphic
+   Integrated ISOLATED from whoweserve-earthwrap-hero-prototype-v1.html.
+   Everything graphic-side is NAMESPACE-SCOPED under .hero-earth; nothing
+   here is added to the shared stylesheet. The dark-glass tokens are LOCAL
+   to .hero-earth so they cannot leak into shared CSS.
+   ============================================================ */
+
+/* Two-column hero: real page copy left (~57%), Earth graphic right (~43%).
+   Grid is layered onto the shared .container (max-width/margin/padding kept). */
+.page-hero .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.33fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+}
+.hero-copy { position: relative; z-index: 1; }
+.page-hero .hero-copy .lead { max-width: 46ch; } /* tighter measure inside the narrower column */
+
+/* Right column: graphic stage + REQUIRED methodology caption/kicker */
+.hero-graphic {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-graphic-caption {
+  margin: 1.25rem 0 0; max-width: 44ch; text-align: center;
+  font-size: 0.8rem; line-height: 1.6; color: #C5CDD8;
+}
+.hero-graphic-kicker {
+  margin: 0.75rem 0 0; max-width: 42ch; text-align: center;
+  font-size: 0.72rem; line-height: 1.5; color: rgba(197, 205, 216, 0.75);
+}
+
+/* ---- THE GRAPHIC — every rule scoped under .hero-earth ---- */
+.hero-earth {
+  /* dark-glass panel tokens (LOCAL here, NOT in shared CSS) */
+  --panel-fill: rgba(19, 39, 67, 0.85);        /* 85%-opaque navy carries the contrast */
+  --panel-border: rgba(255, 255, 255, 0.14);
+  --panel-border-top: rgba(255, 255, 255, 0.22);
+  --panel-shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
+  --panel-inset: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --ew-gold: #E5A630;
+  --ew-soft: #C5CDD8;
+
+  position: relative;
+  width: min(400px, 100%);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  /* Batch 4: lock text-selection/long-press-copy on the graphic itself — SVG poster
+     sphere, photo globe, trail, and the two callout cards (volume + badge). The
+     methodology caption/kicker below sit OUTSIDE .hero-earth and stay selectable
+     prose, as does the audience / case-study page content. Keep an arrow cursor. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: default;
+}
+.hero-earth__stage { position: absolute; inset: 0; }
+.hero-earth__poster,
+.hero-earth__globe,
+.hero-earth__trail {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+/* photo globe starts hidden; JS fades it in over the SVG poster sphere on
+   texture load. If WebGL/texture never arrives it stays hidden and the SVG
+   poster sphere is what you see. */
+.hero-earth__globe { opacity: 0; transition: opacity 0.8s ease; }
+
+/* gold orbit line — restrained luminous halo */
+.hero-earth__trail-line {
+  filter: drop-shadow(0 0 6px rgba(229, 166, 48, 0.45));
+}
+
+/* --- dark-glass cards --- */
+.hero-earth__card {
+  position: absolute;
+  background: var(--panel-fill);
+  border: 1px solid var(--panel-border);
+  border-top-color: var(--panel-border-top);
+  border-radius: 14px;
+  box-shadow: var(--panel-shadow), var(--panel-inset);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);           /* pure polish; contrast comes from the fill */
+}
+
+/* Card A — Volume callout (visible throughout; number counts up) */
+.hero-earth__card--volume {
+  top: -13%; right: 0%;
+  padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 3px;
+  animation: ewFloat 6s ease-in-out infinite;
+}
+.hero-earth__num {
+  font-size: 26px; font-weight: 700; letter-spacing: -0.02em;
+  color: #FFFFFF; font-variant-numeric: tabular-nums; line-height: 1.05;
+  white-space: nowrap;
+}
+.hero-earth__sub {
+  font-size: 12.5px; line-height: 1.35; color: var(--ew-soft);
+  max-width: 20ch;
+}
+
+/* Card B — Badge (the single gold accent among the cards; fades in on finish) */
+.hero-earth__card--badge {
+  bottom: 8%; left: -31%;
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 1; transform: translateY(0);   /* default = finished poster (visible) */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.hero-earth__card--badge.is-hidden { opacity: 0; transform: translateY(10px); }
+.hero-earth__badge-num {
+  font-size: 28px; font-weight: 700; color: var(--ew-gold);
+  letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.hero-earth__badge-label {
+  font-size: 13px; line-height: 1.4; color: var(--ew-soft); max-width: 14ch;
+}
+
+@keyframes ewFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 8rem 0 3rem; }
+  .section { padding: 3.5rem 0; }
+  .persona-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .compare-table { overflow-x: auto; }
+  /* Earth-Wrap hero stacks: copy on top, graphic (~340px) below */
+  .page-hero .container { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-copy { order: 1; }
+  .hero-graphic { order: 2; }
+  .hero-earth { width: min(340px, 100%); }
+  .hero-earth__num { font-size: 22px; }
+  .hero-earth__badge-num { font-size: 24px; }
+  .hero-earth__sub { font-size: 12px; }
+  .hero-earth__badge-label { font-size: 12px; }
+  /* keep the floated cards on-stage at ≤900px — the desktop negative offsets
+     (top:-13% / left:-31%) would shove them off the ~340px stacked stage */
+  .hero-earth__card--volume { top: 4%; right: 2%; }
+  .hero-earth__card--badge  { bottom: 12%; left: 0%; }
+}
+
+/* Earth-Wrap hero: honor reduced-motion (land on the finished poster) */
+@media (prefers-reduced-motion: reduce) {
+  .hero-earth__card--volume { animation: none; }
+  .hero-earth__globe { transition: none; }
+}
+/* ============================================================
+   NAV CTA / BAND MACHINERY — MOVED TO SHARED CSS (2026-07-10)
+   ------------------------------------------------------------
+   The old CTA-wall (amber-clearance margin), CTA-hide (1025-1150),
+   801-1024 hamburger-counter block, and amber links-wall were all
+   REMOVED here and replaced by shared rules in
+   assets/css/sytech-shared.css ("CTA VISIBILITY + NAV FIT" section) so
+   every page — this one AND every other SyTech page — behaves identically:
+     > 1150px : full nav WITH the CTA (amber-clearance wall in shared).
+     801-1150 : full nav, CTA hidden, links tightened + no-wrap.
+     <= 800px : hamburger (flat mobile menu block below is unchanged).
+   Nothing page-specific is needed above 800px anymore; the shared
+   hamburger cutoff is already 800px, so no counter block is required.
+   ============================================================ */
+
+/* ============================================================
+   FLAT MOBILE MENU (isolated prototype, fork only, <=800px)
+   ------------------------------------------------------------
+   Replaces the shared stylesheet's ACCORDION hamburger menu with a
+   SIMPLE FLAT, SCROLLABLE list: NO chevrons, NO expand/collapse, nothing
+   to tap-to-reveal. Every item is a plain link, all visible at once; the
+   user just scrolls.
+
+   Flat item order (matches DOM order exactly — no reflow needed):
+     Home / About / Services / Who We Serve / White Papers /
+     Downloads / Contact
+   - SERVICES  = single plain link to services.html (the 7 sub-page links
+     in its mega panel are hidden on mobile).
+   - RESOURCES group is FLATTENED: its trigger row is CSS-hidden (Resources
+     has no standalone page), and its two children (White Papers, Downloads)
+     surface as their own top-level flat rows. NO "Resources" label — this
+     keeps the list to Ethan's exact 7 items and needs no DOM reorder.
+
+   The accordion toggle JS is neutralized at <=800px in the inline nav
+   script (see NAV block) so no row has a tap-to-expand handler; taps on a
+   trigger row just navigate.
+
+   Scoped under #nav + @media(max-width:800px) so it overrides the shared
+   @media(max-width:1024px) accordion rules (higher specificity via #nav,
+   later in the cascade). Desktop nav >800px is untouched.
+   DIALS: panel max-height offset (64px = nav height); row padding
+   (0.875rem 2rem = shared mobile row metric).
+   ============================================================ */
+@media (max-width: 800px) {
+
+  /* --- SCROLLABLE PANEL: never clip, even on a short screen --- */
+  /* Cap the open dropdown at viewport-height-minus-header and scroll the
+     overflow. 100dvh (dynamic viewport) preferred; 100vh is the fallback
+     for browsers without dvh. Nav is position:fixed, height 64px at
+     hamburger widths, so the panel starts 64px below the top. */
+  #nav .nav-links.open {
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;   /* iOS momentum scroll */
+  }
+
+  /* --- SERVICES: collapse to a single plain link --- */
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .mega { display: none; }
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .nav-mega-chevron { display: none; }
+  #nav .nav-has-mega:not(.nav-has-mega--compact) .nav-mega-trigger {
+    display: block;                 /* plain flat link row */
+    justify-content: flex-start;    /* inert once block; belt + suspenders */
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    /* border-bottom inherited from shared .nav-links a — left intact */
+  }
+
+  /* --- RESOURCES group: flatten to two plain rows --- */
+  /* Hide the "Resources" trigger row (no standalone page; its children
+     surface directly, right after "Who We Serve"). */
+  #nav .nav-has-mega--compact > .nav-mega-trigger { display: none; }
+  /* Force the compact panel permanently OPEN + FLAT — no accordion state. */
+  #nav .mega.mega--compact {
+    display: block;
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transition: none;
+  }
+  #nav .mega--compact .mega-inner { padding: 0; }
+  #nav .mega-simple-list { margin: 0; padding: 0; }
+  #nav .mega-simple-list li { width: 100%; }
+  /* White Papers + Downloads styled EXACTLY like the other flat rows
+     (flush 2rem indent, 1rem text, divider under each). */
+  #nav .mega-simple-list a {
+    display: block;
+    min-height: 0;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    white-space: normal;
+    border-bottom: 1px solid #E3E9EF;
+  }
+
+  /* --- DEFENSIVE: kill any lingering accordion/expand affordance --- */
+  /* Hide every chevron across the mobile list. */
+  #nav .nav-mega-chevron { display: none; }
+  /* Even if .is-open were somehow toggled, the services mega stays hidden
+     and the compact list stays flat — no expand can happen. */
+  #nav .nav-has-mega.is-open:not(.nav-has-mega--compact) .mega { display: none; }
+  #nav .nav-has-mega--compact.is-open .mega.mega--compact { max-height: none; }
+}
+
+/* ============================================================
+   SCENARIO FAQ — page-local, fully namespaced under .scenario-faq.
+   Accordion values lifted verbatim from about.html (.faq-section,
+   ~L96-139). 16:9 frame lifted verbatim from media.html
+   (.media-frame, ~L40). Nothing here touches shared CSS.
+   Header is LEFT-aligned to match this page's own .section headers
+   (design principles §11 scopes centered headers to service subpages).
+   Band tone: --white, reading as a continuation of the audience grid
+   it answers for; the .section.alt personas band below is the seam.
+   ============================================================ */
+.scenario-faq { padding: 5rem 0; background: var(--white); }
+.scenario-faq .scenario-faq-head { max-width: 820px; }
+.scenario-faq .section-eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+.scenario-faq h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 700; line-height: 1.2; margin: 0; letter-spacing: -0.01em; color: var(--navy); }
+.scenario-faq .faq-list { margin-top: 2.5rem; max-width: 920px; }
+.scenario-faq .faq-item { background: var(--white); border: 1px solid #E3E9EF; border-radius: 8px; margin-bottom: 0.85rem; overflow: hidden; transition: box-shadow 0.25s ease, border-color 0.25s ease; }
+.scenario-faq .faq-item:hover { border-color: rgba(229,166,48,0.45); box-shadow: 0 4px 16px rgba(37,66,107,0.06); }
+.scenario-faq .faq-item[open] { border-color: var(--gold); box-shadow: 0 4px 16px rgba(37,66,107,0.08); }
+.scenario-faq .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; font-size: 1.02rem; color: var(--navy); list-style: none; text-align: left; transition: background 0.2s ease; }
+.scenario-faq .faq-question::-webkit-details-marker { display: none; }
+.scenario-faq .faq-question:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.scenario-faq .faq-question:hover { background: rgba(229,166,48,0.04); }
+.scenario-faq .faq-icon { flex-shrink: 0; margin-left: 1rem; width: 22px; height: 22px; position: relative; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { content: ''; position: absolute; background: var(--gold); border-radius: 1px; transition: opacity 0.25s ease; }
+.scenario-faq .faq-icon::before { left: 50%; top: 4px; bottom: 4px; width: 2px; transform: translateX(-50%); }
+.scenario-faq .faq-icon::after { top: 50%; left: 4px; right: 4px; height: 2px; transform: translateY(-50%); }
+.scenario-faq .faq-item[open] .faq-icon { transform: rotate(180deg); }
+.scenario-faq .faq-item[open] .faq-icon::before { opacity: 0; }
+.scenario-faq .faq-answer { padding: 0 1.5rem 1.5rem; font-size: 0.97rem; line-height: 1.75; color: var(--text-body); text-align: left; }
+.scenario-faq .faq-answer p { margin: 0; font-size: 0.97rem; line-height: 1.75; }
+.scenario-faq .faq-video { position: relative; width: 100%; padding-top: 56.25%; background: var(--deep-navy); margin-top: 1.25rem; }
+.scenario-faq .faq-video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .scenario-faq .faq-item, .scenario-faq .faq-icon, .scenario-faq .faq-icon::before, .scenario-faq .faq-icon::after { transition: none !important; }
+}
+@media (max-width: 900px) {
+  .scenario-faq { padding: 3.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+
+    <!-- LEFT: real page hero copy (verbatim from the canonical page) -->
+    <div class="hero-copy">
+      <span class="eyebrow">Who We Serve</span>
+      <h1>Built for the <span>Public Sector.</span></h1>
+      <p class="lead" data-aud="wws-lead">California's public agencies have trusted SyTech with over 100 million pages of their records. We serve state agencies, counties, cities, school districts, county offices of education, and other public agencies — from small departments to county-scale operations. We meet you where you are, whether that means paper file rooms or e-forms tools that have outgrown their usefulness.</p>
+    </div>
+
+    <!-- RIGHT: Earth-Wrap Scale graphic — integrated ISOLATED from
+         whoweserve-earthwrap-hero-prototype-v1.html. All IDs are ew*-prefixed
+         (document-global-safe); classes are .hero-earth-scoped; JS is in an
+         IIFE before </body>. -->
+    <div class="hero-graphic">
+      <div class="hero-earth" id="ew-graphic" role="img"
+           aria-label="Scale diagram: over 100 million public-record pages entrusted to SyTech, laid end to end, reach about 70 percent of the way around Earth's equator.">
+        <div class="hero-earth__stage">
+
+          <!-- Layer 1: SVG poster sphere + cyan atmosphere halo (the no-WebGL globe) -->
+          <svg class="hero-earth__poster" viewBox="0 0 560 560" aria-hidden="true">
+            <defs>
+              <radialGradient id="ewGlobeShade" cx="36%" cy="30%" r="80%">
+                <stop offset="0%" stop-color="#2E5C9E"></stop>
+                <stop offset="55%" stop-color="#123663"></stop>
+                <stop offset="100%" stop-color="#081F3D"></stop>
+              </radialGradient>
+              <!-- Cole dark-mode atmosphere halo: bright cyan limb so the globe
+                   separates from the navy stage -->
+              <radialGradient id="ewGlobeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%"  stop-color="#5AA9E6" stop-opacity="0"></stop>
+                <stop offset="74%" stop-color="#5AA9E6" stop-opacity="0"></stop>
+                <stop offset="88%" stop-color="#7FC4F0" stop-opacity="0.55"></stop>
+                <stop offset="100%" stop-color="#7FC4F0" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+            <circle cx="280" cy="280" r="230" fill="url(#ewGlobeGlow)"></circle>
+            <circle cx="280" cy="280" r="176" fill="url(#ewGlobeShade)"></circle>
+          </svg>
+
+          <!-- Layer 2: Three.js photo globe (fades in over the SVG sphere) -->
+          <canvas class="hero-earth__globe" id="ew-canvas" width="1120" height="1120" aria-hidden="true"></canvas>
+
+          <!-- Layer 3: orbit trail + paper-sheet head marker
+               DEFAULT (no-JS) STATE = FINISHED POSTER:
+               trail drawn to the final arc, head marker at final position.
+               (These literal values correspond to TOTAL_PAGES = 100,000,000
+                i.e. FRACTION ~= 0.6972 -> 69.72 of pathLength 100.
+                If the drop-in constant changes AND JS is off, update these.) -->
+          <svg class="hero-earth__trail" viewBox="0 0 560 560" aria-hidden="true">
+            <g transform="rotate(-90 280 280)">
+              <!-- un-traveled guide track (dashed) -->
+              <circle cx="280" cy="280" r="206" fill="none"
+                      stroke="rgba(255,255,255,0.22)" stroke-width="1.5"
+                      stroke-dasharray="3 7" pathLength="100"></circle>
+              <!-- gold traveled trail -->
+              <circle class="hero-earth__trail-line" id="ew-trail" cx="280" cy="280" r="206"
+                      fill="none" stroke="#E5A630" stroke-width="5.5" stroke-linecap="round"
+                      pathLength="100" stroke-dasharray="69.72 100"></circle>
+              <!-- paper-sheet marker riding the trail head -->
+              <g id="ew-head" transform="translate(212.9 85.2) rotate(341.0)">
+                <path d="M -9.5 -12.5 L 4.5 -12.5 L 9.5 -7.5 L 9.5 12 L -9.5 12 Z" fill="#FFFFFF" stroke="#B9C6D8" stroke-width="0.8"></path>
+                <path d="M 4.5 -12.5 L 4.5 -7.5 L 9.5 -7.5 Z" fill="#DDE5EF" stroke="#B9C6D8" stroke-width="0.8" stroke-linejoin="round"></path>
+                <line x1="-6" y1="-7.5" x2="1.5" y2="-7.5" stroke="#8FA3BC" stroke-width="1.4" stroke-linecap="round"></line>
+                <line x1="-6" y1="-3.5" x2="6" y2="-3.5" stroke="#C9D4E3" stroke-width="1.1" stroke-linecap="round"></line>
+                <line x1="-6" y1="-0.5" x2="6" y2="-0.5" stroke="#C9D4E3" stroke-width="1.1" stroke-linecap="round"></line>
+                <line x1="-6" y1="2.5" x2="6" y2="2.5" stroke="#C9D4E3" stroke-width="1.1" stroke-linecap="round"></line>
+                <line x1="-6" y1="5.5" x2="2" y2="5.5" stroke="#C9D4E3" stroke-width="1.1" stroke-linecap="round"></line>
+                <!-- accent line -> brand gold -->
+                <line x1="-6" y1="8.5" x2="-1" y2="8.5" stroke="#E5A630" stroke-width="1.4" stroke-linecap="round"></line>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Card A — Volume callout (default text = finished poster) -->
+        <div class="hero-earth__card hero-earth__card--volume">
+          <span class="hero-earth__num" id="ew-number">100,000,000+</span>
+          <span class="hero-earth__sub">Public-record pages entrusted to SyTech</span>
+        </div>
+
+        <!-- Card B — Badge (default = visible poster; JS hides then reveals on finish).
+             Text is written by JS (buildBadge) to stay number-agnostic. -->
+        <div class="hero-earth__card hero-earth__card--badge">
+          <span class="hero-earth__badge-num" id="ew-badge-num">70%</span>
+          <span class="hero-earth__badge-label" id="ew-badge-label">of the way around the equator</span>
+        </div>
+      </div>
+
+      <!-- REQUIRED methodology caption (the credibility). Text is tied to the
+           current TOTAL_PAGES figure; update if the drop-in constant changes. -->
+      <p class="hero-graphic-caption">Over 100 million standard 8.5&times;11 pages, laid end to end, run 17,000+ miles &mdash; about 70% of Earth's 24,901-mile equator.</p>
+      <p class="hero-graphic-kicker">The public's records, entrusted to SyTech &mdash; at a scale you can see.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section-eyebrow">Industries</span>
+    <h2>Public Agencies of Every Size.</h2>
+    <p class="lead-row" data-aud="wws-types-p">Our work spans the full range of California public agencies. Each environment has its own compliance pressures, but the underlying needs are the same: visibility, control, and a sustainable path forward.</p>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="icon-box" aria-hidden="true">SD</div>
+        <h3>School Districts (K–12)</h3>
+        <p>Superintendents, IT Directors, and district operations leaders modernizing student records, HR forms, and approvals — without adding another platform their staff have to learn.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon-box" aria-hidden="true">CO</div>
+        <h3>County Offices of Education</h3>
+        <p>Regional offices coordinating compliance, records retention, and program-level reporting across multiple districts using the cloud platforms they already fund.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon-box" aria-hidden="true">PA</div>
+        <h3>Public Agencies &amp; Departments</h3>
+        <p>Department heads, operations managers, and public administration leaders streamlining records, forms, and workflows for both internal use and public-facing services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENARIO FAQ — copy: scenario-videos/copy-scenario-faq-mapping.md §3.2
+     One item per audience card above, in the same order.
+     ============================================================ -->
+<section class="scenario-faq" aria-label="Scenarios in their own words">
+  <div class="container">
+    <div class="scenario-faq-head">
+      <span class="section-eyebrow">In Their Own Words</span>
+      <h2>Common Scenarios.</h2>
+    </div>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Our volunteer applications are scattered across forms, attachments, and links that break. Can that be fixed?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>Yes. A district came to us struggling to onboard volunteers for its campuses and district office: the forms and the electronic attachments tied to each application were disorganized, and the links sent to volunteers frequently did not work. We built the application, the attachments, and the electronic signatures into the Microsoft apps the district already owned, so everything lands in one secure, cloud-based place. The district says it saw an increase in volunteers once the process got easy. Watch them tell it.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-1-new-branding-poster.jpg"
+                   aria-label="Video: a school district describes onboarding volunteers">
+              <source src="assets/video/scenario-1-new-branding.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-1-new-branding.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Paper purchase orders are burying us and vendor payments get missed. What does the digital version look like?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>It looks like a notification instead of a stack of paper. A public agency came to us after a surge in demand for services left it managing physical purchase orders by hand, with payments to local contractors and businesses slipping through the cracks. We digitized their existing documents and built the approval path inside the Microsoft environment they already owned: department heads are notified when an invoice is received, and they approve it digitally before Accounts Payable generates a payment. Watch the agency walk through the change.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-4-public-agencies-poster.jpg"
+                   aria-label="Video: a public agency describes its purchase order and invoice approval process">
+              <source src="assets/video/scenario-4-public-agencies.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-4-public-agencies.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>Our county has more IT projects than we can track, each with its own funding requirements. Where do we start?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="faq-answer">
+          <p>With a standard process, and one place to run it from. A county told us it had numerous projects underway, each with funding requirements that needed meticulous tracking across the whole life cycle, and no central application to manage the work or report on it. They had a structured process in mind — PAL, the Project Application Life Cycle. We built low-code solutions inside their existing Microsoft products so every project is now overseen in correspondence with PAL. Watch the county describe the approach they landed on.</p>
+          <div class="faq-video">
+            <video controls preload="none" playsinline
+                   poster="assets/video/scenario-5-pal-poster.jpg"
+                   aria-label="Video: a county describes tracking IT projects against PAL, its Project Application Life Cycle">
+              <source src="assets/video/scenario-5-pal.mp4" type="video/mp4">
+              Your browser does not support the video tag. You can
+              <a href="assets/video/scenario-5-pal.mp4">download the video</a> instead.
+            </video>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* Scenario FAQ — page-local, namespaced. Closing an item pauses its video;
+   playing one scenario video pauses any other on this page. Nothing else. */
+(function () {
+  var items = document.querySelectorAll('.scenario-faq details.faq-item');
+  if (!items.length) return;
+  var vids = [];
+  Array.prototype.forEach.call(items, function (item) {
+    var v = item.querySelector('video');
+    if (!v) return;
+    vids.push(v);
+    item.addEventListener('toggle', function () { if (!item.open) { v.pause(); } });
+  });
+  Array.prototype.forEach.call(vids, function (v) {
+    v.addEventListener('play', function () {
+      Array.prototype.forEach.call(vids, function (o) { if (o !== v && !o.paused) { o.pause(); } });
+    });
+  });
+})();
+</script>
+
+<section class="section alt">
+  <div class="container">
+    <span class="section-eyebrow">The Two Personas</span>
+    <h2>We Meet You Where You Are.</h2>
+    <p class="lead-row">Most public agencies fall into one of two camps when they come to SyTech. We work with both — and the path forward looks different for each.</p>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <span class="label">Persona 1</span>
+        <h3>Still Using Paper</h3>
+        <p>Paper forms still drive many of your business processes. Forms move slowly. Approvals take time. Staff re-enter data into different systems. Records are hard to track and harder to audit.</p>
+        <p>You know modernization is overdue, but you are wary of adding another piece of software to manage. SyTech meets you here — we digitize, structure, and migrate your records into the cloud platform you already own. No new license. No second login.</p>
+      </div>
+      <div class="persona-card">
+        <span class="label">Persona 2</span>
+        <h3>Already Using E-Forms Software</h3>
+        <p>You have adopted electronic forms tools, but they are costly and disconnected. Your current platform sits outside your records system, creates silos, and does not connect to the workflows you actually need.</p>
+        <p>You are looking for a better path that leverages the cloud investments you have already made. SyTech replaces standalone tools with a unified ecosystem inside your existing Microsoft 365 or Google environment — fewer vendors, lower costs, more control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROOF — Case Studies (roomy 2-col, CNRA first, stat-chips)
+     ============================================================ -->
+<section class="section alt">
+  <div class="container">
+    <span class="section-eyebrow">Work We're Proud Of</span>
+    <h2>Real Agencies. Real Outcomes.</h2>
+    <p class="lead-row">A short sample of the public agencies we have built records and data services for. Each engagement looked different. The pattern underneath was the same — meet the agency where they were, build inside what they already owned, and leave them with a system they could run for years.</p>
+    <div class="case-grid">
+      <article class="case-card">
+        <span class="case-client">California Natural Resources Agency</span>
+        <h3>Statewide Paper Records Digitization</h3>
+        <span class="case-project">SharePoint Online + Microsoft Stack</span>
+        <div class="case-metrics">
+          <span class="metric"><span class="m-num">50M</span><span class="m-label">Records</span></span>
+          <span class="metric"><span class="m-num">15,000+</span><span class="m-label">Boxes</span></span>
+          <span class="metric"><span class="m-num">2,000</span><span class="m-label">Doc Types</span></span>
+          <span class="metric"><span class="m-num">13</span><span class="m-label">Departments</span></span>
+        </div>
+        <p>A two-year deadline, a building move, and decades of paper across 13 departments. SyTech digitized <strong>50 million records</strong> from <strong>15,000+ boxes</strong> spanning <strong>2,000 document types</strong> — and built records management on the agency's existing Microsoft 365. Likely the largest SharePoint Online and Microsoft Stack deployment for a California public agency.</p>
+      </article>
+      <article class="case-card">
+        <span class="case-client">California State Lands Commission</span>
+        <h3>OSCAR</h3>
+        <span class="case-project">Online System for Customer Applications and Records</span>
+        <div class="case-metrics">
+          <span class="metric"><span class="m-num">4.5M</span><span class="m-label">Acres</span></span>
+          <span class="metric"><span class="m-num">200+</span><span class="m-label">Years</span></span>
+          <span class="metric"><span class="m-num">4M+</span><span class="m-label">Documents</span></span>
+          <span class="metric"><span class="m-num">160</span><span class="m-label">Record Types</span></span>
+        </div>
+        <p>The Commission manages <strong>4.5 million acres</strong> and <strong>200+ years of records</strong> — <strong>4 million-plus documents</strong> across <strong>160 record types</strong>, all on paper. SyTech built OSCAR, a low-code system on SharePoint Online and the Microsoft stack that modernized leasing and permitting and put two centuries of records within reach.</p>
+      </article>
+      <article class="case-card">
+        <span class="case-client">Yolo &amp; Santa Barbara Counties</span>
+        <h3>eSCARS</h3>
+        <span class="case-project">Electronic Suspected Child Abuse Report System</span>
+        <p>A cloud reporting system that lets jurisdictions share suspected child-abuse reports and spot patterns that cross county lines — patterns that used to slip through the gaps. Built secure, built to be shared. More California agencies have since joined the system.</p>
+      </article>
+      <article class="case-card">
+        <span class="case-client">Yolo County District Attorney's Office</span>
+        <h3>The First Paperless DA Office</h3>
+        <span class="case-project">Case File Digitization</span>
+        <div class="case-metrics">
+          <span class="metric"><span class="m-num">40%</span><span class="m-label">Staff Time Freed</span></span>
+          <span class="metric"><span class="m-num">1st</span><span class="m-label">Paperless DA in CA</span></span>
+        </div>
+        <p>Staff were spending nearly <strong>40% of their time</strong> moving physical case files — files that got lost, and that only one person could use at a time. SyTech digitized the operation and made Yolo the <strong>first DA office in California to go fully paperless</strong>: multi-user access, OCR keyword search, and nightly off-site backup.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CNRA TESTIMONIAL (migrated from why-sytech Block 3, verbatim)
+     Placed directly under the case grid, tied to the CNRA case.
+     ============================================================ -->
+<section class="testimonial-section" aria-label="California Natural Resources Agency testimonial">
+  <div class="container">
+    <figure class="testimonial-card">
+      <span class="mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>SyTech went above and beyond our expectations with their digitization process of our paper records. They leveraged our existing Microsoft Office 365 licenses and created a solution that suited the needs of our organization.</blockquote>
+      <cite>In Their Words &middot; California Natural Resources Agency</cite>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================
+     THE CHOICE — SyTech vs. SaaS comparison (migrated from why-sytech Block 5)
+     Reed bridge copy (item #4).
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <span class="section-eyebrow">The Choice They Weighed</span>
+    <h2>Build Inside Your Cloud, or Buy Another Platform?</h2>
+    <p class="lead-row">Every agency above faced the same fork in the road: add another standalone platform, or build records management inside the cloud they already owned. Here is how the two compare, and the side they chose.</p>
+    <div class="compare-table">
+      <table>
+        <thead>
+          <tr><th>Dimension</th><th>SyTech</th><th>Standalone SaaS Vendors</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Platform Model</td><td class="yes">Lives inside your existing cloud</td><td class="no">Standalone SaaS workflow platform</td></tr>
+          <tr><td>Where Data Lives</td><td class="yes">Your cloud — always</td><td class="no">Vendor-controlled servers</td></tr>
+          <tr><td>AI &amp; Automation</td><td class="yes">Native Copilot &amp; Power Automate</td><td class="no">Limited to platform features</td></tr>
+          <tr><td>Uses Existing Licenses</td><td class="yes">Yes — no new subscription</td><td class="no">No — new subscription required</td></tr>
+          <tr><td>Adds Another System</td><td class="yes">No — built within existing tools</td><td class="no">Yes — separate platform</td></tr>
+          <tr><td>Total Cost</td><td class="yes">No new platform costs</td><td class="no">New subscription pricing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="logo-strip">
+  <div class="container">
+    <h3>Trusted by Public Agencies Across California</h3>
+    <div class="logo-grid">
+      <div class="logo-cell"><img src="assets/logos/cnra.svg" alt="California Natural Resources Agency" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/dgs.svg" alt="California Department of General Services" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/calpers.png" alt="CalPERS" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/caltrans.png" alt="Caltrans" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/losangelas_county.png" alt="Los Angeles County" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/smud.png" alt="SMUD" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/stanislaus_county.png" alt="Stanislaus County" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/yolo_logo.png" alt="Yolo County" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/losangelas_usd.png" alt="Los Angeles Unified School District" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/cdph.png" alt="California Department of Public Health" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/stockton_usd.png" alt="Stockton Unified School District" loading="lazy"/></div>
+      <div class="logo-cell"><img src="assets/logos/central_usd.png" alt="Central Unified School District" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DGS TESTIMONIAL (existing — general social proof, kept)
+     Separated from the CNRA quote by the comparison + logo strip.
+     ============================================================ -->
+<section class="testimonial-section" aria-label="California Department of General Services testimonial">
+  <div class="container">
+    <figure class="testimonial-card">
+      <span class="mark" aria-hidden="true">&ldquo;</span>
+      <blockquote>SyTech helped transform our imaging center into a complete document management solution for our business and client needs.</blockquote>
+      <cite>California Department of General Services</cite>
+    </figure>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <span class="section-eyebrow">Proven at Scale</span>
+    <h2>Numbers That Speak for Themselves.</h2>
+    <p class="lead-row">SyTech's experience in the public sector is measured in decades and millions of records — not pitch decks.</p>
+    <div class="stat-row">
+      <div class="stat-block"><div class="num">25<span>+</span></div><div class="label">Years in Public Sector</div></div>
+      <div class="stat-block"><div class="num">4,579</div><div class="label">Active Cloud Clients</div></div>
+      <div class="stat-block"><div class="num">10.7<span>M</span></div><div class="label">Managed Records</div></div>
+      <div class="stat-block"><div class="num">256</div><div class="label">Cloud Solutions</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <h2 data-aud="wws-cta-h2">Whether You Are on Paper or Already Digital — We Can Help.</h2>
+    <p data-aud="wws-cta-p">Every engagement begins with a free assessment. No commitment. We learn where you are, what is working, and what is not.</p>
+    <a href="contact.html" class="btn-primary">Request a Free Assessment</a>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+
+<!-- ============================================================
+     EARTH-WRAP SCALE HERO — graphic JS (integrated ISOLATED).
+     Self-contained IIFE: no globals written, no shared state with the
+     nav/mega-menu scripts above. Reads only window.THREE / window.matchMedia.
+     Ported verbatim from whoweserve-earthwrap-hero-prototype-v1.html.
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ======================================================================
+     DROP-IN CONSTANT
+     The ONLY number to change on client confirm. All geometry, the count-up
+     target, the badge %, and the trail arc recompute from this line.
+     ====================================================================== */
+  var TOTAL_PAGES = 100000000; // 100,000,000
+  // CLIENT-CONFIRM: SyTech to provide the real figure AND its unit (pages vs.
+  // records). The methodology caption + aria-label also assume "pages"; if the
+  // figure changes, update the caption/aria copy too (they are hand-authored).
+
+  /* ----- Physical constants (fixed facts) ----- */
+  var PAGE_EDGE_IN = 11;      // an 8.5x11 page laid on its 11-inch edge
+  var EQUATOR_MI   = 24901;   // Earth's equatorial circumference (miles)
+  var IN_PER_MILE  = 63360;   // 5280 ft x 12 in
+
+  /* ----- Derived geometry (everything scales from TOTAL_PAGES) ----- */
+  var totalMiles   = (TOTAL_PAGES * PAGE_EDGE_IN) / IN_PER_MILE; // ~17,361 mi @ 100M
+  var FRACTION     = totalMiles / EQUATOR_MI;                    // ~0.6972 @ 100M (was hard-coded 0.697 in the prototype)
+  var drawFraction = Math.min(FRACTION, 1);                      // visual arc caps at ONE full wrap; badge carries the x-N multiple
+
+  /* ----- Feature detection ----- */
+  var prefersReduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ----- DOM refs ----- */
+  var trailPath  = document.getElementById('ew-trail');
+  var headGroup  = document.getElementById('ew-head');
+  var numberEl   = document.getElementById('ew-number');
+  var badgeNumEl = document.getElementById('ew-badge-num');
+  var badgeLblEl = document.getElementById('ew-badge-label');
+  var badgeCard  = document.querySelector('.hero-earth__card--badge');
+  var canvas     = document.getElementById('ew-canvas');
+
+  var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
+
+  /* ----- Number-agnostic badge (handles both regimes) ----- */
+  function buildBadge() {
+    if (FRACTION < 1) {
+      // e.g. 70% / of the way around the equator
+      badgeNumEl.textContent = Math.round(FRACTION * 100) + '%';
+      badgeLblEl.textContent = 'of the way around the equator';
+    } else {
+      // >= one full wrap (a figure above ~143M pages) -> x-N.N times / around the equator
+      badgeNumEl.textContent = '×' + FRACTION.toFixed(1) + ' times';
+      badgeLblEl.textContent = 'around the equator';
+    }
+  }
+
+  /* ----- Single render function drives trail + head + count-up from p (0..1) ----- */
+  var R = 206;
+  function render(p) {
+    // trail arc
+    var covered = p * drawFraction * 100; // pathLength units
+    trailPath.setAttribute('stroke-dasharray', covered.toFixed(2) + ' 100');
+
+    // head marker point on the circle (arc length maps directly to angle)
+    var theta = p * drawFraction * 2 * Math.PI;
+    var hx = 280 + R * Math.cos(theta);
+    var hy = 280 + R * Math.sin(theta);
+    var deg = theta * 180 / Math.PI + 90; // tilt sheet along travel direction
+    headGroup.setAttribute('transform',
+      'translate(' + hx.toFixed(1) + ' ' + hy.toFixed(1) + ') rotate(' + deg.toFixed(1) + ')');
+
+    // count-up (hold on the trailing "+" at completion)
+    var pages = Math.round(p * TOTAL_PAGES);
+    numberEl.textContent = fmt(pages) + (p >= 1 ? '+' : '');
+  }
+
+  /* ----- Poster: the finished frame, immediately (reduced-motion / fallback) ----- */
+  function showPoster() {
+    render(1);
+    badgeCard.classList.remove('is-hidden'); // visible
+  }
+
+  /* ----- Play-once-and-HOLD animation (no loop, no auto-reset) ----- */
+  var DRAW = 4200; // ms
+  var start = null;
+  var raf = null;
+
+  function easeInOutCubic(x) {
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  }
+
+  function tick(now) {
+    if (start === null) start = now;
+    var t = now - start;
+    if (t < DRAW) {
+      render(easeInOutCubic(t / DRAW));
+      raf = requestAnimationFrame(tick);
+    } else {
+      render(1);                              // settle on the finished frame
+      badgeCard.classList.remove('is-hidden'); // reveal badge, then HOLD forever
+    }
+  }
+
+  function startAnimation() {
+    render(0);                         // reset to blank (default DOM was the poster)
+    badgeCard.classList.add('is-hidden');
+    setTimeout(function () {
+      raf = requestAnimationFrame(tick);
+    }, 400);                           // ~0.4s delay before the single play
+  }
+
+  /* ----- Three.js photo globe (enhances the SVG poster sphere) ----- */
+  function initGlobe() {
+    if (prefersReduced || !canvas) return; // reduced-motion -> keep SVG poster sphere
+    var globeRaf, attempts = 0;
+
+    function tryInit() {
+      if (!window.THREE) {
+        if (attempts++ > 180) return;  // ~3s cap: CDN failed -> keep SVG poster sphere
+        globeRaf = requestAnimationFrame(tryInit);
+        return;
+      }
+      var THREE = window.THREE;
+
+      var renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      } catch (e) {
+        return; // no WebGL -> SVG poster sphere stands in
+      }
+      renderer.setSize(1120, 1120, false);
+
+      // Orthographic camera in the SVG's 560-unit space (globe r=176 at center)
+      var cam = new THREE.OrthographicCamera(-280, 280, 280, -280, 0.1, 2000);
+      cam.position.z = 800;
+
+      var scene = new THREE.Scene();
+      scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+      var sun = new THREE.DirectionalLight(0xffffff, 0.85);
+      sun.position.set(-260, 220, 500);
+      scene.add(sun);
+
+      var tilt = new THREE.Group();
+      tilt.rotation.z = 14 * Math.PI / 180; // gentle axial tilt
+      scene.add(tilt);
+
+      var loader = new THREE.TextureLoader();
+      loader.setCrossOrigin('anonymous');
+
+      var globe = new THREE.Mesh(
+        new THREE.SphereGeometry(176, 96, 96),
+        new THREE.MeshPhongMaterial({ shininess: 6 })
+      );
+      tilt.add(globe);
+
+      // daytime "soft" earth texture (matches original Claude Design prototype)
+      var tex = loader.load(
+        'assets/img/earth-day.jpg',
+        function () { canvas.style.opacity = '1'; },   // fade the photo globe in on load
+        undefined,
+        function () { canvas.style.opacity = '0'; }    // texture error -> keep SVG sphere
+      );
+      tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      globe.material.map = tex;
+      globe.material.needsUpdate = true;
+
+      function spin() {
+        globe.rotation.y += 0.0012; // gentle auto-spin
+        renderer.render(scene, cam);
+        globeRaf = requestAnimationFrame(spin);
+      }
+      spin();
+    }
+    tryInit();
+  }
+
+  /* ----- Init ----- */
+  buildBadge();                 // always: keeps the badge label number-agnostic
+  if (prefersReduced) {
+    showPoster();               // finished frame immediately, no animation
+  } else {
+    startAnimation();           // reset to blank -> 0.4s delay -> play once -> hold
+  }
+  initGlobe();                  // independent WebGL enhancement
+})();
+</script>
+
+</body>
+</html>
