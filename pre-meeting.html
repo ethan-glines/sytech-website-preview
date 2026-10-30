@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>SyTech Solutions — Before We Meet</title>
+<meta name="description" content="A few quick questions before your meeting with SyTech, so we can come prepared."/>
+<link rel="stylesheet" href="assets/css/sytech-shared.css">
+
+<style>
+/* ===== Page hero (standard page-hero band) ===== */
+.page-hero { padding: 11rem 0 4.5rem; background: linear-gradient(175deg, var(--deep-navy) 0%, var(--navy) 60%, #2d5080 100%); position: relative; overflow: hidden; color: var(--white); }
+.page-hero::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+.page-hero .container { position: relative; z-index: 1; }
+.page-hero .eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.page-hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.page-hero h1 span { color: var(--gold); }
+.page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 680px; }
+
+/* ===== "Before We Meet" (reuses the .rp-* questionnaire styles, plus .pm-*) ===== */
+.rp-section { padding: 4rem 0 5rem; background: var(--light); }
+.rp-card { position: relative; max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid rgba(37,66,107,0.10); border-radius: 16px; box-shadow: 0 18px 50px rgba(37,66,107,0.10); padding: 2.25rem 2.5rem 2rem; overflow: hidden; }
+.rp-card::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(37,66,107,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(37,66,107,0.05) 1px, transparent 1px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 65%); pointer-events: none; }
+.rp-card > * { position: relative; }
+.rp-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; min-height: 28px; }
+.rp-count { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7785; }
+.rp-back { font: inherit; font-size: 0.85rem; font-weight: 700; color: var(--navy); background: none; border: none; padding: 0.25rem 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; }
+.rp-back[hidden] { display: none; }
+.rp-progress { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; margin-bottom: 1.75rem; }
+.rp-progress span { height: 5px; border-radius: 3px; background: rgba(37,66,107,0.10); transition: background 300ms ease; }
+.rp-progress span.is-done { background: var(--gold); }
+.rp-q h2 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); font-weight: 700; color: var(--navy); line-height: 1.25; margin: 0 0 0.4rem; }
+.rp-q .rp-hint { font-size: 0.92rem; color: var(--text-body); margin: 0 0 1.4rem; }
+.rp-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+.rp-opt { width: 100%; height: 100%; display: flex; align-items: center; gap: 0.8rem; text-align: left; font: inherit; font-size: 0.97rem; font-weight: 700; line-height: 1.3; color: var(--navy); background: #fff; border: 1.5px solid rgba(37,66,107,0.16); border-radius: 12px; padding: 0.95rem 1rem; cursor: pointer; transition: border-color 200ms ease, background 200ms ease, transform 200ms ease, box-shadow 200ms ease; }
+.rp-opt .rp-mark { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(37,66,107,0.35); display: inline-flex; align-items: center; justify-content: center; transition: background 200ms ease, border-color 200ms ease; }
+.rp-opt.is-multi .rp-mark { border-radius: 5px; }
+.rp-opt .rp-mark svg { opacity: 0; transition: opacity 150ms ease; }
+.rp-opt[aria-pressed="true"] { border-color: var(--gold); background: rgba(229,166,48,0.09); }
+.rp-opt[aria-pressed="true"] .rp-mark { background: var(--gold); border-color: var(--gold); }
+.rp-opt[aria-pressed="true"] .rp-mark svg { opacity: 1; }
+.rp-opt:disabled { cursor: default; opacity: 0.45; }
+@media (hover: hover) and (pointer: fine) { .rp-opt:not(:disabled):hover { border-color: rgba(229,166,48,0.7); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,66,107,0.08); } }
+.rp-opt:focus-visible, .rp-back:focus-visible, .rp-next:focus-visible, .rp-btn:focus-visible, .rp-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.rp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.rp-field { display: flex; flex-direction: column; gap: 0.35rem; }
+.rp-field span { font-size: 0.8rem; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
+.rp-field input { font: inherit; font-size: 1rem; color: var(--navy); padding: 0.8rem 0.9rem; border: 1.5px solid rgba(37,66,107,0.22); border-radius: 10px; background: #fff; transition: border-color 200ms ease, box-shadow 200ms ease; }
+.rp-field input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(229,166,48,0.25); }
+.rp-err { margin: 0.8rem 0 0; font-size: 0.88rem; color: #a3341f; font-weight: 700; }
+.rp-err[hidden] { display: none; }
+.rp-field-wide { grid-column: 1 / -1; }
+.rp-text { width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; line-height: 1.55; color: var(--navy); padding: 0.85rem 0.95rem; border: 1.5px solid rgba(37,66,107,0.22); border-radius: 10px; background: #fff; resize: vertical; min-height: 7.5rem; }
+.rp-text:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(229,166,48,0.25); }
+.pm-recap { margin: 0 0 1.6rem; padding: 0; display: grid; gap: 0.85rem; }
+.pm-recap > div { padding: 0.8rem 1rem; border-left: 3px solid var(--gold); background: rgba(37,66,107,0.04); border-radius: 0 8px 8px 0; }
+.pm-recap dt { font-size: 0.8rem; font-weight: 700; color: #6b7785; margin: 0 0 0.25rem; }
+.pm-recap dd { margin: 0; font-size: 0.97rem; line-height: 1.55; color: var(--navy); white-space: pre-line; }
+.rp-other { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 0.55rem; }
+.rp-other .rp-opt { height: auto; }
+.rp-other-box input { width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; color: var(--navy); padding: 0.8rem 0.9rem; border: 1.5px solid rgba(37,66,107,0.22); border-radius: 10px; background: #fff; }
+.rp-other-box input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(229,166,48,0.25); }
+.rp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rp-result > p.rp-echo { font-style: italic; color: var(--navy); }
+@media (max-width: 640px) { .rp-fields { grid-template-columns: 1fr; } }
+.rp-foot { display: flex; justify-content: flex-end; margin-top: 1.4rem; min-height: 44px; }
+.rp-next { font: inherit; font-size: 0.95rem; font-weight: 700; color: var(--deep-navy); background: var(--gold); border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; }
+.rp-next:disabled { opacity: 0.4; cursor: default; }
+.rp-next[hidden] { display: none; }
+@keyframes rp-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) { .rp-q, .rp-result { animation: rp-in 320ms cubic-bezier(.2,.8,.2,1) both; } }
+
+/* result */
+.rp-verdict { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.4rem 0.8rem; border-radius: 999px; margin-bottom: 0.9rem; }
+.rp-verdict.is-strong { background: rgba(61,184,122,0.14); color: #1f7a4d; }
+.rp-verdict.is-talk { background: rgba(229,166,48,0.16); color: #8a5a0c; }
+.rp-verdict.is-not { background: rgba(37,66,107,0.08); color: var(--navy); }
+.rp-result h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin: 0 0 0.6rem; }
+.rp-result > p { font-size: 1rem; line-height: 1.7; color: var(--text-body); margin: 0 0 1.4rem; }
+.rp-path { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 0 0 1.4rem; }
+.rp-phase { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.45rem 0.85rem; border-radius: 999px; border: 1.5px dashed rgba(37,66,107,0.22); color: #8a96a4; }
+.rp-phase.is-on { border-style: solid; color: #fff; }
+.rp-phase.is-on[data-ph="organize"] { background: #C2683A; border-color: #C2683A; }
+.rp-phase.is-on[data-ph="unify"] { background: #2E7DB5; border-color: #2E7DB5; }
+.rp-phase.is-on[data-ph="scale"] { background: #2E8F5E; border-color: #2E8F5E; }
+.rp-arrow { color: #b0b9c4; }
+.rp-services { display: grid; gap: 0.7rem; margin: 0 0 1.6rem; padding: 0; list-style: none; }
+.rp-service { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 1.1rem; border: 1px solid rgba(37,66,107,0.12); border-left: 4px solid var(--gold); border-radius: 10px; background: #fff; }
+.rp-service .rp-sv-ph { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.rp-service h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin: 0.15rem 0 0.25rem; }
+.rp-service p { font-size: 0.9rem; line-height: 1.55; color: var(--text-body); margin: 0; }
+.rp-service a { color: inherit; text-decoration: none; }
+.rp-service a:hover h3 { text-decoration: underline; text-decoration-color: var(--rp-ph, var(--gold)); text-underline-offset: 3px; }
+.rp-service[data-ph="organize"] { --rp-ph: #C2683A; --rp-ph-ink: #A9532A; }
+.rp-service[data-ph="unify"]    { --rp-ph: #2E7DB5; --rp-ph-ink: #2A70A3; }
+.rp-service[data-ph="scale"]    { --rp-ph: #2E8F5E; --rp-ph-ink: #287F53; }
+.rp-service[data-ph] { border-left-color: var(--rp-ph); }
+.rp-service[data-ph] .rp-sv-ph { color: var(--rp-ph-ink); }
+.rp-result > p.rp-learn-head { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7785; margin: 0 0 0.8rem; }
+.rp-learn { display: grid; gap: 0.75rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.rp-learn li { display: flex; gap: 0.9rem; align-items: flex-start; padding: 1rem 1.1rem; border-radius: 10px; background: var(--light); }
+.rp-learn .rp-ico { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; background: #fff; border: 1px solid rgba(37,66,107,0.12); display: inline-flex; align-items: center; justify-content: center; color: var(--navy); }
+.rp-learn strong { display: block; color: var(--navy); font-size: 1rem; margin-bottom: 0.2rem; }
+.rp-learn p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--text-body); }
+.rp-better { margin: 0 0 1.4rem; padding: 1rem 1.2rem; border-left: 4px solid var(--gold); background: rgba(229,166,48,0.08); border-radius: 4px; }
+.rp-better strong { display: block; color: var(--navy); margin-bottom: 0.3rem; }
+.rp-better p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: var(--text-body); }
+.rp-result > p.rp-honest { font-size: 0.9rem; color: #6b7785; margin: 0 0 1.3rem; }
+.rp-instead { margin: 0 0 1.6rem; padding: 1rem 1.2rem; border-radius: 10px; background: var(--light); }
+.rp-instead strong { display: block; color: var(--navy); margin-bottom: 0.4rem; }
+.rp-instead ul { margin: 0; padding-left: 1.2rem; color: var(--text-body); line-height: 1.6; font-size: 0.93rem; }
+.rp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
+.rp-btn { display: inline-block; padding: 0.85rem 1.6rem; background: var(--gold); color: var(--deep-navy); font-weight: 700; font-size: 0.95rem; border-radius: 8px; text-decoration: none; }
+.rp-link { font: inherit; font-size: 0.9rem; font-weight: 700; color: var(--navy); background: none; border: none; border-bottom: 2px solid var(--gold); padding: 0 0 0.1rem; cursor: pointer; text-decoration: none; }
+
+@media (max-width: 640px) {
+  .page-hero { padding: 9rem 0 3.5rem; }
+  .rp-card { padding: 1.6rem 1.25rem 1.5rem; border-radius: 12px; }
+  .rp-options { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<script src="assets/js/site-chrome.js" data-part="nav"></script>
+<noscript><nav class="nav-noscript" aria-label="Primary navigation" style="padding:1rem 1.5rem;background:#fff;border-bottom:3px solid #E5A630;font-weight:600;"><a href="index.html">Home</a> &middot; <a href="about.html">About</a> &middot; <a href="services.html">Services</a> &middot; <a href="who-we-serve.html">Who We Serve</a> &middot; <a href="white-papers.html">Resources</a> &middot; <a href="contact.html">Contact</a></nav></noscript>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Before We Meet</span>
+    <h1>Before We <span>Meet.</span></h1>
+    <p class="lead">We're looking forward to our meeting. A few quick questions now help us bring the right people and the right examples, so we can spend our time on your problem.</p>
+  </div>
+</section>
+
+<section class="rp-section" aria-label="Before we meet">
+  <div class="container">
+    <div class="rp-card" id="rp-app" aria-live="polite">
+      <noscript><p>This short questionnaire needs JavaScript. You can <a href="contact.html">request a free assessment</a> instead.</p></noscript>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/js/site-chrome.js" data-part="footer"></script>
+
+
+<script>
+/* "Before We Meet": a short questionnaire SyTech sends once a meeting is booked,
+   so the team arrives with the right people and examples. Not linked from the menu.
+   Answers stay in the page; nothing is sent anywhere (demo). */
+(function () {
+  'use strict';
+  var root = document.getElementById('rp-app');
+  if (!root) return;
+
+  var QUESTIONS = [
+    { id: 'problem', type: 'text', required: true, title: 'What\'s the main problem you\'d like us to help with?',
+      hint: 'A few sentences is plenty. For example: finding records for public records requests, paper time cards, approvals stuck in email, or an old system being retired.' },
+    { id: 'touches', title: 'Which of these does it touch?', hint: 'Pick all that apply.', multi: true,
+      options: [
+        { v: 'paper', t: 'Paper records', ph: 'organize' },
+        { v: 'find', t: 'Finding records fast', ph: 'unify' },
+        { v: 'forms', t: 'Forms and approvals', ph: 'unify' },
+        { v: 'legacy', t: 'An old system', ph: 'organize' },
+        { v: 'm365', t: 'Microsoft 365 setup', ph: 'unify' },
+        { v: 'reports', t: 'Reports and dashboards', ph: 'scale' },
+        { v: 'other', t: 'Something else' }
+      ] },
+    { id: 'today', title: 'Where does that work live today?', hint: 'Pick the closest match.',
+      options: [
+        { v: 'paper', t: 'Mostly paper', ph: 'organize' },
+        { v: 'mix', t: 'A mix of paper and digital', ph: 'organize' },
+        { v: 'legacy', t: 'An older system', ph: 'organize' },
+        { v: 'm365', t: 'Microsoft 365' },
+        { v: 'google', t: 'Google Workspace' },
+        { v: 'unsure', t: 'Not sure' }
+      ] },
+    { id: 'tools', title: 'What are you already paying for?', hint: 'Pick all that apply.', multi: true,
+      options: [
+        { v: 'm365', t: 'Microsoft 365' },
+        { v: 'sharepoint', t: 'SharePoint' },
+        { v: 'automate', t: 'Power Automate' },
+        { v: 'powerbi', t: 'Power BI' },
+        { v: 'google', t: 'Google Workspace' },
+        { v: 'unsure', t: 'Not sure' }
+      ] },
+    { id: 'timing', title: 'What\'s driving the timing?', hint: 'Pick the closest match.',
+      options: [
+        { v: 'move', t: 'A building move or space deadline' },
+        { v: 'request', t: 'An audit or records request' },
+        { v: 'budget', t: 'Budget pressure or a budget cycle' },
+        { v: 'retiring', t: 'A system being retired' },
+        { v: 'turnover', t: 'Staff turnover' },
+        { v: 'none', t: 'No deadline, just exploring' }
+      ] },
+    { id: 'people', type: 'text', title: 'Who will be in the meeting, and who else has a say in the decision?',
+      hint: 'Roles are fine, like records manager, IT director, or HR lead. Optional.' },
+    { id: 'win', type: 'text', title: 'What would make this meeting a win for you?',
+      hint: 'For example: a rough plan, a demo of something specific, or a sense of cost and timeline. Optional.' },
+    { id: 'contact', type: 'contact', title: 'Last step: who\'s answering?',
+      hint: 'So we can match your answers to your meeting.' }
+  ];
+  var PHASE_ORDER = ['organize', 'unify', 'scale'];
+
+  var answers = {}, step = 0;
+
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+  var CHECK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a2c42" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  function frame(inner, showBack) {
+    var dots = QUESTIONS.map(function (_, i) { return '<span class="' + (i < step || step >= QUESTIONS.length ? 'is-done' : '') + '"></span>'; }).join('');
+    root.innerHTML =
+      '<div class="rp-top"><span class="rp-count">' + (step < QUESTIONS.length ? 'Question ' + (step + 1) + ' of ' + QUESTIONS.length : 'All set') + '</span>' +
+      '<button type="button" class="rp-back"' + (showBack ? '' : ' hidden') + '>&larr; Back</button></div>' +
+      '<div class="rp-progress" aria-hidden="true">' + dots + '</div>' + inner;
+    root.querySelector('.rp-back').addEventListener('click', function () { step = Math.max(0, step - 1); render(); });
+  }
+  function head(q) {
+    return '<h2 id="rp-q-title" tabindex="-1">' + esc(q.title) + '</h2><p class="rp-hint">' + esc(q.hint) + '</p>';
+  }
+  function focusTitle() { var h = root.querySelector('#rp-q-title'); if (h && step > 0) h.focus({ preventScroll: true }); }
+
+  function render() {
+    if (step >= QUESTIONS.length) return renderDone();
+    var q = QUESTIONS[step];
+    if (q.type === 'contact') return renderContact(q);
+    if (q.type === 'text') return renderText(q);
+    var picked = answers[q.id];
+    var opts = q.options.map(function (o) {
+      var on = q.multi ? (picked || []).indexOf(o.v) !== -1 : picked === o.v;
+      return '<li><button type="button" class="rp-opt' + (q.multi ? ' is-multi' : '') + '" data-v="' + o.v + '" aria-pressed="' + on + '">' +
+        '<span class="rp-mark">' + CHECK + '</span><span>' + esc(o.t) + '</span></button></li>';
+    }).join('');
+    frame('<div class="rp-q" role="group" aria-labelledby="rp-q-title">' + head(q) +
+      '<ul class="rp-options" role="list">' + opts + '</ul>' +
+      '<div class="rp-foot"><button type="button" class="rp-next"' + (q.multi ? '' : ' hidden') + '>Continue &rarr;</button></div></div>', step > 0);
+    var next = root.querySelector('.rp-next');
+    root.querySelectorAll('.rp-opt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('data-v');
+        if (q.multi) {
+          var list = (answers[q.id] || []).slice(), i = list.indexOf(v);
+          if (i === -1) list.push(v); else list.splice(i, 1);
+          answers[q.id] = list;
+          b.setAttribute('aria-pressed', i === -1 ? 'true' : 'false');
+          next.disabled = !list.length;
+          return;
+        }
+        answers[q.id] = v;
+        root.querySelectorAll('.rp-opt').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        setTimeout(function () { step++; render(); }, 220);
+      });
+    });
+    if (q.multi) { next.disabled = !(answers[q.id] || []).length; next.addEventListener('click', function () { step++; render(); }); }
+    focusTitle();
+  }
+
+  // Open-ended answer. Required ones need some text; optional ones can be skipped.
+  function renderText(q) {
+    frame('<form class="rp-q" novalidate aria-labelledby="rp-q-title">' + head(q) +
+      '<label class="rp-field"><span class="rp-sr">' + esc(q.title) + '</span><textarea class="rp-text" name="t" rows="4" maxlength="1200">' + esc(answers[q.id] || '') + '</textarea></label>' +
+      '<div class="rp-foot"><button type="submit" class="rp-next">Continue &rarr;</button></div></form>', step > 0);
+    var form = root.querySelector('form'), ta = form.elements.t, btn = form.querySelector('.rp-next');
+    function sync() { answers[q.id] = ta.value; btn.disabled = q.required && !ta.value.trim(); }
+    ta.addEventListener('input', sync);
+    form.addEventListener('submit', function (e) { e.preventDefault(); if (btn.disabled) return; step++; render(); });
+    sync();
+    if (step > 0) focusTitle(); else ta.focus({ preventScroll: true });
+  }
+
+  // Last step: name, email, organization (all required). Demo only: nothing is sent or saved anywhere.
+  function renderContact(q) {
+    var c = answers.contact || { name: '', email: '', org: '' };
+    frame('<form class="rp-q rp-contact" novalidate aria-labelledby="rp-q-title">' + head(q) +
+      '<div class="rp-fields">' +
+        '<label class="rp-field"><span>Full name</span><input type="text" name="name" autocomplete="name" required value="' + esc(c.name) + '"></label>' +
+        '<label class="rp-field"><span>Work email</span><input type="email" name="email" autocomplete="email" inputmode="email" required value="' + esc(c.email) + '"></label>' +
+        '<label class="rp-field rp-field-wide"><span>Organization</span><input type="text" name="org" autocomplete="organization" required value="' + esc(c.org) + '"></label>' +
+      '</div>' +
+      '<p class="rp-err" role="alert" hidden>Please enter your name, a valid email address, and your organization.</p>' +
+      '<div class="rp-foot"><button type="submit" class="rp-next">Send my answers &rarr;</button></div></form>', true);
+    var form = root.querySelector('.rp-contact'), nameIn = form.elements.name, emailIn = form.elements.email, orgIn = form.elements.org,
+        btn = form.querySelector('.rp-next'), err = form.querySelector('.rp-err');
+    var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    function valid() { return nameIn.value.trim().length > 0 && EMAIL.test(emailIn.value.trim()) && orgIn.value.trim().length > 0; }
+    function sync() { btn.disabled = !valid(); if (valid()) err.hidden = true; }
+    [nameIn, emailIn, orgIn].forEach(function (i) { i.addEventListener('input', sync); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!valid()) { err.hidden = false; return; }
+      answers.contact = { name: nameIn.value.trim(), email: emailIn.value.trim(), org: orgIn.value.trim() };
+      step++; render();
+    });
+    sync();
+    nameIn.focus({ preventScroll: true });
+  }
+
+  function labels(q, v) {   // option values back to their wording
+    var list = [].concat(v || []);
+    return q.options.filter(function (o) { return list.indexOf(o.v) !== -1; }).map(function (o) { return o.t; }).join(', ');
+  }
+
+  // Thank-you screen: a recap of their answers and the parts of the path we'll likely cover.
+  function renderDone() {
+    var phases = {};
+    QUESTIONS.forEach(function (q) {
+      if (!q.options) return;
+      [].concat(answers[q.id] || []).forEach(function (v) {
+        q.options.forEach(function (o) { if (o.v === v && o.ph) phases[o.ph] = true; });
+      });
+    });
+    var path = '<div class="rp-path" aria-label="What we\'ll likely cover">' + PHASE_ORDER.map(function (p, i) {
+      return (i ? '<span class="rp-arrow" aria-hidden="true">&rarr;</span>' : '') +
+        '<span class="rp-phase' + (phases[p] ? ' is-on' : '') + '" data-ph="' + p + '">' + p.charAt(0).toUpperCase() + p.slice(1) + '</span>';
+    }).join('') + '</div>';
+    var recap = QUESTIONS.filter(function (q) { return q.type !== 'contact'; }).map(function (q) {
+      var a = q.options ? labels(q, answers[q.id]) : (answers[q.id] || '').trim();
+      return a ? '<div><dt>' + esc(q.title) + '</dt><dd>' + esc(a) + '</dd></div>' : '';
+    }).join('');
+    var first = answers.contact.name.split(/\s+/)[0];
+    frame('<div class="rp-result"><span class="rp-verdict is-strong">Thank you</span>' +
+      '<h2>' + esc(first) + ', we\'ll come prepared.</h2>' +
+      '<p>We\'ll use your answers to bring the right people and the right examples, so we can spend our time on your problem.</p>' +
+      (Object.keys(phases).length ? '<p class="rp-learn-head">What we\'ll likely cover</p>' + path : '') +
+      '<p class="rp-learn-head">Your answers</p><dl class="pm-recap">' + recap + '</dl>' +
+      '<div class="rp-actions"><a class="rp-btn" href="index.html">Explore our site</a>' +
+      '<button type="button" class="rp-link pm-edit">Change an answer</button></div></div>', true);
+    root.querySelector('.pm-edit').addEventListener('click', function () { step = 0; render(); });
+    var h = root.querySelector('.rp-result h2'); h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>

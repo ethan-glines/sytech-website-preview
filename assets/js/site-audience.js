@@ -47,7 +47,7 @@
   // Each industry's own page offers to tailor the whole site to that industry.
   var INDUSTRY_PAGES = { 'school-districts.html': 'schools', 'natural-resources.html': 'natural-resources' };
   // Pages that ask about the visitor's organization themselves skip the first-visit pop-up.
-  var NO_POPUP_PAGES = { 'right-partner.html': true };
+  var NO_POPUP_PAGES = { 'right-partner.html': true, 'pre-meeting.html': true };
   var SUGGEST_TEXT = { 'schools': 'Want the whole site tailored to school districts?',
                        'natural-resources': 'Want the whole site tailored to resource agencies?' };
 
