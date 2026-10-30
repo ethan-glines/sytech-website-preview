@@ -109,7 +109,7 @@
           <div class="mega-inner">
             <ul class="mega-simple-list" role="list">
               <li><a href="who-we-serve.html">Who We Serve</a></li>
-              <li><a href="right-partner.html">Are We the Right Partner?</a></li>
+              <li><a href="right-partner.html">Find Your Path</a></li>
               <li><a href="school-districts.html">School Districts</a></li>
               <li><a href="natural-resources.html">Natural Resources</a></li>
             </ul>

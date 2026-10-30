@@ -4,8 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="robots" content="noindex, nofollow"/>
-<title>SyTech Solutions — Are We the Right Partner?</title>
-<meta name="description" content="Answer seven quick questions and SyTech will tell you honestly whether we are the right partner for your records project."/>
+<title>SyTech Solutions — Find Your Path</title>
+<meta name="description" content="What's slowing your records down? Answer three quick questions and see the path SyTech would take for your records project."/>
 <link rel="stylesheet" href="assets/css/sytech-shared.css">
 <script>
 /* Arriving from the homepage bubble: start covered in the same navy, then reveal (see .rp-arrive CSS). */
@@ -33,7 +33,7 @@
 .page-hero h1 span { color: var(--gold); }
 .page-hero p.lead { font-size: 1.15rem; line-height: 1.7; color: rgba(255,255,255,0.82); max-width: 680px; }
 
-/* ===== "Are We the Right Partner?" (namespaced .rp-*) ===== */
+/* ===== "Find Your Path" (namespaced .rp-*) ===== */
 .rp-section { padding: 4rem 0 5rem; background: var(--light); }
 .rp-card { position: relative; max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid rgba(37,66,107,0.10); border-radius: 16px; box-shadow: 0 18px 50px rgba(37,66,107,0.10); padding: 2.25rem 2.5rem 2rem; overflow: hidden; }
 .rp-card::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(37,66,107,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(37,66,107,0.05) 1px, transparent 1px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 65%); pointer-events: none; }
@@ -42,7 +42,7 @@
 .rp-count { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b7785; }
 .rp-back { font: inherit; font-size: 0.85rem; font-weight: 700; color: var(--navy); background: none; border: none; padding: 0.25rem 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; }
 .rp-back[hidden] { display: none; }
-.rp-progress { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 1.75rem; }
+.rp-progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 1.75rem; }
 .rp-progress span { height: 5px; border-radius: 3px; background: rgba(37,66,107,0.10); transition: background 300ms ease; }
 .rp-progress span.is-done { background: var(--gold); }
 .rp-q h2 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); font-weight: 700; color: var(--navy); line-height: 1.25; margin: 0 0 0.4rem; }
@@ -65,6 +65,13 @@
 .rp-field input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(229,166,48,0.25); }
 .rp-err { margin: 0.8rem 0 0; font-size: 0.88rem; color: #a3341f; font-weight: 700; }
 .rp-err[hidden] { display: none; }
+.rp-field-wide { grid-column: 1 / -1; }
+.rp-other { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 0.55rem; }
+.rp-other .rp-opt { height: auto; }
+.rp-other-box input { width: 100%; box-sizing: border-box; font: inherit; font-size: 1rem; color: var(--navy); padding: 0.8rem 0.9rem; border: 1.5px solid rgba(37,66,107,0.22); border-radius: 10px; background: #fff; }
+.rp-other-box input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(229,166,48,0.25); }
+.rp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rp-result > p.rp-echo { font-style: italic; color: var(--navy); }
 @media (max-width: 640px) { .rp-fields { grid-template-columns: 1fr; } }
 .rp-foot { display: flex; justify-content: flex-end; margin-top: 1.4rem; min-height: 44px; }
 .rp-next { font: inherit; font-size: 0.95rem; font-weight: 700; color: var(--deep-navy); background: var(--gold); border: none; border-radius: 8px; padding: 0.75rem 1.5rem; cursor: pointer; }
@@ -147,13 +154,13 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
 
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow">Are We the Right Partner?</span>
-    <h1>Are We the Right <span>Partner?</span></h1>
-    <p class="lead">Seven quick steps. We'll tell you honestly whether SyTech is a good fit for your records project, and if we're not, we'll say so.</p>
+    <span class="eyebrow">Find Your Path</span>
+    <h1>Find Your <span>Path.</span></h1>
+    <p class="lead">What's slowing your records down? Find your path in 4 quick steps, and we'll show you where we'd start.</p>
   </div>
 </section>
 
-<section class="rp-section" aria-label="Six questions">
+<section class="rp-section" aria-label="Find your path">
   <div class="container">
     <div class="rp-card" id="rp-app" aria-live="polite">
       <noscript><p>This short questionnaire needs JavaScript. You can <a href="contact.html">request a free assessment</a> instead.</p></noscript>
@@ -167,26 +174,25 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
 
 
 <script>
-/* "Are We the Right Partner?": six questions, then an honest result:
-   strong fit (with the visitor's likely path and services), worth a conversation,
-   or probably not a fit. Answers stay in the page; nothing is sent anywhere. */
+/* "Find Your Path": three questions and a short contact step, then the
+   path we would take (Organize, Unify, Scale) with matching services.
+   Answers stay in the page; nothing is sent anywhere. */
 (function () {
   'use strict';
   var root = document.getElementById('rp-app');
   if (!root) return;
 
   var QUESTIONS = [
-    { id: 'org', title: 'What kind of organization are you with?', hint: 'Pick the closest match.',
+    { id: 'pain', title: 'What\'s slowing you down right now?', hint: 'Pick up to two.', multi: 2,
       options: [
-        { v: 'schools', t: 'School district or county office of education' },
-        { v: 'resources', t: 'Natural resources or water agency' },
-        { v: 'city', t: 'City or county' },
-        { v: 'state', t: 'State department' },
-        { v: 'special', t: 'Special district' },
-        { v: 'business', t: 'Business or nonprofit' }
+        { v: 'space', t: 'Running out of space, or a move coming up' },
+        { v: 'find', t: 'Finding records fast, like for public records requests' },
+        { v: 'forms', t: 'Paper forms and approvals' },
+        { v: 'legacy', t: 'An old system that costs too much and is hard to leave' },
+        { v: 'audit', t: 'Retention rules and audit readiness' },
+        { v: 'archive', t: 'A huge archive nobody can search' },
+        { v: 'other', t: 'Other', other: true }
       ] },
-    { id: 'where', title: 'Where is your organization based?', hint: '',
-      options: [ { v: 'ca', t: 'California' }, { v: 'outside', t: 'Outside California' } ] },
     { id: 'records', title: 'Where do your records live today?', hint: 'Pick the closest match.',
       options: [
         { v: 'paper', t: 'Mostly paper' },
@@ -195,31 +201,17 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
         { v: 'cloud', t: 'Already in Microsoft 365 or Google' },
         { v: 'unsure', t: 'Not sure' }
       ] },
-    { id: 'home', title: 'Where can your records live going forward?', hint: '',
+    { id: 'urgency', title: 'What\'s making this urgent right now?', hint: 'Pick the closest match.',
       options: [
-        { v: 'm365', t: 'In our Microsoft 365' },
-        { v: 'google', t: 'In our Google Workspace' },
-        { v: 'hosted', t: 'A system someone runs for us' },
-        { v: 'onprem', t: 'They must stay on our own servers' },
-        { v: 'unsure', t: 'Not sure' }
+        { v: 'move', t: 'A building move or space deadline' },
+        { v: 'request', t: 'An audit or records request' },
+        { v: 'budget', t: 'Budget pressure' },
+        { v: 'retiring', t: 'A system being retired' },
+        { v: 'turnover', t: 'Staff turnover' },
+        { v: 'none', t: 'No deadline, just exploring' }
       ] },
-    { id: 'pain', title: 'What is the biggest headache right now?', hint: 'Pick up to two.', multi: 2,
-      options: [
-        { v: 'space', t: 'Running out of space, or a move coming up' },
-        { v: 'find', t: 'Finding records fast, like for public records requests' },
-        { v: 'forms', t: 'Paper forms and approvals' },
-        { v: 'legacy', t: 'An old system that costs too much and is hard to leave' },
-        { v: 'audit', t: 'Retention rules and audit readiness' },
-        { v: 'archive', t: 'A huge archive nobody can search' }
-      ] },
-    { id: 'buy', title: 'What are you hoping to find?', hint: '',
-      options: [
-        { v: 'help', t: 'A partner to do the work with us' },
-        { v: 'license', t: 'A software license our team will run on its own' },
-        { v: 'unsure', t: 'Not sure yet' }
-      ] },
-    { id: 'contact', type: 'contact', title: 'Last step: where should we send your results?',
-      hint: 'Enter your name and work email to see your result.' }
+    { id: 'contact', type: 'contact', title: 'Last step: where should we send your path?',
+      hint: 'Enter your name, work email, and organization to see your result.' }
   ];
 
   // Services the result can recommend (phase, page, and a line tied to the visitor's answer).
@@ -228,22 +220,31 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
     migration:  { ph: 'organize', name: 'Data Migration', href: 'services-data-migration.html', why: 'Move records out of the old system with their structure intact.' },
     compliance: { ph: 'organize', name: 'Records Management & Compliance', href: 'services-compliance-setup.html', why: 'Set up retention rules and structure that hold up under an audit.' },
     oneform:    { ph: 'unify', name: 'OneForm', href: 'services-oneform.html', why: 'Turn paper forms into online forms with approvals built in.' },
-    sharepoint: { ph: 'unify', name: 'SharePoint ERMS', href: 'services-sharepoint-erms.html', why: 'Make SharePoint your records system, inside the Microsoft 365 you already own.' },
-    docstop:    { ph: 'unify', name: '1DocStop', href: 'services-1docstop.html', why: 'A records system SyTech runs for you, searchable from any browser.' },
+    sharepoint: { ph: 'unify', name: 'SharePoint ERMS', href: 'services-sharepoint-erms.html', why: 'Find any record in seconds, inside the Microsoft 365 you already own. On Google, or want us to run it for you? 1DocStop does the same job.' },
     ai:         { ph: 'scale', name: 'AI-Powered Ingestion', href: 'services-ai-ingestion.html', why: 'Read, sort, and index a large archive automatically.' }
   };
   var PHASE_ORDER = ['organize', 'unify', 'scale'];
 
+  // One line for the result, tied to what is making it urgent.
+  var URGENCY = {
+    move: 'With a move or space deadline coming, we\'d start with the records that have to leave the building first.',
+    request: 'With an audit or records request in front of you, we\'d start with the records you need to find first.',
+    budget: 'With budget pressure, we\'d start where it saves the most, like making better use of the Microsoft 365 you already pay for.',
+    retiring: 'With a system being retired, we\'d start by getting your records out safely, with their structure intact, before the deadline.',
+    turnover: 'With staff turnover, we\'d start by building the know-how into the system, so your records don\'t depend on one person.',
+    none: 'No deadline is a good place to be. It gives us room to plan the path right before anything moves.'
+  };
+
   var answers = {}, step = 0;
 
   function el(html) { var d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; }
-  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
   var CHECK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1a2c42" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 
   function frame(inner, showBack) {
     var dots = QUESTIONS.map(function (_, i) { return '<span class="' + (i < step || step >= QUESTIONS.length ? 'is-done' : '') + '"></span>'; }).join('');
     root.innerHTML =
-      '<div class="rp-top"><span class="rp-count">' + (step < QUESTIONS.length ? 'Question ' + (step + 1) + ' of ' + QUESTIONS.length : 'Your result') + '</span>' +
+      '<div class="rp-top"><span class="rp-count">' + (step < QUESTIONS.length ? 'Step ' + (step + 1) + ' of ' + QUESTIONS.length : 'Your path') + '</span>' +
       '<button type="button" class="rp-back"' + (showBack ? '' : ' hidden') + '>&larr; Back</button></div>' +
       '<div class="rp-progress" aria-hidden="true">' + dots + '</div>' + inner;
     var back = root.querySelector('.rp-back');
@@ -256,20 +257,25 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
     if (q.type === 'contact') return renderContact(q);
     var opts = q.options.map(function (o) {
       var on = q.multi ? (picked || []).indexOf(o.v) !== -1 : picked === o.v;
-      return '<li><button type="button" class="rp-opt' + (q.multi ? ' is-multi' : '') + '" data-v="' + o.v + '" aria-pressed="' + on + '">' +
-        '<span class="rp-mark">' + CHECK + '</span><span>' + esc(o.t) + '</span></button></li>';
+      return '<li' + (o.other ? ' class="rp-other"' : '') + '><button type="button" class="rp-opt' + (q.multi ? ' is-multi' : '') + '" data-v="' + o.v + '" aria-pressed="' + on + '">' +
+        '<span class="rp-mark">' + CHECK + '</span><span>' + esc(o.t) + '</span></button>' +
+        (o.other ? '<label class="rp-other-box"' + (on ? '' : ' hidden') + '><span class="rp-sr">Tell us what\'s slowing you down</span>' +
+          '<input type="text" maxlength="160" placeholder="Tell us in a few words" value="' + esc(answers.otherText || '') + '"></label>' : '') +
+        '</li>';
     }).join('');
     frame('<div class="rp-q" role="group" aria-labelledby="rp-q-title"><h2 id="rp-q-title" tabindex="-1">' + esc(q.title) + '</h2>' +
       (q.hint ? '<p class="rp-hint">' + esc(q.hint) + '</p>' : '<p class="rp-hint">&nbsp;</p>') +
       '<ul class="rp-options" role="list">' + opts + '</ul>' +
       '<div class="rp-foot"><button type="button" class="rp-next"' + (q.multi ? '' : ' hidden') + '>Continue &rarr;</button></div></div>', step > 0);
-    var next = root.querySelector('.rp-next');
+    var next = root.querySelector('.rp-next'), otherBox = root.querySelector('.rp-other-box');
+    if (otherBox) otherBox.querySelector('input').addEventListener('input', function (e) { answers.otherText = e.target.value; });
     function syncMulti() {
-      var n = (answers[q.id] || []).length;
+      var list = answers[q.id] || [], n = list.length;
       next.disabled = n === 0;
       Array.prototype.forEach.call(root.querySelectorAll('.rp-opt'), function (b) {
         b.disabled = n >= q.multi && b.getAttribute('aria-pressed') !== 'true';
       });
+      if (otherBox) otherBox.hidden = list.indexOf('other') === -1;
     }
     root.querySelectorAll('.rp-opt').forEach(function (b) {
       b.addEventListener('click', function () {
@@ -280,14 +286,11 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
           answers[q.id] = list;
           b.setAttribute('aria-pressed', i === -1 ? 'true' : 'false');
           syncMulti();
+          if (v === 'other' && i === -1) otherBox.querySelector('input').focus();
           return;
         }
         answers[q.id] = v;
         root.querySelectorAll('.rp-opt').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-        if (q.id === 'org' && window.SyTechAudience) {   // question 1 also tailors the site
-          // industries without their own version show the normal site
-          window.SyTechAudience.set(v === 'schools' ? 'schools' : v === 'resources' ? 'natural-resources' : 'general');
-        }
         setTimeout(function () { step++; render(); }, 220);
       });
     });
@@ -295,27 +298,28 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
     var h = root.querySelector('#rp-q-title'); if (h && step > 0) h.focus({ preventScroll: true });
   }
 
-  // Step 7: name + email (required). Demo only: nothing is sent or saved anywhere.
+  // Last step: name, email, organization (all required). Demo only: nothing is sent or saved anywhere.
   function renderContact(q) {
-    var c = answers.contact || { name: '', email: '' };
+    var c = answers.contact || { name: '', email: '', org: '' };
     frame('<form class="rp-q rp-contact" novalidate aria-labelledby="rp-q-title"><h2 id="rp-q-title" tabindex="-1">' + esc(q.title) + '</h2>' +
       '<p class="rp-hint">' + esc(q.hint) + '</p>' +
       '<div class="rp-fields">' +
-        '<label class="rp-field"><span>Full name</span><input type="text" name="name" autocomplete="name" required value="' + esc(c.name).replace(/"/g, '&quot;') + '"></label>' +
-        '<label class="rp-field"><span>Work email</span><input type="email" name="email" autocomplete="email" inputmode="email" required value="' + esc(c.email).replace(/"/g, '&quot;') + '"></label>' +
+        '<label class="rp-field"><span>Full name</span><input type="text" name="name" autocomplete="name" required value="' + esc(c.name) + '"></label>' +
+        '<label class="rp-field"><span>Work email</span><input type="email" name="email" autocomplete="email" inputmode="email" required value="' + esc(c.email) + '"></label>' +
+        '<label class="rp-field rp-field-wide"><span>Organization</span><input type="text" name="org" autocomplete="organization" required value="' + esc(c.org) + '"></label>' +
       '</div>' +
-      '<p class="rp-err" role="alert" hidden>Please enter your name and a valid email address.</p>' +
-      '<div class="rp-foot"><button type="submit" class="rp-next">See my result &rarr;</button></div></form>', true);
-    var form = root.querySelector('.rp-contact'), nameIn = form.elements.name, emailIn = form.elements.email,
+      '<p class="rp-err" role="alert" hidden>Please enter your name, a valid email address, and your organization.</p>' +
+      '<div class="rp-foot"><button type="submit" class="rp-next">See my path &rarr;</button></div></form>', true);
+    var form = root.querySelector('.rp-contact'), nameIn = form.elements.name, emailIn = form.elements.email, orgIn = form.elements.org,
         btn = form.querySelector('.rp-next'), err = form.querySelector('.rp-err');
     var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    function valid() { return nameIn.value.trim().length > 0 && EMAIL.test(emailIn.value.trim()); }
+    function valid() { return nameIn.value.trim().length > 0 && EMAIL.test(emailIn.value.trim()) && orgIn.value.trim().length > 0; }
     function sync() { btn.disabled = !valid(); if (valid()) err.hidden = true; }
-    nameIn.addEventListener('input', sync); emailIn.addEventListener('input', sync);
+    [nameIn, emailIn, orgIn].forEach(function (i) { i.addEventListener('input', sync); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!valid()) { err.hidden = false; return; }
-      answers.contact = { name: nameIn.value.trim(), email: emailIn.value.trim() };
+      answers.contact = { name: nameIn.value.trim(), email: emailIn.value.trim(), org: orgIn.value.trim() };
       step++; render();
     });
     sync();
@@ -326,33 +330,26 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
     var n = (answers.contact && answers.contact.name) || '';
     return n.split(/\s+/)[0] || '';
   }
-  function named(line) {   // "Ethan, we look like..." when we have a name
+  function named(line) {   // "Ethan, here's where we'd start." when we have a name
     var f = firstName();
     return f ? esc(f) + ', ' + line.charAt(0).toLowerCase() + line.slice(1) : line;
   }
 
   function decide() {
-    var a = answers, notFit = [], talk = [];
-    if (a.buy === 'license') notFit.push('license');
-    if (a.home === 'onprem') notFit.push('onprem');
-    if (a.where === 'outside') talk.push('outside');
-    if (a.org === 'business') talk.push('business');
-    var unsure = ['records', 'home', 'buy'].filter(function (k) { return a[k] === 'unsure'; }).length;
-    if (unsure >= 2) talk.push('unsure');
-
-    var pick = [];
+    var a = answers, pains = a.pain || [], pick = [];
     function add(k) { if (pick.indexOf(k) === -1) pick.push(k); }
-    var pains = a.pain || [];
-    if (a.records === 'paper' || a.records === 'mix' || pains.indexOf('space') !== -1) add('scanning');
-    if (a.records === 'legacy' || pains.indexOf('legacy') !== -1) add('migration');
+    if (a.records === 'paper' || a.records === 'mix' || pains.indexOf('space') !== -1 || a.urgency === 'move') add('scanning');
+    if (a.records === 'legacy' || pains.indexOf('legacy') !== -1 || a.urgency === 'retiring') add('migration');
     if (pains.indexOf('audit') !== -1) add('compliance');
     if (pains.indexOf('forms') !== -1) add('oneform');
-    if (pains.indexOf('find') !== -1 || a.records === 'cloud') add(a.home === 'hosted' || a.home === 'google' ? 'docstop' : 'sharepoint');
+    if (pains.indexOf('find') !== -1 || a.records === 'cloud' || a.urgency === 'request') add('sharepoint');
     if (pains.indexOf('archive') !== -1) add('ai');
-    if (a.home === 'hosted') add('docstop');
     pick.sort(function (x, y) { return PHASE_ORDER.indexOf(SERVICES[x].ph) - PHASE_ORDER.indexOf(SERVICES[y].ph); });
     pick = pick.slice(0, 3);
-    return { verdict: notFit.length ? 'not' : (talk.length ? 'talk' : 'strong'), notFit: notFit, talk: talk, services: pick };
+    // Vague answers ("Other" only, or not sure where records live) get a "let's talk" result.
+    var onlyOther = pains.length === 1 && pains[0] === 'other';
+    var talk = onlyOther ? 'other' : a.records === 'unsure' ? 'unsure' : !pick.length ? 'other' : '';
+    return { talk: talk, services: pick };
   }
 
   function renderResult() {
@@ -366,52 +363,24 @@ html.rp-arrive .rp-card { animation: rp-rise 800ms cubic-bezier(.2,.9,.25,1.1) 7
       var s = SERVICES[k];
       return '<li class="rp-service" data-ph="' + s.ph + '"><a href="' + s.href + '"><span class="rp-sv-ph">' + s.ph + '</span><h3>' + esc(s.name) + '</h3><p>' + esc(s.why) + '</p></a></li>';
     }).join('') + '</ul>';
+    var other = (answers.pain || []).indexOf('other') !== -1 && (answers.otherText || '').trim()
+      ? '<p class="rp-echo">You told us: &ldquo;' + esc(answers.otherText.trim()) + '&rdquo;</p>' : '';
+    var urgency = URGENCY[answers.urgency] ? '<p>' + URGENCY[answers.urgency] + '</p>' : '';
     var restart = '<button type="button" class="rp-link rp-restart">Start over</button>';
 
-    if (r.verdict === 'not') {
-      var ICO = {
-        twice: '<path d="M4 7h16v12H4Z"/><path d="M4 11h16"/><path d="M8 15h3"/><path d="M14 3h6v4"/>',
-        lock: '<path d="M6 11h12v9H6Z"/><path d="M9 11V8a3 3 0 0 1 6 0v3"/><path d="M12 15v2"/>',
-        load: '<path d="M4 20h16"/><path d="M7 20V9l5-4 5 4v11"/><path d="M10 20v-5h4v5"/>',
-        server: '<path d="M5 4h14v6H5Z"/><path d="M5 14h14v6H5Z"/><path d="M8 7h.01M8 17h.01"/>',
-        reach: '<path d="M12 21s-6-5.4-6-10.5a6 6 0 0 1 12 0C18 15.6 12 21 12 21Z"/><path d="M9.5 10.5l5-1"/>',
-        age: '<path d="M12 7v5l3 2"/><path d="M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18Z"/>'
-      };
-      var ico = function (k) { return '<span class="rp-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICO[k] + '</svg></span>'; };
-      var point = function (k, t, d) { return '<li>' + ico(k) + '<div><strong>' + t + '</strong><p>' + d + '</p></div></li>'; };
-      var license = r.notFit.indexOf('license') !== -1, onprem = r.notFit.indexOf('onprem') !== -1;
-      var told = license && onprem ? 'a software license your team runs on your own servers'
-               : license ? 'a software license your team runs on its own'
-               : 'a system that keeps your records on your own servers';
-      var points = '';
-      if (license) points +=
-        point('twice', 'You end up paying twice.', 'Most agencies already pay for Microsoft 365, which can manage records. A separate records license adds a second bill for something you already own.') +
-        point('lock', 'Your records get locked in.', 'Your records live inside the vendor\'s system. If you ever want to leave, getting them out becomes its own costly project.') +
-        point('load', 'Your team carries the load.', 'Upgrades, user support, and fixes land on your staff, year after year, on top of their real jobs.');
-      if (onprem) points +=
-        point('server', 'You maintain everything.', 'Servers, security updates, backups, and disaster recovery all fall on your IT team.') +
-        point('reach', 'Records are hard to reach.', 'Staff in the field or working remotely can\'t easily get to what they need.') +
-        point('age', 'Hardware ages out.', 'Servers need replacing every few years, which is a cost that keeps coming back.');
-      html = '<div class="rp-result"><span class="rp-verdict is-not">Probably not a fit</span>' +
-        '<h2>' + named('We\'d steer you a different way. Here\'s why.') + '</h2>' +
-        '<p>You told us you\'re looking for ' + told + '. It\'s a common plan, but it often leads to the same problems agencies come to us to fix.</p>' +
-        '<p class="rp-learn-head">What agencies run into</p><ul class="rp-learn" role="list">' + points + '</ul>' +
-        '<div class="rp-better"><strong>The other way</strong><p>We build records management inside the cloud your agency already owns, like Microsoft 365, and we do the work. You pay for the work, not someone else\'s software, and your records stay yours.</p></div>' +
-        '<p class="rp-honest">If you\'re set on ' + (license && !onprem ? 'a license your team runs on its own' : license ? 'a license on your own servers' : 'keeping records on your own servers') + ', a different kind of vendor will serve you better, and that\'s okay.</p>' +
-        '<div class="rp-actions"><a class="rp-btn" href="contact.html">Show me the other way</a>' + restart + '</div></div>';
-    } else if (r.verdict === 'talk') {
-      var reason = r.talk.indexOf('outside') !== -1 ? 'Most of our work is with California public agencies, so it is worth a quick conversation to see whether we fit your situation.'
-        : r.talk.indexOf('business') !== -1 ? 'Most of our work is with public agencies, so it is worth a quick conversation to see whether we fit your organization.'
-        : 'A few of your answers were "not sure," which is completely normal. A short conversation is the fastest way to figure out where you stand.';
-      html = '<div class="rp-result"><span class="rp-verdict is-talk">Worth a conversation</span>' +
-        '<h2>' + named('We might be a good fit. Let\'s talk it through.') + '</h2><p>' + reason + '</p>' +
+    if (r.talk) {
+      var reason = r.talk === 'unsure'
+        ? 'Not sure where your records live? That\'s completely normal. A short conversation is the fastest way to map what you have and find the right first step.'
+        : 'Every records project is a little different, and yours sounds like one worth talking through. A short conversation is the fastest way to find the right first step.';
+      html = '<div class="rp-result"><span class="rp-verdict is-talk">Let\'s talk</span>' +
+        '<h2>' + named('Let\'s talk it through.') + '</h2>' + other + '<p>' + reason + '</p>' +
         (r.services.length ? '<p style="margin-bottom:0.8rem"><strong style="color:var(--navy)">Based on your answers, this is where we would likely start:</strong></p>' + path + services : '') +
         '<div class="rp-actions"><a class="rp-btn" href="contact.html">Request a Free Assessment</a>' + restart + '</div></div>';
     } else {
-      html = '<div class="rp-result"><span class="rp-verdict is-strong">Strong fit</span>' +
-        '<h2>' + named('We look like the right partner for this.') + '</h2>' +
-        '<p>This is the kind of work we do every day. Here is the path we would likely recommend, based on your answers.</p>' +
-        path + (r.services.length ? services : '<p>We would start with a short assessment to map your records and pick the right first step.</p>') +
+      html = '<div class="rp-result"><span class="rp-verdict is-strong">Your path</span>' +
+        '<h2>' + named('Here\'s where we\'d start.') + '</h2>' + other + urgency +
+        '<p>Based on your answers, here is the path we would likely recommend.</p>' +
+        path + services +
         '<div class="rp-actions"><a class="rp-btn" href="contact.html">Request a Free Assessment</a>' + restart + '</div></div>';
     }
     frame(html, true);

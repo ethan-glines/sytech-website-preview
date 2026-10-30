@@ -410,7 +410,7 @@
   // use their own lighter offer instead of the pop-up.
   if (!fromUrl && !stored && !INDUSTRY_PAGES[page] && !NO_POPUP_PAGES[page]) openModal();
 
-  // Small hook for other page features (the "Are We the Right Partner?" questions)
+  // Small hook for other page features (the "Find Your Path" questions)
   // to switch the industry quietly: no pop-up, no confirmation message.
   window.SyTechAudience = {
     set: function (id) { if (isReady(id)) { writeStore(id); apply(id); } },
